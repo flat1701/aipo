@@ -19,19 +19,24 @@
 
 package com.aimluck.eip.orm.access.jdbc;
 
+import java.lang.reflect.Method;
 import java.sql.Connection;
 
 import org.apache.cayenne.access.jdbc.ColumnDescriptor;
 import org.apache.cayenne.access.jdbc.SelectAction;
 import org.apache.cayenne.access.trans.SelectTranslator;
 import org.apache.cayenne.dba.DbAdapter;
+import org.apache.cayenne.dba.JdbcActionBuilder;
 import org.apache.cayenne.map.EntityResolver;
+import org.apache.cayenne.query.SQLActionVisitor;
 
 import com.aimluck.eip.orm.access.trans.CustomSelectTranslator;
 import com.aimluck.eip.orm.query.AbstractCustomQuery;
 
 /**
- * 
+ * CustomSelectAction
+ * Cayenne のカスタムクエリを実行するためのアクション。
+ * protected メソッド getAdapter() への対応を含む。
  */
 public class CustomSelectAction extends SelectAction {
 
@@ -47,6 +52,8 @@ public class CustomSelectAction extends SelectAction {
 
   private final boolean isDistinct;
 
+  private DbAdapter cachedAdapter;
+
   public CustomSelectAction(AbstractCustomQuery arg0, DbAdapter arg1,
       EntityResolver arg2, String customScript, ColumnDescriptor[] columns,
       String[] columnNames, int limit, int offset, boolean isDistinct) {
@@ -57,13 +64,44 @@ public class CustomSelectAction extends SelectAction {
     this.offset = offset;
     this.limit = limit;
     this.isDistinct = isDistinct;
+    this.cachedAdapter = arg1;
+  }
+
+  /**
+   * JdbcActionBuilder から DbAdapter を安全に取得する
+   * Cayenneバージョン間の互換性を保つため、リフレクションを使用
+   * 
+   * @param visitor SQLActionVisitor
+   * @return DbAdapter
+   * @throws RuntimeException getAdapter() メソッドが見つからない場合
+   */
+  private DbAdapter getAdapterFromBuilder(SQLActionVisitor visitor) {
+    if (!(visitor instanceof JdbcActionBuilder)) {
+      return cachedAdapter;
+    }
+
+    JdbcActionBuilder builder = (JdbcActionBuilder) visitor;
+
+    // リフレクションで getAdapter() メソッドを取得
+    try {
+      Method getAdapterMethod = builder.getClass().getMethod("getAdapter");
+      getAdapterMethod.setAccessible(true);
+      return (DbAdapter) getAdapterMethod.invoke(builder);
+    } catch (NoSuchMethodException e) {
+      // メソッドが存在しない場合はキャッシュされたアダプタを使用
+      return cachedAdapter;
+    } catch (Exception e) {
+      // その他の例外はログに出力してキャッシュを使用
+      System.err.println("Failed to get DbAdapter via reflection: " + e.getMessage());
+      return cachedAdapter;
+    }
   }
 
   @Override
   protected SelectTranslator createTranslator(Connection connection) {
     CustomSelectTranslator translator = new CustomSelectTranslator();
     translator.setQuery(query);
-    translator.setAdapter(adapter);
+    translator.setAdapter(cachedAdapter);
     translator.setEntityResolver(getEntityResolver());
     translator.setConnection(connection);
     translator.setCustomScript(customScript);
