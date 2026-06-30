@@ -5,7 +5,7 @@
 
   <properties>
     <aipo.version>7.0.2</aipo.version>
-    <tomcat.version>6.0.29</tomcat.version>
+    <tomcat.version>8.0.53</tomcat.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -180,8 +180,8 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
+          <source>1.8</source>
+          <target>1.8</target>
           <failOnError>true</failOnError>
           <encoding>UTF-8</encoding>
         </configuration>
@@ -247,15 +247,15 @@
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
-      <artifactId>servlet-api</artifactId>
-      <version>2.5</version>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
-      <artifactId>jsp-api</artifactId>
-      <version>2.0</version>
+      <artifactId>javax.servlet.jsp-api</artifactId>
+      <version>2.3.3</version>
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
