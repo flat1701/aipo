@@ -42,6 +42,7 @@ public class HeaderAction extends VelocityPortletAction
 {
     private static final JetspeedLogger log = JetspeedLogFactoryService.getLogger(HeaderAction.class.getName());
     private static final String IMAGES_DIRECTORY = "images/designer/";
+    @SuppressWarnings("unused")
     private static final String DEFAULT_CSS = "css/default.css";
 
     private String fileTypes[] =
@@ -62,7 +63,7 @@ public class HeaderAction extends VelocityPortletAction
 
     public void doUpload(RunData rundata, Context context)
     {
-        Hashtable ht = new Hashtable();
+        Hashtable<String, String> ht = new Hashtable<String, String>();
 
         boolean setLogo = rundata.getParameters().getBoolean("setLogo");
         boolean setBgImage = rundata.getParameters().getBoolean("setBgImage");
@@ -123,11 +124,13 @@ public class HeaderAction extends VelocityPortletAction
 
         log.info("fontColor : " + fontColor);
 
+        @SuppressWarnings("unused")
         String message = "";
         try
         {
             String logo = "";
 
+            @SuppressWarnings("unused")
             String slash = System.getProperty("file.separator");
             String imagePath = FormatPath.normalizeDirectoryPath(rundata
                     .getServletContext().getRealPath("/" + IMAGES_DIRECTORY));
@@ -263,7 +266,7 @@ public class HeaderAction extends VelocityPortletAction
         }
     }
 
-    public void editHeader(RunData rundata, Context context, Hashtable ht)
+    public void editHeader(RunData rundata, Context context, Hashtable<String, String> ht)
             throws Exception
     {
         try
@@ -297,6 +300,7 @@ public class HeaderAction extends VelocityPortletAction
             prop.clear();
             prop.load(new FileInputStream(root + "JetspeedResources.properties"));
 
+            @SuppressWarnings("unused")
             TurbineResources trProp = (TurbineResources) TurbineResources
                     .getResources(root + "JetspeedResources.properties");
 
@@ -383,12 +387,15 @@ public class HeaderAction extends VelocityPortletAction
         }
     }
 
+    @SuppressWarnings("deprecation")
     public void doDefault(RunData rundata, Context context) throws Exception
     {
         try
         {
             String logo = IMAGES_DIRECTORY + "jetspeed-logo.gif";
+            @SuppressWarnings("unused")
             String bgImage = "";
+            @SuppressWarnings("unused")
             String fontSize = "10";
             String title = "Jakarta Jetspeed";
 
@@ -404,6 +411,7 @@ public class HeaderAction extends VelocityPortletAction
                             + "JetspeedResources.properties"));
             prop.clone();
 
+            @SuppressWarnings("unused")
             TurbineResources trProp = (TurbineResources) TurbineResources
                     .getResources(root + "JetspeedResources.properties");
 

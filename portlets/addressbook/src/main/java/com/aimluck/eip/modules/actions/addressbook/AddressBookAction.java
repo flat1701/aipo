@@ -124,10 +124,10 @@ public class AddressBookAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p3a-strlen")));
+      context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     listData.loadGroups(rundata, context);
     setTemplate(rundata, "addressbook-list");
@@ -147,10 +147,10 @@ public class AddressBookAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p3a-strlen")));
+      context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "addressbook-corplist");
   }
@@ -271,10 +271,10 @@ public class AddressBookAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p3a-strlen")));
+      context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "addressbook-group-list");
   }
@@ -385,10 +385,10 @@ public class AddressBookAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p3a-strlen")));
+      context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "addressbook-company-list");
   }
@@ -497,10 +497,10 @@ public class AddressBookAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p3a-strlen")));
+      context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     listData.loadGroups(rundata, context);
 
@@ -524,10 +524,10 @@ public class AddressBookAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p3a-strlen")));
+      context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "addressbook-company-list.vm");
   }

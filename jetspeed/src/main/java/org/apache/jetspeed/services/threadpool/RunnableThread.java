@@ -192,6 +192,7 @@ public class RunnableThread extends Thread {
    *         executing a Runnable process, if false it's waiting for a new
    *         process
    */
+  @SuppressWarnings("unused")
   private boolean isRunning() {
     return this.running;
   }

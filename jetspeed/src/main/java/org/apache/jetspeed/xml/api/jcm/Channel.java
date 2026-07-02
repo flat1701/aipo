@@ -11,15 +11,8 @@ package org.apache.jetspeed.xml.api.jcm;
  //- Imported classes and packages -/
 //---------------------------------/
 
-import java.io.Reader;
-import java.io.Serializable;
-import java.io.Writer;
-import java.util.Enumeration;
 import java.util.Vector;
 import org.exolab.castor.xml.*;
-import org.exolab.castor.xml.MarshalException;
-import org.exolab.castor.xml.ValidationException;
-import org.xml.sax.DocumentHandler;
 
 /**
  * 
@@ -34,7 +27,7 @@ public class Channel implements java.io.Serializable {
 
     private Topics _topics;
 
-    private java.util.Vector _itemList;
+    private java.util.Vector<Item> _itemList;
 
     private java.lang.String _title;
 
@@ -69,7 +62,7 @@ public class Channel implements java.io.Serializable {
 
     public Channel() {
         super();
-        _itemList = new Vector();
+        _itemList = new Vector<>();
     } //-- org.apache.jetspeed.xml.api.jcm.Channel()
 
 
@@ -89,6 +82,7 @@ public class Channel implements java.io.Serializable {
 
     /**
     **/
+    @SuppressWarnings("rawtypes")
     public java.util.Enumeration enumerateItem()
     {
         return _itemList.elements();
@@ -254,6 +248,7 @@ public class Channel implements java.io.Serializable {
      * 
      * @param handler
     **/
+    @SuppressWarnings("deprecation")
     public void marshal(org.xml.sax.DocumentHandler handler)
         throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
     {

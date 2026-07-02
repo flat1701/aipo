@@ -79,6 +79,7 @@ public class ParameterLoader extends GenericLoader
      * @param name   Name of object.
      * @param param
      */
+    @SuppressWarnings("unchecked")
     private void addInstance(String name, ParameterPresentationStyle param) {
 
         if (cache()) {
@@ -105,13 +106,13 @@ public class ParameterLoader extends GenericLoader
      * @return 
      * @exception Exception a generic exception.
      */
-    public String eval(RunData data, String provider, String name, String value, Map parms) throws Exception {
+    public String eval(RunData data, String provider, String name, String value, Map<String, Object> parms) throws Exception {
 
         // Execute parameter
         ParameterPresentationStyle prm = getInstance(provider);
 
         // Filter out style params
-        Map styleparms = extractStyleParameters(parms, name);
+        Map<String, Object> styleparms = extractStyleParameters(parms, name);
         prm.setParms(styleparms);
 
         return prm.getContent(data, name, value, styleparms);
@@ -179,7 +180,7 @@ public class ParameterLoader extends GenericLoader
                 // If we did not find a screen we should try and give
                 // the user a reason for that...
                 // FIX ME: The AssemblerFactories should each add it's own string here...
-                Vector packages = JetspeedResources.getVector("module.packages");
+                Vector<?> packages = JetspeedResources.getVector("module.packages");
 
                 throw new ClassNotFoundException( "\n\n\tRequested Parameter not found: " +
                                                   provider + "\n" +
@@ -212,13 +213,13 @@ public class ParameterLoader extends GenericLoader
      * @param parm   parameter name
      * @return hashtable of optional parameters for the style
      */
-    public static Map extractStyleParameters(Map parms, String parmName) {
+    public static Map<String, Object> extractStyleParameters(Map<String, Object> parms, String parmName) {
 
-        Hashtable result = new Hashtable();
+        Hashtable<String, Object> result = new Hashtable<String, Object>();
 
         if (parms != null) {
             String key = parmName.concat(".style.");
-            Iterator it = parms.keySet().iterator();
+            Iterator<?> it = parms.keySet().iterator();
             while (it.hasNext()) {
                 String parmkey = (String)it.next();
                 if (parmkey.startsWith(key)) {

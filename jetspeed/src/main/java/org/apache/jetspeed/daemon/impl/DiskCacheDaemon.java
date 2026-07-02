@@ -45,6 +45,7 @@ public class DiskCacheDaemon implements Daemon {
     private int result = Daemon.RESULT_UNKNOWN;
     private DaemonConfig config = null;
     private DaemonEntry entry = null;
+    @SuppressWarnings("unused")
     private RunData rundata = null;
     
     /**

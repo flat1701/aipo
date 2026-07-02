@@ -52,7 +52,7 @@ public class JetspeedPropertiesPortlet extends AbstractPortlet {
         ElementContainer root = new ElementContainer();
         Table table = new Table().setWidth("100%");
 
-        Iterator i = JetspeedResources.getKeys();
+        Iterator<?> i = JetspeedResources.getKeys();
 
         root.addElement( new B( "Jetspeed properties: " ) );
         

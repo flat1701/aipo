@@ -43,7 +43,7 @@ public abstract class ParameterPresentationStyle extends Assembler
      */    
     private static final JetspeedLogger logger = JetspeedLogFactoryService.getLogger(ParameterPresentationStyle.class.getName());     
     
-    private Map styleparms = null;
+    private Map<String, Object> styleparms = null;
 
     /**
      * Returns presentation method html fragment
@@ -54,14 +54,14 @@ public abstract class ParameterPresentationStyle extends Assembler
      * @param parms  hashtable with presentation parameters
      * @return html for the control
      */
-    public abstract String getContent(RunData data, String name, String value, Map parms);
+    public abstract String getContent(RunData data, String name, String value, Map<String, Object> parms);
 
     /**
      * Allows to initialize style parameter hashtable
      * 
      * @param parms
      */
-    public void setParms(Map parms)
+    public void setParms(Map<String, Object> parms)
     {
 
         this.styleparms = parms;
@@ -98,14 +98,14 @@ public abstract class ParameterPresentationStyle extends Assembler
      * 
      * @return map of javascript events
      */
-    public Map getJavascriptEvents()
+    public Map<String, ?> getJavascriptEvents()
     {
 
-        Hashtable result = null;
+        Hashtable<String, Object> result = null;
 
         if (this.styleparms != null) 
         {
-             Iterator it = this.styleparms.keySet().iterator();
+             Iterator<?> it = this.styleparms.keySet().iterator();
              while (it.hasNext()) 
              {
                  String parmkey = (String) it.next();
@@ -115,7 +115,7 @@ public abstract class ParameterPresentationStyle extends Assembler
                      {
                          if (result == null)
                          {
-                             result = new Hashtable();
+                             result = new Hashtable<String, Object>();
                          }
                          String event = parmkey.substring(parmkey.lastIndexOf(":") + 1);
                          result.put(event, this.styleparms.get(parmkey));

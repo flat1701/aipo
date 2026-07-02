@@ -40,6 +40,7 @@ public class BaseLogger implements Logger
     /**
      * Current log level for logger
      */
+    @SuppressWarnings("unused")
     private int logLevel;
 
     /**

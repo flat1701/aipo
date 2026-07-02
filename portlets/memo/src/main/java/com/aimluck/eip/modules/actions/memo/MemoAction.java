@@ -61,6 +61,7 @@ public class MemoAction extends ALBaseAction {
       .getPortlet(rundata, context)
       .getPortletConfig()
       .getInitParameter("p1a-memos")
+      .toString()
       .trim());
     MemoSelectData listData = new MemoSelectData();
     listData.initField();
@@ -102,7 +103,7 @@ public class MemoAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "memo-list");
   }

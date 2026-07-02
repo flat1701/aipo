@@ -755,7 +755,6 @@ public class SystemDeleteSampleFormData extends ALAbstractFormData {
     }
   }
 
-  @SuppressWarnings("unchecked")
   private void updateSchedule(List<Integer> ids) {
     List<Integer> deleteFacilityId = new ArrayList<Integer>();
 

@@ -79,6 +79,7 @@ public class PortletCustomizeFormScreen extends ALVelocityScreen {
    * @param context
    * @throws Exception
    */
+  @SuppressWarnings("deprecation")
   @Override
   protected void doOutput(RunData rundata, Context context) throws Exception {
     JetspeedRunData jdata = (JetspeedRunData) rundata;
@@ -232,7 +233,7 @@ public class PortletCustomizeFormScreen extends ALVelocityScreen {
             if (instance.getAttribute(name, null) != null) {
               value = instance.getAttribute(name);
             } else if (found.getPortletConfig().getInitParameter(name) != null) {
-              value = found.getPortletConfig().getInitParameter(name);
+              value = found.getPortletConfig().getInitParameter(name).toString();
             } else {
               value = param.getValue();
             }
@@ -254,7 +255,7 @@ public class PortletCustomizeFormScreen extends ALVelocityScreen {
       // retrieve the app parameters from xml
       PortletConfig pc = found.getPortletConfig();
       if ("GadgetsTemplate".equals(pc.getName())) {
-        String appId = pc.getInitParameter("aid");
+        String appId = pc.getInitParameter("aid").toString();
         ALApplication app =
           ALApplicationService.get(new ALApplicationGetRequest().withAppId(
             appId).withIsFetchXml(true));
@@ -302,7 +303,7 @@ public class PortletCustomizeFormScreen extends ALVelocityScreen {
           if (instance.getAttribute(name, null) != null) {
             value = instance.getAttribute(name);
           } else if (found.getPortletConfig().getInitParameter(name) != null) {
-            value = found.getPortletConfig().getInitParameter(name);
+            value = found.getPortletConfig().getInitParameter(name).toString();
           } else {
             value = userPref.getDefault();
             if (list) {

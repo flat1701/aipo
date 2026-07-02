@@ -59,10 +59,10 @@ public class WhatsNewAction extends ALBaseAction {
     listData.initField();
     listData.setViewSpan(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1a-span")));
+      .getInitParameter("p1a-span").toString()));
     listData.setViewNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p2a-rows")));
+      .getInitParameter("p2a-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "whatsnew");
   }
@@ -109,10 +109,10 @@ public class WhatsNewAction extends ALBaseAction {
     listData.initField();
     listData.setViewSpan(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1a-span")));
+      .getInitParameter("p1a-span").toString()));
     listData.setViewNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p2a-rows")));
+      .getInitParameter("p2a-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "whatsnew-list");
   }

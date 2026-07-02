@@ -70,7 +70,7 @@ public interface PortalPersistenceService extends Service
      * @param data Request rundata.
      * @return List The list of all instances in current profile.
      */
-    List getInstances(RunData data) throws PortletException;
+    List<PortletInstance> getInstances(RunData data) throws PortletException;
 
     /**
      * Retrieves a List of portlet instances for the given profile.
@@ -78,6 +78,6 @@ public interface PortalPersistenceService extends Service
      * @param profile Retrieve instances from this profile.
      * @return List The list of all instances in current profile.
      */
-    List getInstances(Profile profile) throws PortletException;
+    List<PortletInstance> getInstances(Profile profile) throws PortletException;
 
 }

@@ -238,8 +238,8 @@ public class BaseProfileLocator implements ProfileLocator {
    * @see Object#clone
    * @return an instance copy of this object
    */
-  public Object clone() throws java.lang.CloneNotSupportedException {
-    return super.clone();
+  public BaseProfileLocator clone() throws java.lang.CloneNotSupportedException {
+    return (BaseProfileLocator) super.clone();
   }
 
   /*
@@ -567,6 +567,7 @@ public class BaseProfileLocator implements ProfileLocator {
   /**
    * Check equality for name object with this ProfileLocator's name object.
    */
+  @SuppressWarnings("unused")
   private boolean orgNameEquals(String orgName) {
     return stringEquals(this.orgName, orgName);
   }

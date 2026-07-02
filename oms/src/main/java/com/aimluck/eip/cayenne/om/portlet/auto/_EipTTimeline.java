@@ -102,8 +102,8 @@ public class _EipTTimeline extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTTimelineFile(com.aimluck.eip.cayenne.om.portlet.EipTTimelineFile obj) {
         removeToManyTarget("eipTTimelineFile", obj, true);
     }
-    public List getEipTTimelineFile() {
-        return (List)readProperty("eipTTimelineFile");
+    public List<?> getEipTTimelineFile() {
+        return (List<?>)readProperty("eipTTimelineFile");
     }
     
     
@@ -113,8 +113,8 @@ public class _EipTTimeline extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTTimelineLike(com.aimluck.eip.cayenne.om.portlet.EipTTimelineLike obj) {
         removeToManyTarget("eipTTimelineLike", obj, true);
     }
-    public List getEipTTimelineLike() {
-        return (List)readProperty("eipTTimelineLike");
+    public List<?> getEipTTimelineLike() {
+        return (List<?>)readProperty("eipTTimelineLike");
     }
     
     

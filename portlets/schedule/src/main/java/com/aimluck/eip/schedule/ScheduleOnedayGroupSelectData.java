@@ -179,7 +179,7 @@ public class ScheduleOnedayGroupSelectData extends ScheduleOnedaySelectData {
       if (filter == null) {
         VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
         String groupName =
-          portlet.getPortletConfig().getInitParameter("p3a-group");
+          portlet.getPortletConfig().getInitParameter("p3a-group").toString();
         if (groupName != null) {
           ALEipUtils.setTemp(
             rundata,

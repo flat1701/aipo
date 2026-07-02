@@ -97,7 +97,7 @@ public class NoteGroupSelectData extends
       if (filter == null || filter.equals("")) {
         VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
         String groupName =
-          portlet.getPortletConfig().getInitParameter("p3b-group");
+          portlet.getPortletConfig().getInitParameter("p3b-group").toString();
         if (groupName != null) {
           ALEipUtils.setTemp(rundata, context, LIST_FILTER_STR, groupName);
           ALEipUtils.setTemp(rundata, context, LIST_FILTER_TYPE_STR, "group");

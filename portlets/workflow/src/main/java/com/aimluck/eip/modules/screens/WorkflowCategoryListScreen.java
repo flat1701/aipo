@@ -52,7 +52,7 @@ public class WorkflowCategoryListScreen extends WorkflowCategoryScreen {
       listData.loadRouteList(rundata, context);
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1a-rows")));
+        context).getPortletConfig().getInitParameter("p1a-rows").toString()));
       listData.doViewList(this, rundata, context);
 
       String layout_template =

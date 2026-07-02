@@ -67,8 +67,10 @@ public class FeedDaemon implements Daemon
     public static String TEMP_DIRECTORY = 
         JetspeedResources.getString( JetspeedResources.TEMP_DIRECTORY_KEY );
     
+    @SuppressWarnings("unused")
     private static boolean processed = false;
 
+    @SuppressWarnings("unused")
     private static FeedDaemon instance = null;
 
 
@@ -77,6 +79,7 @@ public class FeedDaemon implements Daemon
     private int result = Daemon.RESULT_UNKNOWN;
     private DaemonConfig config = null;
     private DaemonEntry entry = null;
+    @SuppressWarnings("unused")
     private boolean initialized = false;
 
     /**
@@ -103,8 +106,8 @@ public class FeedDaemon implements Daemon
     */
     public static Feed[] getFeeds() 
     {
-        Vector v = JetspeedResources.getVector( "contentfeeds.feed.name" );
-        Vector found = new Vector();
+        Vector<?> v = JetspeedResources.getVector( "contentfeeds.feed.name" );
+        Vector<Feed> found = new Vector<Feed>();
         
         for( int i = 0; i < v.size(); ++i) {
             String name = (String)v.elementAt(i);
@@ -194,6 +197,7 @@ public class FeedDaemon implements Daemon
 
     /**
     */
+    @SuppressWarnings("unused")
     private void error( String message ) 
     {
         this.error( null, message );
@@ -222,6 +226,7 @@ public class FeedDaemon implements Daemon
     /**
     String the DOCTYPE from the transformed document.  Castor can't handle this.
     */
+    @SuppressWarnings("unused")
     private static String strip(String target) 
     {        
         if ( target.indexOf("<!DOCTYPE") != -1 ) {

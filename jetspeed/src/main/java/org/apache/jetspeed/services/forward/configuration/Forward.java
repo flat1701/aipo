@@ -34,7 +34,7 @@ public interface Forward
 
     public Portlet getPortlet();
 
-    public Map getQueryParams();
+    public Map<String, QueryParam> getQueryParams();
 }
 
 

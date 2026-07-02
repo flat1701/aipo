@@ -85,11 +85,11 @@ public class ALRoleManagement extends TurbineBaseService implements
    *
    */
   @Override
-  public Iterator<?> getRoles(String username) throws JetspeedSecurityException {
+  public Iterator<GroupRole> getRoles(String username) throws JetspeedSecurityException {
     JetspeedUser user = null;
     try {
       if (cachingEnable) {
-        Iterator<?> result = JetspeedSecurityCache.getRoles(username);
+        Iterator<GroupRole> result = JetspeedSecurityCache.getRoles(username);
         if (null != result) {
           return result;
         }
@@ -135,7 +135,7 @@ public class ALRoleManagement extends TurbineBaseService implements
    *
    */
   @Override
-  public Iterator<?> getRoles() throws JetspeedSecurityException {
+  public Iterator<TurbineRole> getRoles() throws JetspeedSecurityException {
     List<TurbineRole> roles;
     try {
       roles = Database.query(TurbineRole.class).fetchList();

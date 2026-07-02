@@ -28,7 +28,6 @@ import java.util.*;
 
 // java.net
 import java.net.*;
-import org.apache.turbine.util.Log;//AAAtogli!
 
 
 /*
@@ -43,6 +42,7 @@ public class SwingParserAdaptor implements HTMLParserAdaptor
 
     private SwingParserAdaptor.Callback cb = new SwingParserAdaptor.Callback();
     private String lineSeparator;
+    @SuppressWarnings("unused")
     private boolean skippingImplied = false;
     private Rewriter rewriter;
     /*
@@ -113,7 +113,9 @@ public class SwingParserAdaptor implements HTMLParserAdaptor
 
         // either handling of <FORM> is buggy, or I made some weird mistake ... 
         // ... JDK 1.3 sends double "</form>"-tags on closing <form>
+        @SuppressWarnings("unused")
         private boolean inForm = false; 
+        @SuppressWarnings("unused")
         private boolean inScript = false; 
         private boolean emit = true;
         private boolean simpleTag = false;
@@ -405,7 +407,7 @@ public class SwingParserAdaptor implements HTMLParserAdaptor
         private void appendTagToResult(HTML.Tag tag, MutableAttributeSet attrs) 
         {
             convertURLS(tag,attrs);
-            Enumeration e = attrs.getAttributeNames();
+            Enumeration<?> e = attrs.getAttributeNames();
             addToResult("<").addToResult(tag);
             while (e.hasMoreElements())
             {

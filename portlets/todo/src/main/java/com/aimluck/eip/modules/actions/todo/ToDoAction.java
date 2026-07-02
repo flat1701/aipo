@@ -88,10 +88,10 @@ public class ToDoAction extends ALBaseAction {
     listData.initField();
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setTableColumNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p0e-rows")));
+      .getInitParameter("p0e-rows").toString()));
 
     listData.setFiltersPSML(portlet, context, rundata);
 
@@ -99,6 +99,7 @@ public class ToDoAction extends ALBaseAction {
       ALEipUtils.setTemp(rundata, context, LIST_FILTER_STR, portlet
         .getPortletConfig()
         .getInitParameter("p1d-categories")
+        .toString()
         .trim());
     }
     ALEipUtils.setTemp(
@@ -299,7 +300,7 @@ public class ToDoAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.setStrLength(0);
     listData.loadCategoryList(rundata);
     listData.doViewList(this, rundata, context);
@@ -463,7 +464,7 @@ public class ToDoAction extends ALBaseAction {
       // 最大表示件数（通常時）
       listData.setRowsNum(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p1c-rows")));
+        .getInitParameter("p1c-rows").toString()));
       listData.loadCategoryList(rundata);
       listData.doViewList(this, rundata, context);
       setTemplate(rundata, "todo-category-list");

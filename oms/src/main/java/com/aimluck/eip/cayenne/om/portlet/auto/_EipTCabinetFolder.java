@@ -92,8 +92,8 @@ public class _EipTCabinetFolder extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTCabinetFiles(com.aimluck.eip.cayenne.om.portlet.EipTCabinetFile obj) {
         removeToManyTarget("eipTCabinetFiles", obj, true);
     }
-    public List getEipTCabinetFiles() {
-        return (List)readProperty("eipTCabinetFiles");
+    public List<?> getEipTCabinetFiles() {
+        return (List<?>)readProperty("eipTCabinetFiles");
     }
     
     
@@ -103,8 +103,8 @@ public class _EipTCabinetFolder extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTCabinetFolderMap(com.aimluck.eip.cayenne.om.portlet.EipTCabinetFolderMap obj) {
         removeToManyTarget("eipTCabinetFolderMap", obj, true);
     }
-    public List getEipTCabinetFolderMap() {
-        return (List)readProperty("eipTCabinetFolderMap");
+    public List<?> getEipTCabinetFolderMap() {
+        return (List<?>)readProperty("eipTCabinetFolderMap");
     }
     
     

@@ -88,6 +88,7 @@ public class MemoMultiDelete extends ALAbstractCheckList {
           .getPortlet(rundata, context)
           .getPortletConfig()
           .getInitParameter("p1a-memos")
+          .toString()
           .trim();
       for (int i = 0; i < lsize; i++) {
         EipTMemo memo = memos.get(i);

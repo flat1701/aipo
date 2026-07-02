@@ -24,7 +24,6 @@ import org.apache.turbine.util.QuickSort;
 
 // Jetspeed stuff
 import org.apache.jetspeed.portal.Portlet;
-import org.apache.jetspeed.modules.actions.portlets.JspPortletAction;
 import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
 import org.apache.jetspeed.services.logging.JetspeedLogger;
 import org.apache.jetspeed.webservices.finance.stockmarket.StockQuoteService;

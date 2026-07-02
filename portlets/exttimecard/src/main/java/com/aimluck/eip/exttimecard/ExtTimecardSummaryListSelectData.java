@@ -106,6 +106,7 @@ public class ExtTimecardSummaryListSelectData extends
   private Map<Integer, List<ExtTimecardResultData>> usermap;
 
   /** 日付マップ */
+  @SuppressWarnings("unused")
   private Map<Integer, ExtTimecardSummaryResultData> datemap;
 
   /** アクセス権限の機能名 */
@@ -1053,6 +1054,7 @@ public class ExtTimecardSummaryListSelectData extends
    *          時間まで比較する場合，true．
    * @return 等しい場合，0. date1>date2の場合, 1. date1 <date2の場合, 2.
    */
+  @SuppressWarnings("unused")
   private boolean sameDay(Date date1, Date date2) {
     Calendar cal1 = Calendar.getInstance();
     Calendar cal2 = Calendar.getInstance();

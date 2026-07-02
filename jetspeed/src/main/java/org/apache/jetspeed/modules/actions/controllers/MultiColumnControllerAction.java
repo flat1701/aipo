@@ -61,7 +61,7 @@ import java.util.StringTokenizer;
  * This action builds a context suitable for controllers handling
  * grid positioned layout using PortletSet.Constraints
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:paulsp@apache.org">Paul Spencer</a>
  * @version $Id: MultiColumnControllerAction.java,v 1.30 2004/02/23 02:49:58 jford Exp $
  */
@@ -86,7 +86,7 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         try
         {
         // retrieve the number of columns
-        String cols = controller.getConfig().getInitParameter("cols");
+        String cols = controller.getConfig().getInitParameter("cols").toString();
         int colNum = 0;
         int rowNum = 0;
         try
@@ -101,16 +101,16 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         context.put("colNum", String.valueOf(colNum));
 
         //retrieve the size for each of the columns
-        String sizes = controller.getConfig().getInitParameter("sizes");
+        String sizes = controller.getConfig().getInitParameter("sizes").toString();
         context.put("sizes", getCellSizes(sizes));
 
         //retrieve the class for each of the columns
-        String columnClasses = controller.getConfig().getInitParameter("col_classes");
+        String columnClasses = controller.getConfig().getInitParameter("col_classes").toString();
         context.put("col_classes", getCellClasses(columnClasses));
 
         PortletSet set = controller.getPortlets();
         // normalize the constraints and calculate max num of rows needed
-        Enumeration en = set.getPortlets();
+        Enumeration<?> en = set.getPortlets();
         int row = 0;
         int col = 0;
         while (en.hasMoreElements())
@@ -147,15 +147,16 @@ public class MultiColumnControllerAction extends VelocityControllerAction
             logger.debug("Controller calculated setSize " + set.size() + " row " + row + " colNum: " + colNum +  " rowNum: " + rowNum);
         }
         // initialize the result position table and the work list
-        List[] table = new List[colNum];
-        List filler = Collections.nCopies(rowNum + 1, null);
+        @SuppressWarnings("unchecked")
+        List<Portlet>[] table = new List[colNum];
+        List<Portlet> filler = Collections.nCopies(rowNum + 1, null);
         for (int i = 0; i < colNum; i++)
         {
-            table[i] = new ArrayList();
+            table[i] = new ArrayList<Portlet>();
             table[i].addAll(filler);
         }
 
-        List work = new ArrayList();
+        List<Portlet> work = new ArrayList<Portlet>();
 
         //position the constrained elements and keep a reference to the
         //others
@@ -182,7 +183,7 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         }
 
         //insert the unconstrained elements in the table
-        Iterator i = work.iterator();
+        Iterator<Portlet> i = work.iterator();
         for (row = 0; row < rowNum; row++)
         {
             for (col = 0; i.hasNext() && (col < colNum); col++)
@@ -225,6 +226,7 @@ public class MultiColumnControllerAction extends VelocityControllerAction
      * Subclasses must override this method to provide default behavior
      * for the portlet action
      */
+    @SuppressWarnings("deprecation")
     protected void buildCustomizeContext(PortletController controller,
                                          Context context,
                                          RunData rundata)
@@ -236,10 +238,10 @@ public class MultiColumnControllerAction extends VelocityControllerAction
 
         super.buildCustomizeContext(controller, context, rundata);
 
-        List[] columns = null;
+        List<?>[] columns = null;
 
         // retrieve the number of columns
-        String cols = controller.getConfig().getInitParameter("cols");
+        String cols = controller.getConfig().getInitParameter("cols").toString();
         int colNum = 0;
         try
         {
@@ -253,11 +255,11 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         context.put("colNum", String.valueOf(colNum));
 
         //retrieve the size for each of the columns
-        String sizes = controller.getConfig().getInitParameter("sizes");
+        String sizes = controller.getConfig().getInitParameter("sizes").toString();
         context.put("sizes", getCellSizes(sizes));
 
         //retrieve the class for each of the columns
-        String columnClasses = controller.getConfig().getInitParameter("col_classes");
+        String columnClasses = controller.getConfig().getInitParameter("col_classes").toString();
         context.put("col_classes", getCellClasses(columnClasses));
 
         columns = (List[]) customizationState.getAttribute("customize-columns");
@@ -301,7 +303,7 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         customizationState.setAttribute("customize-columns", columns);
         context.put("portlets", columns);
 
-        Map titles = new HashMap();
+        Map<String, String> titles = new HashMap<String, String>();
         for (int col = 0; col < columns.length; col++)
         {
             for (int row = 0; row < columns[col].size(); row++)
@@ -372,7 +374,8 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         SessionState customizationState = ((JetspeedRunData) data).getPageSessionState();
 
         // update the changes made here to the profile being edited
-        List[] columns = (List[]) customizationState.getAttribute("customize-columns");
+        @SuppressWarnings("unchecked")
+        List<IdentityElement>[] columns = (List<IdentityElement>[]) customizationState.getAttribute("customize-columns");
         for (int col = 0; col < columns.length; col++)
         {
             for (int row = 0; row < columns[col].size(); row++)
@@ -429,7 +432,8 @@ public class MultiColumnControllerAction extends VelocityControllerAction
 
         int col = data.getParameters().getInt("col", -1);
         int row = data.getParameters().getInt("row", -1);
-        List[] columns = (List[]) customizationState.getAttribute("customize-columns");
+        @SuppressWarnings("unchecked")
+        List<IdentityElement>[] columns = (List<IdentityElement>[]) customizationState.getAttribute("customize-columns");
         if (columns == null)
         {
             return;
@@ -484,7 +488,7 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         // get the customization state for this page
         SessionState customizationState = ((JetspeedRunData) data).getPageSessionState();
 
-        List[] columns = (List[]) customizationState.getAttribute("customize-columns");
+        List<?>[] columns = (List[]) customizationState.getAttribute("customize-columns");
         int col = data.getParameters().getInt("col", -1);
         int row = data.getParameters().getInt("row", -1);
         if (columns == null)
@@ -503,7 +507,7 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         // get the customization state for this page
         SessionState customizationState = ((JetspeedRunData) data).getPageSessionState();
 
-        List[] columns = (List[]) customizationState.getAttribute("customize-columns");
+        List<?>[] columns = (List[]) customizationState.getAttribute("customize-columns");
         int col = data.getParameters().getInt("col", -1);
         int row = data.getParameters().getInt("row", -1);
         if (columns == null)
@@ -522,7 +526,7 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         // get the customization state for this page
         SessionState customizationState = ((JetspeedRunData) data).getPageSessionState();
 
-        List[] columns = (List[]) customizationState.getAttribute("customize-columns");
+        List<?>[] columns = (List[]) customizationState.getAttribute("customize-columns");
         int col = data.getParameters().getInt("col", -1);
         int row = data.getParameters().getInt("row", -1);
         if (columns == null)
@@ -541,7 +545,7 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         // get the customization state for this page
         SessionState customizationState = ((JetspeedRunData) data).getPageSessionState();
 
-        List[] columns = (List[]) customizationState.getAttribute("customize-columns");
+        List<?>[] columns = (List[]) customizationState.getAttribute("customize-columns");
         int col = data.getParameters().getInt("col", -1);
         int row = data.getParameters().getInt("row", -1);
         if (columns == null)
@@ -638,9 +642,9 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         }
     }
 
-    protected static void move(List[] cols, int oCol, int oRow, int nCol, int nRow)
+    protected static <T> void move(List<T>[] cols, int oCol, int oRow, int nCol, int nRow)
     {
-        Object obj = null;
+        T obj = null;
 
         if ((oCol < cols.length) && (oRow < cols[oCol].size()))
         {
@@ -667,10 +671,10 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         }
     }
 
-    protected static List[] buildColumns(Portlets set, int colNum)
+    protected static List<?>[] buildColumns(Portlets set, int colNum)
     {
         // normalize the constraints and calculate max num of rows needed
-        Iterator iterator = set.getEntriesIterator();
+        Iterator<?> iterator = set.getEntriesIterator();
         int row = 0;
         int col = 0;
         int rowNum = 0;
@@ -724,15 +728,16 @@ public class MultiColumnControllerAction extends VelocityControllerAction
             logger.debug("Controller customize colNum: " + colNum + " rowNum: " + rowNum);
         }
         // initialize the result position table and the work list
-        List[] table = new List[colNum];
-        List filler = Collections.nCopies(rowNum + 1, null);
+        @SuppressWarnings("unchecked")
+        List<IdentityElement>[] table = new List[colNum];
+        List<IdentityElement> filler = Collections.nCopies(rowNum + 1, null);
         for (int i = 0; i < colNum; i++)
         {
-            table[i] = new ArrayList();
+            table[i] = new ArrayList<IdentityElement>();
             table[i].addAll(filler);
         }
 
-        List work = new ArrayList();
+        List<IdentityElement> work = new ArrayList<IdentityElement>();
 
         //position the constrained elements and keep a reference to the
         //others
@@ -748,7 +753,7 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         }
 
         //insert the unconstrained elements in the table
-        Iterator i = work.iterator();
+        Iterator<IdentityElement> i = work.iterator();
         for (row = 0; row < rowNum; row++)
         {
             for (col = 0; i.hasNext() && (col < colNum); col++)
@@ -769,16 +774,16 @@ public class MultiColumnControllerAction extends VelocityControllerAction
             if ( logger.isDebugEnabled() ) {
                 logger.debug("Column " + j);
             }
-            i = table[j].iterator();
-            while (i.hasNext())
+            Iterator<IdentityElement> i2 = table[j].iterator();
+            while (i2.hasNext())
             {
-                Object obj = i.next();
+              IdentityElement obj = i2.next();
                 if ( logger.isDebugEnabled() ) {
                     logger.debug("Element " + obj);
                 }
                 if (obj == null)
                 {
-                    i.remove();
+                    i2.remove();
                 }
 
             }
@@ -793,9 +798,9 @@ public class MultiColumnControllerAction extends VelocityControllerAction
      *  @param sizeList java.lang.String a comma separated string a values
      *  @return a List of values
      */
-    protected static List getCellSizes(String sizeList)
+    protected static List<String> getCellSizes(String sizeList)
     {
-        List list = new Vector();
+        List<String> list = new Vector<String>();
 
         if (sizeList != null)
         {
@@ -809,9 +814,9 @@ public class MultiColumnControllerAction extends VelocityControllerAction
         return list;
     }
 
-    protected static List getCellClasses(String classlist)
+    protected static List<String> getCellClasses(String classlist)
     {
-        List list = new Vector();
+        List<String> list = new Vector<String>();
 
         if (classlist != null)
         {
@@ -835,7 +840,7 @@ public class MultiColumnControllerAction extends VelocityControllerAction
      * @param work list of un-positioned elements
      * @param columnCount Number of colum
      */
-    protected static void addElement(IdentityElement element, List[] table, List work, int columnCount)
+    protected static <T extends IdentityElement> void addElement(T element, List<T>[] table, List<T> work, int columnCount)
     {
             Layout layout = element.getLayout();
             int row = -1;
@@ -889,7 +894,7 @@ public class MultiColumnControllerAction extends VelocityControllerAction
 
     }
 
-    protected void dumpColumns(List[] cols)
+    protected void dumpColumns(List<?>[] cols)
     {
         for (int i = 0; i < cols.length; i++)
         {

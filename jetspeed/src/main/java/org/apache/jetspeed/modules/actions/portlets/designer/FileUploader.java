@@ -43,6 +43,7 @@ public class FileUploader
         {
             File file = new File(fileItem.getFileName());
             String filename = file.getName();
+            @SuppressWarnings("unused")
             String contentType = fileItem.getContentType();
 
             int index = filename.lastIndexOf("\\");
@@ -94,6 +95,7 @@ public class FileUploader
         String filename = "no result";
         try
         {
+            @SuppressWarnings("unused")
             File file = new File(fileItem.getFileName());
             filename = fileItem.getName();
 

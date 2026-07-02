@@ -285,7 +285,7 @@ public class ThreadPoolingDataSource implements DataSource {
       return delegate.getTransactionIsolation();
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings("rawtypes")
     @Override
     public Map getTypeMap() throws SQLException {
       checkOpen();

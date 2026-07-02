@@ -16,8 +16,6 @@
 
 package org.apache.jetspeed.om.profile;
 
-import org.apache.jetspeed.om.profile.Portlets;
-import org.apache.jetspeed.om.profile.Entry;
 import java.util.Iterator;
 
 /**
@@ -25,7 +23,7 @@ import java.util.Iterator;
  * all facilities for finding and updating specific parts of the 
  * document.
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: BasePSMLDocument.java,v 1.9 2004/02/23 03:05:01 jford Exp $
  */
 public class BasePSMLDocument implements PSMLDocument
@@ -186,7 +184,7 @@ public class BasePSMLDocument implements PSMLDocument
     {
         Entry entry = null;
 
-        for (Iterator it1 = portlets.getEntriesIterator(); it1.hasNext(); )
+        for (Iterator<?> it1 = portlets.getEntriesIterator(); it1.hasNext(); )
         {
             entry = (Entry) it1.next();
             if (entry.getParent().equals (name))
@@ -195,7 +193,7 @@ public class BasePSMLDocument implements PSMLDocument
 
         entry = null;
 
-        for (Iterator it2 = portlets.getPortletsIterator(); it2.hasNext(); )
+        for (Iterator<?> it2 = portlets.getPortletsIterator(); it2.hasNext(); )
         {
             Portlets p = (Portlets) it2.next();
 
@@ -219,7 +217,7 @@ public class BasePSMLDocument implements PSMLDocument
     {
         Entry entry = null;
 
-        for (Iterator it1 = portlets.getEntriesIterator(); it1.hasNext(); )
+        for (Iterator<?> it1 = portlets.getEntriesIterator(); it1.hasNext(); )
         {
             entry = (Entry) it1.next();
             if ((entry.getId()!=null) && entry.getId().equals (entryId))
@@ -228,7 +226,7 @@ public class BasePSMLDocument implements PSMLDocument
 
         entry = null;
 
-        for (Iterator it2 = portlets.getPortletsIterator(); it2.hasNext(); )
+        for (Iterator<?> it2 = portlets.getPortletsIterator(); it2.hasNext(); )
         {
             Portlets p = (Portlets) it2.next();
 
@@ -259,7 +257,7 @@ public class BasePSMLDocument implements PSMLDocument
 
         entry = null;
         
-        for (Iterator it2 = portlets.getPortletsIterator(); it2.hasNext(); )
+        for (Iterator<?> it2 = portlets.getPortletsIterator(); it2.hasNext(); )
         {
             Portlets p = (Portlets) it2.next();
 
@@ -289,7 +287,7 @@ public class BasePSMLDocument implements PSMLDocument
 
         entry = null;
         
-        for (Iterator it2 = portlets.getPortletsIterator(); it2.hasNext(); )
+        for (Iterator<?> it2 = portlets.getPortletsIterator(); it2.hasNext(); )
         {
             Portlets p = (Portlets) it2.next();
 
@@ -325,7 +323,7 @@ public class BasePSMLDocument implements PSMLDocument
         // we need to recurse in the children
         Portlets result = null;
         
-        for (Iterator it2 = portlets.getPortletsIterator(); it2.hasNext(); )
+        for (Iterator<?> it2 = portlets.getPortletsIterator(); it2.hasNext(); )
         {
             Portlets p = (Portlets) it2.next();
             count++;
@@ -365,7 +363,7 @@ public class BasePSMLDocument implements PSMLDocument
             }
         }
 
-        for (Iterator it2 = portlets.getPortletsIterator(); it2.hasNext(); )
+        for (Iterator<?> it2 = portlets.getPortletsIterator(); it2.hasNext(); )
         {
             Portlets p = (Portlets) it2.next();
 

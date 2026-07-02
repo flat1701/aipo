@@ -75,6 +75,7 @@ public class CustomSelectAction extends SelectAction {
    * @return DbAdapter
    * @throws RuntimeException getAdapter() メソッドが見つからない場合
    */
+  @SuppressWarnings("unused")
   private DbAdapter getAdapterFromBuilder(SQLActionVisitor visitor) {
     if (!(visitor instanceof JdbcActionBuilder)) {
       return cachedAdapter;

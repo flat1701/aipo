@@ -50,7 +50,7 @@ public class ActivityListScreen extends ALVelocityScreen {
       context.put("portletId", ActivityUtils.getGlobalPortletId(rundata));
       Portlet portlet = ALEipUtils.getPortlet(rundata, portletId);
       String desktopNotificationParam =
-        portlet.getPortletConfig().getInitParameter("desktopNotification");
+        portlet.getPortletConfig().getInitParameter("desktopNotification").toString();
       context.put("desktopNotification", "T".equals(desktopNotificationParam));
       String support = rundata.getParameters().getString("s");
       context.put("notifySupport", "1".equals(support));

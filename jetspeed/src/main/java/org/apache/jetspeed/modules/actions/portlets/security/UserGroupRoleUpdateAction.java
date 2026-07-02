@@ -238,24 +238,24 @@ public class UserGroupRoleUpdateAction extends SecureVelocityPortletAction
             return;
         }
         // get master list of roles
-        Iterator roles = JetspeedSecurity.getRoles();
-		Vector masterRoles = new Vector();
+        Iterator<Role> roles = JetspeedSecurity.getRoles();
+		Vector<Role> masterRoles = new Vector<Role>();
 		while (roles.hasNext())
 		{
 			Role role = (Role) roles.next();
 			masterRoles.add(role);
 		}
 
-        Iterator groups = JetspeedSecurity.getGroups();
-        Vector masterGroups = new Vector();
+        Iterator<Group> groups = JetspeedSecurity.getGroups();
+        Vector<Group> masterGroups = new Vector<Group>();
 		while (groups.hasNext())
 		{
 			Group group = (Group) groups.next();
 			masterGroups.add(group);
 		}
                 
-        Vector selected = new Vector();
-        Iterator groupRoles = JetspeedSecurity.getRoles(userid);
+        Vector<String> selected = new Vector<String>();
+        Iterator<GroupRole> groupRoles = JetspeedSecurity.getRoles(userid);
 		while (groupRoles.hasNext())
 		{
 			GroupRole gr = (GroupRole) groupRoles.next();
@@ -292,11 +292,11 @@ public class UserGroupRoleUpdateAction extends SecureVelocityPortletAction
         /*
          * Grab all the Groups and Roles in the system.
          */
-        for (Iterator groups = JetspeedSecurity.getGroups(); groups.hasNext();)
+        for (Iterator<?> groups = JetspeedSecurity.getGroups(); groups.hasNext();)
         {
             String groupName = ((Group) groups.next()).getName();
 
-            for (Iterator roles = JetspeedSecurity.getRoles(); roles.hasNext();)
+            for (Iterator<?> roles = JetspeedSecurity.getRoles(); roles.hasNext();)
             {
                 /*
                  * In the UserRoleForm.vm we made a checkbox

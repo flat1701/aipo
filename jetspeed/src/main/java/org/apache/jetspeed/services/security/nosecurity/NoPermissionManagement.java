@@ -56,10 +56,10 @@ public class NoPermissionManagement
      * @exception PermissionException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege 
      */
-    public Iterator getPermissions(String rolename)
+    public Iterator<Permission> getPermissions(String rolename)
         throws JetspeedSecurityException
     {
-        return new Vector().iterator();
+        return new Vector<Permission>().iterator();
     }
 
     /**
@@ -72,10 +72,10 @@ public class NoPermissionManagement
      * @exception PermissionException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege 
      */
-    public Iterator getPermissions()
+    public Iterator<?> getPermissions()
         throws JetspeedSecurityException
     {
-        return new Vector().iterator();
+        return new Vector<Object>().iterator();
     }
 
     /**

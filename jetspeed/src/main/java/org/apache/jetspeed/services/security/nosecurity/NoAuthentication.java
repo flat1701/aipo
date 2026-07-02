@@ -29,7 +29,6 @@ import org.apache.jetspeed.om.security.JetspeedUser;
 import org.apache.jetspeed.services.security.FailedLoginException;
 import org.apache.jetspeed.services.rundata.JetspeedRunDataService;
 import org.apache.jetspeed.services.rundata.JetspeedRunData;
-import org.apache.jetspeed.services.security.nosecurity.FakeJetspeedUser;
 import org.apache.turbine.services.rundata.RunDataService;
 
 /**

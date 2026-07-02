@@ -346,7 +346,7 @@ public class BlogEntryLatestSelectData extends
       q.andQualifier(ex1.orExp(ex2));
       List<EipTBlogEntry> queryList = q.fetchList();
       List<Integer> resultid = new ArrayList<Integer>();
-      for (EipTBlogEntry item : queryList) {
+      for (@SuppressWarnings("unused") EipTBlogEntry item : queryList) {
         /*
          * if (item.getParentId() != 0 &&
          * !resultid.contains(item.getParentId())) {

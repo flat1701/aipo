@@ -25,14 +25,14 @@ import java.util.Iterator;
  * Simple bean-like implementation of the CapabilityMap
  *
  * @author <a href="shesmer@raleigh.ibm.com">Stephan Hesmer</a>
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: BaseMimetypeMap.java,v 1.3 2004/02/23 03:08:26 jford Exp $
  */
 public class BaseMimetypeMap implements MimetypeMap, java.io.Serializable
 {
-    private Vector mimetypesVector = new Vector();
+    private Vector<String> mimetypesVector = new Vector<String>();
 
-    private transient Vector mimes;
+    private transient Vector<MimeType> mimes;
 
     public BaseMimetypeMap()
     {
@@ -51,8 +51,8 @@ public class BaseMimetypeMap implements MimetypeMap, java.io.Serializable
 
         BaseMimetypeMap obj = (BaseMimetypeMap)object;
 
-        Iterator i = mimetypesVector.iterator();
-        Iterator i2 = obj.mimetypesVector.iterator();
+        Iterator<String> i = mimetypesVector.iterator();
+        Iterator<String> i2 = obj.mimetypesVector.iterator();
         while(i.hasNext())
         {
             String c1 = (String)i.next();
@@ -81,7 +81,7 @@ public class BaseMimetypeMap implements MimetypeMap, java.io.Serializable
         return true;
     }
 
-    public Iterator getMimetypes()
+    public Iterator<MimeType> getMimetypes()
     {
         if (mimes == null)
         {
@@ -118,8 +118,8 @@ public class BaseMimetypeMap implements MimetypeMap, java.io.Serializable
 
     protected void buildMimetable()
     {
-        Vector types = new Vector();
-        Iterator i = mimetypesVector.iterator();
+        Vector<MimeType> types = new Vector<MimeType>();
+        Iterator<String> i = mimetypesVector.iterator();
 
         while(i.hasNext())
         {
@@ -132,7 +132,7 @@ public class BaseMimetypeMap implements MimetypeMap, java.io.Serializable
 
     // castor related method definitions
 
-    public Vector getMimetypesVector()
+    public Vector<String> getMimetypesVector()
     {
         return mimetypesVector;
     }

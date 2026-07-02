@@ -34,7 +34,7 @@ public class JetspeedUserFactory
     private static final String CONFIG_USER_CLASSNAME = "user.class";
 
     private static String userClassName = null;
-    private static Class userClass = null;
+    private static Class<?> userClass = null;
     
     /**
      * Factory method to create JetspeedUser instances.  

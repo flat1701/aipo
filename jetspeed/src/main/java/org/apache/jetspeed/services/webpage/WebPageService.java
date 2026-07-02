@@ -106,7 +106,7 @@ interface WebPageService
      *
      * @return the collection of sessions.
      */
-    public Collection getSessions();
+    public Collection<?> getSessions();
 
     /**
      * Returns a Session, give a string id key identifying that session.
@@ -121,7 +121,7 @@ interface WebPageService
      *
      * @return the collection of managed sites.
      */
-    public Collection getSites();
+    public Collection<?> getSites();
 
 
     /**

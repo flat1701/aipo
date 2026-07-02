@@ -158,13 +158,14 @@ public class JetspeedProfilerService extends TurbineBaseService implements
   private final static String PATH_EXTENSION_DELIMITER = ".";
 
   // messages
+  @SuppressWarnings("unused")
   private final static String MSG_MISSING_PARAMETER =
     "JetspeedProfilerService initialization failed. Missing parameter:";
 
   // pluggable Locator and Profile classes
-  private Class profileClass = null;
+  private Class<?> profileClass = null;
 
-  private Class locatorClass = null;
+  private Class<?> locatorClass = null;
 
   // configuration parameters
   String root; // the root psml resource directory
@@ -286,13 +287,13 @@ public class JetspeedProfilerService extends TurbineBaseService implements
     JetspeedRunData rundata = (JetspeedRunData) data;
     Profile profile = fallbackProfile(rundata, cm);
     if (null == profile && useRoleFallback) {
-      Vector profiles = new Vector();
+      Vector<Profile> profiles = new Vector<Profile>();
       JetspeedUser user = rundata.getJetspeedUser();
       if (user != null) {
         try {
           String paramRole =
             rundata.getParameters().getString(Profiler.PARAM_ROLE);
-          Iterator groupRoles = JetspeedSecurity.getRoles(user.getUserName());
+          Iterator<?> groupRoles = JetspeedSecurity.getRoles(user.getUserName());
           if (groupRoles != null) {
             while (groupRoles.hasNext()) {
               // note: this is an unordered list. will need to change db schema
@@ -339,7 +340,7 @@ public class JetspeedProfilerService extends TurbineBaseService implements
    * @return Merged profile
    * @exception Exception
    */
-  private Profile mergeRoleProfiles(RunData data, Vector profiles)
+  private Profile mergeRoleProfiles(RunData data, Vector<Profile> profiles)
       throws Exception {
     Profile result = null;
     // If merge feature is not turned on, return
@@ -369,8 +370,9 @@ public class JetspeedProfilerService extends TurbineBaseService implements
         String mediaType = null;
 
         // Process each role profile
+        @SuppressWarnings("unused")
         int paneCount = 0;
-        for (Iterator it = profiles.iterator(); it.hasNext();) {
+        for (Iterator<Profile> it = profiles.iterator(); it.hasNext();) {
           Profile roleProfile = (Profile) it.next();
           mediaType =
             mediaType == null ? roleProfile.getMediaType() : mediaType;
@@ -642,7 +644,7 @@ public class JetspeedProfilerService extends TurbineBaseService implements
    */
   protected PSMLDocument fallbackList(ProfileLocator original, RunData rundata) {
     try {
-      List locators = new LinkedList();
+      List<ProfileLocator> locators = new LinkedList<ProfileLocator>();
       ProfileLocator locator = (ProfileLocator) original.clone();
 
       locators.add(locator.clone());
@@ -1103,7 +1105,7 @@ public class JetspeedProfilerService extends TurbineBaseService implements
    * @return The list of profiles matching the locator criteria.
    */
   @Override
-  public Iterator query(QueryLocator locator) {
+  public Iterator<?> query(QueryLocator locator) {
     return PsmlManager.query(locator);
   }
 

@@ -39,12 +39,12 @@ public interface ObjectHandler
      * Returns the set of fields used to create the parsed object.
      * @return
      */
-    public Set getFields();
+    public Set<String> getFields();
     
     /**
      * Returns the set of keywords used to create the parsed object.
      * @return
      */
-    public Set getKeywords();
+    public Set<String> getKeywords();
 }
 

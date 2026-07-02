@@ -45,7 +45,7 @@ public class WebPageCache
 {
 
     // The Cache
-    private static HashMap cache = new HashMap();
+    private static HashMap<String, CachedResource> cache = new HashMap<String, CachedResource>();
 
     // the log file singleton instance
     static Logger log = Logger.getLogger(WebPageCache.class);

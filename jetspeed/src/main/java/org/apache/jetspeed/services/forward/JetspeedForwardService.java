@@ -104,10 +104,10 @@ public class JetspeedForwardService extends TurbineBaseService
 
 
     // Forward definitions
-    protected Map forwards = new HashMap();
+    protected Map<String, Forward> forwards = new HashMap<String, Forward>();
     
     // Portlet Forward definitions
-    protected Map portletForwards = new TreeMap();
+    protected Map<String, PortletForward> portletForwards = new TreeMap<String, PortletForward>();
 
 
     protected final static String KEY_DELIMITER = ":";
@@ -184,7 +184,7 @@ public class JetspeedForwardService extends TurbineBaseService
      * @param parameters The dynamic Validation Parameters used in creating validation forwards
      * @return DynamicURI the full link to the referenced page
      */
-    public DynamicURI forwardDynamic(RunData rundata, String forwardName, Map parameters)
+    public DynamicURI forwardDynamic(RunData rundata, String forwardName, Map<String, Object> parameters)
     {
         return forwardInternal(rundata, forwardName, null, parameters);        
     }
@@ -202,8 +202,8 @@ public class JetspeedForwardService extends TurbineBaseService
      */
     private DynamicURI forwardInternal(RunData rundata, 
                                    String  forwardName,
-                                   Map staticParams,
-                                   Map dynamicParams)
+                                   Map<String, QueryParam> staticParams,
+                                   Map<String, Object> dynamicParams)
     {
         DynamicURI duri = null;
         Forward forward = null;
@@ -314,7 +314,7 @@ public class JetspeedForwardService extends TurbineBaseService
                 duri = link.getPage();
             }
 
-            Map baseQueryParams = null;
+            Map<String, QueryParam> baseQueryParams = null;
             if (null != forward)
             {
                 baseQueryParams = forward.getQueryParams();
@@ -345,16 +345,16 @@ public class JetspeedForwardService extends TurbineBaseService
      * @return DynamicURI The new URI including query parameters
      */
     private DynamicURI setQueryParams(DynamicURI duri, 
-                                      Map baseQueryParams, 
-                                      Map staticParams,
-                                      Map dynamicParams)
+                                      Map<String, QueryParam> baseQueryParams, 
+                                      Map<String, QueryParam> staticParams,
+                                      Map<String, Object> dynamicParams)
     {
         if (baseQueryParams == null && staticParams == null && dynamicParams == null)
         {
             return duri;
         }
 
-        Iterator it = null;
+        Iterator<QueryParam> it = null;
 
         // First add the base params
         if (baseQueryParams != null)
@@ -388,10 +388,10 @@ public class JetspeedForwardService extends TurbineBaseService
         // Then add the dynamic params
         if (dynamicParams != null)
         {
-            it = dynamicParams.entrySet().iterator();
-            while (it.hasNext())
+            Iterator<Entry<String, Object>> it2 = dynamicParams.entrySet().iterator();
+            while (it2.hasNext())
             {
-                Entry entry = (Entry)it.next();
+                Entry<?, ?> entry = (Entry<?, ?>)it2.next();
                 duri.addQueryData((String)entry.getKey(), entry.getValue());
             }            
         }
@@ -400,10 +400,11 @@ public class JetspeedForwardService extends TurbineBaseService
     }
 
     
-    private void dumpMap(String mapName, Map map)
+    @SuppressWarnings("unused")
+    private void dumpMap(String mapName, Map<?, ?> map)
     {
         System.out.println("----------- MAP: " + mapName);
-        Iterator it = map.values().iterator();
+        Iterator<?> it = map.values().iterator();
         while (it.hasNext())
         {
             QueryParam qparam = (QueryParam)it.next();
@@ -436,14 +437,15 @@ public class JetspeedForwardService extends TurbineBaseService
      * @param parameters The dynamic Validation Parameters used in creating validation forwards     
      * @return DynamicURI the full link to the referenced page
      */
+    @Override
     public DynamicURI forwardDynamic(RunData rundata, 
                                  String portlet, 
                                  String target,
-                                 Map parameters)
+                                 Map<String, Object> parameters)
     {
         try
         {
-            Map staticParams = null;
+            Map<String, QueryParam> staticParams = null;
             String forwardName = "";
             String key = makePortletForwardKey(portlet, target);
             PortletForward pf = (PortletForward)this.portletForwards.get(key);        
@@ -471,7 +473,7 @@ public class JetspeedForwardService extends TurbineBaseService
      *
      * @return Collection of all forward definitions
      */
-    public Collection getForwards()
+    public Collection<Forward> getForwards()
     {
         return this.forwards.values();
     }
@@ -481,7 +483,7 @@ public class JetspeedForwardService extends TurbineBaseService
      *
      * @return Collection of all portlet forward definitions
      */
-    public Collection getPortletForwards()
+    public Collection<PortletForward> getPortletForwards()
     {
         return this.portletForwards.values();
     }
@@ -598,7 +600,7 @@ public class JetspeedForwardService extends TurbineBaseService
             ForwardsConfiguration configuration = 
                 (ForwardsConfiguration) unmarshaller.unmarshal((Node) doc);
 
-            Iterator it = configuration.getForwards().iterator();
+            Iterator<?> it = configuration.getForwards().iterator();
             while (it.hasNext())
             {
                 Forward forward = (Forward)it.next();
@@ -640,12 +642,12 @@ public class JetspeedForwardService extends TurbineBaseService
 
     }
 
-    private void resyncParamMap(Map map)
+    private void resyncParamMap(Map<String, QueryParam> map)
     {
         // Castor doesn't set the keys properly for maps
         // get the base query params        
-        ArrayList list = new ArrayList(map.size());
-        Iterator it = map.values().iterator();
+        ArrayList<QueryParam> list = new ArrayList<QueryParam>(map.size());
+        Iterator<QueryParam> it = map.values().iterator();
         while (it.hasNext())
         {
             QueryParam qp = (QueryParam)it.next();

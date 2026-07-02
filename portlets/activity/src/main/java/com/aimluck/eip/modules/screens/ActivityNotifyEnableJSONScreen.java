@@ -87,7 +87,7 @@ public class ActivityNotifyEnableJSONScreen extends ALJSONScreen {
         }
 
         desktopNotificationParam =
-          p.getPortletConfig().getInitParameter("desktopNotification");
+          p.getPortletConfig().getInitParameter("desktopNotification").toString();
       }
       json = new JSONObject();
       json.put("enable", notifyValue != null

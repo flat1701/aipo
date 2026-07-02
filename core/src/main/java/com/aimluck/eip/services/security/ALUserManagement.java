@@ -552,7 +552,6 @@ public class ALUserManagement extends TurbineBaseService implements
    * @param tuser
    * @throws JetspeedSecurityException
    */
-  @SuppressWarnings("unchecked")
   private void removeAdminRole(TurbineUser tuser)
       throws JetspeedSecurityException {
     String admin_role_id = JetspeedSecurity.getRole("admin").getId();

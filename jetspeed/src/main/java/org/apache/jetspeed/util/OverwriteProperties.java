@@ -46,11 +46,11 @@ public class OverwriteProperties {
     public boolean verbose = false;
 
     /**  An array of all the properties */
-    protected ArrayList baseArray = new ArrayList(1024);
+    protected ArrayList<String> baseArray = new ArrayList<String>(1024);
     /**  An array of all the properties that will be removed */
-    protected ArrayList removeArray = new ArrayList(128);
+    protected ArrayList<String> removeArray = new ArrayList<String>(128);
     /**  Description of the Field */
-    protected HashMap baseMap = new HashMap();
+    protected HashMap<String, Integer> baseMap = new HashMap<String, Integer>();
     /**  What to use as a line seperator */
     protected String lineSeparator = System.getProperty("line.separator", "\r\n");
 

@@ -53,6 +53,7 @@ public class PsmlImporter
     {
     }
 
+    @SuppressWarnings("deprecation")
     public static void main(String args[]) 
     {
         System.out.println("***** PSML Importer *****");
@@ -197,7 +198,7 @@ public class PsmlImporter
             JetspeedUser user = JetspeedSecurity.getUser("admin");
             QueryLocator ql = new QueryLocator(QueryLocator.QUERY_USER);
             ql.setUser(user);
-            Iterator iterator = PsmlManager.query(ql);
+            Iterator<?> iterator = PsmlManager.query(ql);
             if (iterator.hasNext())
             {                      
                 String msg = "PSMLImporter: Detected database is populated. No need to import.";

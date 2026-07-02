@@ -21,6 +21,7 @@ import org.apache.jetspeed.om.profile.Profile;
 import org.apache.jetspeed.om.registry.RegistryEntry;
 import org.apache.jetspeed.om.profile.Portlets;
 import org.apache.jetspeed.om.profile.Entry;
+import org.apache.jetspeed.om.profile.IdentityElement;
 import org.apache.jetspeed.om.profile.Layout;
 import org.apache.jetspeed.om.profile.psml.PsmlLayout;
 import org.apache.jetspeed.portal.PortletSet;
@@ -54,7 +55,7 @@ import java.util.Comparator;
  * This action builds a context suitable for controllers handlings simple
  * sorted lists of portlets
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:paulsp@apache.org">Paul Spencer</a>
  */
 public class RowColumnControllerAction extends VelocityControllerAction
@@ -74,7 +75,7 @@ public class RowColumnControllerAction extends VelocityControllerAction
                                        RunData rundata )
     {
         //retrieve the size for each of the element
-        String sizes = controller.getConfig().getInitParameter("sizes");
+        String sizes = controller.getConfig().getInitParameter("sizes").toString();
         context.put("sizes", getCellSizes(sizes));
     }
 
@@ -84,9 +85,9 @@ public class RowColumnControllerAction extends VelocityControllerAction
      *  @param sizeList java.lang.String a comma separated string a values
      *  @return a List of values
      */
-    public static List getCellSizes(String sizelist)
+    public static List<String> getCellSizes(String sizelist)
     {
-        List list = new Vector();
+        List<String> list = new Vector<String>();
 
         if (sizelist!=null)
         {
@@ -117,9 +118,9 @@ public class RowColumnControllerAction extends VelocityControllerAction
                                  .getDocument()
                                  .getPortletsById(set.getID());
 
-        List plist = new ArrayList();
-        List work = new ArrayList();
-        List filler = Collections.nCopies(portlets.getPortletsCount()+portlets.getEntryCount(),null);
+        List<IdentityElement> plist = new ArrayList<IdentityElement>();
+        List<IdentityElement> work = new ArrayList<IdentityElement>();
+        List<IdentityElement> filler = Collections.nCopies(portlets.getPortletsCount()+portlets.getEntryCount(),null);
         plist.addAll(filler);
 
         for (int i=0; i < portlets.getPortletsCount(); i++)
@@ -202,7 +203,7 @@ public class RowColumnControllerAction extends VelocityControllerAction
             }
         }
 
-        Iterator i = work.iterator();
+        Iterator<IdentityElement> i = work.iterator();
         for(int idx=0;idx < plist.size(); idx++)
         {
             if (plist.get(idx)==null)
@@ -218,7 +219,7 @@ public class RowColumnControllerAction extends VelocityControllerAction
             }
         }
 
-        Map titles = new HashMap();
+        Map<String, String> titles = new HashMap<String, String>();
         i = plist.iterator();
         while(i.hasNext())
         {
@@ -433,7 +434,7 @@ public class RowColumnControllerAction extends VelocityControllerAction
     private void updateLayoutPositions(Portlets set)
     {
         // Load the panes into a list
-        List list = new ArrayList();
+        List<Portlets> list = new ArrayList<Portlets>();
         for(int i = 0; i < set.getPortletsCount(); i++)
         {
             Portlets pane = set.getPortlets(i);
@@ -442,7 +443,7 @@ public class RowColumnControllerAction extends VelocityControllerAction
 
         // Sort list using the current layout position
         Collections.sort(list, 
-                         new Comparator()
+                         new Comparator<Object>()
                          {
                              public int compare(Object pane1, Object pane2)
                              {
@@ -454,7 +455,7 @@ public class RowColumnControllerAction extends VelocityControllerAction
 
         // Update the layout position based on the physical order within the sorted list
         int position = 0;
-        for (Iterator iter = list.iterator(); iter.hasNext();)
+        for (Iterator<Portlets> iter = list.iterator(); iter.hasNext();)
         {
             Portlets pane = (Portlets) iter.next();
             Layout layout = pane.getLayout();

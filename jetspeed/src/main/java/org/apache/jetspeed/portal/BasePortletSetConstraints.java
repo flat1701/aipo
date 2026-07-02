@@ -19,10 +19,10 @@ package org.apache.jetspeed.portal;
 /**
  * Trivial implementation of PortletSetConstraints
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: BasePortletSetConstraints.java,v 1.3 2004/02/23 04:05:35 jford Exp $
  */
-public class BasePortletSetConstraints extends java.util.HashMap
+public class BasePortletSetConstraints extends java.util.HashMap<String, Object>
     implements PortletSet.Constraints
 {
     /** Get the column the portlet should be displayed in

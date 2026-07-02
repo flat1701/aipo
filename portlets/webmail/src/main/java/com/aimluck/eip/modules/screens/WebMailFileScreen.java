@@ -90,6 +90,7 @@ public class WebMailFileScreen extends RawScreen {
       ALLocalMailMessage msg = (ALLocalMailMessage) folder.getMail(mailindex);
 
       String fileName;
+      @SuppressWarnings("deprecation")
       boolean isMsie = FileuploadUtils.isMsieBrowser(rundata);
       if (isMsie) {
         fileName =

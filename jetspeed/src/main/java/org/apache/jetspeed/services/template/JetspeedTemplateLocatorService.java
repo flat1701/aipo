@@ -127,7 +127,7 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
   private boolean hotDeploy = false;
 
   // template name cache
-  private Map templateMap = null;
+  private Map<String, ?> templateMap = null;
 
   // include screens when searching for portlet template
   private boolean useGlobalPortletSearch = false;
@@ -192,8 +192,8 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
    */
   @Override
   public String locateScreenTemplate(RunData data, String template) {
-    List templatePaths = localizeTemplateName(data);
-    Iterator i = templatePaths.iterator();
+    List<String> templatePaths = localizeTemplateName(data);
+    Iterator<String> i = templatePaths.iterator();
     String located = null;
 
     while (i.hasNext()) {
@@ -239,8 +239,8 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
    */
   @Override
   public String locateLayoutTemplate(RunData data, String template) {
-    List templatePaths = localizeTemplateName(data);
-    Iterator i = templatePaths.iterator();
+    List<String> templatePaths = localizeTemplateName(data);
+    Iterator<String> i = templatePaths.iterator();
     String located = null;
 
     while (i.hasNext()) {
@@ -288,8 +288,8 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
    */
   @Override
   public String locateNavigationTemplate(RunData data, String template) {
-    List templatePaths = localizeTemplateName(data);
-    Iterator i = templatePaths.iterator();
+    List<String> templatePaths = localizeTemplateName(data);
+    Iterator<String> i = templatePaths.iterator();
 
     while (i.hasNext()) {
       String path = (String) i.next();
@@ -318,8 +318,8 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
    */
   @Override
   public String locatePortletTemplate(RunData data, String template) {
-    List templatePaths = localizeTemplateName(data);
-    Iterator i = templatePaths.iterator();
+    List<String> templatePaths = localizeTemplateName(data);
+    Iterator<String> i = templatePaths.iterator();
 
     while (i.hasNext()) {
       String path = (String) i.next();
@@ -356,8 +356,8 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
    */
   @Override
   public String locateControlTemplate(RunData data, String template) {
-    List templatePaths = localizeTemplateName(data);
-    Iterator i = templatePaths.iterator();
+    List<String> templatePaths = localizeTemplateName(data);
+    Iterator<String> i = templatePaths.iterator();
 
     while (i.hasNext()) {
       String path = (String) i.next();
@@ -386,8 +386,8 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
    */
   @Override
   public String locateControllerTemplate(RunData data, String template) {
-    List templatePaths = localizeTemplateName(data);
-    Iterator i = templatePaths.iterator();
+    List<String> templatePaths = localizeTemplateName(data);
+    Iterator<String> i = templatePaths.iterator();
 
     while (i.hasNext()) {
       String path = (String) i.next();
@@ -438,8 +438,8 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
    */
   @Override
   public String locateEmailTemplate(RunData data, String template, Locale locale) {
-    List templatePaths = localizeTemplateName(data, locale);
-    Iterator i = templatePaths.iterator();
+    List<String> templatePaths = localizeTemplateName(data, locale);
+    Iterator<String> i = templatePaths.iterator();
 
     while (i.hasNext()) {
       String path = (String) i.next();
@@ -468,8 +468,8 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
    */
   @Override
   public String locateParameterTemplate(RunData data, String template) {
-    List templatePaths = localizeTemplateName(data);
-    Iterator i = templatePaths.iterator();
+    List<String> templatePaths = localizeTemplateName(data);
+    Iterator<String> i = templatePaths.iterator();
 
     while (i.hasNext()) {
       String path = (String) i.next();
@@ -537,6 +537,7 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
    */
   private String locateTemplate(RunData data, String resourceType, String path,
       String template, String templateRoot) {
+    @SuppressWarnings("unused")
     String finalPath;
 
     // make sure resourceType doesn't end with "/" but starts with "/"
@@ -627,7 +628,7 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
    * @return The possible paths to a localized template ordered by descending
    *         preference
    */
-  private List localizeTemplateName(RunData data) {
+  private List<String> localizeTemplateName(RunData data) {
     return localizeTemplateName(data, null);
   }
 
@@ -644,8 +645,8 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
    * @return The possible paths to a localized template ordered by descending
    *         preference
    */
-  private List localizeTemplateName(RunData data, Locale inLocale) {
-    List templates = new ArrayList();
+  private List<String> localizeTemplateName(RunData data, Locale inLocale) {
+    List<String> templates = new ArrayList<String>();
     Locale tmplocale = null;
 
     if (inLocale != null) {
@@ -674,7 +675,7 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
     // retrieve all the possible media types
     String type =
       data.getParameters().getString(Profiler.PARAM_MEDIA_TYPE, null);
-    List types = new ArrayList();
+    List<String> types = new ArrayList<String>();
     CapabilityMap cm = ((JetspeedRunData) data).getCapability();
 
     // Grab the Locale from the temporary storage in the User object
@@ -688,13 +689,13 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
     if (null != type) {
       types.add(type);
     } else {
-      Iterator i = cm.listMediaTypes();
+      Iterator<String> i = cm.listMediaTypes();
       while (i.hasNext()) {
         types.add(i.next());
       }
     }
 
-    Iterator typeIterator = types.iterator();
+    Iterator<String> typeIterator = types.iterator();
 
     while (typeIterator.hasNext()) {
       type = (String) typeIterator.next();
@@ -779,7 +780,7 @@ public class JetspeedTemplateLocatorService extends TurbineBaseService
         + CONFIG_TEMPLATE_ROOT);
     }
 
-    templateMap = new HashMap();
+    templateMap = new HashMap<String, Object>();
 
     for (int i = 0; i < templateRoots.length; i++) {
       String templateRoot = templateRoots[i];

@@ -181,7 +181,7 @@ public class Profiler {
   /**
    * @see ProfilerService#query
    */
-  public static Iterator query(QueryLocator locator) {
+  public static Iterator<?> query(QueryLocator locator) {
     return getService().query(locator);
   }
 

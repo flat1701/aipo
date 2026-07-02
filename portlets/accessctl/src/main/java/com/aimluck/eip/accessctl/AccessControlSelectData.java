@@ -77,7 +77,7 @@ public class AccessControlSelectData extends
       ALEipUtils.setTemp(rundata, context, LIST_SORT_STR, ALEipUtils
         .getPortlet(rundata, context)
         .getPortletConfig()
-        .getInitParameter("p2a-sort"));
+        .getInitParameter("p2a-sort").toString());
     }
 
     super.init(action, rundata, context);

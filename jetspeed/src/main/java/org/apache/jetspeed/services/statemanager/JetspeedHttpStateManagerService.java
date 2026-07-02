@@ -113,7 +113,7 @@ public class JetspeedHttpStateManagerService extends BaseStateManagerService
    * @return The Map which is the set of attributes for a state.
    */
   @Override
-  protected Map getState(String key) {
+  protected Map<String, Object> getState(String key) {
     // get the session
     HttpSession session = getSession();
     if (session == null) {
@@ -140,7 +140,7 @@ public class JetspeedHttpStateManagerService extends BaseStateManagerService
    *          The Map which is the set of attributes for the state.
    */
   @Override
-  protected void addState(String key, Map state) {
+  protected void addState(String key, Map<String, Object> state) {
     // get the session
     HttpSession session = getSession();
     if (session == null) {
@@ -197,10 +197,10 @@ public class JetspeedHttpStateManagerService extends BaseStateManagerService
     int subStart = getSessionKey("").length();
 
     // collect for return
-    Vector rv = new Vector();
+    Vector<String> rv = new Vector<String>();
 
     // get the session names
-    Enumeration names = session.getAttributeNames();
+    Enumeration<?> names = session.getAttributeNames();
     while (names.hasMoreElements()) {
       String sessionName = (String) names.nextElement();
 
@@ -226,7 +226,7 @@ public class JetspeedHttpStateManagerService extends BaseStateManagerService
     private static final long serialVersionUID = 8630600178442354718L;
 
     /** Store the map. */
-    private Map m_map = null;
+    private Map<String, Object> m_map = null;
 
     /** The state key. */
     private String m_key = null;
@@ -239,7 +239,7 @@ public class JetspeedHttpStateManagerService extends BaseStateManagerService
      * @param map
      *          The map to hold.
      */
-    public StateEntry(String key, Map map) {
+    public StateEntry(String key, Map<String, Object> map) {
       m_key = key;
       m_map = map;
 
@@ -250,7 +250,7 @@ public class JetspeedHttpStateManagerService extends BaseStateManagerService
      * 
      * @return the Map we are holding.
      */
-    public Map getMap() {
+    public Map<String, Object> getMap() {
       return m_map;
 
     } // getMap

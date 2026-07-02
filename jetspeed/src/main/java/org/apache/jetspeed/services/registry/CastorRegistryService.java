@@ -106,16 +106,16 @@ public class CastorRegistryService extends TurbineBaseService implements
     "${webapp}/WEB-INF/conf/mapping.xml";
 
   /** regsitry type keyed list of entries */
-  private final Hashtable registries = new Hashtable();
+  private final Hashtable<String, Registry> registries = new Hashtable<String, Registry>();
 
   /** The Castor generated RegsitryFragment objects */
-  private final Hashtable fragments = new Hashtable();
+  private final Hashtable<String, RegistryFragment> fragments = new Hashtable<String, RegistryFragment>();
 
   /** The list of default fragments stores for newly created objects */
-  private final Hashtable defaults = new Hashtable();
+  private final Hashtable<String, String> defaults = new Hashtable<String, String>();
 
   /** Associates entries with their fragments name for quick lookup */
-  private final Hashtable entryIndex = new Hashtable();
+  private final Hashtable<String, String> entryIndex = new Hashtable<String, String>();
 
   /** the Watcher object which monitors the regsitry directory */
   private RegistryWatcher watcher = null;
@@ -148,7 +148,7 @@ public class CastorRegistryService extends TurbineBaseService implements
    * 
    * @return an Enumeration of registry names.
    */
-  public Enumeration getNames() {
+  public Enumeration<String> getNames() {
     return registries.keys();
   }
 
@@ -234,12 +234,12 @@ public class CastorRegistryService extends TurbineBaseService implements
       // Fragment can be (and sometimes is, but should not be) null
       if (fragment == null) {
         fragment = new RegistryFragment();
-        fragment.put(regName, new Vector());
+        fragment.put(regName, new Vector<Object>());
         fragments.put(fragmentName, fragment);
       } else {
-        Vector vectRegistry = (Vector) fragment.get(regName);
+        Vector<?> vectRegistry = (Vector<?>) fragment.get(regName);
         if (vectRegistry == null) {
-          fragment.put(regName, new Vector());
+          fragment.put(regName, new Vector<Object>());
         }
       }
 
@@ -315,7 +315,7 @@ public class CastorRegistryService extends TurbineBaseService implements
       ((TurbineServices) TurbineServices.getInstance())
         .getResources(RegistryService.SERVICE_NAME);
     String mapFile = null;
-    Vector names = new Vector();
+    Vector<String> names = new Vector<String>();
     int refreshRate = 0;
 
     // read the configuration keys
@@ -336,7 +336,7 @@ public class CastorRegistryService extends TurbineBaseService implements
     // with at least one fragment
     try {
       ResourceService defaults = serviceConf.getResources("default");
-      Iterator i = defaults.getKeys();
+      Iterator<?> i = defaults.getKeys();
       while (i.hasNext()) {
         String name = (String) i.next();
         String fragmentFileName = defaults.getString(name);
@@ -401,7 +401,7 @@ public class CastorRegistryService extends TurbineBaseService implements
     setInit(true);
 
     // load the registries
-    Enumeration en = names.elements();
+    Enumeration<String> en = names.elements();
 
     while (en.hasMoreElements()) {
       String name = (String) en.nextElement();
@@ -474,7 +474,7 @@ public class CastorRegistryService extends TurbineBaseService implements
   public void shutdown() {
     this.watcher.setDone();
 
-    Iterator i = fragments.keySet().iterator();
+    Iterator<String> i = fragments.keySet().iterator();
     while (i.hasNext()) {
       saveFragment((String) i.next());
     }
@@ -488,7 +488,7 @@ public class CastorRegistryService extends TurbineBaseService implements
    */
   public void refresh() {
     synchronized (watcher) {
-      Enumeration en = getNames();
+      Enumeration<String> en = getNames();
       while (en.hasMoreElements()) {
         refresh((String) en.nextElement());
       }
@@ -498,8 +498,9 @@ public class CastorRegistryService extends TurbineBaseService implements
   /**
    * @return a Map of all fragments keyed by file names
    */
-  public Map getFragmentMap() {
-    return (Map) fragments.clone();
+  @SuppressWarnings("unchecked")
+  public Map<String, RegistryFragment> getFragmentMap() {
+    return (Map<String, RegistryFragment>) fragments.clone();
   }
 
   /**
@@ -625,7 +626,7 @@ public class CastorRegistryService extends TurbineBaseService implements
     if (fragment != null) {
       synchronized (entryIndex) {
         // clear the entry index
-        Iterator i = entryIndex.keySet().iterator();
+        Iterator<String> i = entryIndex.keySet().iterator();
         while (i.hasNext()) {
           if (file.equals(entryIndex.get(i.next()))) {
             i.remove();
@@ -650,7 +651,7 @@ public class CastorRegistryService extends TurbineBaseService implements
   protected void updateFragment(String name, RegistryFragment fragment) {
     synchronized (entryIndex) {
       // remove the old keys
-      Iterator i = entryIndex.keySet().iterator();
+      Iterator<String> i = entryIndex.keySet().iterator();
       while (i.hasNext()) {
         if (name.equals(entryIndex.get(i.next()))) {
           i.remove();
@@ -662,10 +663,10 @@ public class CastorRegistryService extends TurbineBaseService implements
 
       // recreate the index entries (only this fragment)
 
-      Enumeration enu = fragment.keys();
+      Enumeration<?> enu = fragment.keys();
       while (enu.hasMoreElements()) {
         String strReg = (String) enu.nextElement();
-        Vector v = fragment.getEntries(strReg);
+        Vector<?> v = fragment.getEntries(strReg);
 
         for (int counter = 0; counter < v.size(); counter++) {
           RegistryEntry str = (RegistryEntry) v.elementAt(counter);
@@ -689,6 +690,7 @@ public class CastorRegistryService extends TurbineBaseService implements
     }
 
     int count = 0;
+    @SuppressWarnings("unused")
     int counDeleted = 0;
     LocalRegistry registry = (LocalRegistry) get(regName);
 
@@ -697,15 +699,15 @@ public class CastorRegistryService extends TurbineBaseService implements
       return;
     }
 
-    Vector toDelete = new Vector();
-    Iterator i = registry.listEntryNames();
+    Vector<String> toDelete = new Vector<String>();
+    Iterator<String> i = registry.listEntryNames();
 
     while (i.hasNext()) {
       toDelete.add(i.next());
     }
 
     // for each fragment...
-    Enumeration en = fragments.keys();
+    Enumeration<String> en = fragments.keys();
     while (en.hasMoreElements()) {
       String location = (String) en.nextElement();
       RegistryFragment fragment = (RegistryFragment) fragments.get(location);
@@ -717,10 +719,10 @@ public class CastorRegistryService extends TurbineBaseService implements
         }
 
         // remove this fragment entries from the delete list
-        Vector entries = fragment.getEntries(regName);
-        i = entries.iterator();
-        while (i.hasNext()) {
-          toDelete.remove(((RegistryEntry) i.next()).getName());
+        Vector<RegistryEntry> entries = fragment.getEntries(regName);
+        Iterator<RegistryEntry> i2 = entries.iterator();
+        while (i2.hasNext()) {
+          toDelete.remove(((RegistryEntry) i2.next()).getName());
         }
 
         continue;
@@ -728,12 +730,12 @@ public class CastorRegistryService extends TurbineBaseService implements
 
       // the fragment has some changes, iterate over its entries...
 
-      Vector entries = fragment.getEntries(regName);
+      Vector<?> entries = fragment.getEntries(regName);
 
       // ... if it has entries related to this regsistry,
       if (entries != null) {
         // for all these entries
-        Enumeration en2 = entries.elements();
+        Enumeration<?> en2 = entries.elements();
         while (en2.hasMoreElements()) {
           RegistryEntry entry = (RegistryEntry) en2.nextElement();
           // update or add the entry in the registry
@@ -790,9 +792,9 @@ public class CastorRegistryService extends TurbineBaseService implements
     }
 
     // now delete the entries not found in any fragment
-    i = toDelete.iterator();
-    while (i.hasNext()) {
-      String entryName = (String) i.next();
+    Iterator<String> i2 = toDelete.iterator();
+    while (i2.hasNext()) {
+      String entryName = (String) i2.next();
 
       if (logger.isDebugEnabled()) {
         logger.debug("RegistryService: removing entry " + entryName);

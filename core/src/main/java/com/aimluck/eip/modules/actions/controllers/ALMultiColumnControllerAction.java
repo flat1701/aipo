@@ -93,7 +93,7 @@ public class ALMultiColumnControllerAction extends VelocityControllerAction {
       Context context, RunData rundata) {
     try {
       // retrieve the number of columns
-      String cols = controller.getConfig().getInitParameter("cols");
+      String cols = controller.getConfig().getInitParameter("cols").toString();
       int colNum = 0;
       int rowNum = 0;
       try {
@@ -105,12 +105,12 @@ public class ALMultiColumnControllerAction extends VelocityControllerAction {
       context.put("colNum", String.valueOf(colNum));
 
       // retrieve the size for each of the columns
-      String sizes = controller.getConfig().getInitParameter("sizes");
+      String sizes = controller.getConfig().getInitParameter("sizes").toString();
       context.put("sizes", getCellSizes(sizes));
 
       // retrieve the class for each of the columns
       String columnClasses =
-        controller.getConfig().getInitParameter("col_classes");
+        controller.getConfig().getInitParameter("col_classes").toString();
       context.put("col_classes", getCellClasses(columnClasses));
 
       PortletSet set = controller.getPortlets();
@@ -236,7 +236,7 @@ public class ALMultiColumnControllerAction extends VelocityControllerAction {
     List<?>[] columns = null;
 
     // retrieve the number of columns
-    String cols = controller.getConfig().getInitParameter("cols");
+    String cols = controller.getConfig().getInitParameter("cols").toString();
     int colNum = 0;
     try {
       colNum = Integer.parseInt(cols);
@@ -247,12 +247,12 @@ public class ALMultiColumnControllerAction extends VelocityControllerAction {
     context.put("colNum", String.valueOf(colNum));
 
     // retrieve the size for each of the columns
-    String sizes = controller.getConfig().getInitParameter("sizes");
+    String sizes = controller.getConfig().getInitParameter("sizes").toString();
     context.put("sizes", getCellSizes(sizes));
 
     // retrieve the class for each of the columns
     String columnClasses =
-      controller.getConfig().getInitParameter("col_classes");
+      controller.getConfig().getInitParameter("col_classes").toString();
     context.put("col_classes", getCellClasses(columnClasses));
 
     columns = (List[]) customizationState.getAttribute("customize-columns");

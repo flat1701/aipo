@@ -92,10 +92,12 @@ public class UserGroupUpdateAction extends SecureVelocityPortletAction
     {
         try
         {
+            @SuppressWarnings("unused")
             Group group = null;
             /*
              * Grab the mode for the user form.
              */
+            @SuppressWarnings("unused")
             String mode = rundata.getParameters().getString(SecurityConstants.PARAM_MODE);
 
             //
@@ -165,8 +167,8 @@ public class UserGroupUpdateAction extends SecureVelocityPortletAction
 
         try
         {
-            List groups = (List)rundata.getUser().getTemp(SecurityConstants.CONTEXT_GROUPS);
-            List selected = (List)rundata.getUser().getTemp(SecurityConstants.CONTEXT_SELECTED);
+            List<?> groups = (List<?>)rundata.getUser().getTemp(SecurityConstants.CONTEXT_GROUPS);
+            List<?> selected = (List<?>)rundata.getUser().getTemp(SecurityConstants.CONTEXT_SELECTED);
 
             if (groups == null || selected == null)
             {
@@ -248,9 +250,9 @@ public class UserGroupUpdateAction extends SecureVelocityPortletAction
             return;
         }
         // get master list of roles
-        Iterator groups = JetspeedSecurity.getGroups();
-        ArrayList masterGroups = new ArrayList();
-        ArrayList selected = new ArrayList();
+        Iterator<?> groups = JetspeedSecurity.getGroups();
+        ArrayList<Group> masterGroups = new ArrayList<Group>();
+        ArrayList<Boolean> selected = new ArrayList<Boolean>();
         int ix = 0;
         boolean sel = false;
         selected.add(ix, new Boolean(sel));

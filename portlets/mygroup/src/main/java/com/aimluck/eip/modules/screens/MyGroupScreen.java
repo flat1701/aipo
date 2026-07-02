@@ -52,7 +52,7 @@ public class MyGroupScreen extends ALVelocityScreen {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1a-rows")));
+        context).getPortletConfig().getInitParameter("p1a-rows").toString()));
       listData.doViewList(this, rundata, context);
 
       String type = rundata.getParameters().getString("type", "");

@@ -111,7 +111,7 @@ public class ScheduleAction extends ALBaseAction {
         ALEipUtils
           .getPortlet(rundata, context)
           .getPortletConfig()
-          .getInitParameter("p4b-behavior");
+          .getInitParameter("p4b-behavior").toString();
       if ("1".equals(afterBehavior)) {
         // ノーマル画面であることを指定．
         context.put(AFTER_BEHAVIOR, "1");
@@ -120,30 +120,30 @@ public class ScheduleAction extends ALBaseAction {
       context.put("theme", ALOrgUtilsService.getTheme());
 
       // 表示形式（トップページ）を取得する．
-      String top_form = portlet.getPortletConfig().getInitParameter("p19-rows");
+      String top_form = portlet.getPortletConfig().getInitParameter("p19-rows").toString();
       context.put("top_form", top_form);
 
       // 表示開始時間を取得する．
       String time_start =
-        portlet.getPortletConfig().getInitParameter("p1a-rows");
+        portlet.getPortletConfig().getInitParameter("p1a-rows").toString();
       context.put("time_start", time_start);
 
       // 表示終了時間を取得する．
-      String time_end = portlet.getPortletConfig().getInitParameter("p1b-rows");
+      String time_end = portlet.getPortletConfig().getInitParameter("p1b-rows").toString();
       context.put("time_end", time_end);
 
       // 表示時間間隔を取得する．
       String time_interval =
-        portlet.getPortletConfig().getInitParameter("p1c-rows");
+        portlet.getPortletConfig().getInitParameter("p1c-rows").toString();
       context.put("time_interval", time_interval);
 
       // 表示日数を取得する.
       String weekly_days =
-        portlet.getPortletConfig().getInitParameter("p2a-days");
+        portlet.getPortletConfig().getInitParameter("p2a-days").toString();
       context.put("weekly_days", weekly_days);
 
       // 初期共有メンバー表示フラグを取得する
-      String showAll = portlet.getPortletConfig().getInitParameter("p7d-schk");
+      String showAll = portlet.getPortletConfig().getInitParameter("p7d-schk").toString();
       if (!("t".equals(showAll))) {
         showAll = "f";
       }
@@ -163,7 +163,7 @@ public class ScheduleAction extends ALBaseAction {
       if ("simple".equals(top_form)) {
         _template = "schedule-calendar";
       } else {
-        _template = portlet.getPortletConfig().getInitParameter("pba-template");
+        _template = portlet.getPortletConfig().getInitParameter("pba-template").toString();
       }
 
       // 現在のユーザー名を取得する
@@ -254,7 +254,7 @@ public class ScheduleAction extends ALBaseAction {
         List<UserFacilityLiteBean> memberList =
           new ArrayList<UserFacilityLiteBean>();
         String selected_user =
-          portlet.getPortletConfig().getInitParameter("p6a-uids");
+          portlet.getPortletConfig().getInitParameter("p6a-uids").toString();
         if (selected_user == null || "".equals(selected_user)) {
           UserFacilityLiteBean login_user =
             UserFacilityUtils.getUserFacilityLiteBean(rundata);
@@ -348,25 +348,25 @@ public class ScheduleAction extends ALBaseAction {
     context.put("theme", ALOrgUtilsService.getTheme());
 
     // 表示開始時間を取得する．
-    String time_start = portlet.getPortletConfig().getInitParameter("p1a-rows");
+    String time_start = portlet.getPortletConfig().getInitParameter("p1a-rows").toString();
     context.put("time_start", time_start);
 
     // 表示終了時間を取得する．
-    String time_end = portlet.getPortletConfig().getInitParameter("p1b-rows");
+    String time_end = portlet.getPortletConfig().getInitParameter("p1b-rows").toString();
     context.put("time_end", time_end);
 
     // 表示時間間隔を取得する．
     String time_interval =
-      portlet.getPortletConfig().getInitParameter("p1c-rows");
+      portlet.getPortletConfig().getInitParameter("p1c-rows").toString();
     context.put("time_interval", time_interval);
 
     // 表示日数を取得する.
     String weekly_days =
-      portlet.getPortletConfig().getInitParameter("p2a-days");
+      portlet.getPortletConfig().getInitParameter("p2a-days").toString();
     context.put("weekly_days", weekly_days);
 
     // 初期共有メンバー表示フラグを取得する
-    String showAll = portlet.getPortletConfig().getInitParameter("p7d-schk");
+    String showAll = portlet.getPortletConfig().getInitParameter("p7d-schk").toString();
     if (!("t".equals(showAll))) {
       showAll = "f";
     }
@@ -603,7 +603,7 @@ public class ScheduleAction extends ALBaseAction {
         currentTab =
           ScheduleUtils.getTabNameFromLayout(portlet
             .getPortletConfig()
-            .getInitParameter("pba-template"));
+            .getInitParameter("pba-template").toString());
       }
 
       String useragent = rundata.getUserAgent();
@@ -625,14 +625,14 @@ public class ScheduleAction extends ALBaseAction {
         // 初期選択メンバーリストを取得する
         List<UserFacilityLiteBean> memberList =
           new ArrayList<UserFacilityLiteBean>();
-        String selected_user =
+        Object selected_user =
           portlet.getPortletConfig().getInitParameter("p6a-uids");
         if (selected_user == null || "".equals(selected_user)) {
           UserFacilityLiteBean login_user =
             UserFacilityUtils.getUserFacilityLiteBean(rundata);
           memberList.add(login_user);
         } else {
-          String selected_users[] = selected_user.split(",");
+          String selected_users[] = selected_user.toString().split(",");
           List<UserFacilityLiteBean> ulist =
             ScheduleUtils.getALEipUserFacility(selected_users, rundata);
           if (ulist == null || ulist.size() == 0) {

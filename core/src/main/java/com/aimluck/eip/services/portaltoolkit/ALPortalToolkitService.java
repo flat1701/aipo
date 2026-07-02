@@ -74,13 +74,13 @@ public class ALPortalToolkitService extends JetspeedPortalToolkitService {
     // Portlets[] subsets = portlets.getPortlets();
     // for (int i=0; i < subsets.length; i++ )
 
-    for (@SuppressWarnings("unchecked")
+    for (
     Iterator<Portlets> it = portlets.getPortletsIterator(); it.hasNext();) {
       Portlets subset = it.next();
       // Set this subset's parent Portlets collection.
       subset.setParentPortlets(portlets);
 
-      Map<?, ?> constraints = getParameters(subset.getLayout());
+      Map<? extends String, ? extends Object>  constraints = getParameters(subset.getLayout());
       int position = getPosition(subset.getLayout());
       set.addPortlet(getSet(subset, theCount), controller
         .getConstraints(constraints), position);
@@ -90,8 +90,8 @@ public class ALPortalToolkitService extends JetspeedPortalToolkitService {
     // Entry[] entries = portlets.getEntry();
     // for( int i = 0; i < entries.length; ++i )
 
-    for (@SuppressWarnings("unchecked")
-    Iterator<Portlets> eit = portlets.getEntriesIterator(); eit.hasNext();) {
+    for (
+    Iterator<Entry> eit = portlets.getEntriesIterator(); eit.hasNext();) {
       try {
 
         Entry psmlEntry = (Entry) eit.next();
@@ -103,7 +103,7 @@ public class ALPortalToolkitService extends JetspeedPortalToolkitService {
           Portlet p = PortletFactory.getPortlet(psmlEntry);
 
           if (p != null) {
-            Map<?, ?> constraints = getParameters(psmlEntry.getLayout());
+            Map<? extends String, ? extends Object>  constraints = getParameters(psmlEntry.getLayout());
             int position = getPosition(psmlEntry.getLayout());
 
             PortletControl control = getControl(psmlEntry.getControl(), entry);

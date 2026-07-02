@@ -54,11 +54,12 @@ public class BasePortletConfig extends BaseConfig implements PortletConfig
     /**
     Init this PortletConfig providing the basic info.
     */
-    public void init( String url, Map init_params )
+    @Override
+    public void init( String url, Map<String, Object> init_params )
     {
         if (init_params == null)
         {
-            this.setInitParameters(new Hashtable());
+            this.setInitParameters(new Hashtable<String, Object>());
         }
         else
         {
@@ -88,7 +89,7 @@ public class BasePortletConfig extends BaseConfig implements PortletConfig
     Returns the portlet current PortletSet
      @deprecated use getConstraints instead
     */
-    public Map getLayout()
+    public Map<?, ?> getLayout()
     {
         return this.layoutConstraints;
     }
@@ -97,7 +98,7 @@ public class BasePortletConfig extends BaseConfig implements PortletConfig
      Set the context (PortletSet) for this portlet
      @deprecated use setConstraints instead
     */
-    public void setLayout(Map constraints)
+    public void setLayout(Map<?, ?> constraints)
     {
         //obsolete
     }
@@ -108,7 +109,7 @@ public class BasePortletConfig extends BaseConfig implements PortletConfig
      *
      * @return Current skin mapping or null if no skin is defined in PSML.
      */
-    public Map getSkin()
+    public Map<String, String> getSkin()
     {
         return this.skin;
     }
@@ -118,7 +119,7 @@ public class BasePortletConfig extends BaseConfig implements PortletConfig
      *
      * @deprecated use setPortletSkin instead
      */
-    public void setSkin(Map skin)
+    public void setSkin(Map<?, ?> skin)
     {
         //obsolete
     }

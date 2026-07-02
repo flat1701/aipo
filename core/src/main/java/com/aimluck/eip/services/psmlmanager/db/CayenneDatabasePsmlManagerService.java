@@ -833,6 +833,7 @@ public class CayenneDatabasePsmlManagerService extends TurbineBaseService
     JetspeedUser user = locator.getUser();
     Role role = locator.getRole();
     Group group = locator.getGroup();
+    @SuppressWarnings("unused")
     String tableName = null;
     List<?> records = null;
     Portlets portlets = null;

@@ -17,7 +17,6 @@ package org.apache.jetspeed.portal.portlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -91,6 +90,7 @@ import org.apache.turbine.util.RunData;
  * @author <a href="mailto:weaver@apache.org">Scott T. Weaver</a>
  * @version $Id: GenericMVCPortlet.java,v 1.11 2003/02/11 23:09:18 tkuebler Exp $
  */
+@SuppressWarnings("deprecation")
 public class GenericMVCPortlet extends AbstractInstancePortlet
 {
     
@@ -112,7 +112,9 @@ public class GenericMVCPortlet extends AbstractInstancePortlet
     private String viewType = "ERROR: not set in config";
     private String actionName = "ERROR: not set in config";
     private String template = "ERROR: not set in config";
+    @SuppressWarnings("unused")
     private String configureTemplate;
+    @SuppressWarnings("unused")
     private String maximizedTemplate;
     private ViewProcessor processor = null;
     private boolean providesCustomization;
@@ -126,18 +128,18 @@ public class GenericMVCPortlet extends AbstractInstancePortlet
     {
         
         //STW: check custimization attribute
-        String provConf = getPortletConfig().getInitParameter("provides.customization", "false");
+        String provConf = getPortletConfig().getInitParameter("provides.customization", "false").toString();
         providesCustomization = new Boolean(provConf).booleanValue();
         
         // pull the important info out of the portlet config
-        actionName = getPortletConfig().getInitParameter("action");
+        actionName = getPortletConfig().getInitParameter("action").toString();
         // STW: Allow subclasses to set viewtype for backward compatibillity
         if (getPortletConfig().getInitParameter("viewtype") != null)
         {
-            viewType = getPortletConfig().getInitParameter("viewtype");
+            viewType = getPortletConfig().getInitParameter("viewtype").toString();
         }
 
-        template = getPortletConfig().getInitParameter("template");
+        template = getPortletConfig().getInitParameter("template").toString();
 
         // get viewprocessor from factory
         logger.info(
@@ -164,7 +166,7 @@ public class GenericMVCPortlet extends AbstractInstancePortlet
      */
     public boolean isCacheable()
     {
-        return getPortletConfig().getInitParameter(IS_CACHEABLE, "true").equalsIgnoreCase("true");
+        return getPortletConfig().getInitParameter(IS_CACHEABLE, "true").toString().equalsIgnoreCase("true");
     }
 
 /**
@@ -348,13 +350,14 @@ public class GenericMVCPortlet extends AbstractInstancePortlet
     
     protected boolean useDelayedRendering(RunData rundata)
     {
-        String renderingDelayedString = getPortletConfig().getInitParameter(RENDERING_DELAYED);
+        String renderingDelayedString = getPortletConfig().getInitParameter(RENDERING_DELAYED).toString();
         boolean renderingDelayed = false;
         if (renderingDelayedString != null)
         {
             renderingDelayed = (Boolean.valueOf(renderingDelayedString) == Boolean.TRUE);
         }
 
+        @SuppressWarnings("unused")
         HttpServletRequest request = rundata.getRequest();
         String action = rundata.getAction();
 
@@ -380,7 +383,7 @@ public class GenericMVCPortlet extends AbstractInstancePortlet
     
     private void simulateDelay()
     {        
-        String simulateDelayString = getPortletConfig().getInitParameter(SIMULATE_DELAY);
+        String simulateDelayString = getPortletConfig().getInitParameter(SIMULATE_DELAY).toString();
         int simulateDelay = 0;  // seconds
         if (simulateDelayString != null)
         {

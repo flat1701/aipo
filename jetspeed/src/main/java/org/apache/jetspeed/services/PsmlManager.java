@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Static accessor for the PsmlManagerService
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: PsmlManager.java,v 1.10 2004/02/23 04:00:57 jford Exp $
  */
 public class PsmlManager
@@ -78,7 +78,7 @@ public class PsmlManager
      *
      * @param locator The ordered list of profile locators.
      */
-    public static PSMLDocument getDocument( List locators )
+    public static PSMLDocument getDocument( List<?> locators )
     {
         return getService().getDocument(locators);
     }
@@ -165,7 +165,7 @@ public class PsmlManager
      *
      * @param locator The profile locator criteria.
      */
-    public static Iterator query( QueryLocator locator )
+    public static Iterator<?> query( QueryLocator locator )
     {
         return getService().query( locator );
     }

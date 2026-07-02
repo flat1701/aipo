@@ -118,7 +118,7 @@ public class SimpleTransform
      */
     public static String transform( Document doc,
                                     String stylesheet_url,
-                                    Map params)
+                                    Map<?, ?> params)
         throws SAXException
     {
 
@@ -170,7 +170,7 @@ public class SimpleTransform
             final Transformer processor = handler.getTransformer();
 
             if( params != null ) {
-                Iterator keys = params.keySet().iterator();
+                Iterator<?> keys = params.keySet().iterator();
                 while( keys.hasNext() )
                 {
                     String name  = (String) keys.next();
@@ -228,7 +228,7 @@ public class SimpleTransform
      */
     public static String transform( String url,
                                     String stylesheet_url,
-                                    Map params )
+                                    Map<?, ?> params )
         throws SAXException
     {
 
@@ -271,7 +271,7 @@ public class SimpleTransform
      */
     public static String transform( InputSource content, 
                                     InputSource stylesheet,
-                                    Map params)
+                                    Map<?, ?> params)
         throws SAXException
     {
 
@@ -320,7 +320,7 @@ public class SimpleTransform
         
             if( params != null )
             {
-                Iterator keys = params.keySet().iterator();
+                Iterator<?> keys = params.keySet().iterator();
                 while( keys.hasNext() )
                 {
                     String name  = (String) keys.next();
@@ -370,7 +370,7 @@ public class SimpleTransform
      */
     public static Reader SAXTransform( String content_url, 
                                        String stylesheet_url,
-                                       Map params) throws IOException
+                                       Map<?, ?> params) throws IOException
     {
 
         // Instantiate a TransformerFactory.
@@ -425,7 +425,7 @@ public class SimpleTransform
             //Set the parameters (if any)
             if( params != null )
             {
-                Iterator keys = params.keySet().iterator();
+                Iterator<?> keys = params.keySet().iterator();
                 while( keys.hasNext() )
                 {
                     String name  = (String) keys.next();

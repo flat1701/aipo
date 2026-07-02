@@ -42,6 +42,7 @@ import com.workingdogs.village.Record;
  * @author <a href="mailto:susinha@cisco.com">Suchisubhra Sinha</a>
  * @version $Id: BaseJetspeedPortletCategoryPeer.java,v 1.3 2004/04/06 23:00:16 morciuch Exp $
  */
+@SuppressWarnings("deprecation")
 public class BaseJetspeedPortletCategoryPeer extends BasePeer
 {
 	
@@ -82,7 +83,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
     protected static final String CLASSNAME_DEFAULT =
         "org.apache.jetspeed.om.registry.base.BaseCategory";
     /** A class that can be returned by this peer. */
-    protected static final Class CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
+    protected static final Class<?> CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
     
     /**
      * Class object initialization method.
@@ -90,9 +91,9 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
      * @param className name of the class to initialize
      * @return the initialized class
      */
-    private static Class initClass(String className)
+    private static Class<?> initClass(String className)
     {
-        Class c = null;
+        Class<?> c = null;
         try
         {
             c = Class.forName(className);
@@ -124,13 +125,13 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
         * @throws TorqueException Any exceptions caught during processing will be
         *         rethrown wrapped into a TorqueException.
         */
-    public static List resultSet2Objects(java.sql.ResultSet results)
+    public static List<BaseCategory> resultSet2Objects(java.sql.ResultSet results)
         throws TorqueException
     {
         try
         {
             QueryDataSet qds = null;
-            List rows = null;
+            List<?> rows = null;
             try
             {
                 qds = new QueryDataSet(results);
@@ -176,7 +177,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
          * @throws TorqueException Any exceptions caught during processing will be
          *         rethrown wrapped into a TorqueException.
          */
-    public static BaseCategory row2Object(Record row, int offset, Class cls)
+    public static BaseCategory row2Object(Record row, int offset, Class<?> cls)
         throws TorqueException
     {
         try
@@ -225,7 +226,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
         * @throws TorqueException Any exceptions caught during processing will be
         *         rethrown wrapped into a TorqueException.
         */
-    public static List doSelect(Criteria criteria) throws TorqueException
+    public static List<BaseCategory> doSelect(Criteria criteria) throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria));
     }
@@ -238,7 +239,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
         * @throws TorqueException Any exceptions caught during processing will be
         *         rethrown wrapped into a TorqueException.
         */
-    public static List doSelect(Criteria criteria, Connection con)
+    public static List<BaseCategory> doSelect(Criteria criteria, Connection con)
         throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria, con));
@@ -253,7 +254,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
        * @throws TorqueException Any exceptions caught during processing will be
        *         rethrown wrapped into a TorqueException.
        */
-    public static List doSelectVillageRecords(Criteria criteria)
+    public static List<?> doSelectVillageRecords(Criteria criteria)
         throws TorqueException
     {
         return BaseJetspeedPortletCategoryPeer.doSelectVillageRecords(
@@ -268,7 +269,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelectVillageRecords(
+    public static List<?> doSelectVillageRecords(
         Criteria criteria,
         Connection con)
         throws TorqueException
@@ -302,9 +303,9 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
         * @throws TorqueException Any exceptions caught during processing will be
         *         rethrown wrapped into a TorqueException.
         */
-    public static List populateObjects(List records) throws TorqueException
+    public static List<BaseCategory> populateObjects(List<?> records) throws TorqueException
     {
-        List results = new ArrayList(records.size());
+        List<BaseCategory> results = new ArrayList<BaseCategory>(records.size());
         // populate the object(s)
         for (int i = 0; i < records.size(); i++)
         {
@@ -325,7 +326,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static Class getOMClass() throws TorqueException
+    public static Class<?> getOMClass() throws TorqueException
     {
         return CLASS_DEFAULT;
     }
@@ -335,7 +336,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(BasePortletEntry obj) throws TorqueException
+    public static List<BaseCategory> doSelect(BasePortletEntry obj) throws TorqueException
     {
         return doSelect(buildCriteria(obj));
     }
@@ -399,7 +400,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
         throws TorqueException
     {
         Criteria criteria = buildCriteria(pk);
-        List v = doSelect(criteria, con);
+        List<BaseCategory> v = doSelect(criteria, con);
         if (v.size() != 1)
         {
             throw new TorqueException("Failed to select one and only one row.");
@@ -416,10 +417,10 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List retrieveByPKs(List pks) throws TorqueException
+    public static List<BaseCategory> retrieveByPKs(List<?> pks) throws TorqueException
     {
         Connection db = null;
-        List retVal = null;
+        List<BaseCategory> retVal = null;
         try
         {
             db = Torque.getConnection(DATABASE_NAME);
@@ -439,13 +440,13 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
         * @throws TorqueException Any exceptions caught during processing will be
         *         rethrown wrapped into a TorqueException.
         */
-    public static List retrieveByPKs(List pks, Connection dbcon)
+    public static List<BaseCategory> retrieveByPKs(List<?> pks, Connection dbcon)
         throws TorqueException
     {
-        List objs = null;
+        List<BaseCategory> objs = null;
         if (pks == null || pks.size() == 0)
         {
-            objs = new LinkedList();
+            objs = new LinkedList<BaseCategory>();
         }
         else
         {
@@ -462,7 +463,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List retrieveById(int pk) throws TorqueException
+    public static List<BaseCategory> retrieveById(int pk) throws TorqueException
     {
         return retrieveById(SimpleKey.keyFor(pk));
     }
@@ -473,10 +474,10 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
          * @throws TorqueException Any exceptions caught during processing will be
          *         rethrown wrapped into a TorqueException.
          */
-    public static List retrieveById(ObjectKey pk) throws TorqueException
+    public static List<BaseCategory> retrieveById(ObjectKey pk) throws TorqueException
     {
         Connection db = null;
-        List retVal = null;
+        List<BaseCategory> retVal = null;
         try
         {
             db = Torque.getConnection(DATABASE_NAME);
@@ -497,7 +498,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List retrieveById(ObjectKey pk, Connection con)
+    public static List<BaseCategory> retrieveById(ObjectKey pk, Connection con)
         throws TorqueException
     {
         Criteria criteria = buildCriteria(pk);

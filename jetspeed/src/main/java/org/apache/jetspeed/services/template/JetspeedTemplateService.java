@@ -74,16 +74,16 @@ public class JetspeedTemplateService
     private static final JetspeedLogger logger = JetspeedLogFactoryService.getLogger(JetspeedTemplateService.class.getName());
     
     /** The hashtable used to cache Screen names. */
-    private Hashtable screenCache = null;
+    private Hashtable<String, Object> screenCache = null;
 
     /** The hashtable used to cache screen template names. */
-    private Hashtable templateCache = null;
+    private Hashtable<String, Object> templateCache = null;
 
     /** The hashtable used to cache Navigation names. */
-    private Hashtable navCache = null;
+    private Hashtable<String, Object> navCache = null;
 
     /** The hashtable used to cache layout template names. */
-    private Hashtable layoutCache = null;
+    private Hashtable<String, Object> layoutCache = null;
 
     /** Flag set if cache is to be used. */
     private boolean useCache = false;
@@ -149,10 +149,10 @@ public class JetspeedTemplateService
                 .parseInt(props.getProperty("screen.cache.size", "5"));
             int templateSize = Integer
                 .parseInt(props.getProperty("screen.cache.size", "50"));
-            layoutCache = new Hashtable( (int)(1.25*layoutSize) + 1);
-            navCache = new Hashtable( (int)(1.25*navigationSize) + 1);
-            screenCache = new Hashtable( (int)(1.25*screenSize) + 1);
-            templateCache = new Hashtable( (int)(1.25*templateSize) + 1);
+            layoutCache = new Hashtable<String, Object>( (int)(1.25*layoutSize) + 1);
+            navCache = new Hashtable<String, Object>( (int)(1.25*navigationSize) + 1);
+            screenCache = new Hashtable<String, Object>( (int)(1.25*screenSize) + 1);
+            templateCache = new Hashtable<String, Object>( (int)(1.25*templateSize) + 1);
         }
         // relative to the webapp root directory
         String templatePaths = props
@@ -203,7 +203,7 @@ public class JetspeedTemplateService
      */
     private void addToCache ( String key,
                               Object value,
-                              Hashtable h )
+                              Hashtable<String, Object> h )
     {
         if (useCache && value != null)
         {
@@ -404,7 +404,7 @@ public class JetspeedTemplateService
         }
         
         StringTokenizer st = new StringTokenizer(template, "/");
-        List tokens = new ArrayList(st.countTokens());
+        List<String> tokens = new ArrayList<String>(st.countTokens());
         while(st.hasMoreTokens())
         {
             String token = st.nextToken();
@@ -582,7 +582,7 @@ public class JetspeedTemplateService
     protected String parseNavigationTemplate( String template )
     {
         StringTokenizer st = new StringTokenizer(template, "/");
-        List tokens = new ArrayList(st.countTokens());
+        List<String> tokens = new ArrayList<String>(st.countTokens());
         while(st.hasMoreTokens())
         {
             String token = st.nextToken();

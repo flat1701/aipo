@@ -120,7 +120,7 @@ public class CellAddressBookAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.doViewList(this, rundata, context);
     listData.loadGroups(rundata, context);
     setTemplate(rundata, "addressbook-list");
@@ -140,7 +140,7 @@ public class CellAddressBookAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "addressbook-corplist");
   }
@@ -175,7 +175,7 @@ public class CellAddressBookAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "addressbook-company-list");
   }
@@ -207,7 +207,7 @@ public class CellAddressBookAction extends ALBaseAction {
       ALEipUtils
         .getPortlet(rundata, context)
         .getPortletConfig()
-        .getInitParameter("p2a-type");
+        .getInitParameter("p2a-type").toString();
     context.put("address_type", address_type);
     putData(rundata, context);
     setTemplate(rundata, "addressbook-addr-search");
@@ -232,7 +232,7 @@ public class CellAddressBookAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.doViewList(this, rundata, context);
     listData.loadGroups(rundata, context);
 
@@ -264,7 +264,7 @@ public class CellAddressBookAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.doViewList(this, rundata, context);
 
     context.put("isSerchRes", Boolean.TRUE);

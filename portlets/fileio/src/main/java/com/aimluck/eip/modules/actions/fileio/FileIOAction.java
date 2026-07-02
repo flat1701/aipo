@@ -210,6 +210,7 @@ public class FileIOAction extends ALBaseAction {
   public void doAddressbook_insert_csv(RunData rundata, Context context)
       throws Exception {
     int not_error = 0;
+    @SuppressWarnings("unused")
     int line = 0;
 
     String temp_folder_index = rundata.getParameters().getString("temp_folder");
@@ -512,6 +513,7 @@ public class FileIOAction extends ALBaseAction {
 
     int i, j;
     String token;
+    @SuppressWarnings("unused")
     int line = 0;
 
     // 最終行まで読み込む

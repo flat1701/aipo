@@ -66,8 +66,8 @@ public class _TurbineGroup extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipFacilityGroup(com.aimluck.eip.cayenne.om.portlet.EipFacilityGroup obj) {
         removeToManyTarget("eipFacilityGroup", obj, true);
     }
-    public List getEipFacilityGroup() {
-        return (List)readProperty("eipFacilityGroup");
+    public List<?> getEipFacilityGroup() {
+        return (List<?>)readProperty("eipFacilityGroup");
     }
     
     
@@ -86,8 +86,8 @@ public class _TurbineGroup extends org.apache.cayenne.CayenneDataObject {
     public void removeFromTurbineUserGroupRole(com.aimluck.eip.cayenne.om.security.TurbineUserGroupRole obj) {
         removeToManyTarget("turbineUserGroupRole", obj, true);
     }
-    public List getTurbineUserGroupRole() {
-        return (List)readProperty("turbineUserGroupRole");
+    public List<?> getTurbineUserGroupRole() {
+        return (List<?>)readProperty("turbineUserGroupRole");
     }
     
     

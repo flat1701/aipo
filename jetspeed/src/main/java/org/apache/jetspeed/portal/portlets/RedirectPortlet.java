@@ -16,7 +16,6 @@
 package org.apache.jetspeed.portal.portlets;
 
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +47,7 @@ public class RedirectPortlet extends AbstractInstancePortlet
     
     public ConcreteElement getContent(RunData rundata)
     {
-        String menuLevel = this.getPortletConfig().getInitParameter("menuLevel");        
+        String menuLevel = this.getPortletConfig().getInitParameter("menuLevel").toString();        
         int menus = 1;        
         try 
         {
@@ -72,9 +71,10 @@ public class RedirectPortlet extends AbstractInstancePortlet
             count++;
         }
                      
-        String url = this.getPortletConfig().getInitParameter("url");
+        String url = this.getPortletConfig().getInitParameter("url").toString();
         url = createDynamicUrl((JetspeedRunData)rundata, url);
         // rundata.setRedirectURI(url);
+        @SuppressWarnings("unused")
         HttpServletRequest request = rundata.getRequest();
         HttpServletResponse response = rundata.getResponse();
         try
@@ -208,9 +208,9 @@ public class RedirectPortlet extends AbstractInstancePortlet
                                  property.substring(1);                    
             try 
             {
-                Method getter = o.getClass().getMethod(getterName,null);
+                Method getter = o.getClass().getMethod(getterName);
                         
-                returnObject = getter.invoke(o,null);
+                returnObject = getter.invoke(o);
             }
             catch(Exception e)
             {

@@ -310,7 +310,7 @@ public class ALVelocityPortletControl extends AbstractPortletControl {
       logger.error("ALVelocityPortletControl.getContent", e);
     }
 
-    String theme = getConfig().getInitParameter("theme", "default.vm");
+    String theme = getConfig().getInitParameter("theme", "default.vm").toString();
 
     String s = "";
     try {
@@ -350,7 +350,7 @@ public class ALVelocityPortletControl extends AbstractPortletControl {
    * @return a list of ordered PortletAction objects describing the the actions
    *         available for this portlet
    */
-  @SuppressWarnings({ "deprecation", "null" })
+  @SuppressWarnings("deprecation")
   protected List<PortletAction> buildActionList(RunData rundata,
       Portlet portlet, Context context) {
     List<PortletAction> actions = new Vector<PortletAction>();
@@ -479,23 +479,23 @@ public class ALVelocityPortletControl extends AbstractPortletControl {
       while (map.containsKey("function_mode" + i)) {
         ALFunction function = new ALFunction();
         function.setMode(portlet.getPortletConfig().getInitParameter(
-          "function_mode" + i));
+          "function_mode" + i).toString());
         function.setImage(portlet.getPortletConfig().getInitParameter(
-          "function_image" + i));
+          "function_image" + i).toString());
         function.setCaption(portlet.getPortletConfig().getInitParameter(
-          "function_caption" + i));
+          "function_caption" + i).toString());
         if (map.containsKey("function_screen" + i)) {
           function.setScreen(true);
         }
         if (map.containsKey("function_before_function" + i)) {
           function.setBeforeFunction(portlet
             .getPortletConfig()
-            .getInitParameter("function_before_function" + i));
+            .getInitParameter("function_before_function" + i).toString());
         }
         if (map.containsKey("function_after_function" + i)) {
           function.setAfterFunction(portlet
             .getPortletConfig()
-            .getInitParameter("function_after_function" + i));
+            .getInitParameter("function_after_function" + i).toString());
         }
         functions.add(function);
         i++;
@@ -581,8 +581,9 @@ public class ALVelocityPortletControl extends AbstractPortletControl {
     // if (portlets.getController() instanceof PanedPortletController) {
     // controller = (PanedPortletController) portlets.getController();
     // }
+    @SuppressWarnings("unused")
     int count = 0;
-    for (Iterator en = portlets.getPortletsIterator(); en.hasNext();) {
+    for (Iterator<?> en = portlets.getPortletsIterator(); en.hasNext();) {
       Portlets p = (Portlets) en.next();
       // ここからtabs
       String pane = p.getId();
@@ -655,6 +656,7 @@ public class ALVelocityPortletControl extends AbstractPortletControl {
 
     JetspeedRunData jdata = (JetspeedRunData) rundata;
 
+    @SuppressWarnings("unused")
     int count = 0;
     for (Enumeration<?> en = portlets.getPortlets(); en.hasMoreElements(); count++) {
       Portlet p = (Portlet) en.nextElement();
@@ -813,6 +815,7 @@ public class ALVelocityPortletControl extends AbstractPortletControl {
    */
   private boolean containsPeid(RunData rundata, PortletSet portlets,
       String selectedPeid) {
+    @SuppressWarnings("unused")
     int count = 0;
     for (Enumeration<?> en = portlets.getPortlets(); en.hasMoreElements(); count++) {
       Portlet p = (Portlet) en.nextElement();

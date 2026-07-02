@@ -52,6 +52,7 @@ public class MemoScreen extends ALVelocityScreen {
         .getPortlet(rundata, context)
         .getPortletConfig()
         .getInitParameter("p1a-memos")
+        .toString()
         .trim());
       MemoSelectData listData = new MemoSelectData();
       listData.initField();

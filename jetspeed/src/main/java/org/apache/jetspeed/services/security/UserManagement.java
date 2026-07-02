@@ -74,7 +74,7 @@ public interface UserManagement extends Service, CredentialsManagement {
    * @exception InsufficientPrivilegeException
    *                when the requestor is denied due to insufficient privilege
    */
-  Iterator getUsers() throws JetspeedSecurityException;
+  Iterator<JetspeedUser> getUsers() throws JetspeedSecurityException;
 
   /**
    * Retrieves a collection of <code>JetspeedUser</code> s filtered by a
@@ -89,7 +89,7 @@ public interface UserManagement extends Service, CredentialsManagement {
    * @exception InsufficientPrivilegeException
    *                when the requestor is denied due to insufficient privilege
    */
-  Iterator getUsers(String filter) throws JetspeedSecurityException;
+  Iterator<?> getUsers(String filter) throws JetspeedSecurityException;
 
   /**
    * Saves a <code>JetspeedUser</code>'s attributes into permanent storage.

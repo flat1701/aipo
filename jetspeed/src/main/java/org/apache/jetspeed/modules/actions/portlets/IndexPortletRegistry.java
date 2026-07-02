@@ -71,9 +71,9 @@ public class IndexPortletRegistry extends SecureGenericMVCAction
             return;
         }
 
-        Collection c = new ArrayList();
+        Collection<PortletEntry> c = new ArrayList<PortletEntry>();
 
-        for (Iterator i = Registry.get(Registry.PORTLET).listEntryNames(); i.hasNext();)
+        for (Iterator<?> i = Registry.get(Registry.PORTLET).listEntryNames(); i.hasNext();)
         {
             PortletEntry entry = (PortletEntry) Registry.getEntry(Registry.PORTLET, (String) i.next());
             if (!entry.getType().equals(PortletEntry.TYPE_ABSTRACT) && !entry.isHidden())

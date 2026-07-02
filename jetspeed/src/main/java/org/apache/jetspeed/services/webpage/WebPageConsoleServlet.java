@@ -46,6 +46,7 @@ import org.apache.velocity.exception.ParseErrorException;
   *
   */
 
+@SuppressWarnings("deprecation")
 public class WebPageConsoleServlet extends VelocityServlet
 {
 
@@ -194,8 +195,8 @@ public class WebPageConsoleServlet extends VelocityServlet
     {
         // default Sessions screen
 
-        Collection sessions = WebPageManager.getSessions();
-        Collection targets = WebPageManager.getSites();
+        Collection<?> sessions = WebPageManager.getSessions();
+        Collection<?> targets = WebPageManager.getSites();
         boolean online = WebPageManager.isInit();
 
         ctx.put("sessions", sessions);
@@ -244,8 +245,8 @@ public class WebPageConsoleServlet extends VelocityServlet
         // default Sessions screen
         boolean online = WebPageManager.isInit();
     
-        Collection sessions = WebPageManager.getSessions();
-        Collection elements = WebPageManager.getSites();
+        Collection<?> sessions = WebPageManager.getSessions();
+        Collection<?> elements = WebPageManager.getSites();
     
         ctx.put("xxx_sessions", sessions);
         ctx.put("elements", elements);  

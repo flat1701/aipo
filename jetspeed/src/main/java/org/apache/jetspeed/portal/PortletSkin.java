@@ -22,12 +22,12 @@ import org.apache.jetspeed.capability.CapabilityMap;
  * The PortletSkin defines the color scheme to use for displaying a
  * specified portlet (and associated control)
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:paulsp@apache.org">Paul Spencer</a>
  * @author <a href="mailto:weaver@apache.org">Scott T. Weaver</a>
  * @version $Id: PortletSkin.java,v 1.7 2004/02/23 04:05:35 jford Exp $
  */
-public interface PortletSkin extends java.util.Map
+public interface PortletSkin extends java.util.Map<String, String>
 {
     public static final String TEXT_COLOR = "text-color";
     public static final String BACKGROUND_COLOR = "background-color";

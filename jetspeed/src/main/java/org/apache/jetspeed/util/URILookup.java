@@ -788,6 +788,7 @@ public class URILookup
      * @param uri    the URI t be modified
      * @return the URI
      */
+    @SuppressWarnings("unused")
     private static String resetURIParameter( String uri )
     {
         if (uri.indexOf("?")!=-1) {
@@ -804,6 +805,7 @@ public class URILookup
      * @param value     the parameter value
      * @return the modified URI
      */
+    @SuppressWarnings("unused")
     private static String addURIParameter( String uri, String parameter, String value)
     {
         parameter = URIEncoder.encode( parameter );

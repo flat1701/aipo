@@ -71,7 +71,7 @@ by the user-agent</p>
 <dd>The stylesheet URL. If a mime-type is specified, the stylesheet
 is only used for this mime-type</dd>
 </dl>
-@author <A HREF="mailto:raphael@apache.org">Raphaël Luta</A>
+@author <A HREF="mailto:raphael@apache.org">Raphaï¿½l Luta</A>
 @version $Id: NewRSSPortlet.java,v 1.22 2004/02/23 04:03:34 jford Exp $
 */
 public class NewRSSPortlet extends FileWatchPortlet 
@@ -86,8 +86,8 @@ public class NewRSSPortlet extends FileWatchPortlet
     public final static String INVALID_TYPE = "Unable to display for this browser";
 
     private Document document = null;
-    private Hashtable stylesheets = null;
-    private Hashtable params = null;
+    private Hashtable<String, String> stylesheets = null;
+    private Hashtable<String, String> params = null;
 
     /**
         This method loads the init parameters and
@@ -102,9 +102,9 @@ public class NewRSSPortlet extends FileWatchPortlet
         String url = null;
 
         // load stylesheets available
-        stylesheets = new Hashtable();
-        params = new Hashtable();
-        Iterator i = this.getPortletConfig().getInitParameterNames();
+        stylesheets = new Hashtable<String, String>();
+        params = new Hashtable<String, String>();
+        Iterator<?> i = this.getPortletConfig().getInitParameterNames();
         while (i.hasNext()) {
             String name = (String)i.next();
             String base = MimeType.HTML.toString();
@@ -114,9 +114,9 @@ public class NewRSSPortlet extends FileWatchPortlet
                 if ((idx=name.indexOf("."))>-1) {
                     base= name.substring(idx+1,name.length());
                 }
-                stylesheets.put(base, getPortletConfig().getInitParameter(name));
+                stylesheets.put(base, getPortletConfig().getInitParameter(name).toString());
             } else {
-                params.put(name.toLowerCase(), getPortletConfig().getInitParameter(name));
+                params.put(name.toLowerCase(), getPortletConfig().getInitParameter(name).toString());
             }
         }
 
@@ -266,7 +266,7 @@ public class NewRSSPortlet extends FileWatchPortlet
     */
     public boolean supportsType( MimeType mimeType ) {
 
-        Enumeration en = stylesheets.keys();
+        Enumeration<String> en = stylesheets.keys();
         while(en.hasMoreElements()) {
             String type = (String)en.nextElement();
             if (type.equals(mimeType.toString())) return true;

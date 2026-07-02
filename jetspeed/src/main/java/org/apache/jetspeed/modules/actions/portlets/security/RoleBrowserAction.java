@@ -93,7 +93,7 @@ public class RoleBrowserAction extends VelocityPortletAction
     {
         try
         {
-            Iterator roles = JetspeedSecurity.getRoles();
+            Iterator<?> roles = JetspeedSecurity.getRoles();
             context.put(SecurityConstants.CONTEXT_ROLES, roles);
         }
         catch (Exception e)

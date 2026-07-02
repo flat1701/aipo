@@ -79,7 +79,7 @@ public class JetspeedThreadPoolService extends TurbineBaseService implements
   /**
    * Stores threads that are available within the pool.
    */
-  private Vector availableThreads = new Vector();
+  private Vector<RunnableThread> availableThreads = new Vector<RunnableThread>();
 
   /**
    * The thread group used for all created threads.
@@ -407,7 +407,7 @@ class Queue {
    * Holds Runnables that have been requested to process but there are no
    * threads available.
    */
-  private Vector queue = new Vector();
+  private Vector<Runnable> queue = new Vector<Runnable>();
 
   /**
    * Add a Runnable object into the queue.

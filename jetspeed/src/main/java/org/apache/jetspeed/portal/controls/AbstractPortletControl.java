@@ -56,7 +56,7 @@ import org.apache.ecs.StringElement;
  * inner object and can thus be transparently cascaded or substituted to
  * a simple portlet wherever in a PSML object tree.
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:sgala@apache.org">Santiago Gala</a>
  * @version $Id: AbstractPortletControl.java,v 1.22 2004/03/29 21:16:27 taylor Exp $
  */
@@ -108,6 +108,10 @@ public abstract class AbstractPortletControl extends AbstractPortlet
     public Portlet getPortlet()
     {
         return this.portlet;
+    }
+    public PortletSet getPortletAsSet()
+    {
+        return (PortletSet) this.portlet;
     }
 
     /**
@@ -382,7 +386,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
 
             if (entry!=null)
             {
-                Iterator i = entry.listMediaTypes();
+                Iterator<?> i = entry.listMediaTypes();
     
                 while(i.hasNext())
                 {
@@ -414,7 +418,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
     public int size()
     {
         if (getPortlet() instanceof PortletSet)
-            return ((PortletSet)getPortlet()).size();
+            return getPortletAsSet().size();
 
         return ((getPortlet()==null)?0:1);
     }
@@ -426,7 +430,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
     public Portlet[] toArray()
     {
         if (getPortlet() instanceof PortletSet)
-            return ((PortletSet)getPortlet()).toArray();
+            return getPortletAsSet().toArray();
 
         Portlet[] p = new Portlet[1];
         p[0]=getPortlet();
@@ -445,7 +449,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
     public Portlet getPortletAt(int pos)
     {
         if (getPortlet() instanceof PortletSet)
-            return ((PortletSet)getPortlet()).getPortletAt(pos);
+            return getPortletAsSet().getPortletAt(pos);
 
         if (pos==0)
             return getPortlet();
@@ -459,12 +463,12 @@ public abstract class AbstractPortletControl extends AbstractPortlet
      *
      * @return an enumeration of portlets
      */
-    public Enumeration getPortlets()
+    public Enumeration<Portlet> getPortlets()
     {
         if (getPortlet() instanceof PortletSet)
-            return ((PortletSet)getPortlet()).getPortlets();
+            return getPortletAsSet().getPortlets();
 
-        Vector v = new Vector();
+        Vector<Portlet> v = new Vector<Portlet>();
         if (getPortlet()!=null) v.addElement(getPortlet());
 
         return v.elements();
@@ -478,7 +482,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
     public synchronized void addPortlet(Portlet portlet)
     {
         if (getPortlet() instanceof PortletSet)
-            ((PortletSet)getPortlet()).addPortlet(portlet);
+          getPortletAsSet().addPortlet(portlet);
     }
 
     /**
@@ -490,7 +494,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
     public synchronized void addPortlet(Portlet portlet, int position)
     {
         if (getPortlet() instanceof PortletSet)
-            ((PortletSet)getPortlet()).addPortlet(portlet,position);
+          getPortletAsSet().addPortlet(portlet,position);
     }
 
     /**
@@ -502,7 +506,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
     public synchronized void addPortlet(Portlet portlet, PortletSet.Constraints constraints)
     {
         if (getPortlet() instanceof PortletSet)
-            ((PortletSet)getPortlet()).addPortlet(portlet,constraints);
+          getPortletAsSet().addPortlet(portlet,constraints);
     }
 
     /**
@@ -516,7 +520,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
     public synchronized void addPortlet(Portlet portlet, PortletSet.Constraints constraint, int position)
     {
         if (getPortlet() instanceof PortletSet)
-            ((PortletSet)getPortlet()).addPortlet(portlet,constraint,position);
+          getPortletAsSet().addPortlet(portlet,constraint,position);
     }
 
     /**
@@ -525,7 +529,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
     public PortletController getController()
     {
         if (getPortlet() instanceof PortletSet)
-            return ((PortletSet)getPortlet()).getController();
+            return getPortletAsSet().getController();
 
         return null;
     }
@@ -539,7 +543,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
     public synchronized void setController(PortletController controller)
     {
         if (getPortlet() instanceof PortletSet)
-            ((PortletSet)getPortlet()).setController(controller);
+          getPortletAsSet().setController(controller);
     }
 
     // Delegate PortletState Interface
@@ -783,7 +787,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
 
         if (p instanceof PortletSet)
         {
-            Enumeration e = ((PortletSet)p).getPortlets();
+            Enumeration<Portlet> e = ((PortletSet)p).getPortlets();
             Portlet portlet = null;
             while ( e.hasMoreElements() )
             {
@@ -807,7 +811,7 @@ public abstract class AbstractPortletControl extends AbstractPortlet
 
         if (p instanceof PortletSet)
         {
-            Enumeration e = ((PortletSet)p).getPortlets();
+            Enumeration<Portlet> e = ((PortletSet)p).getPortlets();
             Portlet portlet = null;
             while ( e.hasMoreElements() )
             {

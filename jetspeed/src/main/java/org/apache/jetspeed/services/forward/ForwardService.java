@@ -80,7 +80,7 @@ public interface ForwardService extends Service
      * @param parameters The dynamic Validation Parameters used in creating validation forwards
      * @return DynamicURI the full link to the referenced page
      */
-    public DynamicURI forwardDynamic(RunData rundata, String forwardName, Map parameters);
+    public DynamicURI forwardDynamic(RunData rundata, String forwardName, Map<String, Object> parameters);
 
 
     /**
@@ -97,7 +97,7 @@ public interface ForwardService extends Service
     public DynamicURI forwardDynamic(RunData rundata, 
                                  String portlet, 
                                  String target,
-                                 Map parameters);
+                                 Map<String, Object> parameters);
 
     
     /**
@@ -105,14 +105,14 @@ public interface ForwardService extends Service
      *
      * @return Collection of all forward definitions
      */
-    public Collection getForwards();
+    public Collection<?> getForwards();
 
     /**
      * Get a collection of all portlet forwards in the system.
      *
      * @return Collection of all portlet forward definitions
      */
-    public Collection getPortletForwards();
+    public Collection<?> getPortletForwards();
 
     /**
      * Lookup a single forward definition by forward name

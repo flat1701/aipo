@@ -31,7 +31,7 @@ import org.apache.jetspeed.services.logging.JetspeedLogger;
  * Monitors a Registry directory and notifies the associated Registry
  * of file updates.
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: RegistryWatcher.java,v 1.10 2004/02/23 03:31:50 jford Exp $
  */
 public class RegistryWatcher extends Thread
@@ -47,7 +47,7 @@ public class RegistryWatcher extends Thread
     /**
     The files monitored by this watcher
     */
-    private Hashtable files = new Hashtable();
+    private Hashtable<File, Long> files = new Hashtable<File, Long>();
 
     /**
     the refresh rate, in milliseconds, to use for monitoring this file
@@ -88,7 +88,7 @@ public class RegistryWatcher extends Thread
         {
             if (subscriber!=null)
             {
-                Enumeration en = files.keys();
+                Enumeration<File> en = files.keys();
                 while(en.hasMoreElements())
                 {
                     try
@@ -106,7 +106,7 @@ public class RegistryWatcher extends Thread
 
             if (subscriber!=null)
             {
-                Enumeration en = files.keys();
+                Enumeration<File> en = files.keys();
                 while(en.hasMoreElements())
                 {
                     try
@@ -166,7 +166,7 @@ public class RegistryWatcher extends Thread
         {
             if (this.subscriber!=null)
             {
-                Enumeration en = files.keys();
+                Enumeration<File> en = files.keys();
                 while (en.hasMoreElements())
                 {
                     try
@@ -244,14 +244,14 @@ public class RegistryWatcher extends Thread
 
                 synchronized (this)
                 {
-                    Map fragments = subscriber.getFragmentMap();
+                    Map<?, ?> fragments = subscriber.getFragmentMap();
 
                     if (logger.isDebugEnabled())
                     {
                         logger.debug( "RegistryWatcher: Saving dirty fragments.");
                     }
 
-                    Iterator i = fragments.keySet().iterator();
+                    Iterator<?> i = fragments.keySet().iterator();
                     while(i.hasNext())
                     {
                         try
@@ -271,7 +271,7 @@ public class RegistryWatcher extends Thread
                                 }
 
                                 //and update the stored timestamp
-                                Enumeration en = files.keys();
+                                Enumeration<File> en = files.keys();
                                 while(en.hasMoreElements())
                                 {
                                     File f = (File)en.nextElement();
@@ -293,7 +293,7 @@ public class RegistryWatcher extends Thread
                         logger.debug( "RegistryWatcher: Checking for updated files.");
                     }
 
-                    Enumeration en = files.keys();
+                    Enumeration<File> en = files.keys();
                     while(en.hasMoreElements())
                     {
                         try

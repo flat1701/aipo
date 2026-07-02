@@ -70,7 +70,7 @@ public class ValidationParameterParser
     public void setProperties(Object bean)
         throws Exception
     {
-        Class beanClass = bean.getClass();
+        Class<? extends Object> beanClass = bean.getClass();
         PropertyDescriptor[] props
             = Introspector.getBeanInfo(beanClass).getPropertyDescriptors();
         StringBuffer invalidFieldMessages = new StringBuffer("");
@@ -161,7 +161,7 @@ public class ValidationParameterParser
     protected Object[] getArguments(PropertyDescriptor prop)
         throws Exception
     {
-        Class propclass = prop.getPropertyType();
+        Class<?> propclass = prop.getPropertyType();
         Object[] args = { null };
     
         if (propclass == String.class)
@@ -235,6 +235,7 @@ public class ValidationParameterParser
      * @param prop The bean's property descriptor
      * @return true if validation was successful, false if validation failed
      **/    
+    @SuppressWarnings("rawtypes")
     protected boolean validateProperty(Object bean,
                                        PropertyDescriptor prop)
         throws Exception
@@ -274,7 +275,8 @@ public class ValidationParameterParser
     protected boolean validateObject(PropertyDescriptor prop)
         throws Exception
     {
-        Class propclass = prop.getPropertyType();
+        Class<?> propclass = prop.getPropertyType();
+        @SuppressWarnings("unused")
         Object[] args = { null };
     
         if (propclass == String.class)
@@ -360,8 +362,8 @@ public class ValidationParameterParser
             String methodName = "validate"; 
             try
             {
-                Method method = bean.getClass().getMethod(methodName, null);
-                String msg = (String)method.invoke(bean, null);
+                Method method = bean.getClass().getMethod(methodName);
+                String msg = (String)method.invoke(bean);
                 return msg;
             }
             catch (NoSuchMethodException nsm_e)

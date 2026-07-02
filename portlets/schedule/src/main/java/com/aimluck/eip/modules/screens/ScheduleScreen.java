@@ -82,11 +82,11 @@ public class ScheduleScreen extends ALVelocityScreen {
       // Velocity テンプレートを読み込む
       String template = "";
       String _template =
-        portlet.getPortletConfig().getInitParameter("pba-template");
+        portlet.getPortletConfig().getInitParameter("pba-template").toString();
       boolean done = false;
 
       // 初期共有メンバー表示フラグを取得する
-      String showAll = portlet.getPortletConfig().getInitParameter("p7d-schk");
+      String showAll = portlet.getPortletConfig().getInitParameter("p7d-schk").toString();
       if (!("t".equals(showAll))) {
         showAll = "f";
       }
@@ -166,7 +166,7 @@ public class ScheduleScreen extends ALVelocityScreen {
         List<UserFacilityLiteBean> memberList =
           new ArrayList<UserFacilityLiteBean>();
         String selected_user =
-          portlet.getPortletConfig().getInitParameter("p6a-uids");
+          portlet.getPortletConfig().getInitParameter("p6a-uids").toString();
         if (selected_user == null || "".equals(selected_user)) {
           UserFacilityLiteBean login_user =
             UserFacilityUtils.getUserFacilityLiteBean(rundata);

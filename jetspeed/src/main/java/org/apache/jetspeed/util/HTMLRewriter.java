@@ -460,7 +460,7 @@ public class HTMLRewriter
             }
             
             convertURLS(tag,attrs);
-            Enumeration e = attrs.getAttributeNames();
+            Enumeration<?> e = attrs.getAttributeNames();
             if (tag == HTML.Tag.BASE)
                 return;
             

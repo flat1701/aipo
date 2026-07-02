@@ -71,7 +71,7 @@ public class TurbineScreenPortlet extends AbstractPortlet
     private String screen = null;
     private String bgcolor = null;
     private String classes = null;
-    private Hashtable paramSet = null;
+    private Hashtable<String, String> paramSet = null;
 
     static final public String BGCOLOR = "bgcolor";
     static final public String CLASSES = "classes";
@@ -103,6 +103,7 @@ public class TurbineScreenPortlet extends AbstractPortlet
     public void init() throws PortletException
     {
         PortletConfig pc = getPortletConfig();
+        @SuppressWarnings("unused")
         ConcreteElement myContent = null;
         try
         {
@@ -122,12 +123,13 @@ public class TurbineScreenPortlet extends AbstractPortlet
             /* Save the parameters if any */
             String param = null;
             String value = null;
+            @SuppressWarnings("rawtypes")
             java.util.Map dict = pc.getInitParameters();
-            Iterator en = dict.keySet().iterator();
+            Iterator<?> en = dict.keySet().iterator();
             int index = -1;
             String tParam = screen + ".param";
             String newParam = null;
-            paramSet = new Hashtable();
+            paramSet = new Hashtable<String, String>();
             while ( en.hasNext() )
             {
                 param = ( String ) en.next();
@@ -175,7 +177,7 @@ public class TurbineScreenPortlet extends AbstractPortlet
         data.getParameters().add( BGCOLOR, bgcolor );
         data.getParameters().add( CLASSES, classes );
 
-        Enumeration en = paramSet.keys();
+        Enumeration<String> en = paramSet.keys();
         String param = null;
         while ( en.hasMoreElements() )
         {

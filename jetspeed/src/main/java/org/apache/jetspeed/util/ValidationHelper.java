@@ -191,6 +191,7 @@ public class ValidationHelper
                 return true;
             }
             
+            @SuppressWarnings("unused")
             URL url = new URL(evalString);
 
             /*

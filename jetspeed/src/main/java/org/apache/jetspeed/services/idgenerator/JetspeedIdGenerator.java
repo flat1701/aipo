@@ -16,9 +16,6 @@
 
 package org.apache.jetspeed.services.idgenerator;
 
-// Jetspeed
-import org.apache.jetspeed.services.idgenerator.IdGeneratorService;
-
 // Turbine
 import org.apache.turbine.services.TurbineServices;
 

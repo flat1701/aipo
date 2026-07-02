@@ -76,7 +76,7 @@ public class WebClippingPortlet extends AbstractInstancePortlet
 	protected String username = null;
 	protected String password = null;
 
-	private Hashtable patterns = null;
+	private Hashtable<String, String> patterns = null;
 
 	/**
 	 * Initialize this portlet
@@ -87,7 +87,7 @@ public class WebClippingPortlet extends AbstractInstancePortlet
 		if (initDone)
 			return;
 
-		patterns = new Hashtable();
+		patterns = new Hashtable<String, String>();
 
 		try
 		{
@@ -254,7 +254,7 @@ public class WebClippingPortlet extends AbstractInstancePortlet
 		{
 			// Re-load parameters to see immediately the effect of changes
 			loadParams();
-			Enumeration en = patterns.keys();
+			Enumeration<String> en = patterns.keys();
 
 			while (en.hasMoreElements())
 			{
@@ -410,7 +410,7 @@ public class WebClippingPortlet extends AbstractInstancePortlet
 	 */
 	private void loadParams() throws PortletException
 	{
-		Iterator en = this.getPortletConfig().getInitParameterNames();
+		Iterator<?> en = this.getPortletConfig().getInitParameterNames();
 
 		try
 		{
@@ -420,14 +420,14 @@ public class WebClippingPortlet extends AbstractInstancePortlet
 
 				if (name.equals("username"))
 					username =
-						this.getPortletConfig().getInitParameter("username");
+						this.getPortletConfig().getInitParameter("username").toString();
 				else if (name.equals("password"))
 					password =
-						this.getPortletConfig().getInitParameter("password");
+						this.getPortletConfig().getInitParameter("password").toString();
 				else
 					patterns.put(
 						name,
-						this.getPortletConfig().getInitParameter(name));
+						this.getPortletConfig().getInitParameter(name).toString());
 
 			}
 		}

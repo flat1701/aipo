@@ -151,7 +151,7 @@ public abstract class BaseTurbineRole extends BaseObject
     /**
      * Collection to store aggregation of collTurbineRolePermissions
      */
-    protected List collTurbineRolePermissions;
+    protected List<TurbineRolePermission> collTurbineRolePermissions;
 
     /**
      * Temporary storage of collTurbineRolePermissions to save a possible db hit in
@@ -162,7 +162,7 @@ public abstract class BaseTurbineRole extends BaseObject
     {
         if (collTurbineRolePermissions == null)
         {
-            collTurbineRolePermissions = new ArrayList();
+            collTurbineRolePermissions = new ArrayList<TurbineRolePermission>();
         }
     }
 
@@ -189,7 +189,7 @@ public abstract class BaseTurbineRole extends BaseObject
      * the collection. Otherwise returns the results of
      * getTurbineRolePermissions(new Criteria())
      */
-    public List getTurbineRolePermissions() throws TorqueException
+    public List<TurbineRolePermission> getTurbineRolePermissions() throws TorqueException
     {
         if (collTurbineRolePermissions == null)
         {
@@ -207,13 +207,13 @@ public abstract class BaseTurbineRole extends BaseObject
      * an empty collection or the current collection, the criteria
      * is ignored on a new object.
      */
-    public List getTurbineRolePermissions(Criteria criteria) throws TorqueException
+    public List<TurbineRolePermission> getTurbineRolePermissions(Criteria criteria) throws TorqueException
     {
         if (collTurbineRolePermissions == null)
         {
             if (isNew())
             {
-               collTurbineRolePermissions = new ArrayList();
+               collTurbineRolePermissions = new ArrayList<TurbineRolePermission>();
             }
             else
             {
@@ -249,7 +249,7 @@ public abstract class BaseTurbineRole extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getTurbineRolePermissions(Connection con) throws TorqueException
+    public List<TurbineRolePermission> getTurbineRolePermissions(Connection con) throws TorqueException
     {
         if (collTurbineRolePermissions == null)
         {
@@ -270,13 +270,13 @@ public abstract class BaseTurbineRole extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getTurbineRolePermissions(Criteria criteria,Connection con) throws TorqueException
+    public List<TurbineRolePermission> getTurbineRolePermissions(Criteria criteria,Connection con) throws TorqueException
     {
         if (collTurbineRolePermissions == null)
         {
             if (isNew())
             {
-               collTurbineRolePermissions = new ArrayList();
+               collTurbineRolePermissions = new ArrayList<TurbineRolePermission>();
             }
             else
             {
@@ -326,14 +326,14 @@ public abstract class BaseTurbineRole extends BaseObject
      * api reasonable.  You can provide public methods for those you
      * actually need in TurbineRole.
      */
-    protected List getTurbineRolePermissionsJoinTurbineRole(Criteria criteria)
+    protected List<TurbineRolePermission> getTurbineRolePermissionsJoinTurbineRole(Criteria criteria)
         throws TorqueException
     {
         if (collTurbineRolePermissions == null)
         {
             if (isNew())
             {
-               collTurbineRolePermissions = new ArrayList();
+               collTurbineRolePermissions = new ArrayList<TurbineRolePermission>();
             }
             else
             {
@@ -346,6 +346,7 @@ public abstract class BaseTurbineRole extends BaseObject
             // the following code is to determine if a new query is
             // called for.  If the criteria is the same as the last
             // one, just return the collection.
+            @SuppressWarnings("unused")
             boolean newCriteria = true;
                             criteria.add(TurbineRolePermissionPeer.ROLE_ID, getRoleId() );
                         if (!lastTurbineRolePermissionsCriteria.equals(criteria))
@@ -377,14 +378,14 @@ public abstract class BaseTurbineRole extends BaseObject
      * api reasonable.  You can provide public methods for those you
      * actually need in TurbineRole.
      */
-    protected List getTurbineRolePermissionsJoinTurbinePermission(Criteria criteria)
+    protected List<TurbineRolePermission> getTurbineRolePermissionsJoinTurbinePermission(Criteria criteria)
         throws TorqueException
     {
         if (collTurbineRolePermissions == null)
         {
             if (isNew())
             {
-               collTurbineRolePermissions = new ArrayList();
+               collTurbineRolePermissions = new ArrayList<TurbineRolePermission>();
             }
             else
             {
@@ -397,6 +398,7 @@ public abstract class BaseTurbineRole extends BaseObject
             // the following code is to determine if a new query is
             // called for.  If the criteria is the same as the last
             // one, just return the collection.
+            @SuppressWarnings("unused")
             boolean newCriteria = true;
                             criteria.add(TurbineRolePermissionPeer.ROLE_ID, getRoleId() );
                         if (!lastTurbineRolePermissionsCriteria.equals(criteria))
@@ -416,7 +418,7 @@ public abstract class BaseTurbineRole extends BaseObject
     /**
      * Collection to store aggregation of collTurbineUserGroupRoles
      */
-    protected List collTurbineUserGroupRoles;
+    protected List<TurbineUserGroupRole> collTurbineUserGroupRoles;
 
     /**
      * Temporary storage of collTurbineUserGroupRoles to save a possible db hit in
@@ -427,7 +429,7 @@ public abstract class BaseTurbineRole extends BaseObject
     {
         if (collTurbineUserGroupRoles == null)
         {
-            collTurbineUserGroupRoles = new ArrayList();
+            collTurbineUserGroupRoles = new ArrayList<TurbineUserGroupRole>();
         }
     }
 
@@ -454,7 +456,7 @@ public abstract class BaseTurbineRole extends BaseObject
      * the collection. Otherwise returns the results of
      * getTurbineUserGroupRoles(new Criteria())
      */
-    public List getTurbineUserGroupRoles() throws TorqueException
+    public List<TurbineUserGroupRole> getTurbineUserGroupRoles() throws TorqueException
     {
         if (collTurbineUserGroupRoles == null)
         {
@@ -472,13 +474,13 @@ public abstract class BaseTurbineRole extends BaseObject
      * an empty collection or the current collection, the criteria
      * is ignored on a new object.
      */
-    public List getTurbineUserGroupRoles(Criteria criteria) throws TorqueException
+    public List<TurbineUserGroupRole> getTurbineUserGroupRoles(Criteria criteria) throws TorqueException
     {
         if (collTurbineUserGroupRoles == null)
         {
             if (isNew())
             {
-               collTurbineUserGroupRoles = new ArrayList();
+               collTurbineUserGroupRoles = new ArrayList<TurbineUserGroupRole>();
             }
             else
             {
@@ -514,7 +516,7 @@ public abstract class BaseTurbineRole extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getTurbineUserGroupRoles(Connection con) throws TorqueException
+    public List<TurbineUserGroupRole> getTurbineUserGroupRoles(Connection con) throws TorqueException
     {
         if (collTurbineUserGroupRoles == null)
         {
@@ -535,13 +537,13 @@ public abstract class BaseTurbineRole extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getTurbineUserGroupRoles(Criteria criteria,Connection con) throws TorqueException
+    public List<TurbineUserGroupRole> getTurbineUserGroupRoles(Criteria criteria,Connection con) throws TorqueException
     {
         if (collTurbineUserGroupRoles == null)
         {
             if (isNew())
             {
-               collTurbineUserGroupRoles = new ArrayList();
+               collTurbineUserGroupRoles = new ArrayList<TurbineUserGroupRole>();
             }
             else
             {
@@ -591,14 +593,14 @@ public abstract class BaseTurbineRole extends BaseObject
      * api reasonable.  You can provide public methods for those you
      * actually need in TurbineRole.
      */
-    protected List getTurbineUserGroupRolesJoinTurbineUser(Criteria criteria)
+    protected List<TurbineUserGroupRole> getTurbineUserGroupRolesJoinTurbineUser(Criteria criteria)
         throws TorqueException
     {
         if (collTurbineUserGroupRoles == null)
         {
             if (isNew())
             {
-               collTurbineUserGroupRoles = new ArrayList();
+               collTurbineUserGroupRoles = new ArrayList<TurbineUserGroupRole>();
             }
             else
             {
@@ -611,6 +613,7 @@ public abstract class BaseTurbineRole extends BaseObject
             // the following code is to determine if a new query is
             // called for.  If the criteria is the same as the last
             // one, just return the collection.
+            @SuppressWarnings("unused")
             boolean newCriteria = true;
                             criteria.add(TurbineUserGroupRolePeer.ROLE_ID, getRoleId() );
                         if (!lastTurbineUserGroupRolesCriteria.equals(criteria))
@@ -642,14 +645,14 @@ public abstract class BaseTurbineRole extends BaseObject
      * api reasonable.  You can provide public methods for those you
      * actually need in TurbineRole.
      */
-    protected List getTurbineUserGroupRolesJoinTurbineGroup(Criteria criteria)
+    protected List<TurbineUserGroupRole> getTurbineUserGroupRolesJoinTurbineGroup(Criteria criteria)
         throws TorqueException
     {
         if (collTurbineUserGroupRoles == null)
         {
             if (isNew())
             {
-               collTurbineUserGroupRoles = new ArrayList();
+               collTurbineUserGroupRoles = new ArrayList<TurbineUserGroupRole>();
             }
             else
             {
@@ -662,6 +665,7 @@ public abstract class BaseTurbineRole extends BaseObject
             // the following code is to determine if a new query is
             // called for.  If the criteria is the same as the last
             // one, just return the collection.
+            @SuppressWarnings("unused")
             boolean newCriteria = true;
                             criteria.add(TurbineUserGroupRolePeer.ROLE_ID, getRoleId() );
                         if (!lastTurbineUserGroupRolesCriteria.equals(criteria))
@@ -693,14 +697,14 @@ public abstract class BaseTurbineRole extends BaseObject
      * api reasonable.  You can provide public methods for those you
      * actually need in TurbineRole.
      */
-    protected List getTurbineUserGroupRolesJoinTurbineRole(Criteria criteria)
+    protected List<TurbineUserGroupRole> getTurbineUserGroupRolesJoinTurbineRole(Criteria criteria)
         throws TorqueException
     {
         if (collTurbineUserGroupRoles == null)
         {
             if (isNew())
             {
-               collTurbineUserGroupRoles = new ArrayList();
+               collTurbineUserGroupRoles = new ArrayList<TurbineUserGroupRole>();
             }
             else
             {
@@ -713,6 +717,7 @@ public abstract class BaseTurbineRole extends BaseObject
             // the following code is to determine if a new query is
             // called for.  If the criteria is the same as the last
             // one, just return the collection.
+            @SuppressWarnings("unused")
             boolean newCriteria = true;
                             criteria.add(TurbineUserGroupRolePeer.ROLE_ID, getRoleId() );
                         if (!lastTurbineUserGroupRolesCriteria.equals(criteria))
@@ -728,16 +733,16 @@ public abstract class BaseTurbineRole extends BaseObject
 
 
           
-    private static List fieldNames = null;
+    private static List<String> fieldNames = null;
 
     /**
      * Generate a list of field names.
      */
-    public static synchronized List getFieldNames()
+    public static synchronized List<String> getFieldNames()
     {
         if (fieldNames == null)
         {
-            fieldNames = new ArrayList();
+            fieldNames = new ArrayList<String>();
               fieldNames.add("RoleId");
               fieldNames.add("RoleName");
               fieldNames.add("Objectdata");
@@ -955,7 +960,7 @@ public abstract class BaseTurbineRole extends BaseObject
                         
                                       
                 
-        List v = getTurbineRolePermissions();
+        List<TurbineRolePermission> v = getTurbineRolePermissions();
         for (int i = 0; i < v.size(); i++)
         {
             TurbineRolePermission obj = (TurbineRolePermission) v.get(i);
@@ -963,10 +968,10 @@ public abstract class BaseTurbineRole extends BaseObject
         }
                                                   
                 
-        v = getTurbineUserGroupRoles();
-        for (int i = 0; i < v.size(); i++)
+        List<TurbineUserGroupRole> v2 = getTurbineUserGroupRoles();
+        for (int i = 0; i < v2.size(); i++)
         {
-            TurbineUserGroupRole obj = (TurbineUserGroupRole) v.get(i);
+            TurbineUserGroupRole obj = (TurbineUserGroupRole) v2.get(i);
             copyObj.addTurbineUserGroupRole(obj.copy());
         }
                             return copyObj;

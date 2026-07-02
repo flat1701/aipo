@@ -38,7 +38,7 @@ public class BaseParsedObject implements ParsedObject
     private URL url;
     private String[] keywords;
     private MultiMap multiKeywords;
-    private Map fields;
+    private Map<String, String> fields;
     private MultiMap multiFields;
     private float score;
     private String className;
@@ -188,7 +188,7 @@ public class BaseParsedObject implements ParsedObject
      * 
      * @return 
      */
-    public Map getFields()
+    public Map<String, String> getFields()
     {
         return this.fields;
     }
@@ -198,7 +198,7 @@ public class BaseParsedObject implements ParsedObject
      * 
      * @param fields
      */
-    public void setFields(Map fields)
+    public void setFields(Map<String, String> fields)
     {
         this.fields = fields;
     }

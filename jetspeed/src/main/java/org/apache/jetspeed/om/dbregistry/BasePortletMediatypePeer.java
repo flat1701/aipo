@@ -1,23 +1,14 @@
 package org.apache.jetspeed.om.dbregistry;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.torque.NoRowsException;
-import org.apache.torque.TooManyRowsException;
 import org.apache.torque.Torque;
 import org.apache.torque.TorqueException;
 import org.apache.torque.map.MapBuilder;
 import org.apache.torque.map.TableMap;
-import org.apache.torque.om.DateKey;
-import org.apache.torque.om.NumberKey;
-import org.apache.torque.om.StringKey;
 import org.apache.torque.om.ObjectKey;
 import org.apache.torque.om.SimpleKey;
 import org.apache.torque.util.BasePeer;
@@ -94,7 +85,7 @@ public abstract class BasePortletMediatypePeer
         "org.apache.jetspeed.om.dbregistry.PortletMediatype";
 
     /** A class that can be returned by this peer. */
-    protected static final Class CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
+    protected static final Class<?> CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
 
     /**
      * Class object initialization method.
@@ -102,9 +93,9 @@ public abstract class BasePortletMediatypePeer
      * @param className name of the class to initialize
      * @return the initialized class
      */
-    private static Class initClass(String className)
+    private static Class<?> initClass(String className)
     {
-        Class c = null;
+        Class<?> c = null;
         try
         {
             c = Class.forName(className);
@@ -136,13 +127,13 @@ public abstract class BasePortletMediatypePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List resultSet2Objects(java.sql.ResultSet results)
+    public static List<PortletMediatype> resultSet2Objects(java.sql.ResultSet results)
             throws TorqueException
     {
         try
         {
             QueryDataSet qds = null;
-            List rows = null;
+            List<?> rows = null;
             try
             {
                 qds = new QueryDataSet(results);
@@ -240,7 +231,7 @@ public abstract class BasePortletMediatypePeer
      */
     public static PortletMediatype row2Object(Record row,
                                              int offset,
-                                             Class cls)
+                                             Class<?> cls)
         throws TorqueException
     {
         try
@@ -295,7 +286,7 @@ public abstract class BasePortletMediatypePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(Criteria criteria) throws TorqueException
+    public static List<PortletMediatype> doSelect(Criteria criteria) throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria));
     }
@@ -309,7 +300,7 @@ public abstract class BasePortletMediatypePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(Criteria criteria, Connection con)
+    public static List<PortletMediatype> doSelect(Criteria criteria, Connection con)
         throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria, con));
@@ -325,7 +316,7 @@ public abstract class BasePortletMediatypePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelectVillageRecords(Criteria criteria)
+    public static List<?> doSelectVillageRecords(Criteria criteria)
         throws TorqueException
     {
         return BasePortletMediatypePeer
@@ -340,7 +331,7 @@ public abstract class BasePortletMediatypePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelectVillageRecords(Criteria criteria, Connection con)
+    public static List<?> doSelectVillageRecords(Criteria criteria, Connection con)
         throws TorqueException
     {
         if (criteria.getSelectColumns().size() == 0)
@@ -375,10 +366,10 @@ public abstract class BasePortletMediatypePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List populateObjects(List records)
+    public static List<PortletMediatype> populateObjects(List<?> records)
         throws TorqueException
     {
-        List results = new ArrayList(records.size());
+        List<PortletMediatype> results = new ArrayList<PortletMediatype>(records.size());
 
         // populate the object(s)
         for (int i = 0; i < records.size(); i++)
@@ -399,7 +390,7 @@ public abstract class BasePortletMediatypePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static Class getOMClass()
+    public static Class<?> getOMClass()
         throws TorqueException
     {
         return CLASS_DEFAULT;
@@ -502,7 +493,7 @@ public abstract class BasePortletMediatypePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(PortletMediatype obj) throws TorqueException
+    public static List<PortletMediatype> doSelect(PortletMediatype obj) throws TorqueException
     {
         return doSelect(buildCriteria(obj));
     }
@@ -625,6 +616,7 @@ public abstract class BasePortletMediatypePeer
     public static Criteria buildCriteria( ObjectKey pk )
     {
         Criteria criteria = new Criteria();
+          @SuppressWarnings("unused")
           SimpleKey[] keys = (SimpleKey[])pk.getValue();
                   return criteria;
      }
@@ -658,7 +650,7 @@ public abstract class BasePortletMediatypePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    protected static List doSelectJoinPortletDbEntry(Criteria c)
+    protected static List<PortletMediatype> doSelectJoinPortletDbEntry(Criteria c)
         throws TorqueException
     {
         // Set the correct dbName if it has not been overridden
@@ -679,14 +671,14 @@ public abstract class BasePortletMediatypePeer
         
 
                                             
-        List rows = BasePeer.doSelect(c);
-        List results = new ArrayList();
+        List<?> rows = BasePeer.doSelect(c);
+        List<PortletMediatype> results = new ArrayList<PortletMediatype>();
 
         for (int i = 0; i < rows.size(); i++)
         {
             Record row = (Record) rows.get(i);
 
-                            Class omClass = PortletMediatypePeer.getOMClass();
+                            Class<?> omClass = PortletMediatypePeer.getOMClass();
                     PortletMediatype obj1 = (PortletMediatype) PortletMediatypePeer
                 .row2Object(row, 1, omClass);
                      omClass = PortletDbEntryPeer.getOMClass();
@@ -729,7 +721,7 @@ public abstract class BasePortletMediatypePeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    protected static List doSelectJoinMediatype(Criteria c)
+    protected static List<PortletMediatype> doSelectJoinMediatype(Criteria c)
         throws TorqueException
     {
         // Set the correct dbName if it has not been overridden
@@ -750,14 +742,14 @@ public abstract class BasePortletMediatypePeer
         
 
                                             
-        List rows = BasePeer.doSelect(c);
-        List results = new ArrayList();
+        List<?> rows = BasePeer.doSelect(c);
+        List<PortletMediatype> results = new ArrayList<PortletMediatype>();
 
         for (int i = 0; i < rows.size(); i++)
         {
             Record row = (Record) rows.get(i);
 
-                            Class omClass = PortletMediatypePeer.getOMClass();
+                            Class<?> omClass = PortletMediatypePeer.getOMClass();
                     PortletMediatype obj1 = (PortletMediatype) PortletMediatypePeer
                 .row2Object(row, 1, omClass);
                      omClass = MediatypePeer.getOMClass();

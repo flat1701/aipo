@@ -29,20 +29,20 @@ import org.apache.jetspeed.services.forward.configuration.ForwardsConfiguration;
  */
 public class ForwardsConfigurationImpl implements ForwardsConfiguration, java.io.Serializable
 {
-    protected Collection forwards = new ArrayList();
-    protected Collection portletForwards = new ArrayList();
+    protected Collection<?> forwards = new ArrayList<Object>();
+    protected Collection<?> portletForwards = new ArrayList<Object>();
 
     public int getForwardsCount()
     {
         return this.forwards.size();
     }
 
-    public void setForwards(Collection forwards)
+    public void setForwards(Collection<?> forwards)
     {
         this.forwards = forwards;
     }
 
-    public Collection getForwards()
+    public Collection<?> getForwards()
     {
         return this.forwards;
     }
@@ -52,12 +52,12 @@ public class ForwardsConfigurationImpl implements ForwardsConfiguration, java.io
         return this.forwards.size();
     }
 
-    public void setPortletForwards(Collection portletForwards)
+    public void setPortletForwards(Collection<?> portletForwards)
     {
         this.portletForwards = portletForwards;
     }
 
-    public Collection getPortletForwards()
+    public Collection<?> getPortletForwards()
     {
         return this.portletForwards;
     }

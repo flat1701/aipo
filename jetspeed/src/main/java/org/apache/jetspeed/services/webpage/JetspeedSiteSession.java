@@ -106,6 +106,7 @@ public class JetspeedSiteSession extends AbstractSiteSession
         if (WebPageHelper.CT_HTML == contentType) 
         {
             // TODO: Deprecate this and use stream-based rewriting
+            @SuppressWarnings("unused")
             HTMLRewriter rewriter = new HTMLRewriter (); // site.getID(), url);
             // TODO: use Reader String result = rewriter.rewrite(content, proxyBase, targetBase);
             //data.getResponse().getWriter().write(result);

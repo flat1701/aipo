@@ -57,7 +57,6 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
-import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.Query;
@@ -316,13 +315,14 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
         return results;
     }
     
+    @SuppressWarnings({ "unchecked", "deprecation" })
     private void addFieldsToParsedObject(Document doc, ParsedObject o)
     {
         try
         {
             MultiMap multiKeywords = new MultiHashMap();
             MultiMap multiFields = new MultiHashMap();
-            HashMap fieldMap = new HashMap();
+            HashMap<String, String> fieldMap = new HashMap<String, String>();
             
             Field classNameField = doc.getField(ParsedObject.FIELDNAME_CLASSNAME);
             if(classNameField != null)
@@ -331,11 +331,11 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
                 o.setClassName(className);
                 ObjectHandler handler = HandlerFactory.getHandler(className);
                 
-                Set fields = handler.getFields();
+                Set<?> fields = handler.getFields();
                 addFieldsToMap(doc, fields, multiFields);
                 addFieldsToMap(doc, fields, fieldMap);
                 
-                Set keywords = handler.getKeywords();
+                Set<?> keywords = handler.getKeywords();
                 addFieldsToMap(doc, keywords, multiKeywords);
             }
             
@@ -349,9 +349,9 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
         }
     }
     
-    private void addFieldsToMap(Document doc, Set fieldNames, Map fields)
+    private void addFieldsToMap(Document doc, Set<?> fieldNames, Map<String, String> fields)
     {
-        Iterator fieldIter = fieldNames.iterator();
+        Iterator<?> fieldIter = fieldNames.iterator();
         while(fieldIter.hasNext())
         {
             String fieldName = (String)fieldIter.next();
@@ -388,7 +388,7 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
      */
     public boolean add(Object o)
     {
-        Collection c = new ArrayList(1);
+        Collection<Object> c = new ArrayList<Object>(1);
         c.add(o);
 
         return add(c);
@@ -400,7 +400,8 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
      * @param c
      * @return 
      */
-    public boolean add(Collection c)
+    @Override
+    public boolean add(Collection<Object> c)
     {
         boolean result = false;
 
@@ -415,7 +416,7 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
             return result;
         }
 
-        Iterator it = c.iterator();
+        Iterator<Object> it = c.iterator();
         while (it.hasNext()) 
         {
             Object o = it.next();
@@ -477,7 +478,8 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
             MultiMap multiFields = parsedObject.getMultiFields();
             addFieldsToDocument(doc, multiFields, TEXT);
             
-            Map fields = parsedObject.getFields();
+            @SuppressWarnings("deprecation")
+            Map<?, ?> fields = parsedObject.getFields();
             addFieldsToDocument(doc, fields, TEXT);
 
             // Add the document to search index
@@ -517,11 +519,11 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
         return result;
     }
     
-    private void addFieldsToDocument(Document doc, Map fields, int type)
+    private void addFieldsToDocument(Document doc, Map<?, ?> fields, int type)
     {
         if(fields != null)
         {
-            Iterator keyIter = fields.keySet().iterator();
+            Iterator<?> keyIter = fields.keySet().iterator();
             while(keyIter.hasNext())
             {
                 Object key = keyIter.next();
@@ -532,7 +534,7 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
                     {
                         if(values instanceof Collection)
                         {
-                            Iterator valueIter = ((Collection)values).iterator();
+                            Iterator<?> valueIter = ((Collection<?>)values).iterator();
                             while(valueIter.hasNext())
                             {
                                 Object value = valueIter.next();
@@ -574,7 +576,7 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
      */
     public boolean remove(Object o)
     {
-        Collection c = new ArrayList(1);
+        Collection<Object> c = new ArrayList<Object>(1);
         c.add(o);
 
         return remove(c);
@@ -586,7 +588,7 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
      * @param c
      * @return 
      */
-    public boolean remove(Collection c)
+    public boolean remove(Collection<Object> c)
     {
         boolean result = false;
 
@@ -594,7 +596,7 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
         {
             IndexReader indexReader = IndexReader.open(this.rootDir);
 
-            Iterator it = c.iterator();
+            Iterator<Object> it = c.iterator();
             while (it.hasNext()) 
             {
                 Object o = it.next();
@@ -642,7 +644,7 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
      */
     public boolean update(Object o)
     {
-        Collection c = new ArrayList(1);
+        Collection<Object> c = new ArrayList<Object>(1);
         c.add(o);
 
         return update(c);
@@ -654,8 +656,9 @@ public class LuceneSearchService extends TurbineBaseService implements SearchSer
      * @return 
      * @see org.apache.jetspeed.services.search.SearchService#update(java.lang.Collection)
      */
-    public boolean update(Collection c)
+    public boolean update(Collection<Object> c)
     {
+        @SuppressWarnings("unused")
         boolean result = false;
 
         try

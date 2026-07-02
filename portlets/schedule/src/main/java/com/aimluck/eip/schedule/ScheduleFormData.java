@@ -749,7 +749,6 @@ public class ScheduleFormData extends ALAbstractFormData {
    * @throws ALPageNotFoundException
    * @throws ALDBErrorException
    */
-  @SuppressWarnings("unchecked")
   @Override
   protected boolean loadFormData(RunData rundata, Context context,
       List<String> msgList) throws ALPageNotFoundException, ALDBErrorException {

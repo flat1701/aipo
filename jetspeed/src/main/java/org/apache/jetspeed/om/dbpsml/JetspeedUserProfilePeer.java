@@ -10,15 +10,10 @@ import org.apache.jetspeed.services.psmlmanager.db.DBUtils;
 
 // Turbine classes
 import org.apache.jetspeed.om.security.JetspeedUser;
-import org.apache.turbine.util.RunData;
-
 //Torque classes
 import org.apache.torque.util.Criteria;
 import org.apache.torque.util.BasePeer;
 
-
-// Local classes
-import org.apache.jetspeed.om.dbpsml.map.*;
 
 // Jetspeed classes (Profiler)
 import org.apache.jetspeed.services.Profiler;
@@ -26,7 +21,6 @@ import org.apache.jetspeed.services.Profiler;
 import org.apache.jetspeed.om.profile.Profile;
 import org.apache.jetspeed.om.profile.ProfileLocator;
 import org.apache.jetspeed.services.psmlmanager.db.DBOperations;
-import org.apache.jetspeed.services.psmlmanager.db.DBUtils;
 import org.apache.jetspeed.services.psmlmanager.db.DatabasePsmlManager;
 import org.apache.jetspeed.services.PsmlManager;
 
@@ -152,7 +146,7 @@ public class JetspeedUserProfilePeer
      * @param connection A database connection to use
      * @return List of records that statisfy the given locator criteria.
      */
-    public List select(ProfileLocator locator, Connection connection) throws Exception
+    public List<?> select(ProfileLocator locator, Connection connection) throws Exception
     {
         Criteria criteria = buildCriteria(locator);
         return super.doSelect(criteria, connection); // buildCriteria(locator));
@@ -167,7 +161,7 @@ public class JetspeedUserProfilePeer
      * @param connection A database connection to use
      * @return List of records that statisfy the given locator criteria.
      */
-    public List selectOrdered(ProfileLocator locator, Connection connection) throws Exception
+    public List<?> selectOrdered(ProfileLocator locator, Connection connection) throws Exception
     {
         Criteria criteria = buildCriteria(locator);
 

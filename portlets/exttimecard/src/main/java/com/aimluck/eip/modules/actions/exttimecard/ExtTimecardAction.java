@@ -137,7 +137,7 @@ public class ExtTimecardAction extends ALBaseAction {
       ALEipUtils
         .getPortlet(rundata, context)
         .getPortletConfig()
-        .getInitParameter("p1a-selects", "");
+        .getInitParameter("p1a-selects", "").toString();
     if (!"".equals(def_searchengine)) {
       context.put("def_searchengine", def_searchengine);
     }

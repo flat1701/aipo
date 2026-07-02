@@ -60,7 +60,7 @@ public class BlogScreen extends ALVelocityScreen {
       listData.loadThemaList(rundata, context);
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1a-rows")));
+        context).getPortletConfig().getInitParameter("p1a-rows").toString()));
       listData.setStrLength(100);
       listData.doViewList(this, rundata, context);
 

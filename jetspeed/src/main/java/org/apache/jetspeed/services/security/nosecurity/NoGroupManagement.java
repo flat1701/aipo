@@ -56,10 +56,10 @@ public class NoGroupManagement
      * @exception GroupException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator getGroups(String username)
+    public Iterator<Group> getGroups(String username)
         throws JetspeedSecurityException
     {
-        return new Vector().iterator();
+        return new Vector<Group>().iterator();
     }
 
     /**
@@ -72,10 +72,10 @@ public class NoGroupManagement
      * @exception GroupException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator getGroups()
+    public Iterator<Group> getGroups()
         throws JetspeedSecurityException
     {
-        return new Vector().iterator();
+        return new Vector<Group>().iterator();
     }
 
     /**
@@ -225,10 +225,10 @@ public class NoGroupManagement
      * @return Hashtable record retrieved.
      * @exception GroupException when the security provider has a general failure.
      */
-    public HashMap getTurbineGroupRole(String username)
+    public HashMap<?, ?> getTurbineGroupRole(String username)
         throws JetspeedSecurityException
     {
-      HashMap h = new HashMap();
+      HashMap<?, ?> h = new HashMap<Object, Object>();
       return h;
     }
 }

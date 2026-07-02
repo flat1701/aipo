@@ -47,10 +47,10 @@ public class SearchAction extends GenericMVCAction
                                    RunData rundata)
     throws Exception
     {     
-        List results = (List)rundata.getRequest().getAttribute(SEARCH_RESULTS);           
+        List<?> results = (List<?>)rundata.getRequest().getAttribute(SEARCH_RESULTS);           
         if (null == results)
         {
-            results = (List)PortletSessionState.getAttribute(rundata, SEARCH_RESULTS);
+            results = (List<?>)PortletSessionState.getAttribute(rundata, SEARCH_RESULTS);
             //System.out.println("session results = " + results); 
             
         }
@@ -97,6 +97,7 @@ public class SearchAction extends GenericMVCAction
         //
         // execute the query
         //
+        @SuppressWarnings("unused")
         ParsedObject result = null;
         SearchResults results  = Search.search(searchString);
         //System.out.println("Query hits = " + results.size());

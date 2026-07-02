@@ -125,16 +125,16 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
     protected static final String CLASSNAME_DEFAULT =
         "org.apache.jetspeed.om.registry.base.BasePortletEntry";
     /** A class that can be returned by this peer. */
-    protected static final Class CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
+    protected static final Class<?> CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
     /**
      * Class object initialization method.
      *
      * @param className name of the class to initialize
      * @return the initialized class
      */
-    private static Class initClass(String className)
+    private static Class<?> initClass(String className)
     {
-        Class c = null;
+        Class<?> c = null;
         try
         {
             c = Class.forName(className);
@@ -166,13 +166,13 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
         * @throws TorqueException Any exceptions caught during processing will be
         *         rethrown wrapped into a TorqueException.
         */
-    public static List resultSet2Objects(java.sql.ResultSet results)
+    public static List<BasePortletEntry> resultSet2Objects(java.sql.ResultSet results)
         throws TorqueException
     {
         try
         {
             QueryDataSet qds = null;
-            List rows = null;
+            List<?> rows = null;
             try
             {
                 qds = new QueryDataSet(results);
@@ -233,7 +233,7 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
     public static BasePortletEntry row2Object(
         Record row,
         int offset,
-        Class cls)
+        Class<?> cls)
         throws TorqueException
     {
         try
@@ -321,7 +321,7 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
         * @throws TorqueException Any exceptions caught during processing will be
         *         rethrown wrapped into a TorqueException.
         */
-    public List getXREGDataFromDb() throws TorqueException
+    public List<BasePortletEntry> getXREGDataFromDb() throws TorqueException
     {
         Criteria criteria = buildCriteria();
         return doSelect(criteria);
@@ -338,7 +338,7 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(Criteria criteria) throws TorqueException
+    public static List<BasePortletEntry> doSelect(Criteria criteria) throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria));
     }
@@ -351,7 +351,7 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
         * @throws TorqueException Any exceptions caught during processing will be
         *         rethrown wrapped into a TorqueException.
         */
-    public static List doSelect(Criteria criteria, Connection con)
+    public static List<BasePortletEntry> doSelect(Criteria criteria, Connection con)
         throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria, con));
@@ -366,7 +366,7 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
        * @throws TorqueException Any exceptions caught during processing will be
        *         rethrown wrapped into a TorqueException.
        */
-    public static List doSelectVillageRecords(Criteria criteria)
+    public static List<?> doSelectVillageRecords(Criteria criteria)
         throws TorqueException
     {
         return BaseJetspeedPortletPeer.doSelectVillageRecords(
@@ -381,7 +381,7 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelectVillageRecords(
+    public static List<?> doSelectVillageRecords(
         Criteria criteria,
         Connection con)
         throws TorqueException
@@ -415,9 +415,9 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List populateObjects(List records) throws TorqueException
+    public static List<BasePortletEntry> populateObjects(List<?> records) throws TorqueException
     {
-        List results = new ArrayList(records.size());
+        List<BasePortletEntry> results = new ArrayList<BasePortletEntry>(records.size());
         // populate the object(s)
         for (int i = 0; i < records.size(); i++)
         {
@@ -451,7 +451,7 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static Class getOMClass() throws TorqueException
+    public static Class<?> getOMClass() throws TorqueException
     {
         return CLASS_DEFAULT;
     }
@@ -465,7 +465,7 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
     {
         try
         {
-            List list =
+            List<?> list =
                 BaseJetspeedPortletParameterPeer.retrieveById(
                     SimpleKey.keyFor(id));
             for (int i = 0; i < list.size(); i++)
@@ -489,7 +489,7 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
     {
         try
         {
-            List list =
+            List<?> list =
                 BaseJetspeedPortletMediaTypePeer.retrieveById(
                     SimpleKey.keyFor(id));
             for (int i = 0; i < list.size(); i++)
@@ -517,7 +517,7 @@ public class BaseJetspeedPortletPeer extends BasePeer implements DBRegistry
     {
         try
         {
-            List list =
+            List<?> list =
                 BaseJetspeedPortletCategoryPeer.retrieveById(
                     SimpleKey.keyFor(id));
             for (int i = 0; i < list.size(); i++)

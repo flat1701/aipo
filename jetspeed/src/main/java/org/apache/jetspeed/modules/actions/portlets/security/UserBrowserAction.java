@@ -126,9 +126,9 @@ public class UserBrowserAction extends VelocityPortletAction
             context.put("s_config", new FieldMethodizer( context.get("config") ) );
 
             // Currently, the getUsers(filter) is not implemented - need to do local filtering
-            Iterator users = JetspeedSecurity.getUsers();
+            Iterator<JetspeedUser> users = JetspeedSecurity.getUsers();
 
-            List userList = new ArrayList();
+            List<JetspeedUser> userList = new ArrayList<JetspeedUser>();
 
             // Is filtering requested?
             String filterValue = rundata.getParameters().getString(FILTER_VALUE);
@@ -191,7 +191,7 @@ public class UserBrowserAction extends VelocityPortletAction
 
             try
             {
-                numberPerPage = Integer.parseInt(portlet.getPortletConfig().getInitParameter(NUMBER_PER_PAGE,"50"));
+                numberPerPage = Integer.parseInt(portlet.getPortletConfig().getInitParameter(NUMBER_PER_PAGE,"50").toString());
             }
             catch (NumberFormatException e)
             {

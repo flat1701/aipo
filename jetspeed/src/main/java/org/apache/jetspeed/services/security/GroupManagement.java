@@ -48,7 +48,7 @@ public interface GroupManagement extends Service
      * @exception GroupException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    Iterator getGroups(String username)
+    Iterator<Group> getGroups(String username)
         throws JetspeedSecurityException;
 
     /**
@@ -61,7 +61,7 @@ public interface GroupManagement extends Service
      * @exception GroupException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    Iterator getGroups()
+    Iterator<Group> getGroups()
         throws JetspeedSecurityException;
 
     /**

@@ -92,7 +92,7 @@ import java.text.MessageFormat;
  * <p>Don't call it from the URL, the Portlet and the Action are automatically
  * associated through the registry PortletName
  * 
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: CustomizeSetAction.java,v 1.51 2004/02/23 02:56:58 jford Exp $
  */
 public class CustomizeSetAction extends VelocityPortletAction
@@ -101,7 +101,9 @@ public class CustomizeSetAction extends VelocityPortletAction
     private static final String USER_SELECTIONS = "session.portlets.user.selections";
     private static final String UI_PORTLETS_SELECTED = "portletsSelected";
     private static final String PORTLET_LIST = "session.portlets.list";
+    @SuppressWarnings("unused")
     private static final String ALL_PORTLET_LIST = "session.all.portlets.list";
+    @SuppressWarnings("unused")
     private static final String PORTLET_LIST_PAGE_SIZE = "session.portlets.page.size";
     private static final String HIDE_EMPTY_CATEGORIES = "customizer.hide.empty.categories";
     
@@ -255,11 +257,11 @@ public class CustomizeSetAction extends VelocityPortletAction
                 PortletSessionState.clearAttribute(rundata, PORTLET_LIST);
             }
             
-            ArrayList allPortlets = new ArrayList();
-            List portlets  = buildPortletList(rundata, set, mediaType, allPortlets);
-            Map userSelections = getUserSelections(rundata); 
+            ArrayList<PortletEntry> allPortlets = new ArrayList<PortletEntry>();
+            List<PortletEntry> portlets  = buildPortletList(rundata, set, mediaType, allPortlets);
+            Map<String, PortletEntry> userSelections = getUserSelections(rundata); 
             // Build a list of categories from the available portlets
-            List categories = buildCategoryList(rundata, mediaType, allPortlets);
+            List<BaseCategory> categories = buildCategoryList(rundata, mediaType, allPortlets);
             context.put("categories", categories);
             
             context.put("parents", PortletFilter.buildParentList(allPortlets));
@@ -286,7 +288,7 @@ public class CustomizeSetAction extends VelocityPortletAction
         }
         else if ("addref".equals(mode))
         {
-            Iterator psmlIterator = null;
+            Iterator<?> psmlIterator = null;
             psmlIterator = Profiler.query(new QueryLocator(QueryLocator.QUERY_ALL));
             
             // Set Start and End
@@ -295,7 +297,7 @@ public class CustomizeSetAction extends VelocityPortletAction
  
 
             // Only include entries in compatibale with the Media-type/Country/Language
-            List psmlList = new LinkedList();
+            List<Profile> psmlList = new LinkedList<Profile>();
             Profile refProfile = null;
             int profileCounter = 0;
             while (psmlIterator.hasNext())
@@ -397,7 +399,7 @@ public class CustomizeSetAction extends VelocityPortletAction
         try
         {
             size = Integer.parseInt(portlet.getPortletConfig()
-                                           .getInitParameter("size"));
+                                           .getInitParameter("size").toString());
         }
         catch (Exception e)
         {
@@ -483,7 +485,8 @@ public class CustomizeSetAction extends VelocityPortletAction
         customizationState.setAttribute("customize-mode", "layout");
     }
     
-   public void doPrevious(RunData rundata, Context context) throws Exception
+   @SuppressWarnings("deprecation")
+  public void doPrevious(RunData rundata, Context context) throws Exception
    {
        int queryStart = rundata.getParameters().getInt("previous", 0);
        String mtype = rundata.getParameters().getString("mtype", null);
@@ -505,7 +508,8 @@ public class CustomizeSetAction extends VelocityPortletAction
        return;
    }
 
-   public void doNext(RunData rundata, Context context) throws Exception
+   @SuppressWarnings("deprecation")
+  public void doNext(RunData rundata, Context context) throws Exception
    {
        int queryStart = rundata.getParameters().getInt("next", 0);
        String mtype = rundata.getParameters().getString("mtype", null);
@@ -540,8 +544,8 @@ public class CustomizeSetAction extends VelocityPortletAction
        String[] pnames = rundata.getParameters().getStrings("pname");
        //System.out.println("start = "+start+" size = "+size);
        //System.out.println("pnames = "+rundata.getParameters());
-       Map userSelections = getUserSelections(rundata);
-       List portlets = (List) PortletSessionState.getAttribute(rundata, PORTLET_LIST, null);
+       Map<String, PortletEntry> userSelections = getUserSelections(rundata);
+       List<?> portlets = (List<?>) PortletSessionState.getAttribute(rundata, PORTLET_LIST, null);
        if (portlets != null)
        {
            int end = Math.min(start + size, portlets.size());
@@ -596,7 +600,7 @@ public class CustomizeSetAction extends VelocityPortletAction
         PortletSet set = (PortletSet) ((JetspeedRunData) rundata).getCustomized();
         
         maintainUserSelections(rundata);
-        Map userSelections = getUserSelections(rundata);
+        Map<String, PortletEntry> userSelections = getUserSelections(rundata);
         String[] pnames = new String[userSelections.size()];
         userSelections.keySet().toArray(pnames);
         //String[] pnames = rundata.getParameters().getStrings("pname");
@@ -612,9 +616,12 @@ public class CustomizeSetAction extends VelocityPortletAction
                                                            .getDocument()
                                                            .getPortletsById(set.getID());
 
-            List usedPortlets = AutoProfile.getPortletList(rundata);
+            @SuppressWarnings("unused")
+            List<?> usedPortlets = AutoProfile.getPortletList(rundata);
             boolean addIt;
+            @SuppressWarnings("unused")
             int cc;
+            @SuppressWarnings("unused")
             Entry usedEntry;
                                           
             for (int i = 0; i < pnames.length; i++)
@@ -837,7 +844,7 @@ public class CustomizeSetAction extends VelocityPortletAction
                     }
                     c.setName(controller);
                     
-                    String linkedControl = pc.getConfig().getInitParameter("control");
+                    String linkedControl = pc.getConfig().getInitParameter("control").toString();
 
                     if (linkedControl != null)
                     {
@@ -912,6 +919,7 @@ public class CustomizeSetAction extends VelocityPortletAction
             {
               // skin is either null or zero-length
               String custPortletSetID = portlets.getId();
+              @SuppressWarnings("deprecation")
               String rootPortletSetID = profile.getRootSet().getID();
               
               // set system default skin for root PSML element
@@ -991,17 +999,18 @@ public class CustomizeSetAction extends VelocityPortletAction
     
 
     // Create a list of all available portlets
-    public static List buildPortletList(RunData data, PortletSet set, String mediaType, List allPortlets)
+    public static List<PortletEntry> buildPortletList(RunData data, PortletSet set, String mediaType, List<PortletEntry> allPortlets)
     {
-        List list = new ArrayList();                                                                 
-        Iterator i = Registry.get(Registry.PORTLET).listEntryNames();
+        List<PortletEntry> list = new ArrayList<PortletEntry>();                                                                 
+        Iterator<?> i = Registry.get(Registry.PORTLET).listEntryNames();
         
         while (i.hasNext())
         {
             PortletEntry entry = (PortletEntry) Registry.getEntry(Registry.PORTLET,
                                                                  (String) i.next());
             
-            Iterator medias;
+            @SuppressWarnings("unused")
+            Iterator<?> medias;
             //Make a master portlet list, we will eventually us this to build a category list
             allPortlets.add(entry);
             // MODIFIED: Selection now takes care of the specified mediatype!
@@ -1021,7 +1030,7 @@ public class CustomizeSetAction extends VelocityPortletAction
         list = PortletFilter.filterPortlets(list, filterFields, filterValues);
         
         Collections.sort(list,
-                new Comparator() {
+                new Comparator<Object>() {
                     public int compare(Object o1, Object o2)
                     {
                         String t1 = (((PortletEntry) o1).getTitle() != null)
@@ -1040,26 +1049,29 @@ public class CustomizeSetAction extends VelocityPortletAction
         return list;
     }
 
-    public static Map getUserSelections(RunData data)
+    public static Map<String, PortletEntry> getUserSelections(RunData data)
     {
-        Map userSelections = (Map) PortletSessionState.getAttribute(data, USER_SELECTIONS, null);
+        @SuppressWarnings("unchecked")
+        Map<String, PortletEntry> userSelections = (Map<String, PortletEntry>) PortletSessionState.getAttribute(data, USER_SELECTIONS, null);
         if (userSelections == null)
         {
-            userSelections = new HashMap();
+            userSelections = new HashMap<String, PortletEntry>();
             PortletSessionState.setAttribute(data, USER_SELECTIONS, userSelections);
         }
         return userSelections;
     }
     
-    public static List buildInfoList(RunData data, String regName, String mediaType)
+    public static List<PortletInfoEntry> buildInfoList(RunData data, String regName, String mediaType)
     {
-        List list = new ArrayList();
+        List<PortletInfoEntry> list = new ArrayList<PortletInfoEntry>();
         
+        @SuppressWarnings("unused")
         String mime = ((JetspeedRunData) data).getCapability()
                                               .getPreferredType()
                                               .toString();
                                              
-        Iterator m = Registry.get(Registry.MEDIA_TYPE).listEntryNames();
+        @SuppressWarnings("unused")
+        Iterator<?> m = Registry.get(Registry.MEDIA_TYPE).listEntryNames();
 //        String mediaName = "html";
 //        
 //        while(m.hasNext())
@@ -1077,7 +1089,7 @@ public class CustomizeSetAction extends VelocityPortletAction
 //            }
 //        }
                     
-        Iterator i = Registry.get(regName).listEntryNames();
+        Iterator<String> i = Registry.get(regName).listEntryNames();
         
         while (i.hasNext())
         {
@@ -1096,15 +1108,15 @@ public class CustomizeSetAction extends VelocityPortletAction
         }
         
         Collections.sort(list,
-                new Comparator() {
-                    public int compare(Object o1, Object o2)
+                new Comparator<RegistryEntry>() {
+                    public int compare(RegistryEntry o1, RegistryEntry o2)
                     {
-                        String t1 = (((RegistryEntry) o1).getTitle() != null)
-                            ? ((RegistryEntry) o1).getTitle()
-                            : ((RegistryEntry) o1).getName();
-                        String t2 = (((RegistryEntry) o2).getTitle() != null)
-                            ? ((RegistryEntry) o2).getTitle()
-                            : ((RegistryEntry) o2).getName();
+                        String t1 = (o1.getTitle() != null)
+                            ? o1.getTitle()
+                            : o1.getName();
+                        String t2 = (o2.getTitle() != null)
+                            ? o2.getTitle()
+                            : o2.getName();
                         
                         return t1.compareTo(t2);
                     }
@@ -1113,11 +1125,11 @@ public class CustomizeSetAction extends VelocityPortletAction
         return list;
     }
     
-    public static List buildList(RunData data, String regName)
+    public static List<RegistryEntry> buildList(RunData data, String regName)
     {
-        List list = new ArrayList();
+        List<RegistryEntry> list = new ArrayList<RegistryEntry>();
         
-        Iterator i = Registry.get(regName).listEntryNames();        
+        Iterator<String> i = Registry.get(regName).listEntryNames();        
         while (i.hasNext())
         {
             RegistryEntry entry = Registry.getEntry(regName, (String) i.next());
@@ -1132,7 +1144,7 @@ public class CustomizeSetAction extends VelocityPortletAction
         }
         
         Collections.sort(list,
-                new Comparator() {
+                new Comparator<Object>() {
                     public int compare(Object o1, Object o2)
                     {
                         String t1 = (((RegistryEntry) o1).getTitle() != null)
@@ -1154,11 +1166,11 @@ public class CustomizeSetAction extends VelocityPortletAction
      * @param RunData current requests RunData object
      * @param List portlets All available portlets
      */    
-    public static List buildCategoryList(RunData data, String mediaType, List portlets)
+    public static List<BaseCategory> buildCategoryList(RunData data, String mediaType, List<PortletEntry> portlets)
     {
         boolean hideEmpties = JetspeedResources.getBoolean(HIDE_EMPTY_CATEGORIES, true);
-        TreeMap catMap = new TreeMap();
-        Iterator pItr = portlets.iterator();
+        TreeMap<String, BaseCategory> catMap = new TreeMap<String, BaseCategory>();
+        Iterator<PortletEntry> pItr = portlets.iterator();
         while (pItr.hasNext())
         {
             PortletEntry entry =  (PortletEntry) pItr.next();
@@ -1171,7 +1183,7 @@ public class CustomizeSetAction extends VelocityPortletAction
                     && (!entry.getType().equals(PortletEntry.TYPE_ABSTRACT))
                     && entry.hasMediaType(mediaType)))
                 {
-                    Iterator cItr = entry.listCategories();
+                    Iterator<?> cItr = entry.listCategories();
                     while (cItr.hasNext())
                     {
                         BaseCategory cat = (BaseCategory) cItr.next();
@@ -1181,7 +1193,7 @@ public class CustomizeSetAction extends VelocityPortletAction
             }
             else
             {
-                Iterator cItr = entry.listCategories();
+                Iterator<?> cItr = entry.listCategories();
                 while (cItr.hasNext())
                 {
                     BaseCategory cat = (BaseCategory) cItr.next();
@@ -1193,13 +1205,14 @@ public class CustomizeSetAction extends VelocityPortletAction
         //BaseCategory allCat = new BaseCategory();
           //      allCat.setName("All Portlets");
             //    catMap.put(allCat.getName(), allCat);
-        return new ArrayList(catMap.values());
+        return new ArrayList<BaseCategory>(catMap.values());
         
     }
     
     /**
      * Adds a filter over the available portlets list based on category
      */
+    @SuppressWarnings("deprecation")
     public void doFiltercategory(RunData rundata, Context context) throws Exception
     {
         String filterCat = rundata.getParameters().getString("filter_category", "All Portlets");
@@ -1225,6 +1238,7 @@ public class CustomizeSetAction extends VelocityPortletAction
     /**
      * Adds a filter over the available portlets list based on category
      */
+    @SuppressWarnings("deprecation")
     public void doFilter(RunData rundata, Context context) throws Exception
     {
         String[] filterFields = rundata.getParameters().getStrings("filter_field");

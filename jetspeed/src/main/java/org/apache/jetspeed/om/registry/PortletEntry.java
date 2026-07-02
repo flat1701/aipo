@@ -32,7 +32,7 @@ import java.util.Iterator;
  *   </dd>
  * </dl></p>
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: PortletEntry.java,v 1.5 2004/02/23 03:11:39 jford Exp $
  */
 public interface PortletEntry extends PortletInfoEntry
@@ -134,7 +134,7 @@ public interface PortletEntry extends PortletInfoEntry
      *
      * @return an iterator on the categories
      */
-    public Iterator listCategories();
+    public Iterator<?> listCategories();
 
     /**
      * Test if a given category exists for this entry

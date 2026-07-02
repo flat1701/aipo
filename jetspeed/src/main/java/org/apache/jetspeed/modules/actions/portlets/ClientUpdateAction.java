@@ -215,6 +215,7 @@ public class ClientUpdateAction extends RegistryUpdateAction
 		{
             try
 			{
+                @SuppressWarnings("unused")
                 RE re = new RE(userAgentPattern);
                 clientEntry.setUseragentpattern(userAgentPattern);
 			}

@@ -53,7 +53,7 @@ public class WorkflowAllListScreen extends WorkflowAllScreen {
       listData.loadRouteList(rundata, context);
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1b-rows")));
+        context).getPortletConfig().getInitParameter("p1b-rows").toString()));
       listData.doViewList(this, rundata, context);
 
       context.put("all_flg", true);

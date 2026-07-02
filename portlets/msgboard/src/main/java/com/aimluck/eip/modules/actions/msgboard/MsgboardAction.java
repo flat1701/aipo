@@ -85,10 +85,10 @@ public class MsgboardAction extends ALBaseAction {
     listData.loadCategoryList(rundata, context);
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setTableColumNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1e-rows")));
+      .getInitParameter("p1e-rows").toString()));
 
     listData.setFiltersPSML(portlet, context, rundata);
 
@@ -255,7 +255,7 @@ public class MsgboardAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "msgboard-topic-list");
   }
@@ -411,7 +411,7 @@ public class MsgboardAction extends ALBaseAction {
     // 最大表示件数（通常時）
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1c-rows")));
+      .getInitParameter("p1c-rows").toString()));
 
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "msgboard-category-list");

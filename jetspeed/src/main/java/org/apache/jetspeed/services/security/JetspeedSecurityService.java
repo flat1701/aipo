@@ -259,7 +259,7 @@ public interface JetspeedSecurityService extends Service
 	 *    
 	 * @return list of admin roles
 	 */
-	 public List getAdminRoles();
+	 public List<?> getAdminRoles();
 
 	/*
 	 * Returns true if user has adminstrative role

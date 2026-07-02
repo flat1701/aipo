@@ -1,11 +1,8 @@
 package org.apache.jetspeed.om.apps.email;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,9 +12,6 @@ import org.apache.torque.Torque;
 import org.apache.torque.TorqueException;
 import org.apache.torque.map.MapBuilder;
 import org.apache.torque.map.TableMap;
-import org.apache.torque.om.DateKey;
-import org.apache.torque.om.NumberKey;
-import org.apache.torque.om.StringKey;
 import org.apache.torque.om.ObjectKey;
 import org.apache.torque.om.SimpleKey;
 import org.apache.torque.util.BasePeer;
@@ -101,7 +95,7 @@ public abstract class BaseEmailInboxPeer
         "org.apache.jetspeed.om.apps.email.EmailInbox";
 
     /** A class that can be returned by this peer. */
-    protected static final Class CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
+    protected static final Class<?> CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
 
     /**
      * Class object initialization method.
@@ -109,9 +103,9 @@ public abstract class BaseEmailInboxPeer
      * @param className name of the class to initialize
      * @return the initialized class
      */
-    private static Class initClass(String className)
+    private static Class<?> initClass(String className)
     {
-        Class c = null;
+        Class<?> c = null;
         try
         {
             c = Class.forName(className);
@@ -143,13 +137,13 @@ public abstract class BaseEmailInboxPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List resultSet2Objects(java.sql.ResultSet results)
+    public static List<EmailInbox> resultSet2Objects(java.sql.ResultSet results)
             throws TorqueException
     {
         try
         {
             QueryDataSet qds = null;
-            List rows = null;
+            List<?> rows = null;
             try
             {
                 qds = new QueryDataSet(results);
@@ -250,7 +244,7 @@ public abstract class BaseEmailInboxPeer
      */
     public static EmailInbox row2Object(Record row,
                                              int offset,
-                                             Class cls)
+                                             Class<?> cls)
         throws TorqueException
     {
         try
@@ -308,7 +302,7 @@ public abstract class BaseEmailInboxPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(Criteria criteria) throws TorqueException
+    public static List<EmailInbox> doSelect(Criteria criteria) throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria));
     }
@@ -322,7 +316,7 @@ public abstract class BaseEmailInboxPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(Criteria criteria, Connection con)
+    public static List<EmailInbox> doSelect(Criteria criteria, Connection con)
         throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria, con));
@@ -338,7 +332,7 @@ public abstract class BaseEmailInboxPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelectVillageRecords(Criteria criteria)
+    public static List<?> doSelectVillageRecords(Criteria criteria)
         throws TorqueException
     {
         return BaseEmailInboxPeer
@@ -353,7 +347,7 @@ public abstract class BaseEmailInboxPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelectVillageRecords(Criteria criteria, Connection con)
+    public static List<?> doSelectVillageRecords(Criteria criteria, Connection con)
         throws TorqueException
     {
         if (criteria.getSelectColumns().size() == 0)
@@ -388,10 +382,10 @@ public abstract class BaseEmailInboxPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List populateObjects(List records)
+    public static List<EmailInbox> populateObjects(List<?> records)
         throws TorqueException
     {
-        List results = new ArrayList(records.size());
+        List<EmailInbox> results = new ArrayList<EmailInbox>(records.size());
 
         // populate the object(s)
         for (int i = 0; i < records.size(); i++)
@@ -412,7 +406,7 @@ public abstract class BaseEmailInboxPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static Class getOMClass()
+    public static Class<?> getOMClass()
         throws TorqueException
     {
         return CLASS_DEFAULT;
@@ -516,7 +510,7 @@ public abstract class BaseEmailInboxPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(EmailInbox obj) throws TorqueException
+    public static List<EmailInbox> doSelect(EmailInbox obj) throws TorqueException
     {
         return doSelect(buildCriteria(obj));
     }
@@ -712,7 +706,7 @@ public abstract class BaseEmailInboxPeer
         throws TorqueException, NoRowsException, TooManyRowsException
     {
         Criteria criteria = buildCriteria(pk);
-        List v = doSelect(criteria, con);
+        List<EmailInbox> v = doSelect(criteria, con);
         if (v.size() == 0)
         {
             throw new NoRowsException("Failed to select a row.");
@@ -734,11 +728,11 @@ public abstract class BaseEmailInboxPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List retrieveByPKs(List pks)
+    public static List<EmailInbox> retrieveByPKs(List<?> pks)
         throws TorqueException
     {
         Connection db = null;
-        List retVal = null;
+        List<EmailInbox> retVal = null;
         try
         {
            db = Torque.getConnection(DATABASE_NAME);
@@ -759,13 +753,13 @@ public abstract class BaseEmailInboxPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List retrieveByPKs( List pks, Connection dbcon )
+    public static List<EmailInbox> retrieveByPKs( List<?> pks, Connection dbcon )
         throws TorqueException
     {
-        List objs = null;
+        List<EmailInbox> objs = null;
         if (pks == null || pks.size() == 0)
         {
-            objs = new LinkedList();
+            objs = new LinkedList<EmailInbox>();
         }
         else
         {

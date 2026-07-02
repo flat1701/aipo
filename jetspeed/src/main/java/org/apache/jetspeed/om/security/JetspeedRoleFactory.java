@@ -32,7 +32,7 @@ public class JetspeedRoleFactory
     private static final String CONFIG_ROLE_CLASSNAME = "role.class";
 
     private static String roleClassName = null;
-    private static Class roleClass = null;
+    private static Class<?> roleClass = null;
     
     /**
      * Factory method to create JetspeedRole instances.  

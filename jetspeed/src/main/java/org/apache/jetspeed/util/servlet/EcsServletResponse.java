@@ -195,6 +195,7 @@ public class EcsServletResponse implements HttpServletResponse {
   /**
    * @see javax.servlet.http.HttpServletResponse#encodeUrl
    */
+  @SuppressWarnings("deprecation")
   public String encodeUrl(String url) {
     return rsp.encodeUrl(url);
   }
@@ -202,6 +203,7 @@ public class EcsServletResponse implements HttpServletResponse {
   /**
    * @see javax.servlet.http.HttpServletResponse#encodeRedirectUrl
    */
+  @SuppressWarnings("deprecation")
   public String encodeRedirectUrl(String url) {
     return rsp.encodeRedirectUrl(url);
   }

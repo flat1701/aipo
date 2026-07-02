@@ -83,6 +83,7 @@ public class CacheablePortletWrapper extends PortletWrapper implements /*FIXME*/
 
     /**
     */
+    @SuppressWarnings("deprecation")
     public final String getHandle()
     {
         return wrappedCacheable.getHandle();
@@ -90,6 +91,7 @@ public class CacheablePortletWrapper extends PortletWrapper implements /*FIXME*/
 
     /**
     */
+    @SuppressWarnings("deprecation")
     public final void setHandle( String handle )
     {
         wrappedCacheable.setHandle( handle );

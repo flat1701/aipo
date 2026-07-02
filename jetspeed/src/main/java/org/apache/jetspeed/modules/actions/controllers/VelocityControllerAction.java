@@ -36,7 +36,7 @@ import org.apache.velocity.context.Context;
  * <p>Don't call it from the URL, the Portlet and the Action are automatically
  * associated through the registry PortletName
  * 
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:re_carrasco@bco011.sonda.cl">Roberto Carrasco</a>
  */
 public abstract class VelocityControllerAction extends VelocityAction
@@ -122,10 +122,12 @@ public abstract class VelocityControllerAction extends VelocityAction
      * Subclasses must override this method to provide default behavior 
      * for the portlet action
      */
+    @SuppressWarnings("deprecation")
     protected void buildCustomizeContext( PortletController controller, 
                                           Context context,
                                           RunData rundata )
     {
+        @SuppressWarnings("unused")
         String name = controller.getPortlets().getName();            
         String template = (String)context.get("template");
 

@@ -231,7 +231,7 @@ public class TimecardSummaryListSelectData extends
       String userFilter = ALEipUtils.getTemp(rundata, context, TARGET_USER_ID);
       if (userFilter == null || userFilter.equals("")) {
         VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
-        userFilter = portlet.getPortletConfig().getInitParameter("p3a-user");
+        userFilter = portlet.getPortletConfig().getInitParameter("p3a-user").toString();
       }
 
       if (userFilter != null && (!userFilter.equals(""))) {

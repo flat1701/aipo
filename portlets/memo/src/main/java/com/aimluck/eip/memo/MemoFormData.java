@@ -171,6 +171,7 @@ public class MemoFormData extends ALAbstractFormData {
           .getPortlet(rundata, context)
           .getPortletConfig()
           .getInitParameter("p1a-memos")
+          .toString()
           .trim();
 
       // 固定解除

@@ -213,7 +213,7 @@ public class AccountCompanyAction extends ALSecureBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "account-post-list");
   }
@@ -351,7 +351,7 @@ public class AccountCompanyAction extends ALSecureBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "account-position-list");
   }

@@ -33,14 +33,14 @@ import java.util.Vector;
  * Provides a basic registry implementation that keep the elements
  * ordered.
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: BaseOrderedRegistry.java,v 1.4 2004/02/23 03:08:26 jford Exp $
  */
 public class BaseOrderedRegistry implements LocalRegistry
 {
-    protected List entries = new Vector();
+    protected List<RegistryEntry> entries = new Vector<RegistryEntry>();
 
-    protected Map idx = null;
+    protected Map<String, Integer> idx = null;
 
     /**
      * Static initialization of the logger for this class
@@ -152,9 +152,9 @@ public class BaseOrderedRegistry implements LocalRegistry
     /**
        @see Registry#getEntries
      */
-    public Enumeration getEntries()
+    public Enumeration<RegistryEntry> getEntries()
     {
-        Vector v = new Vector(entries);
+        Vector<RegistryEntry> v = new Vector<RegistryEntry>(entries);
 
         return v.elements();
     }
@@ -162,7 +162,7 @@ public class BaseOrderedRegistry implements LocalRegistry
     /**
        @see Registry#listEntryNames
      */
-    public Iterator listEntryNames()
+    public Iterator<String> listEntryNames()
     {
         synchronized (entries)
         {
@@ -302,7 +302,7 @@ public class BaseOrderedRegistry implements LocalRegistry
      */
     private void buildIdx()
     {
-        Map map = new TreeMap();
+        Map<String, Integer> map = new TreeMap<String, Integer>();
 
         for (int i=0; i < entries.size(); i++)
         {

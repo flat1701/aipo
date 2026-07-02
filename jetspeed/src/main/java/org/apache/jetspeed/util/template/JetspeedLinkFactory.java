@@ -16,8 +16,6 @@
 
 package org.apache.jetspeed.util.template;
 
-// Jetspeed
-import org.apache.jetspeed.util.template.JetspeedLink;
 import org.apache.jetspeed.services.resources.JetspeedResources;
 
 // Turbine

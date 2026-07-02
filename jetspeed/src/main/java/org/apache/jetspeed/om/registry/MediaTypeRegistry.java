@@ -16,12 +16,13 @@
 
 package org.apache.jetspeed.om.registry;
 
+import java.util.Enumeration;
 import java.util.Iterator;
 
 /**
     Represents a media-type registry.
 
-    @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+    @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
     @version $Id: MediaTypeRegistry.java,v 1.7 2004/02/23 03:11:39 jford Exp $
 */
 
@@ -34,7 +35,9 @@ public interface MediaTypeRegistry extends Registry
      * @param category The category and optional subcategories.
      * @return Iterator The result as an iterator.
      */
-    public Iterator findForCapability(org.apache.jetspeed.capability.CapabilityMap cm);
+    public Iterator<?> findForCapability(org.apache.jetspeed.capability.CapabilityMap cm);
+    
+    public Enumeration<? extends RegistryEntry> getEntries();
 
 }
 

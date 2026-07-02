@@ -73,10 +73,10 @@ public class ToDoScreen extends ALVelocityScreen {
       listData.loadCategoryList(rundata);
       listData.setRowsNum(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p1a-rows")));
+        .getInitParameter("p1a-rows").toString()));
       listData.setTableColumNum(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p0e-rows")));
+        .getInitParameter("p0e-rows").toString()));
       listData.setStrLength(0);
       listData.doViewList(this, rundata, context);
 

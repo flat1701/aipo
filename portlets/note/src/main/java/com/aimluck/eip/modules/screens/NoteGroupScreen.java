@@ -70,7 +70,7 @@ public class NoteGroupScreen extends ALVelocityScreen {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p1a-rows")));
+        .getInitParameter("p1a-rows").toString()));
       listData.doViewList(this, rundata, context);
       String layout_template = "portlets/html/ja/ajax-notegroup.vm";
       setTemplate(rundata, context, layout_template);

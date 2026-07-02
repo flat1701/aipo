@@ -52,7 +52,7 @@ public class WebMailAccountListScreen extends ALVelocityScreen {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1c-rows")));
+        context).getPortletConfig().getInitParameter("p1c-rows").toString()));
       listData.doViewList(this, rundata, context);
       setTemplate(
         rundata,

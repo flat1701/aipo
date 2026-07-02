@@ -17,9 +17,6 @@
 
 package org.apache.jetspeed.om.registry.base;
 
-// Jetspeed imports
-import org.apache.jetspeed.om.registry.base.BaseSecurityAllow;
-
 /**
  * Interface for manipulatin the Security Allow on the registry entries
  * 

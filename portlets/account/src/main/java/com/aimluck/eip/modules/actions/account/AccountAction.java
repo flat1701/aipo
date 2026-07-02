@@ -170,7 +170,7 @@ public class AccountAction extends ALSecureBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.doViewList(this, rundata, context);
   }
 

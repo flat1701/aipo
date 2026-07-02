@@ -21,7 +21,6 @@ import java.util.Iterator;
 import org.apache.jetspeed.om.profile.Entry;
 import org.apache.jetspeed.om.profile.PSMLDocument;
 import org.apache.jetspeed.om.profile.Profile;
-import org.apache.jetspeed.portal.Portlet;
 
 /**
  * This interface provides an easy, object-oriented approach to modifing 
@@ -87,7 +86,7 @@ public interface PortletInstance
      *
      * @return java.util.Iterator
      */
-    Iterator getAttributes();
+    Iterator<?> getAttributes();
     
     /**
      * Retrieves a list of all attributes names for all the attributes
@@ -95,7 +94,7 @@ public interface PortletInstance
      *
      * @return java.util.Iterator
      */
-    Iterator getAttributeNames();
+    Iterator<?> getAttributeNames();
     
     /**
      * Returns the PSMLDocument that contains this portlet instance.

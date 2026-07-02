@@ -57,11 +57,11 @@ public class NoRoleManagement
      * @exception RoleException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator getRoles(String username)
+    public Iterator<BaseJetspeedRole> getRoles(String username)
         throws JetspeedSecurityException
     {
         // give everyone the "user" role
-        Vector v = new Vector(1);
+        Vector<BaseJetspeedRole> v = new Vector<BaseJetspeedRole>(1);
         BaseJetspeedRole r = new BaseJetspeedRole();
         //r.setNew(false);
         r.setName(JetspeedSecurity.JETSPEED_ROLE_USER);
@@ -80,10 +80,10 @@ public class NoRoleManagement
      * @exception RoleException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator getRoles()
+    public Iterator<?> getRoles()
         throws JetspeedSecurityException
     {
-        return new Vector().iterator();
+        return new Vector<Object>().iterator();
     }
 
     /**

@@ -59,7 +59,6 @@ public class MsgboardCategoryMultiDelete extends ALAbstractCheckList {
    * @param msgList
    * @return
    */
-  @SuppressWarnings("unchecked")
   @Override
   protected boolean action(RunData rundata, Context context,
       List<String> values, List<String> msgList) {

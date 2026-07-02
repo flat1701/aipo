@@ -173,8 +173,8 @@ public class _EipMAddressbook extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTAddressbookGroupMap(com.aimluck.eip.cayenne.om.portlet.EipTAddressbookGroupMap obj) {
         removeToManyTarget("eipTAddressbookGroupMap", obj, true);
     }
-    public List getEipTAddressbookGroupMap() {
-        return (List)readProperty("eipTAddressbookGroupMap");
+    public List<?> getEipTAddressbookGroupMap() {
+        return (List<?>)readProperty("eipTAddressbookGroupMap");
     }
     
     

@@ -243,7 +243,7 @@ implements PortalAccessController
         // determine if user has specified role
         try
         {
-            Iterator roles = JetspeedSecurity.getRoles(user.getUserName());
+            Iterator<?> roles = JetspeedSecurity.getRoles(user.getUserName());
             while (roles.hasNext())
             {
                 GroupRole gr = (GroupRole) roles.next();

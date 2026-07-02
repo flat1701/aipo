@@ -85,7 +85,7 @@ public class BlogAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setStrLength(100);
 
     listData.setFiltersPSML(portlet, context, rundata);
@@ -223,7 +223,7 @@ public class BlogAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "blog-entry-list");
   }
@@ -245,7 +245,7 @@ public class BlogAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.setStrLength(100);
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "blog-entry-list");
@@ -267,7 +267,7 @@ public class BlogAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.setStrLength(100);
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "blog-entry-list-latest");
@@ -425,7 +425,7 @@ public class BlogAction extends ALBaseAction {
     // 最大表示件数（通常時）
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1c-rows")));
+      .getInitParameter("p1c-rows").toString()));
     listData.setStrLength(100);
 
     listData.doViewList(this, rundata, context);

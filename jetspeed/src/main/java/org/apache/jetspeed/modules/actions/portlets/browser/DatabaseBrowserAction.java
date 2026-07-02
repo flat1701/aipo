@@ -45,8 +45,6 @@ import org.apache.jetspeed.services.resources.JetspeedResources;
 
 // jetspeed velocity
 import org.apache.jetspeed.modules.actions.portlets.VelocityPortletAction;
-import org.apache.jetspeed.modules.actions.portlets.browser.ActionParameter;
-import org.apache.jetspeed.modules.actions.portlets.browser.BrowserQuery;
 import org.apache.jetspeed.portal.portlets.VelocityPortlet;
 import org.apache.jetspeed.portal.portlets.browser.DatabaseBrowserIterator;
 import org.apache.jetspeed.portal.portlets.browser.BrowserIterator;
@@ -96,7 +94,7 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
     protected static final String PEID = "js_peid";
     protected static final String SORT_COLUMN_NAME = "js_dbcolumn";
 
-    protected List sqlParameters = new Vector();
+    protected List<String> sqlParameters = new Vector<String>();
 
     /**
      * Static initialization of the logger for this class
@@ -274,7 +272,8 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
     /* (non-Javadoc)
      * @see org.apache.jetspeed.modules.actions.portlets.browser.BrowserQuery#filter(java.util.List, RunData)
      */
-    public boolean filter(List row, RunData rundata)
+    @Override
+    public boolean filter(List<?> row, RunData rundata)
     {
         return false;
     }
@@ -289,9 +288,9 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
     protected void getRows(VelocityPortlet portlet, RunData rundata, String sql,
                            int windowSize) throws Exception
     {
-        List resultSetList = new ArrayList();
-        List resultSetTitleList = new ArrayList();
-        List resultSetTypeList = new ArrayList();
+        List<List<?>> resultSetList = new ArrayList<List<?>>();
+        List<String> resultSetTitleList = new ArrayList<String>();
+        List<String> resultSetTypeList = new ArrayList<String>();
         Connection con = null;
         PreparedStatement selectStmt = null;
         ResultSet rs = null;
@@ -309,7 +308,7 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
             selectStmt = con.prepareStatement(sql);
 
             readSqlParameters(portlet, rundata);
-            Iterator it = sqlParameters.iterator();
+            Iterator<String> it = sqlParameters.iterator();
             int ix = 0;
             while (it.hasNext())
             {
@@ -324,7 +323,7 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
             get the user object types to be displayed and add them to the
             title list as well as the result set list
             */
-            List userObjList = (List)getParameterFromTemp(portlet, rundata, USER_OBJECTS);
+            List<?> userObjList = (List<?>)getParameterFromTemp(portlet, rundata, USER_OBJECTS);
             int userObjListSize = 0;
             if (userObjList != null)
             {
@@ -373,7 +372,7 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
             int index = 0;
             while(rs.next())
             {
-                List row = new ArrayList(columnNum);
+                List<Object> row = new ArrayList<Object>(columnNum);
 
                 for(int i = 1; i <= columnNum; i++)
                 {
@@ -392,7 +391,7 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
                     ActionParameter usrObj = (ActionParameter)userObjList.get(i - columnNum);
                     if( columnDisplayed[i] )
                     {
-                        Class c = Class.forName(usrObj.getType());
+                        Class<?> c = Class.forName(usrObj.getType());
                         row.add(c.newInstance());
                         populate(index, i, row);
                     }
@@ -640,19 +639,20 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
 
     }
 
-    public void setSQLParameters(List parameters)
+    @Override
+    public void setSQLParameters(List<String> parameters)
     {
         this.sqlParameters = parameters;
     }
 
-    public List getSQLParameters()
+    public List<String> getSQLParameters()
     {
         return sqlParameters;
     }
 
     protected void readSqlParameters(VelocityPortlet portlet, RunData rundata)
     {
-        List sqlParamList = null;
+        List<String> sqlParamList = null;
 
         int i = 1;
         while (true)
@@ -666,7 +666,7 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
             {
                 if (sqlParamList == null)
                 {
-                    sqlParamList = new ArrayList();
+                    sqlParamList = new ArrayList<String>();
                 }
                 sqlParamList.add(param);
             }
@@ -682,11 +682,11 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
 
     protected void readUserParameters(VelocityPortlet portlet, RunData rundata, Context context)
     {
-        List userObjectList;
+        List<ActionParameter> userObjectList;
         Object userObjRead = getParameterFromTemp(portlet, rundata, USER_OBJECTS);
         if ( userObjRead != null)
         {
-            context.put(USER_OBJECTS, (List)userObjRead);
+            context.put(USER_OBJECTS, (List<?>)userObjRead);
             //System.out.println("userObjectListSize: "+ ((List)userObjRead).size());
         }
         else
@@ -695,7 +695,7 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
             String userObjNames= getParameterFromRegistry(portlet,USER_OBJECT_NAMES,null);
             if( userObjTypes != null && userObjTypes.length() > 0 )
             {
-                userObjectList = new ArrayList();
+                userObjectList = new ArrayList<ActionParameter>();
                 int userObjectIndex = 0;
                 StringTokenizer tokenizer1 = new StringTokenizer(userObjNames, ",");
                 StringTokenizer tokenizer3 = new StringTokenizer(userObjTypes, ",");
@@ -714,20 +714,20 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
 
     protected void readLinkParameters(VelocityPortlet portlet, RunData rundata, Context context)
     {
-        List rowList, tableList;
+        List<ActionParameter> rowList, tableList;
         Object linksRead = getParameterFromTemp(portlet, rundata, LINKS_READ);
         if(linksRead != null && ((String)linksRead).equals(LINKS_READ))
         {
             Object tmp = getParameterFromTemp(portlet, rundata, ROW_LINK);
             if(tmp != null)
             {
-                context.put(ROW_LINK, (List)tmp);
+                context.put(ROW_LINK, (List<?>)tmp);
                 //System.out.println("rowListSize"+ ((List)tmp).size());
             }
             tmp = getParameterFromTemp(portlet, rundata, TABLE_LINK);
             if(tmp != null)
             {
-                context.put(TABLE_LINK, (List)tmp);
+                context.put(TABLE_LINK, (List<?>)tmp);
                 //System.out.println("tableListSize: "+((List)tmp).size());
             }
         }
@@ -738,7 +738,7 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
             String rowLinkTypes= getParameterFromRegistry(portlet,ROW_LINK_TYPES,null);
             if( rowLinkIds != null && rowLinkIds.length() > 0 )
             {
-                rowList = new ArrayList();
+                rowList = new ArrayList<ActionParameter>();
                 int rowIndex = 0;
                 StringTokenizer tokenizer1 = new StringTokenizer(rowLinkIds, ",");
                 StringTokenizer tokenizer2 = new StringTokenizer(rowLinkClasses, ",");
@@ -759,7 +759,7 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
             String tableLinkTypes= getParameterFromRegistry(portlet,TABLE_LINK_TYPES,null);
             if( tableLinkIds != null && tableLinkIds.length() > 0 )
             {
-                tableList = new ArrayList();
+                tableList = new ArrayList<ActionParameter>();
                 int tableIndex = 0;
                 StringTokenizer tokenizer1 = new StringTokenizer(tableLinkIds, ",");
                 StringTokenizer tokenizer2 = new StringTokenizer(tableLinkClasses, ",");
@@ -786,7 +786,7 @@ public class DatabaseBrowserAction extends VelocityPortletAction implements Brow
      * done here.
      *
      */
-    public void populate(int rowIndex, int columnIndex, List row)
+    public void populate(int rowIndex, int columnIndex, List<?> row)
     {
     }
 

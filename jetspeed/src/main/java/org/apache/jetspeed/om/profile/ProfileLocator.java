@@ -205,6 +205,6 @@ public interface ProfileLocator extends Serializable, Cloneable {
    * @see Object#clone
    * @return an instance copy of this object
    */
-  public Object clone() throws java.lang.CloneNotSupportedException;
+  public ProfileLocator clone() throws java.lang.CloneNotSupportedException;
 
 }

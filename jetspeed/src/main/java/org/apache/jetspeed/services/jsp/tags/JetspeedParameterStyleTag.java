@@ -18,6 +18,7 @@ package org.apache.jetspeed.services.jsp.tags;
 
 // java classes
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 // jsp api
@@ -138,6 +139,7 @@ public class JetspeedParameterStyleTag extends BodyTagSupport
      * @return code
      * @exception JspException
      */
+    @SuppressWarnings("deprecation")
     public int doStartTag() throws JspException 
     {
         return EVAL_BODY_TAG;
@@ -158,7 +160,7 @@ public class JetspeedParameterStyleTag extends BodyTagSupport
 
             // See if body contains any parameter options
             String body = this.getBodyContent() == null ? null : this.getBodyContent().getString();
-            Hashtable options = new Hashtable();
+            Map<String, Object> options = new Hashtable<String, Object>();
 
             if (body != null && !body.trim().equalsIgnoreCase(""))
             {

@@ -25,15 +25,15 @@ import java.util.*;
  * interface suitable for Castor XML serialization
  *
  * @see org.apache.jetspeed.om.registry.SkinEntry
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: BaseSkinEntry.java,v 1.4 2004/02/23 03:08:26 jford Exp $
  */
 public class BaseSkinEntry extends BaseRegistryEntry implements SkinEntry
 {
 
-    private Vector parameter = new Vector();
+    private Vector<Parameter> parameter = new Vector<Parameter>();
 
-    private transient Map nameIdx = null;
+    private transient Map<String, Integer> nameIdx = null;
 
     /**
      * Implements the equals operation so that 2 elements are equal if
@@ -48,8 +48,8 @@ public class BaseSkinEntry extends BaseRegistryEntry implements SkinEntry
 
         BaseSkinEntry obj = (BaseSkinEntry)object;
 
-        Iterator i = parameter.iterator();
-        Iterator i2 = obj.parameter.iterator();
+        Iterator<Parameter> i = parameter.iterator();
+        Iterator<Parameter> i2 = obj.parameter.iterator();
         while(i.hasNext())
         {
             BaseParameter c1 = (BaseParameter)i.next();
@@ -79,7 +79,7 @@ public class BaseSkinEntry extends BaseRegistryEntry implements SkinEntry
     }
 
     /** @return an enumeration of this entry parameter names */
-    public Iterator getParameterNames()
+    public Iterator<String> getParameterNames()
     {
         synchronized (parameter)
         {
@@ -125,10 +125,10 @@ public class BaseSkinEntry extends BaseRegistryEntry implements SkinEntry
     /** Returns a map of parameter values keyed on the parameter names
      *  @return the parameter values map
      */
-    public Map getParameterMap()
+    public Map<String, String> getParameterMap()
     {
-        Hashtable params = new Hashtable();
-        Enumeration en = parameter.elements();
+        Hashtable<String, String> params = new Hashtable<String, String>();
+        Enumeration<Parameter> en = parameter.elements();
         while(en.hasMoreElements())
         {
             Parameter param = (Parameter)en.nextElement();
@@ -184,7 +184,7 @@ public class BaseSkinEntry extends BaseRegistryEntry implements SkinEntry
 
         synchronized (parameter)
         {
-            Iterator i = parameter.iterator();
+            Iterator<Parameter> i = parameter.iterator();
             while(i.hasNext())
             {
                 Parameter param = (Parameter)i.next();
@@ -205,9 +205,9 @@ public class BaseSkinEntry extends BaseRegistryEntry implements SkinEntry
      */
     private void buildNameIndex()
     {
-        Hashtable idx = new Hashtable();
+        Hashtable<String, Integer> idx = new Hashtable<String, Integer>();
 
-        Iterator i = parameter.iterator();
+        Iterator<Parameter> i = parameter.iterator();
         int count = 0;
         while( i.hasNext() )
         {
@@ -224,12 +224,12 @@ public class BaseSkinEntry extends BaseRegistryEntry implements SkinEntry
     /** Needed for Castor 0.8.11 XML serialization for retrieving the
      *  parameters objects associated to this object
      */
-    public Vector getParameters()
+    public Vector<Parameter> getParameters()
     {
         return this.parameter;
     }
 
-    public void setParameters(Vector parameters)
+    public void setParameters(Vector<Parameter> parameters)
     {
         this.parameter = parameters;
     }

@@ -96,7 +96,6 @@ public class ActivityUtils {
       return null;
     }
 
-    @SuppressWarnings("unchecked")
     Iterator<Entry> iterator = portlets.getEntriesIterator();
     while (iterator.hasNext()) {
       Entry next = iterator.next();

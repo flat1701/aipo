@@ -90,12 +90,12 @@ public class BASICAuthIFramePortlet extends IFramePortlet
 
         if (index != -1)
         {
-            String user = this.getPortletConfig().getInitParameter(USERNAME);
+            String user = this.getPortletConfig().getInitParameter(USERNAME).toString();
             if (user == null || user.trim().length() == 0)
             {
                 user = runData.getUser().getUserName();
             }
-            String pass = this.getPortletConfig().getInitParameter(PASSWORD);
+            String pass = this.getPortletConfig().getInitParameter(PASSWORD).toString();
             if (pass == null || pass.trim().length() == 0)
             {
                 pass = runData.getUser().getPassword();

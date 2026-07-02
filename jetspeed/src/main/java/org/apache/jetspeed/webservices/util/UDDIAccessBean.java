@@ -59,16 +59,17 @@ public class UDDIAccessBean extends Object implements Serializable
     }
     
     /** performs business lookup against registry */
-    public java.util.List queryBusiness(String name) {
+    public java.util.List<?> queryBusiness(String name) {
         // create list to store results
-        java.util.List businessList = new java.util.Vector();
+        java.util.List<?> businessList = new java.util.Vector<Object>();
         // perform query
         try {
             proxy.setInquiryURL(queryURL);
+            @SuppressWarnings("deprecation")
             BusinessList results = proxy.find_business(name, null, 0);
             businessList = results.getBusinessInfos().getBusinessInfoVector();
             if (logger.isDebugEnabled()) {
-                java.util.ListIterator iterator = businessList.listIterator();
+                java.util.ListIterator<?> iterator = businessList.listIterator();
                 while (iterator.hasNext() == true) {
                     org.uddi4j.response.BusinessInfo business = (org.uddi4j.response.BusinessInfo)iterator.next();
                     logger.debug(business.getDefaultDescriptionString());
@@ -101,14 +102,15 @@ public class UDDIAccessBean extends Object implements Serializable
    public String getBusinessKey(String businessName) {
        String businessKey = null;
        // create List to store results
-       java.util.List businessList = new java.util.Vector();
+       java.util.List<?> businessList = new java.util.Vector<Object>();
        // perform query
        try {
             proxy.setInquiryURL(queryURL);
+            @SuppressWarnings("deprecation")
             BusinessList results = proxy.find_business(businessName, null, 0);
             businessList = results.getBusinessInfos().getBusinessInfoVector();
             // create iterator to search for match
-            java.util.ListIterator iterator = businessList.listIterator();
+            java.util.ListIterator<?> iterator = businessList.listIterator();
             while (iterator.hasNext() == true) {
                 BusinessInfo business  = (BusinessInfo)iterator.next();
                 if (business.getNameString().equals(businessName)) {
@@ -142,16 +144,17 @@ public class UDDIAccessBean extends Object implements Serializable
    }
    
     /** performs service lookup against registry */
-    public java.util.List queryService(String businessKey, String description) {
+    public java.util.List<?> queryService(String businessKey, String description) {
         // create List to store results
-        java.util.List serviceList = new java.util.Vector();
+        java.util.List<?> serviceList = new java.util.Vector<Object>();
         // perform query
         try {
             proxy.setInquiryURL(queryURL);
+            @SuppressWarnings("deprecation")
             ServiceList results = proxy.find_service(businessKey, description, null, 0);
             serviceList = results.getServiceInfos().getServiceInfoVector();
             if (logger.isDebugEnabled()) {
-                java.util.ListIterator iterator = serviceList.listIterator();
+                java.util.ListIterator<?> iterator = serviceList.listIterator();
                 while (iterator.hasNext() == true) {
                     org.uddi4j.response.ServiceInfo service = (org.uddi4j.response.ServiceInfo)iterator.next();
                     logger.debug(service.getNameString());
@@ -184,14 +187,15 @@ public class UDDIAccessBean extends Object implements Serializable
     public String getServiceKey(String businessKey, String serviceName) {
         String serviceKey = null;
        // create List to store results
-       java.util.List serviceList = new java.util.Vector();
+       java.util.List<?> serviceList = new java.util.Vector<Object>();
        // perform query
        try {
             proxy.setInquiryURL(queryURL);
+            @SuppressWarnings("deprecation")
             ServiceList results = proxy.find_service(businessKey, serviceName, null, 0);
             serviceList = results.getServiceInfos().getServiceInfoVector();
             // create iterator to search for match
-            java.util.ListIterator iterator = serviceList.listIterator();
+            java.util.ListIterator<?> iterator = serviceList.listIterator();
             while (iterator.hasNext() == true) {
                 ServiceInfo service  = (ServiceInfo)iterator.next();
                 if (service.getNameString().equals(serviceName)) {

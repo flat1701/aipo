@@ -40,6 +40,7 @@ import com.aimluck.eip.util.ALEipUtils;
 public class FileuploadYoutubeViewScreen extends ALVelocityScreen {
 
   /** logger */
+  @SuppressWarnings("unused")
   private static final JetspeedLogger logger = JetspeedLogFactoryService
     .getLogger(TutorialScreen.class.getName());
 

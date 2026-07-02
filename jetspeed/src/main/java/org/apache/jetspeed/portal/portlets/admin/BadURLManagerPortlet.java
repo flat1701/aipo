@@ -61,7 +61,7 @@ public class BadURLManagerPortlet extends AbstractPortlet {
         
         ElementContainer root = new ElementContainer();
 
-        List urls = URLManager.list( URLManagerService.STATUS_BAD );
+        List<?> urls = URLManager.list( URLManagerService.STATUS_BAD );
         
         root.addElement( "The following " + 
                          urls.size() + 
@@ -81,7 +81,7 @@ public class BadURLManagerPortlet extends AbstractPortlet {
         ParameterParser params = rundata.getParameters();
         uri.addQueryData( params );
         
-        Iterator i = urls.iterator();
+        Iterator<?> i = urls.iterator();
         
         while ( i.hasNext() ) {
             URLInfo info = URLManager.getInfo( (String)i.next() );
@@ -99,7 +99,7 @@ public class BadURLManagerPortlet extends AbstractPortlet {
         
         root.addElement( ul );
 
-        java.util.Hashtable rt = URLFetcher.getRealtimeURLs();
+        java.util.Hashtable<String, Vector<Thread>> rt = URLFetcher.getRealtimeURLs();
 
         root.addElement( "The following " + 
                          rt.size() + 
@@ -108,13 +108,13 @@ public class BadURLManagerPortlet extends AbstractPortlet {
         root.addElement( new BR() );
         ul = new UL();
         
-        java.util.Enumeration en = rt.keys();
+        java.util.Enumeration<String> en = rt.keys();
         while (en.hasMoreElements()) {
             String key = (String)en.nextElement();
             LI li = new LI().addElement( key )
                 .addElement( " - by " );
             if (rt.get(key) != null )
-                li.addElement( String.valueOf(((Vector)rt.get(key)).size()) )
+                li.addElement( String.valueOf(((Vector<?>)rt.get(key)).size()) )
                     .addElement( " threads." );
             ul.addElement( li );
         }

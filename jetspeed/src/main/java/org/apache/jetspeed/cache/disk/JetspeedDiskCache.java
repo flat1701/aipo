@@ -64,7 +64,7 @@ public class JetspeedDiskCache implements DiskCache {
     /**
     Stores instances of JetspeedDiskCaches
     */
-    private static Hashtable instances = new Hashtable();
+    private static Hashtable<String, JetspeedDiskCache> instances = new Hashtable<String, JetspeedDiskCache>();
 
     /**
     This is the directory used to cache the documents.
@@ -74,7 +74,7 @@ public class JetspeedDiskCache implements DiskCache {
     /**
     This is a hashtable with all the entries in this cache.
     */
-    private Hashtable entries = new Hashtable();
+    private Hashtable<String, JetspeedDiskCacheEntry> entries = new Hashtable<String, JetspeedDiskCacheEntry>();
 
     /**
      * Static initialization of the logger for this class
@@ -174,9 +174,9 @@ public class JetspeedDiskCache implements DiskCache {
     */
     public DiskCacheEntry[] getEntries() {
         
-        Vector diskEntries = new Vector();
+        Vector<JetspeedDiskCacheEntry> diskEntries = new Vector<JetspeedDiskCacheEntry>();
         
-        Enumeration cacheEntries = entries.elements();
+        Enumeration<JetspeedDiskCacheEntry> cacheEntries = entries.elements();
         logger.info("Calling JetspeedDiskCache getEntries");
         while(cacheEntries.hasMoreElements())
             {

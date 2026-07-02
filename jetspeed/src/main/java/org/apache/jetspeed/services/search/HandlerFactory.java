@@ -33,7 +33,7 @@ import org.apache.turbine.services.TurbineServices;
  */
 public class HandlerFactory
 {
-    private static final Map handlerCache = Collections.synchronizedMap(new HashMap());
+    private static final Map<String, ObjectHandler> handlerCache = Collections.synchronizedMap(new HashMap<String, ObjectHandler>());
     
     /**
      * Returns parsed object handler for specific object

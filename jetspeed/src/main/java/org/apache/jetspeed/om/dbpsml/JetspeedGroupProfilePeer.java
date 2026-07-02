@@ -139,7 +139,7 @@ public class JetspeedGroupProfilePeer
      * @param connection A database connection to use
      * @return List of records that statisfy the given locator criteria.
      */
-    public List select(ProfileLocator locator, Connection connection) throws Exception
+    public List<?> select(ProfileLocator locator, Connection connection) throws Exception
     {
         return super.doSelect(buildCriteria(locator), connection);
     }
@@ -153,7 +153,7 @@ public class JetspeedGroupProfilePeer
      * @param connection A database connection to use
      * @return List of records that statisfy the given locator criteria.
      */
-    public List selectOrdered(ProfileLocator locator, Connection connection) throws Exception
+    public List<?> selectOrdered(ProfileLocator locator, Connection connection) throws Exception
     {
         Criteria criteria = buildCriteria(locator);
 

@@ -24,6 +24,7 @@ import java.util.Map;
 import javax.servlet.ServletConfig;
 
 import org.apache.jetspeed.om.security.Group;
+import org.apache.jetspeed.om.security.GroupRole;
 import org.apache.jetspeed.om.security.Permission;
 import org.apache.jetspeed.om.security.Role;
 import org.apache.jetspeed.services.JetspeedSecurity;
@@ -50,8 +51,8 @@ public class SecurityCacheImpl  extends TurbineBaseService
      */    
     private static final JetspeedLogger logger = JetspeedLogFactoryService.getLogger(SecurityCacheImpl.class.getName());
     
-    protected Map acls = new HashMap();
-    protected Map perms = new HashMap();
+    protected Map<String, CachedAcl> acls = new HashMap<String, CachedAcl>();
+    protected Map<String, Map<String, Permission>> perms = new HashMap<String, Map<String, Permission>>();
 
    /*
     * Utility method for accessing the service
@@ -116,7 +117,7 @@ public class SecurityCacheImpl  extends TurbineBaseService
     {
         if (!perms.containsKey(role.getName()))
         {
-            perms.put(role.getName(), new HashMap());
+            perms.put(role.getName(), new HashMap<String, Permission>());
         }        
     }
 
@@ -129,7 +130,7 @@ public class SecurityCacheImpl  extends TurbineBaseService
         }
         if (!perms.containsKey(role.getName()))
         {
-            perms.put(role.getName(), new HashMap());
+            perms.put(role.getName(), new HashMap<String, Permission>());
         }        
     }
 
@@ -142,7 +143,7 @@ public class SecurityCacheImpl  extends TurbineBaseService
 		}
 		if (!perms.containsKey(role.getName()))
 		{
-			perms.put(role.getName(), new HashMap());
+			perms.put(role.getName(), new HashMap<String, Permission>());
 		}
 	}
 
@@ -183,7 +184,7 @@ public class SecurityCacheImpl  extends TurbineBaseService
     }
 
 
-    public Iterator getRoles(String username)
+    public Iterator<GroupRole> getRoles(String username)
     {
         CachedAcl acl = (CachedAcl)acls.get(username);
         if (null != acl)
@@ -195,7 +196,7 @@ public class SecurityCacheImpl  extends TurbineBaseService
 
     public Permission getPermission(String roleName, String permissionName)
     {        
-        Map map = (Map)perms.get(roleName);
+        Map<?, ?> map = (Map<?, ?>)perms.get(roleName);
         if (null != map)
         {
             return (Permission)map.get(permissionName);
@@ -205,7 +206,7 @@ public class SecurityCacheImpl  extends TurbineBaseService
     
     public void addPermission(String roleName, Permission permission)
     {
-        Map map = (Map)perms.get(roleName);
+        Map<String, Permission> map = (Map<String, Permission>)perms.get(roleName);
         if (null != map)
         {
             map.put(permission.getName(), permission);
@@ -214,7 +215,7 @@ public class SecurityCacheImpl  extends TurbineBaseService
 
     public boolean hasPermission(String roleName, String permissionName)
     {
-        Map map = (Map)perms.get(roleName);
+        Map<?, ?> map = (Map<?, ?>)perms.get(roleName);
         if (null != map)
         {
             return map.containsKey(permissionName);
@@ -224,16 +225,16 @@ public class SecurityCacheImpl  extends TurbineBaseService
 
     public void removePermission(String roleName, String permissionName)
     {
-        Map map = (Map)perms.get(roleName);
+        Map<?, ?> map = (Map<?, ?>)perms.get(roleName);
         if (null != map)
         {
             map.remove(permissionName);
         }
     }
 
-    public Iterator getPermissions(String roleName)
+    public Iterator<Permission> getPermissions(String roleName)
     {
-        Map map = (Map)perms.get(roleName);
+        Map<String, Permission> map = (Map<String, Permission>)perms.get(roleName);
         if (map != null)
         {
             return map.values().iterator();
@@ -244,7 +245,7 @@ public class SecurityCacheImpl  extends TurbineBaseService
 
     public void removeAllRoles(String rolename)
     {
-        Iterator iterator = acls.values().iterator();
+        Iterator<CachedAcl> iterator = acls.values().iterator();
         while (iterator.hasNext())
         {
             CachedAcl acl = (CachedAcl)iterator.next();
@@ -255,10 +256,10 @@ public class SecurityCacheImpl  extends TurbineBaseService
 
     public void removeAllPermissions(String permissionName)
     {
-        Iterator iterator = perms.values().iterator();
+        Iterator<Map<String, Permission>> iterator = perms.values().iterator();
         while (iterator.hasNext())
         {
-            Map map = (Map)iterator.next();
+            Map<String, Permission> map = (Map<String, Permission>)iterator.next();
             map.remove(permissionName);
         }
     }
@@ -267,12 +268,12 @@ public class SecurityCacheImpl  extends TurbineBaseService
     {
         try
         {
-            Iterator roles = JetspeedSecurity.getRoles();
+            Iterator<?> roles = JetspeedSecurity.getRoles();
             while (roles.hasNext())
             {
                 Role role = (Role)roles.next();
-                Map map = new HashMap();
-                Iterator prms = JetspeedSecurity.getPermissions(role.getName());
+                Map<String, Permission> map = new HashMap<String, Permission>();
+                Iterator<?> prms = JetspeedSecurity.getPermissions(role.getName());
                 while (prms.hasNext())
                 {
                     Permission perm = (Permission)prms.next();

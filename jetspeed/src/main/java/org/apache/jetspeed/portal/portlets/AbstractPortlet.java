@@ -65,7 +65,7 @@ to generate output.
 </p>
 
 @author <A HREF="mailto:burton@apache.org">Kevin A. Burton</A>
-@author <A HREF="mailto:raphael@apache.org">Raphaël Luta</A>
+@author <A HREF="mailto:raphael@apache.org">Raphaï¿½l Luta</A>
 @author <A HREF="mailto:sgala@apache.org">Santiago Gala</A>
 @author <A HREF="mailto:paulsp@apache.org">Paul Spencer</A>
 @author <A HREF="mailto:morciuch@apache.org">Mark Orciuch</A>
@@ -107,7 +107,7 @@ public abstract class AbstractPortlet implements Portlet, PortletState, Cacheabl
     Holds instances of ConcreteElements (Portlet output/content)
     based on its current CapabilityMap.
     */
-    protected Hashtable     content         = new Hashtable();
+    protected Hashtable<String, ConcreteElement>     content         = new Hashtable<String, ConcreteElement>();
 
     /**
     The time this portlet was created.
@@ -297,11 +297,11 @@ public abstract class AbstractPortlet implements Portlet, PortletState, Cacheabl
             handle.append(String.valueOf(pc.getURL().hashCode()));
         }
 
-        Iterator i = pc.getInitParameterNames();
+        Iterator<String> i = pc.getInitParameterNames();
         while(i.hasNext())
         {
             String name = (String)i.next();
-            String value = pc.getInitParameter(name);
+            String value = pc.getInitParameter(name).toString();
 
             if (value!=null)
             {
@@ -633,7 +633,7 @@ public abstract class AbstractPortlet implements Portlet, PortletState, Cacheabl
         String baseType = mimeType.toString();
         if (entry!=null)
         {
-            Iterator i = entry.listMediaTypes();
+            Iterator<?> i = entry.listMediaTypes();
 
             while(i.hasNext())
             {
@@ -803,7 +803,7 @@ public abstract class AbstractPortlet implements Portlet, PortletState, Cacheabl
         if (getPortletConfig()!=null)
         {
             // Parameter can exist in PSML or <portlet-entry>
-            return Boolean.valueOf(getPortletConfig().getInitParameter("_showtitlebar","true")).booleanValue();
+            return Boolean.parseBoolean(getPortletConfig().getInitParameter("_showtitlebar","true").toString());
         }
         return this.getAttribute("_showtitlebar", "true", rundata ).equals("true");
     }

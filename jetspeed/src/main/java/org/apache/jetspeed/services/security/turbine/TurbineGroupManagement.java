@@ -86,7 +86,7 @@ public class TurbineGroupManagement extends TurbineBaseService
      * @exception GroupException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator getGroups(String username)
+    public Iterator<Group> getGroups(String username)
         throws JetspeedSecurityException
     {
         JetspeedUser user = null;
@@ -100,18 +100,18 @@ public class TurbineGroupManagement extends TurbineBaseService
         }
         Criteria criteria = new Criteria();
         criteria.add(TurbineUserGroupRolePeer.USER_ID, user.getUserId());
-        List rels;
-        HashMap groups;
+        List<?> rels;
+        HashMap<String, Group> groups;
 
         try
         {
             rels = TurbineUserGroupRolePeer.doSelect(criteria);
             if (rels.size() > 0)
             {
-                groups = new HashMap(rels.size());
+                groups = new HashMap<String, Group>(rels.size());
             }
             else
-                groups = new HashMap();
+                groups = new HashMap<String, Group>();
 
             for (int ix = 0; ix < rels.size(); ix++)
             {
@@ -137,11 +137,11 @@ public class TurbineGroupManagement extends TurbineBaseService
      * @exception GroupException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator getGroups()
+    public Iterator<?> getGroups()
         throws JetspeedSecurityException
     {
         Criteria criteria = new Criteria();
-        List groups;
+        List<?> groups;
         try
         {
             groups = TurbineGroupPeer.doSelect(criteria);
@@ -438,7 +438,7 @@ public class TurbineGroupManagement extends TurbineBaseService
     public boolean inGroup(String username, String groupname)
         throws JetspeedSecurityException
     {
-        List groups;
+        List<?> groups;
 
         try
         {
@@ -473,7 +473,7 @@ public class TurbineGroupManagement extends TurbineBaseService
     public Group getGroup(String groupname)
         throws JetspeedSecurityException
     {
-        List groups;
+        List<?> groups;
         try
         {
             Criteria criteria = new Criteria();
@@ -528,7 +528,7 @@ public class TurbineGroupManagement extends TurbineBaseService
     {
         Criteria criteria = new Criteria();
         criteria.add(TurbineGroupPeer.GROUP_NAME, groupName);
-        List groups;
+        List<?> groups;
         try
         {
             groups = TurbineGroupPeer.doSelect(criteria);

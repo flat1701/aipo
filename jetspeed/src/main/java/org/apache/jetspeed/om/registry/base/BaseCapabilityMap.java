@@ -24,12 +24,12 @@ import java.util.Iterator;
  * Simple bean-like implementation of the CapabilityMap
  *
  * @author <a href="shesmer@raleigh.ibm.com">Stephan Hesmer</a>
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: BaseCapabilityMap.java,v 1.3 2004/02/23 03:08:26 jford Exp $
  */
 public class BaseCapabilityMap implements CapabilityMap, java.io.Serializable
 {
-    private Vector caps = new Vector();
+    private Vector<String> caps = new Vector<String>();
 
     public BaseCapabilityMap()
     {
@@ -48,8 +48,8 @@ public class BaseCapabilityMap implements CapabilityMap, java.io.Serializable
 
         BaseCapabilityMap obj = (BaseCapabilityMap)object;
 
-        Iterator i = caps.iterator();
-        Iterator i2 = obj.caps.iterator();
+        Iterator<String> i = caps.iterator();
+        Iterator<String> i2 = obj.caps.iterator();
         while(i.hasNext())
         {
             String c1 = (String)i.next();
@@ -78,7 +78,7 @@ public class BaseCapabilityMap implements CapabilityMap, java.io.Serializable
         return true;
     }
 
-    public Iterator getCapabilities()
+    public Iterator<String> getCapabilities()
     {
         return caps.iterator();
     }
@@ -117,7 +117,7 @@ public class BaseCapabilityMap implements CapabilityMap, java.io.Serializable
      */
     public boolean containsAll(CapabilityMap map)
     {
-        Iterator i = map.getCapabilities();
+        Iterator<String> i = map.getCapabilities();
 
         while(i.hasNext())
         {
@@ -133,7 +133,7 @@ public class BaseCapabilityMap implements CapabilityMap, java.io.Serializable
 
     // castor related method definitions
 
-    public Vector getCaps()
+    public Vector<String> getCaps()
     {
         return caps;
     }

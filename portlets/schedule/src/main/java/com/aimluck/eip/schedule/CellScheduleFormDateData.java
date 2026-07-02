@@ -90,7 +90,6 @@ public class CellScheduleFormDateData extends AbstractCellScheduleFormData {
         // スケジュールの登録ユーザがすでにメンバーから抜けているかを検証する．
         int createUserId = record.getOwnerId().intValue();
         boolean inculudeCreateUser = false;
-        @SuppressWarnings("unchecked")
         List<EipTScheduleMap> scheduleMaps = record.getEipTScheduleMaps();
         for (EipTScheduleMap map : scheduleMaps) {
           if (createUserId == map.getUserId().intValue()

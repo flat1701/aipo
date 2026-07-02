@@ -32,6 +32,7 @@ import org.apache.velocity.context.Context;
 public class TutorialScreen extends ALVelocityScreen {
 
   /** logger */
+  @SuppressWarnings("unused")
   private static final JetspeedLogger logger = JetspeedLogFactoryService
     .getLogger(TutorialScreen.class.getName());
 

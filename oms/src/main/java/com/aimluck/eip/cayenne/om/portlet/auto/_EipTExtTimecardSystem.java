@@ -154,8 +154,8 @@ public class _EipTExtTimecardSystem extends org.apache.cayenne.CayenneDataObject
     public void removeFromEipTExtTimecardSystemMaps(com.aimluck.eip.cayenne.om.portlet.EipTExtTimecardSystemMap obj) {
         removeToManyTarget("eipTExtTimecardSystemMaps", obj, true);
     }
-    public List getEipTExtTimecardSystemMaps() {
-        return (List)readProperty("eipTExtTimecardSystemMaps");
+    public List<?> getEipTExtTimecardSystemMaps() {
+        return (List<?>)readProperty("eipTExtTimecardSystemMaps");
     }
     
     

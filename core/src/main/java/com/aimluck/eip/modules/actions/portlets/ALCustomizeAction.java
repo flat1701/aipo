@@ -174,7 +174,7 @@ public class ALCustomizeAction extends VelocityPortletAction {
           if (instance.getAttribute(name, null) != null) {
             value = instance.getAttribute(name);
           } else if (p.getPortletConfig().getInitParameter(name) != null) {
-            value = p.getPortletConfig().getInitParameter(name);
+            value = p.getPortletConfig().getInitParameter(name).toString();
           } else {
             value = param.getValue();
           }
@@ -186,7 +186,7 @@ public class ALCustomizeAction extends VelocityPortletAction {
 
     PortletConfig pc = p.getPortletConfig();
     if ("GadgetsTemplate".equals(pc.getName())) {
-      String appId = pc.getInitParameter("aid");
+      String appId = pc.getInitParameter("aid").toString();
       ALApplication app =
         ALApplicationService.get(new ALApplicationGetRequest()
           .withAppId(appId)
@@ -235,7 +235,7 @@ public class ALCustomizeAction extends VelocityPortletAction {
         if (instance.getAttribute(name, null) != null) {
           value = instance.getAttribute(name);
         } else if (p.getPortletConfig().getInitParameter(name) != null) {
-          value = p.getPortletConfig().getInitParameter(name);
+          value = p.getPortletConfig().getInitParameter(name).toString();
         } else {
           value = userPref.getDefault();
           if (list) {
@@ -342,9 +342,9 @@ public class ALCustomizeAction extends VelocityPortletAction {
       String url = null;
       String moduleId = null;
       if ("GadgetsTemplate".equals(pc.getName())) {
-        appId = pc.getInitParameter("aid");
-        url = pc.getInitParameter("url");
-        moduleId = pc.getInitParameter("mid");
+        appId = pc.getInitParameter("aid").toString();
+        url = pc.getInitParameter("url").toString();
+        moduleId = pc.getInitParameter("mid").toString();
         ALApplication app =
           ALApplicationService.get(new ALApplicationGetRequest()
             .withAppId(appId));

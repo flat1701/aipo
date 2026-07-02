@@ -33,11 +33,11 @@ import org.apache.jetspeed.services.Registry;
  * @author <a href="mailto:taylor@apache.org">David Sean Taylor</a>
  * @version $Id: PortletIterator.java,v 1.3 2004/02/23 03:08:26 jford Exp $
  */
-public class PortletIterator implements Iterator
+public class PortletIterator implements Iterator<Object>
 {
     protected BasePortletEntry entry;
     protected String method;
-    protected Vector vector ;
+    protected Vector<?> vector ;
     protected int index = 0;    
 
     public PortletIterator(BasePortletEntry entry, String method)
@@ -95,11 +95,11 @@ public class PortletIterator implements Iterator
         return o;
     }
 
-    protected Vector getVector()
+    protected Vector<?> getVector()
     {
         try
         {
-            this.vector = (Vector)this.entry.getClass().getMethod(this.method, null).invoke(this.entry, null);
+            this.vector = (Vector<?>)this.entry.getClass().getMethod(this.method).invoke(this.entry);
         }
         catch (Exception e)
         {

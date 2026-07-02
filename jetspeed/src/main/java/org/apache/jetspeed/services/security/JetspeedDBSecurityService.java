@@ -68,9 +68,12 @@ public class JetspeedDBSecurityService extends TurbineBaseService
 	private final static String CONFIG_ACTIONS_ADMIN_ROLES = "admin.roles";
 
     private final static String CONFIG_NEWUSER_ROLES     = "newuser.roles";
+    @SuppressWarnings("unused")
     private final static String CONFIG_DEFAULT_PERMISSION_LOGGEDIN     = "permission.default.loggedin";
+    @SuppressWarnings("unused")
     private final static String CONFIG_DEFAULT_PERMISSION_ANONYMOUS     = "permission.default.anonymous";
     private final static String CONFIG_ANONYMOUS_USER = "user.anonymous";
+    @SuppressWarnings("unused")
     private final static String [] DEFAULT_PERMISSIONS = {""};
     private final static String [] DEFAULT_CONFIG_NEWUSER_ROLES = 
     { "user" };
@@ -92,7 +95,7 @@ public class JetspeedDBSecurityService extends TurbineBaseService
 
     boolean autoLogonDisable = false;
 
-    private static HashMap users = new HashMap();
+    private static HashMap<String, UserLogonStats> users = new HashMap<String, UserLogonStats>();
 
     private static Object sem = new Object();
 
@@ -465,9 +468,9 @@ public class JetspeedDBSecurityService extends TurbineBaseService
 	 *    
 	 * @return list of admin roles
 	 */
-	 public List getAdminRoles()
+	 public List<String> getAdminRoles()
 	 {
-	 	List result = new ArrayList();
+	 	List<String> result = new ArrayList<String>();
 	 	for (int i = 0; i < adminRoles.length; i++)
 	 	{
 	 		result.add(adminRoles[i]);
@@ -487,8 +490,8 @@ public class JetspeedDBSecurityService extends TurbineBaseService
 		String username = user.getUserName();
 		try
 		{
-			List adminRoles = getAdminRoles();
-			for (Iterator it = adminRoles.iterator(); it.hasNext();)
+			List<String> adminRoles = getAdminRoles();
+			for (Iterator<String> it = adminRoles.iterator(); it.hasNext();)
 			{
 				if (JetspeedSecurity.hasRole(username, (String)it.next()))
 				{

@@ -19,6 +19,7 @@ package org.apache.jetspeed.portal.controls;
 
 //ECS stuff
 import org.apache.ecs.html.IMG;
+import org.apache.ecs.html.A;
 import org.apache.ecs.html.B;
 import org.apache.ecs.html.Table;
 import org.apache.ecs.html.TD;
@@ -89,6 +90,7 @@ public class TitleControl extends AbstractPortletControl {
        @return ConcreteElement object, including the complete ECS code for rendering
        the html page.
     */        
+    @SuppressWarnings("deprecation")
     public ConcreteElement getHTMLContent( RunData rundata ) {
         //embed this here
         ElementContainer base = new ElementContainer();
@@ -196,7 +198,7 @@ public class TitleControl extends AbstractPortletControl {
     */
     private ConcreteElement[] getPortletOptions( RunData rundata ) {
 
-        Vector v = new Vector();
+        Vector<A> v = new Vector<A>();
         ContentURI content = new ContentURI( rundata );
 
         int type = URILookup.getURIType(this.getPortlet(),

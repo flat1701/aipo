@@ -60,10 +60,10 @@ public class AddressBookScreen extends ALVelocityScreen {
 
         listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
           rundata,
-          context).getPortletConfig().getInitParameter("p1a-rows")));
+          context).getPortletConfig().getInitParameter("p1a-rows").toString()));
         listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
           rundata,
-          context).getPortletConfig().getInitParameter("p3a-strlen")));
+          context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
         listData.doViewList(this, rundata, context);
         listData.loadGroups(rundata, context);
 
@@ -76,10 +76,10 @@ public class AddressBookScreen extends ALVelocityScreen {
 
         listData.setRowsNum(Integer.parseInt(portlet
           .getPortletConfig()
-          .getInitParameter("p1a-rows")));
+          .getInitParameter("p1a-rows").toString()));
         listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
           rundata,
-          context).getPortletConfig().getInitParameter("p3a-strlen")));
+          context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
         listData.doViewList(this, rundata, context);
 
         setTemplate(rundata, context, "portlets/html/ja/ajax-addressbook.vm");

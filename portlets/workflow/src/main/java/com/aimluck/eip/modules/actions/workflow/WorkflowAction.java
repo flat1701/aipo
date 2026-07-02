@@ -64,10 +64,10 @@ public class WorkflowAction extends ALBaseAction {
     listData.initField();
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setStrLength(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p3a-strlen")));
+      .getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "workflow");
   }
@@ -122,7 +122,7 @@ public class WorkflowAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.doViewList(this, rundata, context);
     context.put("all_flg", false);
     setTemplate(rundata, "workflow-list");
@@ -146,7 +146,7 @@ public class WorkflowAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.doViewList(this, rundata, context);
     context.put("all_flg", true);
     setTemplate(rundata, "workflow-list-admin");

@@ -59,7 +59,7 @@ public class BadURLManagerDaemon implements Daemon {
 
         this.setResult( Daemon.RESULT_PROCESSING );
         
-        Iterator i = URLManager.list().iterator();
+        Iterator<?> i = URLManager.list().iterator();
         
         while ( i.hasNext() ) {
 

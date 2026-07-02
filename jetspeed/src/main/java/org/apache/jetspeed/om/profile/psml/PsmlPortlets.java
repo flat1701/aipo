@@ -40,11 +40,11 @@ public class PsmlPortlets extends PsmlIdentityElement implements Portlets,
 
   private Security security = null;
 
-  private Vector portlets = new Vector();
+  private Vector<Portlets> portlets = new Vector<Portlets>();
 
-  private Vector entries = new Vector();
+  private Vector<Entry> entries = new Vector<Entry>();
 
-  private Vector refs = new Vector();
+  private Vector<Reference> refs = new Vector<Reference>();
 
   /** Holds value of property securityRef. */
   private SecurityReference securityRef = null;
@@ -70,11 +70,11 @@ public class PsmlPortlets extends PsmlIdentityElement implements Portlets,
     return this.security;
   }
 
-  public Vector getEntries() {
+  public Vector<Entry> getEntries() {
     return this.entries;
   }
 
-  public void setEntries(Vector entries) {
+  public void setEntries(Vector<Entry> entries) {
     this.entries = entries;
   }
 
@@ -84,8 +84,8 @@ public class PsmlPortlets extends PsmlIdentityElement implements Portlets,
    * 
    * @return Vector of portlet
    */
-  public Vector getPortlets() {
-    Vector v = new Vector();
+  public Vector<Portlets> getPortlets() {
+    Vector<Portlets> v = new Vector<Portlets>();
     for (int ix = 0; ix < this.portlets.size(); ix++) {
       Portlets p = (Portlets) this.portlets.get(ix);
       if (p instanceof Reference) {
@@ -97,11 +97,11 @@ public class PsmlPortlets extends PsmlIdentityElement implements Portlets,
     return v;
   }
 
-  public void setPortlets(Vector portlets) {
+  public void setPortlets(Vector<Portlets> portlets) {
     this.portlets = portlets;
   }
 
-  public Vector getReferences() {
+  public Vector<Reference> getReferences() {
     return this.refs;
   }
 
@@ -186,15 +186,15 @@ public class PsmlPortlets extends PsmlIdentityElement implements Portlets,
     return (Reference) refs.elementAt(index);
   }
 
-  public Iterator getEntriesIterator() {
+  public Iterator<Entry> getEntriesIterator() {
     return entries.iterator();
   }
 
-  public Iterator getPortletsIterator() {
+  public Iterator<Portlets> getPortletsIterator() {
     return portlets.iterator();
   }
 
-  public Iterator getReferenceIterator() {
+  public Iterator<Reference> getReferenceIterator() {
     return refs.iterator();
   }
 
@@ -273,39 +273,39 @@ public class PsmlPortlets extends PsmlIdentityElement implements Portlets,
   /**
    * Create a clone of this object
    */
-  public Object clone() throws java.lang.CloneNotSupportedException {
-    Object cloned = super.clone();
+  public PsmlPortlets clone() throws java.lang.CloneNotSupportedException {
+    PsmlPortlets cloned = (PsmlPortlets) super.clone();
 
-    ((PsmlPortlets) cloned).controller = ((this.controller == null) ? null
+    cloned.controller = ((this.controller == null) ? null
         : (Controller) this.controller.clone());
-    ((PsmlPortlets) cloned).security = ((this.security == null) ? null
+    cloned.security = ((this.security == null) ? null
         : (Security) this.security.clone());
 
     if (this.portlets != null) {
-      ((PsmlPortlets) cloned).portlets = new Vector(this.portlets.size());
-      Iterator it = this.portlets.iterator();
+      cloned.portlets = new Vector<Portlets>(this.portlets.size());
+      Iterator<Portlets> it = this.portlets.iterator();
       while (it.hasNext()) {
-        ((PsmlPortlets) cloned).portlets.add(((Portlets) it.next()).clone());
+        cloned.portlets.add((Portlets) it.next().clone());
       }
     }
 
     if (this.entries != null) {
-      ((PsmlPortlets) cloned).entries = new Vector(this.entries.size());
-      Iterator it = this.entries.iterator();
+      cloned.entries = new Vector<Entry>(this.entries.size());
+      Iterator<Entry> it = this.entries.iterator();
       while (it.hasNext()) {
-        ((PsmlPortlets) cloned).entries.add(((Entry) it.next()).clone());
+        cloned.entries.add((Entry) it.next().clone());
       }
     }
 
     if (this.refs != null) {
-      ((PsmlPortlets) cloned).refs = new Vector(this.refs.size());
-      Iterator it = this.refs.iterator();
+      cloned.refs = new Vector<Reference>(this.refs.size());
+      Iterator<Reference> it = this.refs.iterator();
       while (it.hasNext()) {
-        ((PsmlPortlets) cloned).refs.add(((Reference) it.next()).clone());
+        cloned.refs.add((Reference) it.next().clone());
       }
     }
 
-    ((PsmlPortlets) cloned).securityRef = ((this.securityRef == null) ? null
+    cloned.securityRef = ((this.securityRef == null) ? null
         : (SecurityReference) this.securityRef.clone());
 
     return cloned;

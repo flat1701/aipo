@@ -53,10 +53,10 @@ public class CabinetScreen extends ALVelocityScreen {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1a-rows")));
+        context).getPortletConfig().getInitParameter("p1a-rows").toString()));
       listData.setTableColumNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1e-rows")));
+        context).getPortletConfig().getInitParameter("p1e-rows").toString()));
       listData.doViewList(this, rundata, context);
 
       String layout_template = "portlets/html/ja/ajax-cabinet.vm";

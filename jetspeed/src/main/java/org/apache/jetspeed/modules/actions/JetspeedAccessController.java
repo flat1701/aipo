@@ -49,6 +49,7 @@ public class JetspeedAccessController extends Action
     
     public void doPerform( RunData data ) throws Exception
     {
+        @SuppressWarnings("unused")
         JetspeedUser user = (JetspeedUser)data.getUser();
 
         getACL(data);

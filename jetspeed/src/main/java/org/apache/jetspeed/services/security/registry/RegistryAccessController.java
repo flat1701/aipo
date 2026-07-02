@@ -221,7 +221,7 @@ public class RegistryAccessController extends TurbineBaseService implements Port
 
         try
         {
-			for( Iterator roles = JetspeedRoleManagement.getRoles(user.getUserName()); roles.hasNext();)
+			for( Iterator<?> roles = JetspeedRoleManagement.getRoles(user.getUserName()); roles.hasNext();)
 			{
 				GroupRole grouprole = (GroupRole) roles.next();
 				String groupname = grouprole.getGroup().getName();

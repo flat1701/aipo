@@ -52,10 +52,10 @@ public class AddressBookGroupListScreen extends AddressBookScreen {
       AddressBookGroupSelectData listData = new AddressBookGroupSelectData();
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1a-rows")));
+        context).getPortletConfig().getInitParameter("p1a-rows").toString()));
       listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p3a-strlen")));
+        context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
       listData.doViewList(this, rundata, context);
       setTemplate(
         rundata,

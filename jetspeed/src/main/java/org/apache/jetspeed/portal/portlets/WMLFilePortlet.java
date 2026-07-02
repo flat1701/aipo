@@ -54,9 +54,10 @@ import org.xml.sax.helpers.ParserFactory;
  * class conflicts in Tomcat 3.2, so this portlet can only currently
  * serve fragments of WML documents, without the <wml> tag</strong>
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: WMLFilePortlet.java,v 1.11 2004/02/23 04:03:33 jford Exp $ 
  */
+@SuppressWarnings("deprecation")
 public class WMLFilePortlet extends FileWatchPortlet 
 {
     /**

@@ -441,7 +441,6 @@ public class MsgboardCategoryFormData extends ALAbstractFormData {
    * @param msgList
    * @return
    */
-  @SuppressWarnings("unchecked")
   @Override
   protected boolean deleteFormData(RunData rundata, Context context,
       List<String> msgList) throws ALPageNotFoundException, ALDBErrorException {

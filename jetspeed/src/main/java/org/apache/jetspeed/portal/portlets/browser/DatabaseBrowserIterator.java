@@ -16,7 +16,6 @@
 
 package org.apache.jetspeed.portal.portlets.browser;
 
-import org.apache.jetspeed.portal.portlets.browser.BrowserIterator;
 import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
 import org.apache.jetspeed.services.logging.JetspeedLogger;
 
@@ -53,9 +52,9 @@ public class DatabaseBrowserIterator implements BrowserIterator
 
     String sortColumnName = null;
 
-    List rsList;
-    List rsTitleList;
-    List rsTypeList;
+    List<?> rsList;
+    List<?> rsTitleList;
+    List<?> rsTypeList;
 
     /**
      * Constructor for the database browser iterator
@@ -64,8 +63,8 @@ public class DatabaseBrowserIterator implements BrowserIterator
      * @param columnTitles The List containg all the columnLabels from a resultSet.
      * @param pageSize The number of rows to be displayed in a window configured by the user.
      */
-    public DatabaseBrowserIterator(List result, List columnTitles,
-                                   List columnTypes, int pageSize)
+    public DatabaseBrowserIterator(List<?> result, List<?> columnTitles,
+                                   List<?> columnTypes, int pageSize)
     {
       this.rsList = result;
       this.rsTitleList= columnTitles;
@@ -79,7 +78,7 @@ public class DatabaseBrowserIterator implements BrowserIterator
      * This method returns the result set.
      *
      */
-    public List getResultSet()
+    public List<?> getResultSet()
     {
         return rsList;
     }
@@ -97,7 +96,7 @@ public class DatabaseBrowserIterator implements BrowserIterator
      * This method returns the List containg the column labels of the result set.
      *
      */
-    public List getResultSetTitleList()
+    public List<?> getResultSetTitleList()
     {
         return rsTitleList;
     }
@@ -106,7 +105,7 @@ public class DatabaseBrowserIterator implements BrowserIterator
      *
      *@see java.sql.Types
      */
-    public List getResultSetTypesList()
+    public List<?> getResultSetTypesList()
     {
         return rsTypeList;
     }
@@ -231,8 +230,8 @@ public class DatabaseBrowserIterator implements BrowserIterator
 
         if( idx != -1 )
         {
-            Object col1 = ((List)obj1).get(idx);
-            Object col2 = ((List)obj2).get(idx);
+            Object col1 = ((List<?>)obj1).get(idx);
+            Object col2 = ((List<?>)obj2).get(idx);
 
             if( (col1).equals(VELOCITY_NULL_ENTRY) )
             {

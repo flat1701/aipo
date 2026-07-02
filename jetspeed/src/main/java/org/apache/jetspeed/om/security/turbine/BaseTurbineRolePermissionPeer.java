@@ -1,10 +1,8 @@
 package org.apache.jetspeed.om.security.turbine;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,9 +13,6 @@ import org.apache.torque.Torque;
 import org.apache.torque.TorqueException;
 import org.apache.torque.map.MapBuilder;
 import org.apache.torque.map.TableMap;
-import org.apache.torque.om.DateKey;
-import org.apache.torque.om.NumberKey;
-import org.apache.torque.om.StringKey;
 import org.apache.torque.om.ObjectKey;
 import org.apache.torque.om.SimpleKey;
 import org.apache.torque.util.BasePeer;
@@ -94,7 +89,7 @@ public abstract class BaseTurbineRolePermissionPeer
         "org.apache.jetspeed.om.security.turbine.TurbineRolePermission";
 
     /** A class that can be returned by this peer. */
-    protected static final Class CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
+    protected static final Class<?> CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
 
     /**
      * Class object initialization method.
@@ -102,9 +97,9 @@ public abstract class BaseTurbineRolePermissionPeer
      * @param className name of the class to initialize
      * @return the initialized class
      */
-    private static Class initClass(String className)
+    private static Class<?> initClass(String className)
     {
-        Class c = null;
+        Class<?> c = null;
         try
         {
             c = Class.forName(className);
@@ -136,13 +131,13 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List resultSet2Objects(java.sql.ResultSet results)
+    public static List<TurbineRolePermission> resultSet2Objects(java.sql.ResultSet results)
             throws TorqueException
     {
         try
         {
             QueryDataSet qds = null;
-            List rows = null;
+            List<?> rows = null;
             try
             {
                 qds = new QueryDataSet(results);
@@ -240,7 +235,7 @@ public abstract class BaseTurbineRolePermissionPeer
      */
     public static TurbineRolePermission row2Object(Record row,
                                              int offset,
-                                             Class cls)
+                                             Class<?> cls)
         throws TorqueException
     {
         try
@@ -295,7 +290,7 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(Criteria criteria) throws TorqueException
+    public static List<TurbineRolePermission> doSelect(Criteria criteria) throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria));
     }
@@ -309,7 +304,7 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(Criteria criteria, Connection con)
+    public static List<TurbineRolePermission> doSelect(Criteria criteria, Connection con)
         throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria, con));
@@ -325,7 +320,7 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelectVillageRecords(Criteria criteria)
+    public static List<?> doSelectVillageRecords(Criteria criteria)
         throws TorqueException
     {
         return BaseTurbineRolePermissionPeer
@@ -340,7 +335,7 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelectVillageRecords(Criteria criteria, Connection con)
+    public static List<?> doSelectVillageRecords(Criteria criteria, Connection con)
         throws TorqueException
     {
         if (criteria.getSelectColumns().size() == 0)
@@ -375,10 +370,10 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List populateObjects(List records)
+    public static List<TurbineRolePermission> populateObjects(List<?> records)
         throws TorqueException
     {
-        List results = new ArrayList(records.size());
+        List<TurbineRolePermission> results = new ArrayList<TurbineRolePermission>(records.size());
 
         // populate the object(s)
         for (int i = 0; i < records.size(); i++)
@@ -399,7 +394,7 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static Class getOMClass()
+    public static Class<?> getOMClass()
         throws TorqueException
     {
         return CLASS_DEFAULT;
@@ -504,7 +499,7 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(TurbineRolePermission obj) throws TorqueException
+    public static List<TurbineRolePermission> doSelect(TurbineRolePermission obj) throws TorqueException
     {
         return doSelect(buildCriteria(obj));
     }
@@ -684,7 +679,7 @@ public abstract class BaseTurbineRolePermissionPeer
         throws TorqueException, NoRowsException, TooManyRowsException
     {
         Criteria criteria = buildCriteria(pk);
-        List v = doSelect(criteria, con);
+        List<TurbineRolePermission> v = doSelect(criteria, con);
         if (v.size() == 0)
         {
             throw new NoRowsException("Failed to select a row.");
@@ -706,11 +701,11 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List retrieveByPKs(List pks)
+    public static List<TurbineRolePermission> retrieveByPKs(List<?> pks)
         throws TorqueException
     {
         Connection db = null;
-        List retVal = null;
+        List<TurbineRolePermission> retVal = null;
         try
         {
            db = Torque.getConnection(DATABASE_NAME);
@@ -731,18 +726,18 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List retrieveByPKs( List pks, Connection dbcon )
+    public static List<TurbineRolePermission> retrieveByPKs( List<?> pks, Connection dbcon )
         throws TorqueException
     {
-        List objs = null;
+        List<TurbineRolePermission> objs = null;
         if (pks == null || pks.size() == 0)
         {
-            objs = new LinkedList();
+            objs = new LinkedList<TurbineRolePermission>();
         }
         else
         {
             Criteria criteria = new Criteria();
-              Iterator iter = pks.iterator();
+              Iterator<?> iter = pks.iterator();
             while (iter.hasNext())
             {
                 ObjectKey pk = (ObjectKey)iter.next();
@@ -804,7 +799,7 @@ public abstract class BaseTurbineRolePermissionPeer
         Criteria criteria = new Criteria(5);
           criteria.add(ROLE_ID, role_id);
           criteria.add(PERMISSION_ID, permission_id);
-          List v = doSelect(criteria, con);
+          List<TurbineRolePermission> v = doSelect(criteria, con);
         if (v.size() != 1)
         {
             throw new TorqueException("Failed to select one and only one row.");
@@ -833,7 +828,7 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    protected static List doSelectJoinTurbineRole(Criteria c)
+    protected static List<TurbineRolePermission> doSelectJoinTurbineRole(Criteria c)
         throws TorqueException
     {
         // Set the correct dbName if it has not been overridden
@@ -854,14 +849,14 @@ public abstract class BaseTurbineRolePermissionPeer
         
 
                                             
-        List rows = BasePeer.doSelect(c);
-        List results = new ArrayList();
+        List<?> rows = BasePeer.doSelect(c);
+        List<TurbineRolePermission> results = new ArrayList<TurbineRolePermission>();
 
         for (int i = 0; i < rows.size(); i++)
         {
             Record row = (Record) rows.get(i);
 
-                            Class omClass = TurbineRolePermissionPeer.getOMClass();
+                            Class<?> omClass = TurbineRolePermissionPeer.getOMClass();
                     TurbineRolePermission obj1 = (TurbineRolePermission) TurbineRolePermissionPeer
                 .row2Object(row, 1, omClass);
                      omClass = TurbineRolePeer.getOMClass();
@@ -904,7 +899,7 @@ public abstract class BaseTurbineRolePermissionPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    protected static List doSelectJoinTurbinePermission(Criteria c)
+    protected static List<TurbineRolePermission> doSelectJoinTurbinePermission(Criteria c)
         throws TorqueException
     {
         // Set the correct dbName if it has not been overridden
@@ -925,14 +920,14 @@ public abstract class BaseTurbineRolePermissionPeer
         
 
                                             
-        List rows = BasePeer.doSelect(c);
-        List results = new ArrayList();
+        List<?> rows = BasePeer.doSelect(c);
+        List<TurbineRolePermission> results = new ArrayList<TurbineRolePermission>();
 
         for (int i = 0; i < rows.size(); i++)
         {
             Record row = (Record) rows.get(i);
 
-                            Class omClass = TurbineRolePermissionPeer.getOMClass();
+                            Class<?> omClass = TurbineRolePermissionPeer.getOMClass();
                     TurbineRolePermission obj1 = (TurbineRolePermission) TurbineRolePermissionPeer
                 .row2Object(row, 1, omClass);
                      omClass = TurbinePermissionPeer.getOMClass();

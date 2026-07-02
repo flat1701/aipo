@@ -27,14 +27,14 @@ import java.util.Set;
  */
 public abstract class AbstractObjectHandler implements ObjectHandler
 {
-    protected final HashSet fields = new HashSet();
-    protected final HashSet keywords = new HashSet();
+    protected final HashSet<String> fields = new HashSet<String>();
+    protected final HashSet<String> keywords = new HashSet<String>();
     
 
     /** 
      * @see org.apache.jetspeed.services.search.ObjectHandler#getFields()
      */
-    public Set getFields()
+    public Set<String> getFields()
     {
        return fields;
     }
@@ -42,7 +42,7 @@ public abstract class AbstractObjectHandler implements ObjectHandler
     /**
      * @see org.apache.jetspeed.services.search.ObjectHandler#getKeywords()
      */
-    public Set getKeywords()
+    public Set<String> getKeywords()
     {
         return keywords;
     }

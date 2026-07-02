@@ -25,6 +25,7 @@ import org.apache.jetspeed.om.profile.Entry;
 import org.apache.jetspeed.om.registry.PortletEntry;
 import org.apache.jetspeed.om.registry.RegistryEntry;
 import org.apache.jetspeed.om.security.Group;
+import org.apache.jetspeed.om.security.GroupRole;
 import org.apache.jetspeed.om.security.JetspeedUser;
 import org.apache.jetspeed.om.security.Permission;
 import org.apache.jetspeed.om.security.Role;
@@ -191,7 +192,7 @@ abstract public class JetspeedSecurity /* extends TurbineSecurity */
   /**
    * @see UserManagement#getUsers
    */
-  public static Iterator getUsers() throws JetspeedSecurityException {
+  public static Iterator<JetspeedUser> getUsers() throws JetspeedSecurityException {
     return JetspeedUserManagement.getUsers();
   }
 
@@ -214,7 +215,7 @@ abstract public class JetspeedSecurity /* extends TurbineSecurity */
   /**
    * @see UserManagement#getUsers(String)
    */
-  public static Iterator getUsers(String filter)
+  public static Iterator<?> getUsers(String filter)
       throws JetspeedSecurityException {
     return JetspeedUserManagement.getUsers(filter);
   }
@@ -288,7 +289,7 @@ abstract public class JetspeedSecurity /* extends TurbineSecurity */
   /**
    * @see RoleManagement#getRoles(String)
    */
-  public static Iterator getRoles(String username)
+  public static Iterator<GroupRole> getRoles(String username)
       throws JetspeedSecurityException {
     return JetspeedRoleManagement.getRoles(username);
   }
@@ -296,7 +297,7 @@ abstract public class JetspeedSecurity /* extends TurbineSecurity */
   /**
    * @see RoleManagement#getRoles
    */
-  public static Iterator getRoles() throws JetspeedSecurityException {
+  public static Iterator<Role> getRoles() throws JetspeedSecurityException {
     return JetspeedRoleManagement.getRoles();
   }
 
@@ -381,7 +382,7 @@ abstract public class JetspeedSecurity /* extends TurbineSecurity */
   /**
    * @see GroupManagement#getGroups(String)
    */
-  public static Iterator getGroups(String username)
+  public static Iterator<?> getGroups(String username)
       throws JetspeedSecurityException {
     return JetspeedGroupManagement.getGroups(username);
   }
@@ -389,7 +390,7 @@ abstract public class JetspeedSecurity /* extends TurbineSecurity */
   /**
    * @see GroupManagement#getGroups
    */
-  public static Iterator getGroups() throws JetspeedSecurityException {
+  public static Iterator<Group> getGroups() throws JetspeedSecurityException {
     return JetspeedGroupManagement.getGroups();
   }
 
@@ -550,7 +551,7 @@ abstract public class JetspeedSecurity /* extends TurbineSecurity */
   /*
    * @see JetspeedSecurityService#getAdminRoles
    */
-  public static List getAdminRoles() {
+  public static List<?> getAdminRoles() {
     return ((JetspeedSecurityService) getService()).getAdminRoles();
   }
 
@@ -591,7 +592,7 @@ abstract public class JetspeedSecurity /* extends TurbineSecurity */
   /**
    * @see PermissionManagement#getPermissions(String)
    */
-  public static Iterator getPermissions(String rolename)
+  public static Iterator<Permission> getPermissions(String rolename)
       throws JetspeedSecurityException {
     return JetspeedPermissionManagement.getPermissions(rolename);
   }
@@ -599,7 +600,7 @@ abstract public class JetspeedSecurity /* extends TurbineSecurity */
   /**
    * @see PermissionManagement#getPermissions
    */
-  public static Iterator getPermissions() throws JetspeedSecurityException {
+  public static Iterator<?> getPermissions() throws JetspeedSecurityException {
     return JetspeedPermissionManagement.getPermissions();
   }
 

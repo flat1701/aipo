@@ -19,6 +19,7 @@ package org.apache.jetspeed.services.security;
 import java.util.Iterator;
 
 import org.apache.turbine.services.Service;
+import org.apache.jetspeed.om.security.GroupRole;
 import org.apache.jetspeed.om.security.Role;
 
 /**
@@ -49,7 +50,7 @@ public interface RoleManagement extends Service
      * @exception RoleException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    Iterator getRoles(String username)
+    Iterator<GroupRole> getRoles(String username)
         throws JetspeedSecurityException;
 
     /**
@@ -62,7 +63,7 @@ public interface RoleManagement extends Service
      * @exception RoleException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    Iterator getRoles()
+    Iterator<Role> getRoles()
         throws JetspeedSecurityException;
 
     /**

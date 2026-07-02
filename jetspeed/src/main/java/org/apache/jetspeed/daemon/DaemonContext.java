@@ -25,7 +25,7 @@ import java.util.Hashtable;
 */
 public class DaemonContext {
 
-    Hashtable params = new Hashtable();
+    Hashtable<?, ?> params = new Hashtable<Object, Object>();
     
  
     public String getParameter(String name) {

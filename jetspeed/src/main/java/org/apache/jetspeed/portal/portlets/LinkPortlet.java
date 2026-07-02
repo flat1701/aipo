@@ -74,7 +74,7 @@ public org.apache.ecs.ConcreteElement getContent(org.apache.turbine.util.RunData
       if (i>0)
         cstr=String.valueOf(i);
 
-      link = getPortletConfig().getInitParameter(L_URL+cstr);
+      link = getPortletConfig().getInitParameter(L_URL+cstr).toString();
 
       // Link available?
       if ((link!=null) && (link.length()>0))
@@ -84,9 +84,9 @@ public org.apache.ecs.ConcreteElement getContent(org.apache.turbine.util.RunData
         if (i==0)
           res = "<ul>";
 
-        image = getPortletConfig().getInitParameter(L_IMAGE+cstr);
-        name = getPortletConfig().getInitParameter(L_NAME+cstr);
-        desc = getPortletConfig().getInitParameter(L_DESC+cstr);
+        image = getPortletConfig().getInitParameter(L_IMAGE+cstr).toString();
+        name = getPortletConfig().getInitParameter(L_NAME+cstr).toString();
+        desc = getPortletConfig().getInitParameter(L_DESC+cstr).toString();
 
         // set description
         if ((desc==null) || (desc.length()<1))

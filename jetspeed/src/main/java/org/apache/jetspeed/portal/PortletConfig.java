@@ -39,7 +39,7 @@ public interface PortletConfig extends Config
     /**
     Init this PortletConfig providing the basic info.
     */
-    public void init( String url, Map init_params );
+    public void init( String url, Map<String, Object> init_params );
 
     /**
     Returns the portlet current PortletSet
@@ -54,12 +54,12 @@ public interface PortletConfig extends Config
     /**
     Returns the portlet current PortletSet
     */
-    public Map getLayout();
+    public Map<?, ?> getLayout();
 
     /**
     Set the context (PortletSet) for this portlet
     */
-    public void setLayout(Map constraints);
+    public void setLayout(Map<?, ?> constraints);
 
     /**
      * Returns the current skin mapping.  This method is used for configuration.  Use
@@ -67,14 +67,14 @@ public interface PortletConfig extends Config
      *
      * @return Current skin mapping or null if no skin is defined in PSML.
      */
-    public Map getSkin();
+    public Map<?, ?> getSkin();
 
     /**
      * Set the context (PortletSet) for this portlet
      *
      * @deprecated use setPortletSkin instead
      */
-    public void setSkin(Map skin);
+    public void setSkin(Map<?, ?> skin);
 
     /**
     Returns the portlet current PortletSet

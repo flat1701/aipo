@@ -50,7 +50,7 @@ public class ActivityAllListScreen extends ALVelocityScreen {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1b-rows")));
+        context).getPortletConfig().getInitParameter("p1b-rows").toString()));
       listData.doViewList(this, rundata, context);
       String layout_template = "portlets/html/ja/ajax-activity-all-list.vm";
       setTemplate(rundata, context, layout_template);

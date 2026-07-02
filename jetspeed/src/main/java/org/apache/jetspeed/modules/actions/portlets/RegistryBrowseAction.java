@@ -33,7 +33,7 @@ import org.apache.velocity.context.Context;
  * This action enables to browse any of the system registries for displaying
  * available entries and information on these entries
  * 
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $ID$
  */
 public class RegistryBrowseAction extends GenericMVCAction
@@ -57,7 +57,7 @@ public class RegistryBrowseAction extends GenericMVCAction
                                        RunData rundata )
     {
         String regName = portlet.getPortletConfig()
-                                .getInitParameter("registry",Registry.PORTLET);
+                                .getInitParameter("registry",Registry.PORTLET).toString();
         
         Boolean refresh = (Boolean)PortletSessionState.getAttribute(rundata, PREFIX + regName + ":" + REFRESH, Boolean.FALSE);
         
@@ -73,7 +73,7 @@ public class RegistryBrowseAction extends GenericMVCAction
         if (start < 0) start = 0;
 
         String pageSize = portlet.getPortletConfig()
-                                 .getInitParameter("page-size","20");
+                                 .getInitParameter("page-size","20").toString();
 
         int size = Integer.parseInt(pageSize);
 
@@ -88,12 +88,14 @@ public class RegistryBrowseAction extends GenericMVCAction
         String[] filterValues = (String[]) PortletSessionState.getAttribute(portlet, rundata, FILTER_VALUES);
         
                                 
-        List regEntries = (List)PortletSessionState.getAttribute(portlet, rundata, RESULTS);
-        List filteredEntries = (List)PortletSessionState.getAttribute(portlet, rundata, FILTERED_RESULTS);
+        @SuppressWarnings("unchecked")
+        List<RegistryEntry> regEntries = (List<RegistryEntry>)PortletSessionState.getAttribute(portlet, rundata, RESULTS);
+        @SuppressWarnings("unchecked")
+        List<RegistryEntry> filteredEntries = (List<RegistryEntry>)PortletSessionState.getAttribute(portlet, rundata, FILTERED_RESULTS);
         if(regEntries == null)
         {
-            Iterator i = Registry.get(regName).listEntryNames();
-            regEntries = new ArrayList();
+            Iterator<?> i = Registry.get(regName).listEntryNames();
+            regEntries = new ArrayList<RegistryEntry>();
     
             while(i.hasNext())
             {
@@ -108,7 +110,7 @@ public class RegistryBrowseAction extends GenericMVCAction
             }
 
             Collections.sort(regEntries,
-                new Comparator() {
+                new Comparator<Object>() {
                     public int compare(Object o1, Object o2)
                     {
                         String t1 = ((RegistryEntry) o1).getName().toLowerCase();
@@ -140,7 +142,7 @@ public class RegistryBrowseAction extends GenericMVCAction
         {
             end = filteredEntries.size();
         }
-        List pageEntries = filteredEntries.subList(start, end);
+        List<RegistryEntry> pageEntries = filteredEntries.subList(start, end);
 
         context.put("registry", pageEntries);
         context.put("filtered_entries", filteredEntries);
@@ -195,7 +197,7 @@ public class RegistryBrowseAction extends GenericMVCAction
         }
         
         String regName = getPortlet(context).getPortletConfig()
-                                        .getInitParameter("registry",Registry.PORTLET);
+                                        .getInitParameter("registry",Registry.PORTLET).toString();
         
         PortletSessionState.setAttribute(getPortlet(context), rundata, FILTER_FIELDS, filterFields);
         PortletSessionState.setAttribute(getPortlet(context), rundata, FILTER_VALUES, filterValues);
@@ -213,7 +215,7 @@ public class RegistryBrowseAction extends GenericMVCAction
      * @param values The array of filter values.  This should be in a 1:1 ratio with the fitler names.
      * @return The list of filtered portlets.
      */
-    protected List filter(List entries, String[] fields, String[] values) {
+    protected <T> List<T> filter(List<T> entries, String[] fields, String[] values) {
        return entries;
     }
 }

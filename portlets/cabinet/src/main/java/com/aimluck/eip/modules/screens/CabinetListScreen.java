@@ -54,7 +54,7 @@ public class CabinetListScreen extends CabinetScreen {
       // 最大表示件数（最大化時）
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1b-rows")));
+        context).getPortletConfig().getInitParameter("p1b-rows").toString()));
       listData.doViewList(this, rundata, context);
 
       String layout_template = "portlets/html/ja/ajax-cabinet-list.vm";

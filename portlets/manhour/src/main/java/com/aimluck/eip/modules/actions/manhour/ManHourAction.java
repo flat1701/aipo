@@ -114,7 +114,7 @@ public class ManHourAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "manhour-list");
   }
@@ -219,10 +219,10 @@ public class ManHourAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p2a-rows")));
+      .getInitParameter("p2a-rows").toString()));
     listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p3a-strlen")));
+      context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "manhour-category-list");
 

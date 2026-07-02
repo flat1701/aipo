@@ -34,12 +34,12 @@ import java.io.File;
 */
 public class MergeFiles
 {
-    protected static List files;
+    protected static List<String> files;
     protected static String dest_file = null;
 
     public static boolean verbose = false;
 
-    protected static ArrayList baseArray = new ArrayList(1024);
+    protected static ArrayList<String> baseArray = new ArrayList<String>(1024);
     protected static String lineSeparator = System.getProperty("line.separator", "\r\n");
 
     public static void main(String[] args) throws Exception
@@ -71,7 +71,7 @@ public class MergeFiles
                 db_drop = true;                
             }
 
-            files = new Vector(args.length - 1 - file_index);
+            files = new Vector<String>(args.length - 1 - file_index);
             dest_file = args[file_index];
             for (int index = (file_index + 1); index < args.length; index++)
             {

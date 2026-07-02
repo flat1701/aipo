@@ -81,6 +81,7 @@ public class CacheableStatefulPortletWrapper extends StatefulPortletWrapper impl
 
     /**
     */
+    @SuppressWarnings("deprecation")
     public final String getHandle()
     {
         return wrappedCacheable.getHandle();
@@ -88,6 +89,7 @@ public class CacheableStatefulPortletWrapper extends StatefulPortletWrapper impl
 
     /**
     */
+    @SuppressWarnings("deprecation")
     public final void setHandle( String handle )
     {
         wrappedCacheable.setHandle( handle );

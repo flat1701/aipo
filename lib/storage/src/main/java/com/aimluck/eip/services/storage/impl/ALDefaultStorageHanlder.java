@@ -302,9 +302,10 @@ public class ALDefaultStorageHanlder extends ALStorageHandler {
     FileChannel srcChannel = null;
     FileChannel destChannel = null;
 
-    try {
-      srcChannel = new FileInputStream(from).getChannel();
-      destChannel = new FileOutputStream(to).getChannel();
+    try (FileInputStream srcStream = new FileInputStream(from);
+        FileOutputStream dstStream = new FileOutputStream(to);) {
+      srcChannel = srcStream.getChannel();
+      destChannel = dstStream.getChannel();
       destChannel.transferFrom(srcChannel, 0, srcChannel.size());
     } catch (Exception ex) {
       logger.error("ALDefaultStorageHanlder.copyFile", ex);

@@ -23,7 +23,7 @@ import java.util.Iterator;
  * Represents all items within Jetspeed that hold configuration information.
  *
  * @author <a href="mailto:burton@apache.org">Kevin A. Burton</a>
- * @author <a href="raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: Registry.java,v 1.7 2004/02/23 03:11:39 jford Exp $
  */
 public interface Registry
@@ -95,14 +95,14 @@ public interface Registry
      *
      * @return an Enumeration of all unordered current entries
      */
-    public Enumeration getEntries();
+    public Enumeration<? extends RegistryEntry> getEntries();
 
     /**
      * List all the entry names within this Registry
      *
      * @return an Iterator over an unordered list of current entry names
      */
-    public Iterator listEntryNames();
+    public Iterator<String> listEntryNames();
 
     /**
      * Get all entries within this Registry as an array

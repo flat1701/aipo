@@ -64,7 +64,7 @@ public class URLFetcher
     /**
     URLs that Jetspeed is currently trying to fetch in real time.
     */
-    private static Hashtable realtime_urls = new Hashtable();
+    private static Hashtable<String, Vector<Thread>> realtime_urls = new Hashtable<String, Vector<Thread>>();
 
     /**
      *
@@ -259,7 +259,8 @@ public class URLFetcher
                  URLConnection conn = null;
                  conn = sock.openConnection();
 
-                 File file = dce.getFile();
+                 @SuppressWarnings("deprecation")
+                File file = dce.getFile();
                  long mod = dce.getLastModified();
                  long filesize = 0;
                  if(file != null)
@@ -398,7 +399,7 @@ public class URLFetcher
     static final void addRealtimeURL( String url ) {
         synchronized( realtime_urls )
         {
-            Vector threads = (Vector) realtime_urls.get( url);
+            Vector<Thread> threads = (Vector<Thread>) realtime_urls.get( url);
             if(threads != null)
                {
                 if(!threads.contains(Thread.currentThread()))
@@ -406,7 +407,7 @@ public class URLFetcher
                      threads.addElement(Thread.currentThread() );
                    }
                } else {
-                threads = new Vector();
+                threads = new Vector<Thread>();
                 threads.addElement(Thread.currentThread());
                 realtime_urls.put( url, threads  );
                }
@@ -420,7 +421,7 @@ public class URLFetcher
     static final void removeRealtimeURL( String url ) {
         synchronized( realtime_urls )
         {
-           Vector threads = (Vector) realtime_urls.get( url);
+           Vector<?> threads = (Vector<?>) realtime_urls.get( url);
            if(threads != null)
                synchronized( threads  )
                    {
@@ -454,7 +455,7 @@ public class URLFetcher
     /**
     Return the list of realtime URLs for debug
     */
-    public static final Hashtable getRealtimeURLs() {
+    public static final Hashtable<String, Vector<Thread>> getRealtimeURLs() {
         synchronized(realtime_urls) {
             return realtime_urls;
         }

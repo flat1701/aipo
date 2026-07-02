@@ -61,14 +61,14 @@ public abstract class JetspeedUserManagement {
   /**
    * @see org.apache.jetspeed.services.security.UserManagement#getUsers
    */
-  public static Iterator getUsers() throws JetspeedSecurityException {
+  public static Iterator<JetspeedUser> getUsers() throws JetspeedSecurityException {
     return getService().getUsers();
   }
 
   /**
    * @see org.apache.jetspeed.services.security.UserManagement#getUsers
    */
-  public static Iterator getUsers(String filter)
+  public static Iterator<?> getUsers(String filter)
       throws JetspeedSecurityException {
     return getService().getUsers(filter);
   }

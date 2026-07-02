@@ -124,7 +124,7 @@ public class PsmlManagerAction extends GenericMVCAction
     /** value of the filter type parameter for searching by group */
     public static final String FILTER_TYPE_GROUP = "filter_type_group";
 
-    private static Hashtable queryModes = new Hashtable();
+    private static Hashtable<String, String> queryModes = new Hashtable<String, String>();
     static 
     {        
         queryModes.put("All", String.valueOf(QueryLocator.QUERY_ALL));
@@ -418,8 +418,8 @@ public class PsmlManagerAction extends GenericMVCAction
         }
         //ql.setQueryString(value);
 
-        ArrayList entries = new ArrayList();
-        Iterator i = Profiler.query(ql);
+        ArrayList<Profile> entries = new ArrayList<Profile>();
+        Iterator<?> i = Profiler.query(ql);
 
         try
         {
@@ -438,7 +438,7 @@ public class PsmlManagerAction extends GenericMVCAction
             logger.error("Exception", e);
         }
 
-        ArrayList entryType = new ArrayList();
+        ArrayList<String> entryType = new ArrayList<String>();
         entryType.add("Profile");
 
         int size = Integer.parseInt(PortletConfigState.getParameter(portlet, rundata, PAGE_SIZE, "20"));
@@ -459,6 +459,7 @@ public class PsmlManagerAction extends GenericMVCAction
      * @param context The velocity context for this request.
      * @param rundata The turbine rundata context for this request.
      */
+    @SuppressWarnings("deprecation")
     private void buildDetailNormalContext(Portlet portlet,
                                           Context context,
                                           RunData rundata)
@@ -602,6 +603,7 @@ public class PsmlManagerAction extends GenericMVCAction
                             context.put("profile", profile);
                         }
 
+                        @SuppressWarnings("unused")
                         String categoryName = Profiler.PARAM_GROUP;
                         String categoryValue = tmpLocator.getGroupName();
                         if (categoryValue == null)
@@ -1015,7 +1017,9 @@ public class PsmlManagerAction extends GenericMVCAction
     public void doExport(RunData rundata, Context context)
     throws Exception
     {
+        @SuppressWarnings("unused")
         Profile profile = null;
+        @SuppressWarnings("unused")
         ProfileLocator locator = null;
         String copyTo = null;
         String copyFrom = null;
@@ -1094,7 +1098,7 @@ public class PsmlManagerAction extends GenericMVCAction
             //
             // retrieve the profiles to export
             //
-            Iterator i = Profiler.query(new QueryLocator(QueryLocator.QUERY_ALL));
+            Iterator<?> i = Profiler.query(new QueryLocator(QueryLocator.QUERY_ALL));
             while (i.hasNext())
             {
                 Profile profile = (Profile) i.next();
@@ -1306,6 +1310,7 @@ public class PsmlManagerAction extends GenericMVCAction
     public void doImport(RunData rundata, Context context)
     throws Exception
     {
+        @SuppressWarnings("unused")
         Profile profile = null;
         ProfileLocator locator = null;
         String categoryName = null;
@@ -1478,13 +1483,13 @@ public class PsmlManagerAction extends GenericMVCAction
             //
             // Collect all .psml files from the root specified
             //
-            Vector files = new Vector();
+            Vector<File> files = new Vector<File>();
             this.collectPsml(files, copyFrom);
 
             //
             // Process each file
             //
-            for (Iterator it = files.iterator(); it.hasNext();)
+            for (Iterator<File> it = files.iterator(); it.hasNext();)
             {
                 // If error occurs processing one entry, continue on with the others
                 String path = null;
@@ -1559,7 +1564,7 @@ public class PsmlManagerAction extends GenericMVCAction
      * @param v      Vector to put the file into
      * @param root   Root directory for import
      */
-    private void collectPsml(Vector v, String root)
+    private void collectPsml(Vector<File> v, String root)
     {
 
         File dir = new File(root);
@@ -1603,7 +1608,7 @@ public class PsmlManagerAction extends GenericMVCAction
         StringTokenizer tok = new StringTokenizer(path, File.separator);
 
         // Load path elements into a vector for random access
-        Vector tokens = new Vector();
+        Vector<String> tokens = new Vector<String>();
         while (tok.hasMoreTokens())
         {
             tokens.add(tok.nextToken());

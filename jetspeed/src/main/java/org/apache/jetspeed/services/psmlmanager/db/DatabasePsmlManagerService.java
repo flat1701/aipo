@@ -101,7 +101,7 @@ public class DatabasePsmlManagerService extends TurbineBaseService
      */    
     private static final JetspeedLogger logger = JetspeedLogFactoryService.getLogger(DatabasePsmlManagerService.class.getName());
     
-    private Map psmlCache = new HashMap();
+    private Map<String, PSMLDocument> psmlCache = new HashMap<String, PSMLDocument>();
 
     /** The watcher for the document locations */
     private CacheRefresher refresher = null;
@@ -121,6 +121,7 @@ public class DatabasePsmlManagerService extends TurbineBaseService
     private final static String POOL_NAME = "database";
 
     /** the import/export consumer service **/
+    @SuppressWarnings("unused")
     private PsmlManagerService consumer = null;
 
     // castor mapping
@@ -326,7 +327,7 @@ public class DatabasePsmlManagerService extends TurbineBaseService
                     {
                         synchronized (this)
                        {
-                            Iterator i = psmlCache.keySet().iterator();
+                            Iterator<String> i = psmlCache.keySet().iterator();
 
                             while(i.hasNext())
                             {
@@ -724,7 +725,7 @@ public class DatabasePsmlManagerService extends TurbineBaseService
      * @param locator The profile locator criteria.
      * @return Iterator object with the PSMLDocuments satisfying query
      */
-    public Iterator query(QueryLocator locator)
+    public Iterator<Profile> query(QueryLocator locator)
     {
         if (locator == null)
         {
@@ -737,13 +738,13 @@ public class DatabasePsmlManagerService extends TurbineBaseService
 
         try
         {
-            List userData = null;
-            List groupData = null;
-            List roleData = null;
+            List<?> userData = null;
+            List<?> groupData = null;
+            List<?> roleData = null;
 
             int queryMode = locator.getQueryMode();
 
-            List list = new ArrayList();
+            List<Profile> list = new ArrayList<Profile>();
 
             switch (queryMode)
             {
@@ -806,7 +807,7 @@ public class DatabasePsmlManagerService extends TurbineBaseService
             releaseDbConnection(dbCon);
         }
 
-        return new ArrayList().iterator();  // return empty non-null iterator
+        return new ArrayList<Profile>().iterator();  // return empty non-null iterator
     }
 
     /**
@@ -816,9 +817,9 @@ public class DatabasePsmlManagerService extends TurbineBaseService
      * JetspeedRoleProfile, objects
      * @return List of profiles
      */
-    private List getProfiles(List data)
+    private List<Profile> getProfiles(List<?> data)
     {
-        List list = new ArrayList();
+        List<Profile> list = new ArrayList<Profile>();
 
         for (int i = 0; i < data.size(); i++)
         {
@@ -870,7 +871,7 @@ public class DatabasePsmlManagerService extends TurbineBaseService
      * @param locator The ordered list of profile locators.
      * @return PSMLDocument object for the first document matching a locator
      */
-    public PSMLDocument getDocument(List locators)
+    public PSMLDocument getDocument(List<?> locators)
     {
         if (locators == null)
         {
@@ -914,7 +915,7 @@ public class DatabasePsmlManagerService extends TurbineBaseService
         Role role = locator.getRole();
         Group group = locator.getGroup();
         String tableName = null;
-        List records = null;
+        List<?> records = null;
         Portlets portlets = null;
         PSMLDocument psmldoc = null;
         String page = null;
@@ -927,7 +928,7 @@ public class DatabasePsmlManagerService extends TurbineBaseService
             {
                 tableName = "JETSPEED_USER_PROFILE";
                 records = new JetspeedUserProfilePeer().select(locator, dbCon);
-                Iterator iterator = records.iterator();
+                Iterator<?> iterator = records.iterator();
                 while (iterator.hasNext())
                 {
                     JetspeedUserProfile uprofile =
@@ -940,7 +941,7 @@ public class DatabasePsmlManagerService extends TurbineBaseService
             {
                 tableName = "JETSPEED_ROLE_PROFILE";
                 records = new JetspeedRoleProfilePeer().select(locator, dbCon);
-                Iterator iterator = records.iterator();
+                Iterator<?> iterator = records.iterator();
                 while (iterator.hasNext())
                 {
                     JetspeedRoleProfile rprofile =
@@ -953,7 +954,7 @@ public class DatabasePsmlManagerService extends TurbineBaseService
             {
                 tableName = "JETSPEED_GROUP_PROFILE";
                 records = new JetspeedGroupProfilePeer().select(locator, dbCon);
-                Iterator iterator = records.iterator();
+                Iterator<?> iterator = records.iterator();
                 while (iterator.hasNext())
                 {
                     JetspeedGroupProfile gprofile =
@@ -1096,7 +1097,7 @@ public class DatabasePsmlManagerService extends TurbineBaseService
      */
     public int export(PsmlManagerService consumer, QueryLocator locator)
     {
-        Iterator profiles = null;
+        Iterator<Profile> profiles = null;
         int count = 0;
         try
         {

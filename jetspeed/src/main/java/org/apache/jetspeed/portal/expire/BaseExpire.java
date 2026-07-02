@@ -33,7 +33,7 @@ public abstract class BaseExpire implements Expire {
 
     private boolean expired = false;
     private long creationTime;
-    private Hashtable properties = new Hashtable();
+    private Hashtable<String, String> properties = new Hashtable<String, String>();
     private Portlet portlet = null;
     
     /**

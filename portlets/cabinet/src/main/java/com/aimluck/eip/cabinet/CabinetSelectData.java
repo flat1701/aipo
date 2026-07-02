@@ -168,7 +168,7 @@ public class CabinetSelectData extends
           ALEipUtils
             .getPortlet(rundata, context)
             .getPortletConfig()
-            .getInitParameter("p3a-folder");
+            .getInitParameter("p3a-folder").toString();
         fid = Integer.parseInt(id);
       }
     } else {
@@ -210,7 +210,7 @@ public class CabinetSelectData extends
           ALEipUtils
             .getPortlet(rundata, context)
             .getPortletConfig()
-            .getInitParameter("p3a-folder");
+            .getInitParameter("p3a-folder").toString();
         if (id != null && !"".equals(id)) {
           try {
             fid = Integer.parseInt(id);
@@ -239,7 +239,7 @@ public class CabinetSelectData extends
           ALEipUtils
             .getPortlet(rundata, context)
             .getPortletConfig()
-            .getInitParameter("p3b-post");
+            .getInitParameter("p3b-post").toString();
       } catch (Exception e) {
         post_name = "";
       }

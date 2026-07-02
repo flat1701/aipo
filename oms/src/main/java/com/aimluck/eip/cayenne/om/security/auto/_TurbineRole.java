@@ -38,8 +38,8 @@ public class _TurbineRole extends org.apache.cayenne.CayenneDataObject {
     public void removeFromTurbineRolePermission(com.aimluck.eip.cayenne.om.security.TurbineRolePermission obj) {
         removeToManyTarget("turbineRolePermission", obj, true);
     }
-    public List getTurbineRolePermission() {
-        return (List)readProperty("turbineRolePermission");
+    public List<?> getTurbineRolePermission() {
+        return (List<?>)readProperty("turbineRolePermission");
     }
     
     
@@ -49,8 +49,8 @@ public class _TurbineRole extends org.apache.cayenne.CayenneDataObject {
     public void removeFromTurbineUserGroupRole(com.aimluck.eip.cayenne.om.security.TurbineUserGroupRole obj) {
         removeToManyTarget("turbineUserGroupRole", obj, true);
     }
-    public List getTurbineUserGroupRole() {
-        return (List)readProperty("turbineUserGroupRole");
+    public List<?> getTurbineUserGroupRole() {
+        return (List<?>)readProperty("turbineUserGroupRole");
     }
     
     

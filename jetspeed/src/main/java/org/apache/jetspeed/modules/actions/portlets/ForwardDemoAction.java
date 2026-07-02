@@ -77,14 +77,16 @@ public class ForwardDemoAction extends VelocityPortletAction
             PortletSessionState.setAttribute(rundata, PARAM_TARGET, target);
         }
 
-        List forwards = (List)PortletSessionState.getAttribute(rundata, VAR_FORWARDS);
+        @SuppressWarnings("unchecked")
+        List<HtmlItem> forwards = (List<HtmlItem>)PortletSessionState.getAttribute(rundata, VAR_FORWARDS);
         if (null == forwards)
         {
             forwards = getAllForwards(next);
             PortletSessionState.setAttribute(rundata, VAR_FORWARDS, forwards);
         }
         
-        List portletForwards = (List)PortletSessionState.getAttribute(rundata, VAR_TARGETS);
+        @SuppressWarnings("unchecked")
+        List<HtmlItem> portletForwards = (List<HtmlItem>)PortletSessionState.getAttribute(rundata, VAR_TARGETS);
         if (null == portletForwards)
         {
             portletForwards = getPortletForwards(target);
@@ -107,10 +109,10 @@ public class ForwardDemoAction extends VelocityPortletAction
         {
             PortletSessionState.setAttribute( rundata, PARAM_NEXT, next);
 
-            List forwards = (List)PortletSessionState.getAttribute(rundata, VAR_FORWARDS);
+            List<?> forwards = (List<?>)PortletSessionState.getAttribute(rundata, VAR_FORWARDS);
             if (forwards != null)
             {
-                Iterator it = forwards.iterator();
+                Iterator<?> it = forwards.iterator();
 
                 while (it.hasNext())
                 {
@@ -132,11 +134,11 @@ public class ForwardDemoAction extends VelocityPortletAction
         }
     }
 
-    private List getAllForwards(String next)
+    private List<HtmlItem> getAllForwards(String next)
     {
         ForwardService fs = (ForwardService)ServiceUtil.getServiceByName(ForwardService.SERVICE_NAME);
-        List vList = new java.util.LinkedList();
-        Iterator it = fs.getForwards().iterator();
+        List<HtmlItem> vList = new java.util.LinkedList<HtmlItem>();
+        Iterator<?> it = fs.getForwards().iterator();
         int index = 1;
         while (it.hasNext())
         {
@@ -158,10 +160,10 @@ public class ForwardDemoAction extends VelocityPortletAction
         {
             PortletSessionState.setAttribute( rundata, PARAM_TARGET, target);
 
-            List forwards = (List)PortletSessionState.getAttribute(rundata, VAR_TARGETS);
+            List<?> forwards = (List<?>)PortletSessionState.getAttribute(rundata, VAR_TARGETS);
             if (forwards != null)
             {
-                Iterator it = forwards.iterator();
+                Iterator<?> it = forwards.iterator();
 
                 while (it.hasNext())
                 {
@@ -183,11 +185,11 @@ public class ForwardDemoAction extends VelocityPortletAction
         }
     }
 
-    private List getPortletForwards(String target)
+    private List<HtmlItem> getPortletForwards(String target)
     {
         ForwardService fs = (ForwardService)ServiceUtil.getServiceByName(ForwardService.SERVICE_NAME);
-        List vList = new java.util.LinkedList();
-        Iterator it = fs.getPortletForwards().iterator();
+        List<HtmlItem> vList = new java.util.LinkedList<HtmlItem>();
+        Iterator<?> it = fs.getPortletForwards().iterator();
         int index = 1;
         while (it.hasNext())
         {
@@ -202,7 +204,7 @@ public class ForwardDemoAction extends VelocityPortletAction
 
     public void doDynamic(RunData rundata, Context context)
     {
-        Map map = new HashMap();
+        Map<String, String> map = new HashMap<String, String>();
         map.put("dynamic", "33");
         ForwardService fs = (ForwardService)ServiceUtil.getServiceByName(ForwardService.SERVICE_NAME);
         fs.forwardDynamic(rundata, "ApacheGroupNews", map);
@@ -210,7 +212,7 @@ public class ForwardDemoAction extends VelocityPortletAction
 
     public void doDynamic2(RunData rundata, Context context)
     {
-        Map map = new HashMap();
+        Map<String, String> map = new HashMap<String, String>();
         map.put("dynamic", "44");
         map.put("msgok", "no");
         map.put("msg", "3");

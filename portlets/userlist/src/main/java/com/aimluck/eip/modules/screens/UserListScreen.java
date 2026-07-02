@@ -54,7 +54,7 @@ public class UserListScreen extends ALVelocityScreen {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p1a-rows")));
+        .getInitParameter("p1a-rows").toString()));
       listData.setStrLength(0);
       listData.doViewList(this, rundata, context);
 

@@ -44,6 +44,7 @@ import org.apache.velocity.context.Context;
  */
 public class RolePermissionUpdateAction extends SecureVelocityPortletAction
 {
+    @SuppressWarnings("unused")
     private static final String TEMP_ROLE = "tempRole";
 
     /**
@@ -94,10 +95,12 @@ public class RolePermissionUpdateAction extends SecureVelocityPortletAction
     {
         try
         {
+            @SuppressWarnings("unused")
             Role role = null;
             /*
              * Grab the mode for the user form.
              */
+            @SuppressWarnings("unused")
             String mode = rundata.getParameters().getString(SecurityConstants.PARAM_MODE);
 
             //
@@ -166,8 +169,8 @@ public class RolePermissionUpdateAction extends SecureVelocityPortletAction
 
         try
         {
-            List permissions = (List)rundata.getUser().getTemp(SecurityConstants.CONTEXT_PERMISSIONS);
-            List selected = (List)rundata.getUser().getTemp(SecurityConstants.CONTEXT_SELECTED);
+            List<?> permissions = (List<?>)rundata.getUser().getTemp(SecurityConstants.CONTEXT_PERMISSIONS);
+            List<?> selected = (List<?>)rundata.getUser().getTemp(SecurityConstants.CONTEXT_SELECTED);
 
             if (permissions == null || selected == null)
             {
@@ -241,7 +244,7 @@ public class RolePermissionUpdateAction extends SecureVelocityPortletAction
         throws JetspeedSecurityException
     {
         // get master list of permissions
-        Iterator master = JetspeedSecurity.getPermissions();
+        Iterator<?> master = JetspeedSecurity.getPermissions();
 
         // get the user object
         Role role = JetspeedSecurity.getRole(roleName);
@@ -253,10 +256,11 @@ public class RolePermissionUpdateAction extends SecureVelocityPortletAction
         }
 
         // get the permissions for this particular role
-        Iterator subset = JetspeedSecurity.getPermissions(roleName);
+        @SuppressWarnings("unused")
+        Iterator<?> subset = JetspeedSecurity.getPermissions(roleName);
 
-        Vector permissions = new Vector();
-        Vector selected = new Vector();
+        Vector<Permission> permissions = new Vector<Permission>();
+        Vector<Boolean> selected = new Vector<Boolean>();
         boolean sel = false;
         int ix = 0;
         selected.add(0, new Boolean(sel));

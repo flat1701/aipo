@@ -69,7 +69,7 @@ import java.util.Iterator;
  *
  * 
  * @author <a href="mailto:re_carrasco@bco011.sonda.cl">Roberto Carrasco</a>
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:morciuch@apache.org">Mark Orciuch</a> 
  *
  * @version $Id: VelocityPortletControl.java,v 1.30 2004/03/29 21:38:42 taylor Exp $
@@ -124,7 +124,7 @@ public class VelocityPortletControl extends AbstractPortletControl
         // Put the request and session based contexts
         TurbinePull.populateContext(context, rundata);
         
-        if ( portlet.getName().equals(jdata.getCustomized())
+        if ( portlet.getName().equals(jdata.getCustomized().getName())
              && (!portlet.providesCustomization()) )
         {            
             context.put("portlet",JetspeedTool.getCustomizer(portlet));
@@ -146,7 +146,7 @@ public class VelocityPortletControl extends AbstractPortletControl
         // allow subclasses to add elements to the context
         buildContext( rundata, context );
         
-        String theme = getConfig().getInitParameter("theme","default.vm");
+        String theme = getConfig().getInitParameter("theme","default.vm").toString();
 
         String s = "";
         try 
@@ -187,9 +187,10 @@ public class VelocityPortletControl extends AbstractPortletControl
      * @return a list of ordered PortletAction objects describing the
      * the actions available for this portlet
      */
-    protected List buildActionList( RunData rundata, Portlet portlet )
+    @SuppressWarnings("deprecation")
+    protected List<PortletAction> buildActionList( RunData rundata, Portlet portlet )
     {
-        List actions = new Vector();
+        List<PortletAction> actions = new Vector<PortletAction>();
         JetspeedLink jsLink = null;
         JetspeedRunData jdata = (JetspeedRunData)rundata;
 
@@ -278,7 +279,7 @@ public class VelocityPortletControl extends AbstractPortletControl
         
         // Now that we know which actions should be displayed,
         // build the links and put it in the context
-        Iterator i = actions.iterator();
+        Iterator<PortletAction> i = actions.iterator();
                 
         while( i.hasNext() )
         {

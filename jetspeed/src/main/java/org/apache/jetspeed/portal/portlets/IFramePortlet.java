@@ -136,7 +136,7 @@ public class IFramePortlet extends AbstractInstancePortlet
         if (source != null)
         {
             // Handle replacement variables
-            Hashtable parms = new Hashtable();
+            Hashtable<String, Object> parms = new Hashtable<String, Object>();
             if (source.indexOf("${") >= 0) 
             {
                 // Add all portlet parms
@@ -518,67 +518,67 @@ public class IFramePortlet extends AbstractInstancePortlet
             PortletConfig config = this.getPortletConfig();
             String param = null;
 
-            param = config.getInitParameter(PARAM_SOURCE);
+            param = config.getInitParameter(PARAM_SOURCE).toString();
             if (param != null)
             {
                 setSource(param);
             }
 
-            param = config.getInitParameter(PARAM_WIDTH);
+            param = config.getInitParameter(PARAM_WIDTH).toString();
             if (param != null)
             {
                 setWidth(param);
             }
 
-            param = config.getInitParameter(PARAM_HEIGHT);
+            param = config.getInitParameter(PARAM_HEIGHT).toString();
             if (param != null)
             {
                 setHeight(param);
             }
 
-            param = config.getInitParameter(PARAM_SCROLLING);
+            param = config.getInitParameter(PARAM_SCROLLING).toString();
             if (param != null)
             {
                 setScrolling(param);
             }
 
-            param = config.getInitParameter(PARAM_FRAMEBORDER);
+            param = config.getInitParameter(PARAM_FRAMEBORDER).toString();
             if (param != null)
             {
                 setFrameBorder(param);
             }
 
-            param = config.getInitParameter(PARAM_STYLE);
+            param = config.getInitParameter(PARAM_STYLE).toString();
             if (param != null) 
             {
                 setStyle(param);
             }
 
-            param = config.getInitParameter(PARAM_NAME);
+            param = config.getInitParameter(PARAM_NAME).toString();
             if (param != null) 
             {
                 setFrameName(param);
             }
 
-            param = config.getInitParameter(PARAM_REFRESH);
+            param = config.getInitParameter(PARAM_REFRESH).toString();
             if (param != null) 
             {
                 setRefresh(param);
             }
 
-            param = config.getInitParameter(PARAM_MARGINWIDTH);
+            param = config.getInitParameter(PARAM_MARGINWIDTH).toString();
             if (param != null) 
             {
                 setMarginWidth(param);
             }
 
-            param = config.getInitParameter(PARAM_MARGINHEIGHT);
+            param = config.getInitParameter(PARAM_MARGINHEIGHT).toString();
             if (param != null) 
             {
                 setMarginHeight(param);
             }
 
-            param = config.getInitParameter(PARAM_ALIGN);
+            param = config.getInitParameter(PARAM_ALIGN).toString();
             if (param != null) 
             {
                 setAlign(param);

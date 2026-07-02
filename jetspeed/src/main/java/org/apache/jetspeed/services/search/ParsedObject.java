@@ -166,7 +166,7 @@ public interface ParsedObject
      * 
      * @return 
      */
-    public Map getFields();
+    public Map<String, String> getFields();
 
     /**
      * @deprecated
@@ -175,7 +175,7 @@ public interface ParsedObject
      * 
      * @param fields
      */
-    public void setFields(Map fields);
+    public void setFields(Map<String, String> fields);
     
     /**
      * @return

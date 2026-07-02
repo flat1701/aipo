@@ -50,9 +50,9 @@ public class ImportProfile  extends BaseProfile implements Profile
      * @see Object#clone
      * @return an instance copy of this object
      */    
-    public Object clone() throws java.lang.CloneNotSupportedException
+    public ImportProfile clone() throws java.lang.CloneNotSupportedException
     {
-        return super.clone();
+        return (ImportProfile) super.clone();
     }
 
     /**

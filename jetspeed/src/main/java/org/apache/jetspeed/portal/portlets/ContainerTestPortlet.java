@@ -65,8 +65,10 @@ public class ContainerTestPortlet implements Portlet /* , PortletState, Cacheabl
 
     private String description = "description";
 
+    @SuppressWarnings("unused")
     private String id = null;
 
+    @SuppressWarnings("unused")
     private String handle = "";
 
     private PortletConfig   pc = null;
@@ -230,7 +232,7 @@ public class ContainerTestPortlet implements Portlet /* , PortletState, Cacheabl
         String path = (String)rundata.getUser().getTemp(key);
         if (path == null)
         {
-            path = this.getPortletConfig().getInitParameter("path");
+            path = this.getPortletConfig().getInitParameter("path").toString();
         }
 
         if (null == path)
@@ -240,6 +242,7 @@ public class ContainerTestPortlet implements Portlet /* , PortletState, Cacheabl
 
         ProfileLocator locator = Profiler.createLocator();
         locator.createFromPath(path);
+        @SuppressWarnings("unused")
         String id = locator.getId();
 
         try
@@ -250,6 +253,7 @@ public class ContainerTestPortlet implements Portlet /* , PortletState, Cacheabl
             {
                 return null;
             }
+            @SuppressWarnings("unused")
             Portlets portlets = doc.getPortlets();
             //PortletContainer.aggregate(portlets);
             return new JetspeedClearElement("XXX Under Construction :)");
@@ -270,7 +274,8 @@ public class ContainerTestPortlet implements Portlet /* , PortletState, Cacheabl
     */
     public void init() throws PortletException
     {
-        String path = this.pc.getInitParameter("path");
+        @SuppressWarnings("unused")
+        String path = this.pc.getInitParameter("path").toString();
     }
 
 

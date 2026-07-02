@@ -117,6 +117,7 @@ public class TimelineSelectData extends
   private List<ALEipUser> userList = null;
 
   /** <code>userid</code> ユーザーID */
+  @SuppressWarnings("unused")
   private String userid;
 
   private final List<Integer> useridList = new ArrayList<Integer>();

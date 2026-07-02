@@ -842,7 +842,7 @@ public class ToDoUtils {
     VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
     PortletConfig config = portlet.getPortletConfig();
     if (value == null || "".equals(value)) {
-      value = config != null ? config.getInitParameter(key) : "";
+      value = config != null ? config.getInitParameter(key).toString() : "";
     } else {
       ALEipUtils.setPsmlParameters(rundata, context, key, value);
     }

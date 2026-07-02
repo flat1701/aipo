@@ -34,6 +34,7 @@ public class JetspeedPermissionFactory
     private static final String CONFIG_GROUP_CLASSNAME = "permission.class";
 
     private static String permissionClassName = null;
+    @SuppressWarnings("rawtypes")
     private static Class permissionClass = null;
     
     /**

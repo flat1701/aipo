@@ -96,7 +96,7 @@ public class GroupBrowserAction extends VelocityPortletAction
     {
         try
         {
-            Iterator groups = JetspeedSecurity.getGroups();
+            Iterator<?> groups = JetspeedSecurity.getGroups();
             context.put(SecurityConstants.CONTEXT_GROUPS, groups);
         }
         catch (Exception e)

@@ -32,8 +32,6 @@ import org.apache.turbine.util.RunData;
 
 import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
 import org.apache.jetspeed.services.logging.JetspeedLogger;
-import org.apache.jetspeed.services.statemanager.StateManagerService;
-import org.apache.jetspeed.services.statemanager.SessionStateBindingListener;
 
 /**
 * <p>BaseStateManagerService is a Turbine Service implementation of the
@@ -57,7 +55,7 @@ public abstract class BaseStateManagerService
     private static final JetspeedLogger logger = JetspeedLogFactoryService.getLogger(BaseStateManagerService.class.getName());
     
     /** map of thread to http session for that thread. */
-    protected Map m_httpSessions = null;
+    protected Map<Thread, HttpSession> m_httpSessions = null;
 
     /*******************************************************************************
     * Abstract methods
@@ -78,14 +76,14 @@ public abstract class BaseStateManagerService
     * @param key The state key.
     * @return The Map which is the set of attributes for a state.
     */
-    protected abstract Map getState( String key );
+    protected abstract Map<String, Object> getState( String key );
 
     /**
     * Add a new state to the states we are managing.
     * @param key The state key.
     * @param state The Map which is the set of attributes for the state.
     */
-    protected abstract void addState( String key, Map state );
+    protected abstract void addState( String key, Map<String, Object> state );
 
     /**
     * Remove a state from the states we are managing.
@@ -105,17 +103,17 @@ public abstract class BaseStateManagerService
     * @param key The state key.
     * @param state The Map of attributes to retire.
     */
-    protected void retireAttributes( String key, Map state )
+    protected void retireAttributes( String key, Map<String, Object> state )
     {
         if (state == null) return;
 
-        Set attributes = state.entrySet();
+        Set<Map.Entry<String, Object>> attributes = state.entrySet();
         synchronized (state)
         {
-            Iterator i = attributes.iterator();
+            Iterator<Map.Entry<String, Object>> i = attributes.iterator();
             while (i.hasNext())
             {
-                Map.Entry attribute = (Map.Entry) i.next();
+                Map.Entry<String, Object> attribute = (Map.Entry<String, Object>) i.next();
                 unBindAttributeValue(key, (String)attribute.getKey(), attribute.getValue());
             }
         }
@@ -222,7 +220,7 @@ public abstract class BaseStateManagerService
         super.init();
 
         // allocate a thread-safe map to store the "current" http session for each thread
-        m_httpSessions = Collections.synchronizedMap(new HashMap());
+        m_httpSessions = Collections.synchronizedMap(new HashMap<Thread, HttpSession>());
 
         // create our states storage
         initStates();
@@ -256,7 +254,7 @@ public abstract class BaseStateManagerService
     */
     public Object getAttribute ( String key, String name )
     {
-        Map state = getState(key);
+        Map<String, Object> state = getState(key);
         if (state == null) return null;
         return state.get(name);
 
@@ -270,11 +268,11 @@ public abstract class BaseStateManagerService
     */
     public void setAttribute( String key, String name, Object value )
     {
-        Map state = getState(key);
+        Map<String, Object> state = getState(key);
         if (state == null)
         {
             // create a synchronized map to store the state attributes
-            state = Collections.synchronizedMap(new HashMap());
+            state = Collections.synchronizedMap(new HashMap<String, Object>());
             addState(key, state);
         }
 
@@ -302,7 +300,7 @@ public abstract class BaseStateManagerService
     */
     public void removeAttribute( String key, String name )
     {
-        Map state = getState(key);
+        Map<String, Object> state = getState(key);
         if (state == null) return;
 
         // get the old, if any
@@ -331,7 +329,7 @@ public abstract class BaseStateManagerService
     */
     public void clear( String key )
     {
-        Map state = getState(key);
+        Map<String, Object> state = getState(key);
         if (state == null) return;
 
         // notify all attribute and clear the state
@@ -349,7 +347,7 @@ public abstract class BaseStateManagerService
     */
     public String[] getAttributeNames( String key )
     {
-        Map state = (Map) getState(key);
+        Map<String, Object> state = (Map<String, Object>) getState(key);
         if (state == null) return null;
         if (state.size() == 0) return null;
 

@@ -87,6 +87,7 @@ public class ProxyRewriter implements Rewriter
     }
 
     private String proxyRoot;
+    @SuppressWarnings("unused")
     private String baseURL;
 
     public final static String DEFAULT_PROXY_PARAM = "js_path";
@@ -103,6 +104,7 @@ public class ProxyRewriter implements Rewriter
      *
      * @exception MalformedURLException a servlet exception.
      */
+    @SuppressWarnings("deprecation")
     public String generateNewUrl( String targetURL, HTML.Tag tag, HTML.Attribute attribute)
                                 //  String  targetURL, 
                                 // String     baseURL,

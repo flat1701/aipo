@@ -32,7 +32,7 @@ import java.util.Enumeration;
  * Read only wrapper around a ClientEntry registry entry that
  * implements the CapabilityMap interface
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: BaseCapabilityMap.java,v 1.8 2004/02/23 02:46:39 jford Exp $
  */
 public class BaseCapabilityMap implements CapabilityMap
@@ -60,7 +60,7 @@ public class BaseCapabilityMap implements CapabilityMap
     */
     public String getPreferredMediaType()
     {
-        Iterator i = listMediaTypes();
+        Iterator<String> i = listMediaTypes();
 
         if (i.hasNext())
         {
@@ -74,13 +74,13 @@ public class BaseCapabilityMap implements CapabilityMap
      * Returns an ordered list of supported media-types, from most preferred
      * to least preferred
      */
-    public Iterator listMediaTypes()
+    public Iterator<String> listMediaTypes()
     {
-        Vector results = new Vector();
-        Vector types = new Vector();
+        Vector<String> results = new Vector<String>();
+        Vector<MediaTypeEntry> types = new Vector<MediaTypeEntry>();
 
         // first copy the current media type list, ordered by global preference
-        Enumeration en = ((MediaTypeRegistry)Registry.get(Registry.MEDIA_TYPE)).getEntries();
+        Enumeration<MediaTypeEntry> en = ((MediaTypeRegistry)Registry.get(Registry.MEDIA_TYPE)).getEntries();
         while (en.hasMoreElements())
         {
             types.add(en.nextElement());
@@ -89,13 +89,13 @@ public class BaseCapabilityMap implements CapabilityMap
         //then retrieve a list of supported mime-types, ordered by
         //preference
 
-        Iterator mimes = entry.getMimetypeMap().getMimetypes();
+        Iterator<MimeType> mimes = entry.getMimetypeMap().getMimetypes();
 
         //now, for each mime-type test if the media is supported
         while(mimes.hasNext())
         {
             String mime = ((MimeType)mimes.next()).getContentType();
-            Iterator i = types.iterator();
+            Iterator<MediaTypeEntry> i = types.iterator();
 
             while(i.hasNext())
             {
@@ -135,7 +135,7 @@ public class BaseCapabilityMap implements CapabilityMap
     */
     public boolean hasCapability( String capability )
     {
-        Iterator i = entry.getCapabilityMap().getCapabilities();
+        Iterator<?> i = entry.getCapabilityMap().getCapabilities();
 
         while (i.hasNext())
         {
@@ -155,8 +155,8 @@ public class BaseCapabilityMap implements CapabilityMap
     */
     public MimeType[] getMimeTypes()
     {
-        Vector v = new Vector();
-        Iterator i = entry.getMimetypeMap().getMimetypes();
+        Vector<MimeType> v = new Vector<MimeType>();
+        Iterator<?> i = entry.getMimetypeMap().getMimetypes();
 
         while (i.hasNext())
         {
@@ -172,7 +172,7 @@ public class BaseCapabilityMap implements CapabilityMap
     */
     public boolean supportsMimeType( MimeType mimeType )
     {
-        Iterator i = entry.getMimetypeMap().getMimetypes();
+        Iterator<?> i = entry.getMimetypeMap().getMimetypes();
 
         while (i.hasNext())
         {
@@ -216,7 +216,7 @@ public class BaseCapabilityMap implements CapabilityMap
     {
         StringBuffer desc = new StringBuffer(entry.getName());
 
-        Iterator i = entry.getMimetypeMap().getMimetypes();
+        Iterator<?> i = entry.getMimetypeMap().getMimetypes();
 
         while (i.hasNext())
         {

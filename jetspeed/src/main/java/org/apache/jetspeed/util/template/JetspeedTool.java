@@ -16,6 +16,7 @@
 
 package org.apache.jetspeed.util.template;
 
+import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -161,7 +162,7 @@ public class JetspeedTool implements ApplicationTool {
           (ClientRegistry) Registry.get(Registry.CLIENT);
         ClientEntry entry = registry.findEntry(useragent);
         if ("IPHONE".equals(entry == null ? null : entry.getManufacturer())) {
-          for (@SuppressWarnings("unchecked")
+          for (
           Iterator<Portlets> it = portlets.getPortletsIterator(); it.hasNext();) {
             Portlets subset = it.next();
 
@@ -257,7 +258,7 @@ public class JetspeedTool implements ApplicationTool {
   public ConcreteElement getPortlet(String name) {
     ConcreteElement result = null;
     Portlet found = null;
-    Stack sets = new Stack();
+    Stack<Portlet> sets = new Stack<Portlet>();
     sets.push(rundata.getProfile().getRootSet());
 
     while ((sets.size() > 0) && (found == null)) {
@@ -266,7 +267,7 @@ public class JetspeedTool implements ApplicationTool {
       if (set.getName().equals(name)) {
         found = set;
       } else {
-        Enumeration en = set.getPortlets();
+        Enumeration<?> en = set.getPortlets();
         while ((found == null) && en.hasMoreElements()) {
           Portlet p = (Portlet) en.nextElement();
 
@@ -321,7 +322,7 @@ public class JetspeedTool implements ApplicationTool {
       // look for the customizer name in the portlet
       // config (from Registry definition)
 
-      String name = p.getPortletConfig().getInitParameter("_customizer");
+      String name = p.getPortletConfig().getInitParameter("_customizer").toString();
 
       if (name == null) {
         String key = (p instanceof PortletSet) ? "PortletSet" : "Portlet";
@@ -406,13 +407,14 @@ public class JetspeedTool implements ApplicationTool {
    *          for this request
    * @return portlet identified by js_peid
    */
+  @SuppressWarnings("deprecation")
   private static Portlet findPortlet(RunData rundata) {
 
     Portlet found = null;
     JetspeedRunData jdata = (JetspeedRunData) rundata;
     String peid = jdata.getJs_peid();
     if (peid != null) {
-      Stack sets = new Stack();
+      Stack<Portlet> sets = new Stack<Portlet>();
       sets.push(jdata.getProfile().getRootSet());
 
       while ((found == null) && (sets.size() > 0)) {
@@ -421,7 +423,7 @@ public class JetspeedTool implements ApplicationTool {
         if (set.getID().equals(peid)) {
           found = set;
         } else {
-          Enumeration en = set.getPortlets();
+          Enumeration<?> en = set.getPortlets();
           while ((found == null) && en.hasMoreElements()) {
             Portlet p = (Portlet) en.nextElement();
 
@@ -509,10 +511,11 @@ public class JetspeedTool implements ApplicationTool {
    *          the peid of the portlet to render
    * @return the rendered content of the portlet
    */
+  @SuppressWarnings("deprecation")
   public ConcreteElement getPortletById(String peid) {
     ConcreteElement result = null;
     Portlet found = null;
-    Stack sets = new Stack();
+    Stack<Portlet> sets = new Stack<Portlet>();
     sets.push(rundata.getProfile().getRootSet());
 
     while ((sets.size() > 0) && (found == null)) {
@@ -521,7 +524,7 @@ public class JetspeedTool implements ApplicationTool {
       if (set.getID().equals(peid)) {
         found = set;
       } else {
-        Enumeration en = set.getPortlets();
+        Enumeration<?> en = set.getPortlets();
         while ((found == null) && en.hasMoreElements()) {
           Portlet p = (Portlet) en.nextElement();
 
@@ -580,6 +583,7 @@ public class JetspeedTool implements ApplicationTool {
    *          Optional control name to use in displaying the portlet
    * @return the rendered content of the portlet
    */
+  @SuppressWarnings("deprecation")
   public ConcreteElement getPortletFromRegistry(RunData data) {
 
     ConcreteElement result = null;
@@ -730,7 +734,7 @@ public class JetspeedTool implements ApplicationTool {
       String parmName) {
 
     if (portlet != null && parmName != null) {
-      String parmValue =
+      Object parmValue =
         portlet.getPortletConfig().getInitParameter(parmName, "");
       return getPortletParameter(data, portlet, parmName, parmValue);
     }
@@ -752,7 +756,7 @@ public class JetspeedTool implements ApplicationTool {
    * @return current parameter value using specified presentation style
    */
   public static String getPortletParameter(RunData data, Portlet portlet,
-      String parmName, String parmValue) {
+      String parmName, Object parmValue) {
     String result = null;
     try {
       if (portlet != null && parmName != null) {
@@ -767,21 +771,21 @@ public class JetspeedTool implements ApplicationTool {
             (JetspeedUser) data.getUser(),
             new PortalResource(entry, param),
             JetspeedSecurity.PERMISSION_CUSTOMIZE);
-        Map portletParms = portlet.getPortletConfig().getInitParameters();
-        String parmStyle =
+        Map<String, Object> portletParms = portlet.getPortletConfig().getInitParameters();
+        Object parmStyle =
           portlet.getPortletConfig().getInitParameter(parmName + ".style");
 
         // Add portlet reference
-        portletParms.put(parmName.concat(".style.portlet"), portlet);
+        portletParms.put(parmName.concat(".style.portlet"), portlet.toString());
 
         if (canAccess) {
           if (parmStyle != null) {
             result =
               ParameterLoader.getInstance().eval(
                 data,
-                parmStyle,
+                parmStyle.toString(),
                 parmName,
-                parmValue,
+                parmValue.toString(),
                 portletParms);
           } else {
             result =
@@ -796,7 +800,7 @@ public class JetspeedTool implements ApplicationTool {
           // provide a fallback parameter
           String parmNameNoAccess =
             portlet.getPortletConfig().getInitParameter(
-              parmName + ".style.no-access");
+              parmName + ".style.no-access").toString();
           if (parmNameNoAccess != null) {
             if (logger.isDebugEnabled()) {
               logger.debug("JetspeedTool: access to parm ["
@@ -807,13 +811,13 @@ public class JetspeedTool implements ApplicationTool {
             }
             String parmStyleNoAccess =
               portlet.getPortletConfig().getInitParameter(
-                parmNameNoAccess + ".style");
+                parmNameNoAccess + ".style").toString();
             result =
               ParameterLoader.getInstance().eval(
                 data,
                 parmStyleNoAccess,
                 parmNameNoAccess,
-                parmValue,
+                parmValue.toString(),
                 portletParms);
           }
         }
@@ -847,9 +851,9 @@ public class JetspeedTool implements ApplicationTool {
     try {
       if (parmName != null) {
         if (parmStyle != null) {
-          Map options = null;
+          Map<String, Object> options = null;
           if (parmOptions != null && parmOptions.length() > 0) {
-            options = new Hashtable();
+            options = new Hashtable<String, Object>();
 
             StringTokenizer st = new StringTokenizer(parmOptions, ";");
             String prefix = parmName + ".style.";

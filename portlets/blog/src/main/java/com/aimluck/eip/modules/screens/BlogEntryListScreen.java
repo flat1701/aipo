@@ -53,7 +53,7 @@ public class BlogEntryListScreen extends BlogScreen {
       listData.loadThemaList(rundata, context);
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1b-rows")));
+        context).getPortletConfig().getInitParameter("p1b-rows").toString()));
       listData.setStrLength(100);
       listData.doViewList(this, rundata, context);
 

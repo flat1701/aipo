@@ -23,6 +23,7 @@ import org.apache.jetspeed.services.forward.configuration.Forward;
 import org.apache.jetspeed.services.forward.configuration.Page;
 import org.apache.jetspeed.services.forward.configuration.Pane;
 import org.apache.jetspeed.services.forward.configuration.Portlet;
+import org.apache.jetspeed.services.forward.configuration.QueryParam;
 
 /**
  * Basic Forward implementation
@@ -36,7 +37,7 @@ public class ForwardImpl implements Forward, java.io.Serializable
     private Pane pane; 
     private Portlet portlet;
     private String name;
-    private Map queryParams = new HashMap();
+    private Map<String, QueryParam> queryParams = new HashMap<String, QueryParam>();
 
     public String getName()
     {
@@ -78,12 +79,12 @@ public class ForwardImpl implements Forward, java.io.Serializable
         this.portlet = portlet;
     }
 
-    public Map getQueryParams()
+    public Map<String, QueryParam> getQueryParams()
     {
         return this.queryParams;
     }
 
-    public void setQueryParams(Map queryParams)
+    public void setQueryParams(Map<String, QueryParam> queryParams)
     {
         this.queryParams = queryParams;
     }

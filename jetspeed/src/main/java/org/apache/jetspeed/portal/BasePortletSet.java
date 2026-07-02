@@ -47,7 +47,7 @@ import org.apache.ecs.StringElement;
  * runtime context for a set of portlets.
  * A portlet can get its current set by calling via its PortletConfig
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:burton@apache.org">Kevin A. Burton</a>
  * @author <a href="mailto:taylor@apache.org">David Sean Taylor</a>
  * @author <a href="mailto:morciuch@apache.org">Mark Orciuch</a>
@@ -79,7 +79,7 @@ public class BasePortletSet implements PortletSet, Portlet, PortletState
     /**
     Storage for the portlets assigned to this set
     */
-    private Vector portlets = null;
+    private Vector<Portlet> portlets = null;
 
     /**
     Controller which will layout the set
@@ -94,6 +94,7 @@ public class BasePortletSet implements PortletSet, Portlet, PortletState
     /** 
     The name of the portlet displaying info
     */
+    @SuppressWarnings("unused")
     private String info;
 
     /** 
@@ -106,7 +107,7 @@ public class BasePortletSet implements PortletSet, Portlet, PortletState
     */
     public BasePortletSet()
     {
-        portlets = new Vector();
+        portlets = new Vector<Portlet>();
         try
         {
             init();
@@ -122,7 +123,7 @@ public class BasePortletSet implements PortletSet, Portlet, PortletState
     */
     public BasePortletSet(PortletController controller)
     {
-            portlets = new Vector();
+            portlets = new Vector<Portlet>();
             setController(controller);
     }
 
@@ -214,7 +215,7 @@ public class BasePortletSet implements PortletSet, Portlet, PortletState
     /**
     Returns the portlet set as an Enumeration
     */
-    public Enumeration getPortlets()
+    public Enumeration<Portlet> getPortlets()
     {
         sortPortletSet();
         return portlets.elements();
@@ -299,6 +300,7 @@ public class BasePortletSet implements PortletSet, Portlet, PortletState
 
     /**
     */
+    @SuppressWarnings("deprecation")
     public ConcreteElement getContent(RunData rundata)
     {
         ConcreteElement content = null; 
@@ -609,7 +611,7 @@ public class BasePortletSet implements PortletSet, Portlet, PortletState
     */
     public boolean supportsType(MimeType mimeType)
     {
-        Enumeration portlets = this.getPortlets();
+        Enumeration<Portlet> portlets = this.getPortlets();
         while (portlets.hasMoreElements())
         {
             Portlet p = (Portlet) portlets.nextElement();

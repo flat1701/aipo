@@ -26,10 +26,10 @@ import java.util.Iterator;
  * Bean like implementation of a multi-object registry usable
  * by Castor XML serialization
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: RegistryFragment.java,v 1.10 2004/02/23 03:31:50 jford Exp $
  */
-public class RegistryFragment extends Hashtable implements java.io.Serializable
+public class RegistryFragment extends Hashtable<Object, Object> implements java.io.Serializable
 {
 
     /** this flag is used to mark this fragment has some changes that are
@@ -81,12 +81,13 @@ public class RegistryFragment extends Hashtable implements java.io.Serializable
      *
      *  @param name a valid Registry name.
      */
-    public Vector getEntries(String name)
+    public Vector<RegistryEntry> getEntries(String name)
     {
 
         if (name != null)
         {
-            Vector registry = (Vector)get(name);
+            @SuppressWarnings("unchecked")
+            Vector<RegistryEntry> registry = (Vector<RegistryEntry>)get(name);
 
             if (registry != null)
             {
@@ -94,7 +95,7 @@ public class RegistryFragment extends Hashtable implements java.io.Serializable
             }
         }
 
-        return new Vector();
+        return new Vector<RegistryEntry>();
     }
 
     /** Add a new entry in the fragment. It does not check for name
@@ -106,7 +107,8 @@ public class RegistryFragment extends Hashtable implements java.io.Serializable
     {
         if ( (name != null) && (entry != null) )
         {
-            Vector registry = (Vector)get(name);
+            @SuppressWarnings("unchecked")
+            Vector<RegistryEntry> registry = (Vector<RegistryEntry>)get(name);
 
             if (registry != null)
             {
@@ -123,10 +125,10 @@ public class RegistryFragment extends Hashtable implements java.io.Serializable
     {
         if ( (name != null) && (entryName != null) )
         {
-            Vector registry = (Vector)get(name);
+            Vector<?> registry = (Vector<?>)get(name);
             if (registry != null)
             {
-                Iterator i = registry.iterator();
+                Iterator<?> i = registry.iterator();
                 while(i.hasNext())
                 {
                     RegistryEntry regEntry = (RegistryEntry)i.next();
@@ -154,12 +156,12 @@ public class RegistryFragment extends Hashtable implements java.io.Serializable
 
     // Castor serialization support methods
 
-    public Vector getPortlets()
+    public Vector<?> getPortlets()
     {
-        return (Vector)get(Registry.PORTLET);
+        return (Vector<?>)get(Registry.PORTLET);
     }
 
-    public void setPortlets(Vector portlets)
+    public void setPortlets(Vector<?> portlets)
     {
         if (portlets!=null)
         {
@@ -167,12 +169,12 @@ public class RegistryFragment extends Hashtable implements java.io.Serializable
         }
     }
 
-    public Vector getControls()
+    public Vector<?> getControls()
     {
-        return (Vector)get(Registry.PORTLET_CONTROL);
+        return (Vector<?>)get(Registry.PORTLET_CONTROL);
     }
 
-    public void setControls(Vector controls)
+    public void setControls(Vector<?> controls)
     {
         if (controls!=null)
         {
@@ -180,12 +182,12 @@ public class RegistryFragment extends Hashtable implements java.io.Serializable
         }
     }
 
-    public Vector getControllers()
+    public Vector<?> getControllers()
     {
-        return (Vector)get(Registry.PORTLET_CONTROLLER);
+        return (Vector<?>)get(Registry.PORTLET_CONTROLLER);
     }
 
-    public void setControllers(Vector controllers)
+    public void setControllers(Vector<?> controllers)
     {
         if (controllers!=null)
         {
@@ -193,12 +195,12 @@ public class RegistryFragment extends Hashtable implements java.io.Serializable
         }
     }
 
-    public Vector getMedias()
+    public Vector<?> getMedias()
     {
-        return (Vector)get(Registry.MEDIA_TYPE);
+        return (Vector<?>)get(Registry.MEDIA_TYPE);
     }
 
-    public void setMedias(Vector medias)
+    public void setMedias(Vector<?> medias)
     {
         if (medias!=null)
         {
@@ -206,12 +208,12 @@ public class RegistryFragment extends Hashtable implements java.io.Serializable
         }
     }
 
-    public Vector getSkins()
+    public Vector<?> getSkins()
     {
-        return (Vector)get(Registry.SKIN);
+        return (Vector<?>)get(Registry.SKIN);
     }
 
-    public void setSkins(Vector skins)
+    public void setSkins(Vector<?> skins)
     {
         if (skins!=null)
         {
@@ -219,12 +221,12 @@ public class RegistryFragment extends Hashtable implements java.io.Serializable
         }
     }
 
-    public Vector getSecurityEntries()
+    public Vector<?> getSecurityEntries()
     {
-        return (Vector)get(Registry.SECURITY);
+        return (Vector<?>)get(Registry.SECURITY);
     }
 
-    public void setSecurityEntries(Vector securityEntries)
+    public void setSecurityEntries(Vector<?> securityEntries)
     {
         if (securityEntries!=null)
         {
@@ -232,12 +234,12 @@ public class RegistryFragment extends Hashtable implements java.io.Serializable
         }
     }
 
-    public Vector getClients()
+    public Vector<?> getClients()
     {
-        return (Vector)get(Registry.CLIENT);
+        return (Vector<?>)get(Registry.CLIENT);
     }
 
-    public void setClients(Vector clients)
+    public void setClients(Vector<?> clients)
     {
         if (clients!=null)
         {

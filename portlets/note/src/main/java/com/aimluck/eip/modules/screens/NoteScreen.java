@@ -71,10 +71,10 @@ public class NoteScreen extends ALVelocityScreen {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p1a-rows")));
+        .getInitParameter("p1a-rows").toString()));
       listData.setStrLength(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p3a-strlen")));
+        .getInitParameter("p3a-strlen").toString()));
       listData.doViewList(this, rundata, context);
       String layout_template = "portlets/html/ja/ajax-note.vm";
       setTemplate(rundata, context, layout_template);

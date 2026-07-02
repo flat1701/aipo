@@ -196,7 +196,6 @@ public class MsgboardUtils {
       } else if (category.getPublicFlag().equals("T")) {
         accessible = true;
       } else {
-        @SuppressWarnings("unchecked")
         List<EipTMsgboardCategoryMap> maps =
           category.getEipTMsgboardCategoryMaps();
         for (EipTMsgboardCategoryMap map : maps) {
@@ -1438,7 +1437,6 @@ public class MsgboardUtils {
    * 
    * @param topic
    */
-  @SuppressWarnings("unchecked")
   public static void deleteAttachmentFiles(EipTMsgboardTopic topic) {
     String orgId = Database.getDomainName();
     List<EipTMsgboardFile> files = topic.getEipTMsgboardFileArray();
@@ -1498,7 +1496,7 @@ public class MsgboardUtils {
     VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
     PortletConfig config = portlet.getPortletConfig();
     if (value == null || "".equals(value)) {
-      value = config != null ? config.getInitParameter(key) : "";
+      value = config != null ? config.getInitParameter(key).toString() : "";
     } else {
       ALEipUtils.setPsmlParameters(rundata, context, key, value);
     }

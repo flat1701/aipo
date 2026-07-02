@@ -54,7 +54,7 @@ public abstract class PortletActionEvent
   	 * Cache ActionEvent methods to avoid repeated replection
   	 * method lookups.
   	 */
-  	private static final HashMap eventMethods = new HashMap();
+  	private static final HashMap<String, Method> eventMethods = new HashMap<String, Method>();
 
     /**
      * You need to implement this in your classes that extend this
@@ -110,7 +110,7 @@ public abstract class PortletActionEvent
         String button = pp.convert(BUTTON);
 
         // Loop through and find the button.
-        for (Enumeration e = pp.keys(); e.hasMoreElements();)
+        for (Enumeration<?> e = pp.keys(); e.hasMoreElements();)
           {
 
             String key = (String) e.nextElement();
@@ -149,12 +149,12 @@ public abstract class PortletActionEvent
      * Convenience method for firing portlet events.
 	 * @author <a href="mailto:weaver@apache.org">Scott T. Weaver</a>
      */
-	protected boolean fireEvent(RunData data, Class deltaClass, Object deltaValue, String theButton)		
+	protected boolean fireEvent(RunData data, Class<?> deltaClass, Object deltaValue, String theButton)		
 	{
 		try
 		{
 			// The arguments to the method to find.
-			Class[] classes = new Class[2];
+			Class<?>[] classes = new Class[2];
 			classes[0] = RunData.class;
 			classes[1] = deltaClass;
 			

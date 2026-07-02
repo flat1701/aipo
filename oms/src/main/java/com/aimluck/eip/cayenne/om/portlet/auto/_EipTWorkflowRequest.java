@@ -113,8 +113,8 @@ public class _EipTWorkflowRequest extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTWorkflowFile(com.aimluck.eip.cayenne.om.portlet.EipTWorkflowFile obj) {
         removeToManyTarget("eipTWorkflowFile", obj, true);
     }
-    public List getEipTWorkflowFile() {
-        return (List)readProperty("eipTWorkflowFile");
+    public List<?> getEipTWorkflowFile() {
+        return (List<?>)readProperty("eipTWorkflowFile");
     }
     
     
@@ -124,8 +124,8 @@ public class _EipTWorkflowRequest extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTWorkflowRequestMap(com.aimluck.eip.cayenne.om.portlet.EipTWorkflowRequestMap obj) {
         removeToManyTarget("eipTWorkflowRequestMap", obj, true);
     }
-    public List getEipTWorkflowRequestMap() {
-        return (List)readProperty("eipTWorkflowRequestMap");
+    public List<?> getEipTWorkflowRequestMap() {
+        return (List<?>)readProperty("eipTWorkflowRequestMap");
     }
     
     

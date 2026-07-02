@@ -56,7 +56,7 @@ import javax.servlet.ServletConfig;
 /**
  * Simple implementation of the PortalFactoryService.
  * 
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:weaver@apache.org">Scott T. Weaver</a>
  * @version $Id: JetspeedPortletFactoryService.java,v 1.23 2004/02/23 03:36:42 jford Exp $
  */
@@ -159,6 +159,7 @@ public class JetspeedPortletFactoryService extends TurbineBaseService
      * @param id the PSML entry's portlet id
      * @return the Portlet created or retrieve from cache
      */
+    @SuppressWarnings("deprecation")
     protected Portlet getPortlet( String classname, PortletConfig pc, String id )
         throws PortletException
     {
@@ -167,7 +168,7 @@ public class JetspeedPortletFactoryService extends TurbineBaseService
         long begin = System.currentTimeMillis();
 
         Portlet portlet = null;
-        Class portletClass = null;
+        Class<?> portletClass = null;
         String handle = null;
         
         try
@@ -184,6 +185,7 @@ public class JetspeedPortletFactoryService extends TurbineBaseService
             try
             {
                 // try to invoke a static getHandle() for this class
+                @SuppressWarnings("rawtypes")
                 Class[] signatureParams = { Object.class };
                 Object[] methodParams = { pc };
                 handle = (String)portletClass.getMethod("getHandle",signatureParams)
@@ -352,7 +354,7 @@ public class JetspeedPortletFactoryService extends TurbineBaseService
      */
     protected PortletConfig getPortletConfig( PortletEntry portletEntry, String id)
     {
-        Map map = new HashMap();
+        Map<String, org.apache.jetspeed.om.registry.Parameter> map = new HashMap<String, org.apache.jetspeed.om.registry.Parameter>();
         map.putAll(portletEntry.getParameterMap());
         
         PortletConfig pc = new BasePortletConfig();
@@ -390,9 +392,9 @@ public class JetspeedPortletFactoryService extends TurbineBaseService
      * @return a Map containing the parameters names/values, an empty Map 
      *         is returned if there are no parameters
      */
-    protected static Map getParameters( Entry entry )
+    protected static Map<String, String> getParameters( Entry entry )
     {
-        Hashtable hash = new Hashtable();
+        Hashtable<String, String> hash = new Hashtable<String, String>();
         
         Parameter[] props = entry.getParameter();
         
@@ -513,14 +515,14 @@ public class JetspeedPortletFactoryService extends TurbineBaseService
      * the <code>entry</code>'s parent into the entry
      * @author <a href="mailto:weaver@apache.org">Scott T. Weaver</a>
      */
-    protected void addParentInitParameters(PortletEntry entry, Map hash)
+    protected void addParentInitParameters(PortletEntry entry, Map<String, org.apache.jetspeed.om.registry.Parameter> hash)
     {
         // Now map any parameters from the parent that the child does not have
         PortletEntry parent = getParentEntry(entry);
         if (parent != null)
         {
-            Map parentMap = parent.getParameterMap();
-            Iterator names = parent.getParameterNames();
+            Map<String, org.apache.jetspeed.om.registry.Parameter> parentMap = parent.getParameterMap();
+            Iterator<String> names = parent.getParameterNames();
 
             while (names.hasNext())
             {

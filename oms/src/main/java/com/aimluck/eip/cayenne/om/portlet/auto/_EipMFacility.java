@@ -75,8 +75,8 @@ public class _EipMFacility extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipFacilityGroupArray(com.aimluck.eip.cayenne.om.portlet.EipFacilityGroup obj) {
         removeToManyTarget("eipFacilityGroupArray", obj, true);
     }
-    public List getEipFacilityGroupArray() {
-        return (List)readProperty("eipFacilityGroupArray");
+    public List<?> getEipFacilityGroupArray() {
+        return (List<?>)readProperty("eipFacilityGroupArray");
     }
     
     
@@ -86,8 +86,8 @@ public class _EipMFacility extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipMFacilityFacilityId(com.aimluck.eip.cayenne.om.portlet.EipMFacilityGroupMap obj) {
         removeToManyTarget("eipMFacilityFacilityId", obj, true);
     }
-    public List getEipMFacilityFacilityId() {
-        return (List)readProperty("eipMFacilityFacilityId");
+    public List<?> getEipMFacilityFacilityId() {
+        return (List<?>)readProperty("eipMFacilityFacilityId");
     }
     
     
@@ -97,8 +97,8 @@ public class _EipMFacility extends org.apache.cayenne.CayenneDataObject {
     public void removeFromFromEipMFacility(com.aimluck.eip.cayenne.om.portlet.EipMFacilityGroupMap obj) {
         removeToManyTarget("fromEipMFacility", obj, true);
     }
-    public List getFromEipMFacility() {
-        return (List)readProperty("fromEipMFacility");
+    public List<?> getFromEipMFacility() {
+        return (List<?>)readProperty("fromEipMFacility");
     }
     
     

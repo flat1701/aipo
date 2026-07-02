@@ -29,7 +29,7 @@ import java.util.Enumeration;
  * interface suitable for Castor XML serialization
  *
  * @see org.apache.jetspeed.om.registry.PortletInfoEntry
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: BasePortletInfoEntry.java,v 1.9 2004/03/29 19:28:24 jford Exp $
  */
 public abstract class BasePortletInfoEntry extends BaseRegistryEntry
@@ -37,17 +37,17 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
 
     protected String classname;
 
-    protected Vector parameter = new Vector();
+    protected Vector<Object> parameter = new Vector<Object>();
 
-    protected transient Map nameIdx = null;
+    protected transient Map<String, Integer> nameIdx = null;
 
-    protected Vector medias = new Vector();
+    protected Vector<Object> medias = new Vector<Object>();
 
-    protected transient Map mediasIdx = null;
+    protected transient Map<String, Integer> mediasIdx = null;
 
-    protected Vector tools = new Vector();
+    protected Vector<Object> tools = new Vector<Object>();
 
-    protected transient Map toolsIdx = null;
+    protected transient Map<String, Integer> toolsIdx = null;
 
     /**
      * Implements the equals operation so that 2 elements are equal if
@@ -77,8 +77,8 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
             }
         }
 
-        Iterator i = parameter.iterator();
-        Iterator i2 = obj.getParameters().iterator();
+        Iterator<Object> i = parameter.iterator();
+        Iterator<Object> i2 = obj.getParameters().iterator();
         while(i.hasNext())
         {
             BaseParameter p1 = (BaseParameter)i.next();
@@ -179,7 +179,7 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
     }
 
     /** @return an enumeration of this entry parameter names */
-    public Iterator getParameterNames()
+    public Iterator<String> getParameterNames()
     {
         synchronized (parameter)
         {
@@ -226,10 +226,10 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
     /** Returns a map of parameter values keyed on the parameter names
      *  @return the parameter values map
      */
-    public Map getParameterMap()
+    public Map<String, Object> getParameterMap()
     {
-        Hashtable params = new Hashtable();
-        Enumeration en = parameter.elements();
+        Hashtable<String, Object> params = new Hashtable<String, Object>();
+        Enumeration<Object> en = parameter.elements();
         while(en.hasMoreElements())
         {
             Parameter param = (Parameter)en.nextElement();
@@ -247,7 +247,7 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
      *  @param name the new parameter name
      *  @param value the new parameter value
      */
-    public void addParameter( String name, String value )
+    public void addParameter( String name, Object value )
     {
         if (name != null)
         {
@@ -261,7 +261,7 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
                 p.setName(name);
             }
 
-            p.setValue(value);
+            p.setValue(value.toString());
 
             addParameter(p);
 
@@ -276,7 +276,7 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
         synchronized (parameter)
         {
             if (parameter == null)
-                parameter = new Vector();
+                parameter = new Vector<Object>();
 
             if (nameIdx == null)
                 buildNameIndex();
@@ -297,7 +297,7 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
 
         synchronized (parameter)
         {
-            Iterator i = parameter.iterator();
+            Iterator<Object> i = parameter.iterator();
             while(i.hasNext())
             {
                 Parameter param = (Parameter)i.next();
@@ -316,7 +316,7 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
      *
      * @return an iterator on the supported media type names
      */
-    public Iterator listMediaTypes()
+    public Iterator<String> listMediaTypes()
     {
         if (mediasIdx == null)
         {
@@ -388,7 +388,7 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
                 BaseMediaType m = new BaseMediaType();
                 m.setRef(name);
 
-                Iterator i = medias.iterator();
+                Iterator<Object> i = medias.iterator();
                 while (i.hasNext())
                 {
                     if (i.next().equals(m))
@@ -406,17 +406,17 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
     /** Needed for Castor 0.8.11 XML serialization for retrieving the
      *  parameters objects associated to this object
      */
-    public Vector getParameters()
+    public Vector<Object> getParameters()
     {
         return this.parameter;
     }
 
-    public void setParameters(Vector parameters)
+    public void setParameters(Vector<Object> parameters)
     {
         this.parameter = parameters;
     }
 
-    public void setMediaTypes(Vector mediaTypes)
+    public void setMediaTypes(Vector<Object> mediaTypes)
     {
         this.medias = mediaTypes;
     }
@@ -424,17 +424,17 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
     /** Needed for Castor 0.8.11 XML serialization for retrieving the
      *  media type names associated to this object
      */
-    public Vector getMediaTypes()
+    public Vector<Object> getMediaTypes()
     {
         return this.medias;
     }
 
-    public Vector getTools()
+    public Vector<Object> getTools()
     {
         return this.tools;
     }
 
-    public void setTools(Vector tools)
+    public void setTools(Vector<Object> tools)
     {
         this.tools = tools;
     }
@@ -446,9 +446,9 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
      */
     protected void buildNameIndex()
     {
-        Hashtable idx = new Hashtable();
+        Hashtable<String, Integer> idx = new Hashtable<String, Integer>();
 
-        Iterator i = parameter.iterator();
+        Iterator<Object> i = parameter.iterator();
         int count = 0;
         while( i.hasNext() )
         {
@@ -465,9 +465,9 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
      */
     private void buildMediasIndex()
     {
-        Hashtable idx = new Hashtable();
+        Hashtable<String, Integer> idx = new Hashtable<String, Integer>();
 
-        Iterator i = medias.iterator();
+        Iterator<Object> i = medias.iterator();
         int count = 0;
         while( i.hasNext() )
         {
@@ -480,7 +480,7 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
     }
 
     /** @return an enumeration of this entry parameter names */
-    public Iterator getToolNames()
+    public Iterator<String> getToolNames()
     {
         synchronized (tools)
         {
@@ -527,10 +527,10 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
     /** Returns a map of parameter values keyed on the parameter names
      *  @return the parameter values map
      */
-    public Map getToolMap()
+    public Map<String, ToolDescriptor> getToolMap()
     {
-        Hashtable map = new Hashtable();
-        Enumeration en = tools.elements();
+        Hashtable<String, ToolDescriptor> map = new Hashtable<String, ToolDescriptor>();
+        Enumeration<Object> en = tools.elements();
         while(en.hasMoreElements())
         {
             ToolDescriptor desc = (ToolDescriptor)en.nextElement();
@@ -547,7 +547,7 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
         synchronized (tools)
         {
             if (tools == null)
-                tools = new Vector();
+                tools = new Vector<Object>();
 
             if (toolsIdx == null)
                 buildToolsIndex();
@@ -568,7 +568,7 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
 
         synchronized (tools)
         {
-            Iterator i = tools.iterator();
+            Iterator<Object> i = tools.iterator();
             while(i.hasNext())
             {
                 ToolDescriptor tool = (ToolDescriptor)i.next();
@@ -587,9 +587,9 @@ public abstract class BasePortletInfoEntry extends BaseRegistryEntry
      */
     private void buildToolsIndex()
     {
-        Hashtable idx = new Hashtable();
+        Hashtable<String, Integer> idx = new Hashtable<String, Integer>();
 
-        Iterator i = tools.iterator();
+        Iterator<Object> i = tools.iterator();
         int count = 0;
         while( i.hasNext() )
         {

@@ -136,10 +136,11 @@ public class PsmlBrowseAction extends VelocityPortletAction
             (DatabaseBrowserIterator) PortletSessionState.getAttribute(portlet, rundata, PROFILE_ITERATOR);
         if ((windowIterator == null) || refreshFlag)
         {
+            @SuppressWarnings("unused")
             int index = 0;
             QueryLocator ql = new QueryLocator(QueryLocator.QUERY_ALL);
-            ArrayList entries = new ArrayList();
-            Iterator i = Profiler.query(ql);
+            ArrayList<Profile> entries = new ArrayList<Profile>();
+            Iterator<?> i = Profiler.query(ql);
 
             // Is filtering requested?
             String filterValue = rundata.getParameters().getString(FILTER_VALUE);
@@ -210,7 +211,7 @@ public class PsmlBrowseAction extends VelocityPortletAction
                 }
             }
 
-            ArrayList entryType = new ArrayList();
+            ArrayList<String> entryType = new ArrayList<String>();
             entryType.add("Profile");
             windowIterator = new DatabaseBrowserIterator(entries, entryType, entryType, size);
             PortletSessionState.setAttribute(portlet, rundata, PROFILE_ITERATOR, windowIterator);

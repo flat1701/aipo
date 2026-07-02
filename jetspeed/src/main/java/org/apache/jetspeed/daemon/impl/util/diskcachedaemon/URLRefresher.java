@@ -68,7 +68,7 @@ public class URLRefresher implements Runnable {
 
         // create a Runnable for updating this Portlet in the cache.
 
-        Enumeration enu = Registry.get(Registry.PORTLET).getEntries();
+        Enumeration<?> enu = Registry.get(Registry.PORTLET).getEntries();
 
         while (enu.hasMoreElements()) {
           PortletEntry entry = (PortletEntry) enu.nextElement();

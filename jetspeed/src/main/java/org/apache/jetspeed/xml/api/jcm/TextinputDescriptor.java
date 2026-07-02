@@ -11,14 +11,8 @@ package org.apache.jetspeed.xml.api.jcm;
  //- Imported classes and packages -/
 //---------------------------------/
 
-import org.exolab.castor.mapping.AccessMode;
-import org.exolab.castor.mapping.ClassDescriptor;
-import org.exolab.castor.mapping.FieldDescriptor;
 import org.exolab.castor.xml.*;
 import org.exolab.castor.xml.FieldValidator;
-import org.exolab.castor.xml.TypeValidator;
-import org.exolab.castor.xml.XMLFieldDescriptor;
-import org.exolab.castor.xml.handlers.*;
 import org.exolab.castor.xml.util.XMLFieldDescriptorImpl;
 import org.exolab.castor.xml.validators.*;
 
@@ -243,6 +237,7 @@ public class TextinputDescriptor extends org.exolab.castor.xml.util.XMLClassDesc
 
     /**
     **/
+    @SuppressWarnings("rawtypes")
     public java.lang.Class getJavaClass()
     {
         return org.apache.jetspeed.xml.api.jcm.Textinput.class;

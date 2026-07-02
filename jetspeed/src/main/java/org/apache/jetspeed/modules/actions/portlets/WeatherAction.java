@@ -18,7 +18,6 @@ package org.apache.jetspeed.modules.actions.portlets;
 
 // Jetspeed stuff
 import org.apache.jetspeed.portal.portlets.VelocityPortlet;
-import org.apache.jetspeed.modules.actions.portlets.VelocityPortletAction;
 import org.apache.jetspeed.util.PortletConfigState;
 
 // Turbine stuff
@@ -80,9 +79,9 @@ public class WeatherAction extends VelocityPortletAction
         String cityInfo = PortletConfigState.getParameter(portlet, rundata, WEATHER_CITY_INFO, null);
         //if (cityInfo == null)
         //{
-            String city = portlet.getPortletConfig().getInitParameter(WEATHER_CITY);
-            String state = portlet.getPortletConfig().getInitParameter(WEATHER_STATE);
-            String station = portlet.getPortletConfig().getInitParameter(WEATHER_STATION);
+            String city = portlet.getPortletConfig().getInitParameter(WEATHER_CITY).toString();
+            String state = portlet.getPortletConfig().getInitParameter(WEATHER_STATE).toString();
+            String station = portlet.getPortletConfig().getInitParameter(WEATHER_STATION).toString();
             cityInfo = getCityInfo(city, state, station);            
         //}
         context.put(WEATHER_CITY_INFO, cityInfo);

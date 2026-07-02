@@ -109,8 +109,8 @@ public class _Activity extends org.apache.cayenne.CayenneDataObject {
     public void removeFromActivityMaps(com.aimluck.eip.cayenne.om.social.ActivityMap obj) {
         removeToManyTarget("activityMaps", obj, true);
     }
-    public List getActivityMaps() {
-        return (List)readProperty("activityMaps");
+    public List<?> getActivityMaps() {
+        return (List<?>)readProperty("activityMaps");
     }
     
     

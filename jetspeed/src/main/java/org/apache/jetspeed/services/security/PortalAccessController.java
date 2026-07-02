@@ -20,8 +20,6 @@ package org.apache.jetspeed.services.security;
 import org.apache.jetspeed.om.security.JetspeedUser;
 import org.apache.jetspeed.om.profile.Entry;
 import org.apache.jetspeed.portal.Portlet;
-import org.apache.jetspeed.services.security.PortalResource;
-
 // Turbine imports
 import org.apache.turbine.services.Service;
 

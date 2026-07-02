@@ -60,7 +60,7 @@ public class JavaRuntimePortlet extends AbstractPortlet {
       // get the system properties (It can throw a SecurityException)
       Properties props = System.getProperties();
 
-      Enumeration enu = props.propertyNames();
+      Enumeration<?> enu = props.propertyNames();
       while (enu.hasMoreElements()) {
         Object key = enu.nextElement();
         if (!(key instanceof String)) {

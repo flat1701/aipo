@@ -25,8 +25,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.jetspeed.cache.FileCacheEntry;
-import org.apache.jetspeed.cache.FileCacheEventListener;
 import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
 import org.apache.jetspeed.services.logging.JetspeedLogger;
 
@@ -40,16 +38,17 @@ import org.apache.jetspeed.services.logging.JetspeedLogger;
  * @version $Id: FileCache.java,v 1.5 2004/03/25 16:27:41 jford Exp $
  */
 
+@SuppressWarnings("rawtypes")
 public class FileCache implements java.util.Comparator {
   protected long scanRate = 300; // every 5 minutes
 
   protected int maxSize = 100; // maximum of 100 items
 
-  protected List listeners = new LinkedList();
+  protected List<FileCacheEventListener> listeners = new LinkedList<FileCacheEventListener>();
 
   private FileCacheScanner scanner = null;
 
-  private Map cache = null;
+  private Map<String, FileCacheEntry> cache = null;
 
   /**
    * Static initialization of the logger for this class
@@ -62,7 +61,7 @@ public class FileCache implements java.util.Comparator {
    * 
    */
   public FileCache() {
-    cache = new HashMap();
+    cache = new HashMap<String, FileCacheEntry>();
     this.scanner = new FileCacheScanner();
     this.scanner.setDaemon(true);
   }
@@ -76,7 +75,7 @@ public class FileCache implements java.util.Comparator {
    *            the maximum allowed size of the cache before eviction starts
    */
   public FileCache(long scanRate, int maxSize) {
-    cache = new HashMap();
+    cache = new HashMap<String, FileCacheEntry>();
 
     this.scanRate = scanRate;
     this.maxSize = maxSize;
@@ -98,7 +97,7 @@ public class FileCache implements java.util.Comparator {
    */
   public FileCache(int initialCapacity, int loadFactor, long scanRate,
       int maxSize) {
-    cache = new HashMap(initialCapacity, loadFactor);
+    cache = new HashMap<String, FileCacheEntry>(initialCapacity, loadFactor);
 
     this.scanRate = scanRate;
     this.maxSize = maxSize;
@@ -243,19 +242,20 @@ public class FileCache implements java.util.Comparator {
    * Evicts entries based on last accessed time stamp
    * 
    */
+  @SuppressWarnings("unchecked")
   protected void evict() {
     synchronized (cache) {
       if (this.getMaxSize() >= cache.size()) {
         return;
       }
 
-      List list = new LinkedList(cache.values());
+      List<FileCacheEntry> list = new LinkedList<FileCacheEntry>(cache.values());
       Collections.sort(list, this);
 
       int count = 0;
       int limit = cache.size() - this.getMaxSize();
 
-      for (Iterator it = list.iterator(); it.hasNext();) {
+      for (Iterator<FileCacheEntry> it = list.iterator(); it.hasNext();) {
         if (count >= limit) {
           break;
         }
@@ -268,7 +268,7 @@ public class FileCache implements java.util.Comparator {
           logger.error("Exception getting file path: ", e);
         }
         // notify that eviction will soon take place
-        for (Iterator lit = this.listeners.iterator(); lit.hasNext();) {
+        for (Iterator<FileCacheEventListener> lit = this.listeners.iterator(); lit.hasNext();) {
           FileCacheEventListener listener = (FileCacheEventListener) lit.next();
           listener.evict(entry);
         }
@@ -318,13 +318,13 @@ public class FileCache implements java.util.Comparator {
           try {
             int count = 0;
             synchronized (FileCache.this) {
-              for (Iterator it = FileCache.this.cache.values().iterator(); it
+              for (Iterator<FileCacheEntry> it = FileCache.this.cache.values().iterator(); it
                   .hasNext();) {
                 FileCacheEntry entry = (FileCacheEntry) it.next();
                 Date modified = new Date(entry.getFile().lastModified());
 
                 if (modified.after(entry.getLastModified())) {
-                  for (Iterator lit = FileCache.this.listeners.iterator(); lit
+                  for (Iterator<FileCacheEventListener> lit = FileCache.this.listeners.iterator(); lit
                       .hasNext();) {
                     FileCacheEventListener listener = (FileCacheEventListener) lit
                         .next();
@@ -360,8 +360,8 @@ public class FileCache implements java.util.Comparator {
    * 
    * @return iterator over the cache values
    */
-  public Iterator getIterator() {
-    Map tmp = new HashMap();
+  public Iterator<FileCacheEntry> getIterator() {
+    Map<String, FileCacheEntry> tmp = new HashMap<String, FileCacheEntry>();
     tmp.putAll(cache);
     return tmp.values().iterator();
   }

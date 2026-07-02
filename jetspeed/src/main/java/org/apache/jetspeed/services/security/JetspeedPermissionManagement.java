@@ -62,7 +62,7 @@ public abstract class JetspeedPermissionManagement
      * @exception PermissionException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege 
      */
-    public static Iterator getPermissions(String rolename)
+    public static Iterator<Permission> getPermissions(String rolename)
         throws JetspeedSecurityException
     {
         return getService().getPermissions(rolename);
@@ -78,7 +78,7 @@ public abstract class JetspeedPermissionManagement
      * @exception PermissionException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege 
      */
-    public static Iterator getPermissions()
+    public static Iterator<?> getPermissions()
         throws JetspeedSecurityException
     {
         return getService().getPermissions();

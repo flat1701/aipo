@@ -42,9 +42,10 @@ It uses SAX-1 API and outputs text to an
 output stream.
 WARNING: This behavior will be modified in the future.
 
-@author <A HREF="mailto:raphael@apache.org">Raphaël Luta</A>
+@author <A HREF="mailto:raphael@apache.org">Raphaï¿½l Luta</A>
 @version $Id: SAXPIFilter.java,v 1.8 2004/02/23 03:23:42 jford Exp $
 */
+@SuppressWarnings("deprecation")
 public class SAXPIFilter extends HandlerBase 
 {
     /**
@@ -60,7 +61,7 @@ public class SAXPIFilter extends HandlerBase
 
     private boolean stripExistingPI;
 
-    private Vector pis = new Vector();
+    private Vector<String> pis = new Vector<>();
     
     /**
     Creates of simple parser which outputs its document to the PrintWriter passed

@@ -119,7 +119,7 @@ public class BaseClientRegistry extends BaseOrderedRegistry implements
   @Override
   public ClientEntry findEntry(String useragent) {
     ClientEntry clientEntry = null;
-    Enumeration clients = getEntries();
+    Enumeration<RegistryEntry> clients = getEntries();
 
     if (logger.isDebugEnabled()) {
       logger.debug("ClientRegistry: Looking for client with useragent :"

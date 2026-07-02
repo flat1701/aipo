@@ -25,7 +25,6 @@ import java.util.Iterator;
 import org.apache.jetspeed.om.SecurityReference;
 import org.apache.jetspeed.om.profile.*;
 import org.apache.jetspeed.services.PortalToolkit;
-import org.apache.jetspeed.om.profile.Portlets;
 
 
 /**
@@ -91,22 +90,22 @@ public class PsmlReference extends PsmlPortlets implements Reference, java.io.Se
         return ref.getSecurity();
     }
 
-    public Vector getEntries()
+    public Vector<Entry> getEntries()
     {
         return ref.getEntries();
     }
 
-    public void setEntries(Vector entries)
+    public void setEntries(Vector<Entry> entries)
     {
         ref.setEntries(entries);
     }
 
-    public Vector getPortlets()
+    public Vector<Portlets> getPortlets()
     {
         return ref.getPortlets();
     }
 
-    public void setPortlets(Vector portlets)
+    public void setPortlets(Vector<Portlets> portlets)
     {
         ref.setPortlets(portlets);
     }
@@ -144,12 +143,13 @@ public class PsmlReference extends PsmlPortlets implements Reference, java.io.Se
     } 
 
 
-    public Iterator getEntriesIterator()
+    public Iterator<Entry> getEntriesIterator()
     {
         return ref.getEntriesIterator();
     }
 
-    public Iterator getPortletsIterator()
+    @Override
+    public Iterator<Portlets> getPortletsIterator()
     {
         return ref.getPortletsIterator();
     }
@@ -244,7 +244,7 @@ public class PsmlReference extends PsmlPortlets implements Reference, java.io.Se
     /////////////////////////////////////////////////////////////////////////
 
    /** @return the parameters */
-    public Vector getParameters()
+    public Vector<Parameter> getParameters()
     {
         return ref.getParameters();
     }
@@ -252,7 +252,7 @@ public class PsmlReference extends PsmlPortlets implements Reference, java.io.Se
     /** Sets the parameters for this element
      * @param parameters 
      */
-    public void setParameters(Vector parameters)
+    public void setParameters(Vector<Parameter> parameters)
     {
         ref.setParameters(parameters);
     }
@@ -267,7 +267,7 @@ public class PsmlReference extends PsmlPortlets implements Reference, java.io.Se
         return ref.getParameter(name);
     }
 
-    public Iterator getParameterIterator()
+    public Iterator<Parameter> getParameterIterator()
     {
         return ref.getParameterIterator();
     }
@@ -326,7 +326,7 @@ public class PsmlReference extends PsmlPortlets implements Reference, java.io.Se
         return ref.removeReference(index);
     }
 
-    public Iterator getReferenceIterator()
+    public Iterator<Reference> getReferenceIterator()
     {
         return ref.getReferenceIterator();
     }
@@ -361,13 +361,13 @@ public class PsmlReference extends PsmlPortlets implements Reference, java.io.Se
     /**
      * Create a clone of this object
      */
-    public Object clone()
+    public PsmlReference clone()
         throws java.lang.CloneNotSupportedException
     {
-        Object cloned = super.clone();
+      PsmlReference cloned = (PsmlReference) super.clone();
 
-        ((PsmlReference)cloned).ref = ((this.ref == null) ? null : (PsmlPortlets) this.ref.clone());
-        ((PsmlReference)cloned).securityRef = ((this.securityRef == null) ? null : (SecurityReference) this.securityRef.clone());
+      cloned.ref = ((this.ref == null) ? null : (PsmlPortlets) this.ref.clone());
+      cloned.securityRef = ((this.securityRef == null) ? null : (SecurityReference) this.securityRef.clone());
 
         return cloned;
 

@@ -16,9 +16,6 @@
 
 package org.apache.jetspeed.services.psmlmanager;
 
-//Jetspeed stuff
-import org.apache.jetspeed.om.profile.ProfileLocator;
-import org.apache.jetspeed.om.profile.QueryLocator;
 import org.apache.jetspeed.util.FileCopy;
 import org.apache.jetspeed.util.DirectoryUtils;
 import org.apache.jetspeed.services.Profiler;
@@ -26,9 +23,8 @@ import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
 import org.apache.jetspeed.services.logging.JetspeedLogger;
 import org.apache.jetspeed.services.JetspeedSecurity;
 import org.apache.jetspeed.services.resources.JetspeedResources;
-
+//Jetspeed stuff
 //Castor defined API
-import org.apache.jetspeed.om.profile.Portlets;
 import org.apache.jetspeed.om.profile.*;
 
 //turbine stuff
@@ -87,7 +83,7 @@ import org.apache.jetspeed.cache.FileCacheEntry;
 /**
  * This service is responsible for loading and saving PSML documents.
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:taylor@apache.org">David Sean Taylor</a>
  * @author <a href="mailto:sgala@apache.org">Santiago Gala</a>
  * @version $Id: CastorPsmlManagerService.java,v 1.44 2004/03/31 00:23:02 jford Exp $
@@ -746,11 +742,12 @@ public class CastorPsmlManagerService extends TurbineBaseService
      *
      * @param locator The ordered list of profile locators.
      */
-    public PSMLDocument getDocument( List locators )
+    @Override
+    public PSMLDocument getDocument( List<?> locators )
     {
         PSMLDocument doc=null;
 
-        Iterator i = locators.iterator();
+        Iterator<?> i = locators.iterator();
         while ((doc==null)&&(i.hasNext()))
         {
             doc=getDocument((ProfileLocator)i.next());
@@ -827,7 +824,7 @@ public class CastorPsmlManagerService extends TurbineBaseService
         synchronized (documents)
         {
             DirectoryUtils.rmdir(name);
-            Iterator it = documents.getIterator();
+            Iterator<?> it = documents.getIterator();
             while (it.hasNext())
             {
                 FileCacheEntry entry = (FileCacheEntry)it.next();
@@ -886,7 +883,7 @@ public class CastorPsmlManagerService extends TurbineBaseService
         synchronized (documents)
         {
             DirectoryUtils.rmdir(name);
-            Iterator it = documents.getIterator();
+            Iterator<?> it = documents.getIterator();
             while (it.hasNext())
             {
                 FileCacheEntry entry = (FileCacheEntry)it.next();
@@ -944,7 +941,7 @@ public class CastorPsmlManagerService extends TurbineBaseService
         synchronized (documents)
         {
             DirectoryUtils.rmdir(name);
-            Iterator it = documents.getIterator();
+            Iterator<?> it = documents.getIterator();
             while (it.hasNext())
             {
                 FileCacheEntry entry = (FileCacheEntry)it.next();
@@ -1066,9 +1063,9 @@ public class CastorPsmlManagerService extends TurbineBaseService
      *
      * @param locator The profile locator criteria.
      */
-    public Iterator query( QueryLocator locator )
+    public Iterator<Profile> query( QueryLocator locator )
     {
-        List list = new LinkedList();
+        List<Profile> list = new LinkedList<Profile>();
 
         Role role = locator.getRole();
         Group group = locator.getGroup();
@@ -1212,7 +1209,7 @@ public class CastorPsmlManagerService extends TurbineBaseService
     public int export(PsmlManagerService consumer, QueryLocator locator)
     {
         importFlag = true;
-        Iterator profiles = null;
+        Iterator<Profile> profiles = null;
         int count = 0;
         try
         {
@@ -1433,7 +1430,7 @@ public class CastorPsmlManagerService extends TurbineBaseService
         QueryState( int queryBy,
                     Profile profile,
                     ProfileLocator locator,
-                    List list,
+                    List<Profile> list,
                     String name,
                     int state)
         {
@@ -1448,7 +1445,7 @@ public class CastorPsmlManagerService extends TurbineBaseService
         protected int queryBy;
         protected Profile profile;
         protected ProfileLocator locator;
-        protected List list;
+        protected List<Profile> list;
         protected String name;
         protected int state;
 
@@ -1464,18 +1461,18 @@ public class CastorPsmlManagerService extends TurbineBaseService
         try
         {
             QueryLocator locator = new QueryLocator( QueryLocator.QUERY_USER );
-            Iterator x1 = query( locator );
+            Iterator<Profile> x1 = query( locator );
             dump( x1 );
 
             QueryLocator locator2 = new QueryLocator( QueryLocator.QUERY_USER );
             locator2.setUser( JetspeedSecurity.getUser("turbine") );
-            Iterator x2 = query( locator2 );
+            Iterator<Profile> x2 = query( locator2 );
             dump( x2 );
 
 
             QueryLocator locator4 = new QueryLocator( QueryLocator.QUERY_GROUP );
 //            locator4.setGroup( JetspeedSecurity.getGroup("apache") );
-            Iterator x4 = query( locator4 );
+            Iterator<Profile> x4 = query( locator4 );
             dump( x4 );
           }
         catch (Exception e)
@@ -1484,7 +1481,7 @@ public class CastorPsmlManagerService extends TurbineBaseService
         }
     }
 
-    protected void dump( Iterator it )
+    protected void dump( Iterator<Profile> it )
     {
         System.out.println("===============================================");
         while (it.hasNext() )

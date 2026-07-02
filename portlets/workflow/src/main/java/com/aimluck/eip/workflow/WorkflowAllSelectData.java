@@ -142,7 +142,7 @@ public class WorkflowAllSelectData extends
       if (filter == null) {
         VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
         String categoryId =
-          portlet.getPortletConfig().getInitParameter("p3a-category");
+          portlet.getPortletConfig().getInitParameter("p3a-category").toString();
         if (categoryId != null) {
           ALEipUtils.setTemp(rundata, context, LIST_FILTER_STR, categoryId);
           ALEipUtils

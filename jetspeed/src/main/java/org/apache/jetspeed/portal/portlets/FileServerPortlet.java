@@ -41,6 +41,7 @@ public class FileServerPortlet extends FileWatchPortlet {
         // first make sure we propagate init
         super.init();
         
+        @SuppressWarnings("unused")
         PortletConfig config = this.getPortletConfig();
         
         //fetch the URL as a String...

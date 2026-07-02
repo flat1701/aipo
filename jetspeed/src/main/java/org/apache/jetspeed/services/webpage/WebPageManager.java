@@ -111,7 +111,7 @@ public class WebPageManager
     /**
      * @see WebPageService#getSessions
      */
-    public static Collection getSessions()
+    public static Collection<?> getSessions()
     {
         return getService().getSessions();
     }
@@ -127,7 +127,7 @@ public class WebPageManager
     /**
      * @see WebPageService#getNetworkElements
      */
-    public static Collection getSites()
+    public static Collection<?> getSites()
     {
         return getService().getSites();
     }

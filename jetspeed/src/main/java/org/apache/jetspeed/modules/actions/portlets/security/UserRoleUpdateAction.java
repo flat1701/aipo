@@ -100,10 +100,12 @@ public class UserRoleUpdateAction extends SecureVelocityPortletAction
     {
         try
         {
+            @SuppressWarnings("unused")
             Role role = null;
             /*
              * Grab the mode for the user form.
              */
+            @SuppressWarnings("unused")
             String mode = rundata.getParameters().getString(SecurityConstants.PARAM_MODE);
 
             //
@@ -173,8 +175,8 @@ public class UserRoleUpdateAction extends SecureVelocityPortletAction
 
         try
         {
-            List roles = (List)rundata.getUser().getTemp(SecurityConstants.CONTEXT_ROLES);
-            List selected = (List)rundata.getUser().getTemp(SecurityConstants.CONTEXT_SELECTED);
+            List<?> roles = (List<?>)rundata.getUser().getTemp(SecurityConstants.CONTEXT_ROLES);
+            List<?> selected = (List<?>)rundata.getUser().getTemp(SecurityConstants.CONTEXT_SELECTED);
 
             if (roles == null || selected == null)
             {
@@ -344,9 +346,9 @@ public class UserRoleUpdateAction extends SecureVelocityPortletAction
             return;
         }
         // get master list of roles
-        Iterator roles = JetspeedSecurity.getRoles();
-        Vector masterRoles = new Vector();
-        Vector selected = new Vector();
+        Iterator<?> roles = JetspeedSecurity.getRoles();
+        Vector<Role> masterRoles = new Vector<Role>();
+        Vector<Boolean> selected = new Vector<Boolean>();
         int ix = 0;
         boolean sel = false;
         selected.add(ix, new Boolean(sel));

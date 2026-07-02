@@ -76,8 +76,8 @@ public class XSLViewProcessor implements ViewProcessor
     public static final String ERROR_NOT_VALID = "This does not appear to be an XML document";
     public static final String INVALID_TYPE = "Unable to display for this browser";
     protected Document document = null;
-    protected Hashtable stylesheets = null;
-    private Hashtable params = null;
+    protected Hashtable<String, Object> stylesheets = null;
+    private Hashtable<String, Object> params = null;
 
     /**
      * This method loads the init parameters and
@@ -94,10 +94,10 @@ public class XSLViewProcessor implements ViewProcessor
         String url = null;
 
         // load stylesheets available
-        stylesheets = new Hashtable();
-        params = new Hashtable();
+        stylesheets = new Hashtable<String, Object>();
+        params = new Hashtable<String, Object>();
 
-        Iterator i = portlet.getPortletConfig().getInitParameterNames();
+        Iterator<?> i = portlet.getPortletConfig().getInitParameterNames();
 
         while (i.hasNext())
         {
@@ -136,6 +136,7 @@ public class XSLViewProcessor implements ViewProcessor
             url = portlet.getPortletConfig().getURL();
 
             String content = JetspeedDiskCache.getInstance().getEntry(url).getData();
+            @SuppressWarnings("unused")
             CapabilityMap xmap = CapabilityMapFactory.getCapabilityMap(CapabilityMapFactory.AGENT_XML);
 
             // no cache yet // portlet.setContent( new JetspeedClearElement(content), xmap );
@@ -214,7 +215,7 @@ public class XSLViewProcessor implements ViewProcessor
     public boolean supportsType(MimeType mimeType)
     {
 
-        Enumeration en = stylesheets.keys();
+        Enumeration<String> en = stylesheets.keys();
 
         while (en.hasMoreElements())
         {

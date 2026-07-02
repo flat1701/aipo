@@ -282,10 +282,10 @@ public class CellBlogAction extends BlogAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p3a-strlen")));
+      context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "blog-entry-list-user");
   }
@@ -307,10 +307,10 @@ public class CellBlogAction extends BlogAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p3a-strlen")));
+      context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "blog-entry-list");
   }
@@ -576,10 +576,10 @@ public class CellBlogAction extends BlogAction {
     // 最大表示件数（通常時）
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1c-rows")));
+      .getInitParameter("p1c-rows").toString()));
     listData.setStrLength(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p4a-strlen")));
+      .getInitParameter("p4a-strlen").toString()));
 
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "blog-thema-list");

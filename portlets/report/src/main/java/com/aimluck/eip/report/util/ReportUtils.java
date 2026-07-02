@@ -147,6 +147,7 @@ public class ReportUtils {
         throw new ALPageNotFoundException();
       }
 
+      @SuppressWarnings("unused")
       int userid = ALEipUtils.getUserId(rundata);
 
       SelectQuery<EipTReport> query = Database.query(EipTReport.class);

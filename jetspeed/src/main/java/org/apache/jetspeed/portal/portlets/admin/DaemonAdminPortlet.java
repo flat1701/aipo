@@ -203,6 +203,7 @@ public class DaemonAdminPortlet extends AbstractPortlet
     /**
     @author <a href="mailto:burton@apache.org">Kevin A. Burton</a>
     */
+    @SuppressWarnings("unused")
     private ConcreteElement getFeedCount() {
 
         return new P().addElement( new B( "Current number of feeds:  ") )
@@ -222,6 +223,7 @@ public class DaemonAdminPortlet extends AbstractPortlet
         Form form = new Form();
 
         ParameterParser params = rundata.getParameters();
+        @SuppressWarnings("rawtypes")
         Enumeration keys = params.keys();
         while( keys.hasMoreElements() ) {
             String key = (String)keys.nextElement();

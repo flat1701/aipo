@@ -21,7 +21,7 @@ import java.util.Vector;
 
 // Jetspeed imports
 import org.apache.jetspeed.om.SecurityReference;
-import org.apache.jetspeed.om.registry.MetaInfo;
+import org.apache.jetspeed.om.registry.base.BaseSecurityAccess;
 
 /**
  * Interface for manipulatin the security entries on the registry entries
@@ -38,12 +38,12 @@ public interface SecurityEntry {
     /** Getter for property accesses.
      * @return Value of property accesses.
      */
-    public Vector getAccesses();
+    public Vector<BaseSecurityAccess> getAccesses();
     
     /** Setter for property accesses.
      * @param accesses New value of property accesses.
      */
-    public void setAccesses(Vector accesses);
+    public void setAccesses(Vector<BaseSecurityAccess> accesses);
     
     /** Getter for property name.
      * @return Value of property name.

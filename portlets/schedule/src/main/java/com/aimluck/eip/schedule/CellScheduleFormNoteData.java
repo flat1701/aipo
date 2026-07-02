@@ -740,7 +740,6 @@ public class CellScheduleFormNoteData extends AbstractCellScheduleFormData {
    * @throws ALPageNotFoundException
    * @throws ALDBErrorException
    */
-  @SuppressWarnings("unchecked")
   @Override
   protected boolean updateFormData(RunData rundata, Context context,
       List<String> msgList) throws ALPageNotFoundException, ALDBErrorException {

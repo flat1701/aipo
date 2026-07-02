@@ -57,6 +57,7 @@ public class MsgboardTopicScreen extends ALVelocityScreen {
    * @param context
    * @throws Exception
    */
+  @SuppressWarnings("deprecation")
   @Override
   protected void doOutput(RunData rundata, Context context) throws Exception {
 
@@ -82,10 +83,10 @@ public class MsgboardTopicScreen extends ALVelocityScreen {
       listData.loadCategoryList(rundata, context);
       listData.setRowsNum(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p1a-rows")));
+        .getInitParameter("p1a-rows").toString()));
       listData.setTableColumNum(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p1e-rows")));
+        .getInitParameter("p1e-rows").toString()));
       listData.doViewList(this, rundata, context);
 
       String layout_template = "portlets/html/ja/ajax-msgboard-topic.vm";

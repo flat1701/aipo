@@ -46,6 +46,7 @@ public class ChangePassword extends Action
      */    
     private static final JetspeedLogger logger = JetspeedLogFactoryService.getLogger(ChangePassword.class.getName());
     
+    @SuppressWarnings("deprecation")
     public void doPerform(RunData rundata) throws Exception
     {
 

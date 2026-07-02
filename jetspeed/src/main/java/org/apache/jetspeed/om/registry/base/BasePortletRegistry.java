@@ -45,7 +45,7 @@ import java.util.Iterator;
 public class BasePortletRegistry extends BaseRegistry implements PortletRegistry
 {
 
-    private Map catMap = new TreeMap();
+    private Map<String, HashMap<String, PortletEntry>> catMap = new TreeMap<String, HashMap<String, PortletEntry>>();
 
     /**
      * Static initialization of the logger for this class
@@ -118,15 +118,15 @@ public class BasePortletRegistry extends BaseRegistry implements PortletRegistry
         synchronized (catMap)
         {
             int count = 0;
-            Iterator it = ((PortletEntry)entry).listCategories();
+            Iterator<?> it = ((PortletEntry)entry).listCategories();
             while (it.hasNext())
             {
                 Category category = (Category)it.next();
                 String key = getCategoryKey(category);
-                HashMap bucket = (HashMap)this.catMap.get(key);
+                HashMap<String, PortletEntry> bucket = (HashMap<String, PortletEntry>)this.catMap.get(key);
                 if (null == bucket)
                 {
-                    bucket = new HashMap();
+                    bucket = new HashMap<String, PortletEntry>();
                     bucket.put(entry.getName(), entry);
                     this.catMap.put(key, bucket);
                 }
@@ -149,10 +149,10 @@ public class BasePortletRegistry extends BaseRegistry implements PortletRegistry
                 else
                     key.append(PortletEntry.DEFAULT_CATEGORY_REF);
 
-                HashMap bucket = (HashMap)this.catMap.get(key.toString());
+                HashMap<String, PortletEntry> bucket = (HashMap<String, PortletEntry>)this.catMap.get(key.toString());
                 if (null == bucket)
                 {
-                    bucket = new HashMap();
+                    bucket = new HashMap<String, PortletEntry>();
                     bucket.put(entry.getName(), entry);
                     this.catMap.put(key.toString(), bucket);
                 }
@@ -190,7 +190,7 @@ public class BasePortletRegistry extends BaseRegistry implements PortletRegistry
      * @param category The category and optional subcategories.
      * @return Iterator The result as an iterator.
      */
-    public Iterator findPortletsByCategory(String category)
+    public Iterator<PortletEntry> findPortletsByCategory(String category)
     {
     	String key;
 
@@ -203,7 +203,7 @@ public class BasePortletRegistry extends BaseRegistry implements PortletRegistry
             key = PortletEntry.DEFAULT_GROUP + "." + category;
 		}
 
-        CategoryIterator iterator = new CategoryIterator((SortedMap)catMap, key);
+        CategoryIterator iterator = new CategoryIterator((SortedMap<String, HashMap<String, PortletEntry>>)catMap, key);
 
         return iterator;
     }
@@ -215,7 +215,7 @@ public class BasePortletRegistry extends BaseRegistry implements PortletRegistry
      * @param category The category and optional subcategories.
      * @return Iterator The result as an iterator.
      */
-    public Iterator findPortletsByGroupCategory(String group, String category)
+    public Iterator<PortletEntry> findPortletsByGroupCategory(String group, String category)
     {
         if ((group == null) || group.equals(""))
         {
@@ -224,7 +224,7 @@ public class BasePortletRegistry extends BaseRegistry implements PortletRegistry
 
         String key = group + "." + category;
 
-        CategoryIterator iterator = new CategoryIterator((SortedMap)catMap, key);
+        CategoryIterator iterator = new CategoryIterator((SortedMap<String, HashMap<String, PortletEntry>>)catMap, key);
 
         return iterator;
     }
@@ -234,9 +234,9 @@ public class BasePortletRegistry extends BaseRegistry implements PortletRegistry
      *
      * @return Iterator The result as an iterator.
      */
-    public Iterator listByCategory()
+    public Iterator<PortletEntry> listByCategory()
     {
-        CategoryIterator iterator = new CategoryIterator((SortedMap)catMap, null);
+        CategoryIterator iterator = new CategoryIterator((SortedMap<String, HashMap<String, PortletEntry>>)catMap, null);
         return iterator;
     }
 
@@ -296,12 +296,13 @@ public class BasePortletRegistry extends BaseRegistry implements PortletRegistry
     {
         synchronized(catMap)
         {
+            @SuppressWarnings("unused")
             int count = 0;
-            Iterator it = ((PortletEntry)entry).listCategories();
+            Iterator<?> it = ((PortletEntry)entry).listCategories();
             while (it.hasNext())
             {
                 Category category = (Category)it.next();
-                HashMap map = (HashMap)catMap.get(getCategoryKey(category));
+                HashMap<?, ?> map = (HashMap<?, ?>)catMap.get(getCategoryKey(category));
                 if (map != null)
                 {
                     map.remove(entry.getName());

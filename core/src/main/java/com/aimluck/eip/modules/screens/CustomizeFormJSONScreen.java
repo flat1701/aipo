@@ -588,7 +588,7 @@ public class CustomizeFormJSONScreen extends ALJSONScreen {
           c.setName(controller);
           portlets.setController(c);
 
-          String linkedControl = pc.getConfig().getInitParameter("control");
+          String linkedControl = pc.getConfig().getInitParameter("control").toString();
 
           if (linkedControl != null) {
             Control ctl = new PsmlControl();

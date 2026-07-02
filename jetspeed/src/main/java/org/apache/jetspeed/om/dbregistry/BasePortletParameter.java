@@ -1,24 +1,17 @@
 package org.apache.jetspeed.om.dbregistry;
 
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.torque.TorqueException;
 import org.apache.torque.om.BaseObject;
-import org.apache.torque.om.ComboKey;
-import org.apache.torque.om.DateKey;
 import org.apache.torque.om.NumberKey;
 import org.apache.torque.om.ObjectKey;
 import org.apache.torque.om.SimpleKey;
-import org.apache.torque.om.StringKey;
-import org.apache.torque.om.Persistent;
-import org.apache.torque.util.Criteria;
 import org.apache.torque.util.Transaction;
 
   
@@ -468,16 +461,16 @@ public abstract class BasePortletParameter extends BaseObject
 
      
                 
-    private static List fieldNames = null;
+    private static List<String> fieldNames = null;
 
     /**
      * Generate a list of field names.
      */
-    public static synchronized List getFieldNames()
+    public static synchronized List<String> getFieldNames()
     {
         if (fieldNames == null)
         {
-            fieldNames = new ArrayList();
+            fieldNames = new ArrayList<String>();
               fieldNames.add("Id");
               fieldNames.add("Name");
               fieldNames.add("Value");

@@ -51,7 +51,7 @@ public class ManHourListScreen extends ManHourScreen {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1a-rows")));
+        context).getPortletConfig().getInitParameter("p1a-rows").toString()));
       if (listData.doViewList(this, rundata, context)) {
         String layout_template = "portlets/html/ja/ajax-manhour-list.vm";
         setTemplate(rundata, context, layout_template);

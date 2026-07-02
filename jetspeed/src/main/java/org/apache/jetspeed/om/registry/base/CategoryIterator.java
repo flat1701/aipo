@@ -17,6 +17,7 @@
 package org.apache.jetspeed.om.registry.base;
 
 import java.util.Iterator;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.HashMap;
 
@@ -34,14 +35,14 @@ import org.apache.jetspeed.om.registry.*;
  * @author <a href="mailto:taylor@apache.org">David Sean Taylor</a>
  * @version $Id: CategoryIterator.java,v 1.3 2004/02/23 03:08:26 jford Exp $
  */
-public class CategoryIterator implements Iterator
+public class CategoryIterator implements Iterator<PortletEntry>
 {
-    protected SortedMap map = null;
+    protected SortedMap<String, Object> map = null;
     protected String key;
-    protected Iterator mapIterator = null;
-    protected Iterator bucketIterator = null;
+    protected Iterator<Map.Entry<String, Object>> mapIterator = null;
+    protected Iterator<Map.Entry<String, PortletEntry>> bucketIterator = null;
     protected boolean iteratingMaps = true;
-    protected HashMap bucket = null;
+    protected HashMap<String, PortletEntry> bucket = null;
     protected PortletEntry portlet = null;
     protected boolean findall = false;
     protected String category = "";
@@ -57,7 +58,7 @@ public class CategoryIterator implements Iterator
         return group;
     }
 
-    public CategoryIterator(SortedMap map, String key)
+    public CategoryIterator(SortedMap<String, Object> map, String key)
     {
         this.map = map;
         this.key = key;
@@ -71,6 +72,7 @@ public class CategoryIterator implements Iterator
         this.bucket = null;
     }
 
+    @SuppressWarnings("unused")
     private CategoryIterator() 
     {}
 
@@ -94,9 +96,10 @@ public class CategoryIterator implements Iterator
         return false; //reached end of maps
     }
 
+    @SuppressWarnings("unchecked")
     protected boolean filter()
     {
-        java.util.Map.Entry entry = (java.util.Map.Entry)mapIterator.next();
+        Map.Entry<String, Object> entry = mapIterator.next();
         String entryKey = (String)entry.getKey();
         int pos = entryKey.indexOf('.');
         this.category = "";
@@ -115,7 +118,7 @@ public class CategoryIterator implements Iterator
         if (!findall && !entryKey.startsWith(this.key))
             return false; // end of criteria
 
-        bucket = (HashMap)entry.getValue();
+        bucket = (HashMap<String, PortletEntry>)entry.getValue();
 
         bucketIterator = bucket.entrySet().iterator();
         iteratingMaps = false;
@@ -127,7 +130,7 @@ public class CategoryIterator implements Iterator
 
     protected boolean getPortletEntry()
     {
-        java.util.Map.Entry entry = (java.util.Map.Entry)bucketIterator.next();
+        java.util.Map.Entry<String, PortletEntry> entry = (java.util.Map.Entry<String, PortletEntry>)bucketIterator.next();
         if (null == entry)
             return false;
 
@@ -142,7 +145,7 @@ public class CategoryIterator implements Iterator
     }
 
 
-    public Object next() throws NoSuchElementException
+    public PortletEntry next() throws NoSuchElementException
     {       
         return portlet;
     }

@@ -30,7 +30,7 @@ import org.apache.turbine.util.RunData;
  */
 public class MarkRefPage extends Action {
   public void doPerform(RunData data) throws Exception {
-    Enumeration enu = data.getRequest().getHeaderNames();
+    Enumeration<?> enu = data.getRequest().getHeaderNames();
     while (enu.hasMoreElements()) {
       String name = (String) enu.nextElement();
       if ("referer".equalsIgnoreCase(name)) {

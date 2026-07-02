@@ -89,10 +89,10 @@ public class CabinetAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setTableColumNum(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p1e-rows")));
+      context).getPortletConfig().getInitParameter("p1e-rows").toString()));
     if (listData.doViewList(this, rundata, context)) {
       setTemplate(rundata, "cabinet");
     }
@@ -143,7 +143,7 @@ public class CabinetAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "cabinet-list");
   }

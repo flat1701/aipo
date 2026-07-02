@@ -1,23 +1,17 @@
 package org.apache.jetspeed.om.dbregistry;
 
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.torque.TorqueException;
 import org.apache.torque.om.BaseObject;
-import org.apache.torque.om.ComboKey;
-import org.apache.torque.om.DateKey;
 import org.apache.torque.om.NumberKey;
 import org.apache.torque.om.ObjectKey;
 import org.apache.torque.om.SimpleKey;
-import org.apache.torque.om.StringKey;
-import org.apache.torque.om.Persistent;
 import org.apache.torque.util.Criteria;
 import org.apache.torque.util.Transaction;
 
@@ -480,7 +474,7 @@ public abstract class BasePortletDbEntry extends BaseObject
     /**
      * Collection to store aggregation of collPortletCategorys
      */
-    protected List collPortletCategorys;
+    protected List<PortletCategory> collPortletCategorys;
 
     /**
      * Temporary storage of collPortletCategorys to save a possible db hit in
@@ -491,7 +485,7 @@ public abstract class BasePortletDbEntry extends BaseObject
     {
         if (collPortletCategorys == null)
         {
-            collPortletCategorys = new ArrayList();
+            collPortletCategorys = new ArrayList<PortletCategory>();
         }
     }
 
@@ -518,7 +512,7 @@ public abstract class BasePortletDbEntry extends BaseObject
      * the collection. Otherwise returns the results of
      * getPortletCategorys(new Criteria())
      */
-    public List getPortletCategorys() throws TorqueException
+    public List<PortletCategory> getPortletCategorys() throws TorqueException
     {
         if (collPortletCategorys == null)
         {
@@ -536,13 +530,13 @@ public abstract class BasePortletDbEntry extends BaseObject
      * an empty collection or the current collection, the criteria
      * is ignored on a new object.
      */
-    public List getPortletCategorys(Criteria criteria) throws TorqueException
+    public List<PortletCategory> getPortletCategorys(Criteria criteria) throws TorqueException
     {
         if (collPortletCategorys == null)
         {
             if (isNew())
             {
-               collPortletCategorys = new ArrayList();
+               collPortletCategorys = new ArrayList<PortletCategory>();
             }
             else
             {
@@ -578,7 +572,7 @@ public abstract class BasePortletDbEntry extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getPortletCategorys(Connection con) throws TorqueException
+    public List<PortletCategory> getPortletCategorys(Connection con) throws TorqueException
     {
         if (collPortletCategorys == null)
         {
@@ -599,13 +593,13 @@ public abstract class BasePortletDbEntry extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getPortletCategorys(Criteria criteria,Connection con) throws TorqueException
+    public List<PortletCategory> getPortletCategorys(Criteria criteria,Connection con) throws TorqueException
     {
         if (collPortletCategorys == null)
         {
             if (isNew())
             {
-               collPortletCategorys = new ArrayList();
+               collPortletCategorys = new ArrayList<PortletCategory>();
             }
             else
             {
@@ -655,14 +649,14 @@ public abstract class BasePortletDbEntry extends BaseObject
      * api reasonable.  You can provide public methods for those you
      * actually need in PortletDbEntry.
      */
-    protected List getPortletCategorysJoinPortletDbEntry(Criteria criteria)
+    protected List<PortletCategory> getPortletCategorysJoinPortletDbEntry(Criteria criteria)
         throws TorqueException
     {
         if (collPortletCategorys == null)
         {
             if (isNew())
             {
-               collPortletCategorys = new ArrayList();
+               collPortletCategorys = new ArrayList<PortletCategory>();
             }
             else
             {
@@ -675,6 +669,7 @@ public abstract class BasePortletDbEntry extends BaseObject
             // the following code is to determine if a new query is
             // called for.  If the criteria is the same as the last
             // one, just return the collection.
+            @SuppressWarnings("unused")
             boolean newCriteria = true;
                             criteria.add(PortletCategoryPeer.OWNER, getId() );
                         if (!lastPortletCategorysCriteria.equals(criteria))
@@ -694,7 +689,7 @@ public abstract class BasePortletDbEntry extends BaseObject
     /**
      * Collection to store aggregation of collPortletParameters
      */
-    protected List collPortletParameters;
+    protected List<PortletParameter> collPortletParameters;
 
     /**
      * Temporary storage of collPortletParameters to save a possible db hit in
@@ -705,7 +700,7 @@ public abstract class BasePortletDbEntry extends BaseObject
     {
         if (collPortletParameters == null)
         {
-            collPortletParameters = new ArrayList();
+            collPortletParameters = new ArrayList<PortletParameter>();
         }
     }
 
@@ -732,7 +727,7 @@ public abstract class BasePortletDbEntry extends BaseObject
      * the collection. Otherwise returns the results of
      * getPortletParameters(new Criteria())
      */
-    public List getPortletParameters() throws TorqueException
+    public List<PortletParameter> getPortletParameters() throws TorqueException
     {
         if (collPortletParameters == null)
         {
@@ -750,13 +745,13 @@ public abstract class BasePortletDbEntry extends BaseObject
      * an empty collection or the current collection, the criteria
      * is ignored on a new object.
      */
-    public List getPortletParameters(Criteria criteria) throws TorqueException
+    public List<PortletParameter> getPortletParameters(Criteria criteria) throws TorqueException
     {
         if (collPortletParameters == null)
         {
             if (isNew())
             {
-               collPortletParameters = new ArrayList();
+               collPortletParameters = new ArrayList<PortletParameter>();
             }
             else
             {
@@ -792,7 +787,7 @@ public abstract class BasePortletDbEntry extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getPortletParameters(Connection con) throws TorqueException
+    public List<PortletParameter> getPortletParameters(Connection con) throws TorqueException
     {
         if (collPortletParameters == null)
         {
@@ -813,13 +808,13 @@ public abstract class BasePortletDbEntry extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getPortletParameters(Criteria criteria,Connection con) throws TorqueException
+    public List<PortletParameter> getPortletParameters(Criteria criteria,Connection con) throws TorqueException
     {
         if (collPortletParameters == null)
         {
             if (isNew())
             {
-               collPortletParameters = new ArrayList();
+               collPortletParameters = new ArrayList<PortletParameter>();
             }
             else
             {
@@ -869,14 +864,14 @@ public abstract class BasePortletDbEntry extends BaseObject
      * api reasonable.  You can provide public methods for those you
      * actually need in PortletDbEntry.
      */
-    protected List getPortletParametersJoinPortletDbEntry(Criteria criteria)
+    protected List<PortletParameter> getPortletParametersJoinPortletDbEntry(Criteria criteria)
         throws TorqueException
     {
         if (collPortletParameters == null)
         {
             if (isNew())
             {
-               collPortletParameters = new ArrayList();
+               collPortletParameters = new ArrayList<PortletParameter>();
             }
             else
             {
@@ -889,6 +884,7 @@ public abstract class BasePortletDbEntry extends BaseObject
             // the following code is to determine if a new query is
             // called for.  If the criteria is the same as the last
             // one, just return the collection.
+            @SuppressWarnings("unused")
             boolean newCriteria = true;
                             criteria.add(PortletParameterPeer.PORTLET_ID, getId() );
                         if (!lastPortletParametersCriteria.equals(criteria))
@@ -908,7 +904,7 @@ public abstract class BasePortletDbEntry extends BaseObject
     /**
      * Collection to store aggregation of collPortletMediatypes
      */
-    protected List collPortletMediatypes;
+    protected List<PortletMediatype> collPortletMediatypes;
 
     /**
      * Temporary storage of collPortletMediatypes to save a possible db hit in
@@ -919,7 +915,7 @@ public abstract class BasePortletDbEntry extends BaseObject
     {
         if (collPortletMediatypes == null)
         {
-            collPortletMediatypes = new ArrayList();
+            collPortletMediatypes = new ArrayList<PortletMediatype>();
         }
     }
 
@@ -946,7 +942,7 @@ public abstract class BasePortletDbEntry extends BaseObject
      * the collection. Otherwise returns the results of
      * getPortletMediatypes(new Criteria())
      */
-    public List getPortletMediatypes() throws TorqueException
+    public List<PortletMediatype> getPortletMediatypes() throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
@@ -964,13 +960,13 @@ public abstract class BasePortletDbEntry extends BaseObject
      * an empty collection or the current collection, the criteria
      * is ignored on a new object.
      */
-    public List getPortletMediatypes(Criteria criteria) throws TorqueException
+    public List<PortletMediatype> getPortletMediatypes(Criteria criteria) throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
             if (isNew())
             {
-               collPortletMediatypes = new ArrayList();
+               collPortletMediatypes = new ArrayList<PortletMediatype>();
             }
             else
             {
@@ -1006,7 +1002,7 @@ public abstract class BasePortletDbEntry extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getPortletMediatypes(Connection con) throws TorqueException
+    public List<PortletMediatype> getPortletMediatypes(Connection con) throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
@@ -1027,13 +1023,13 @@ public abstract class BasePortletDbEntry extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getPortletMediatypes(Criteria criteria,Connection con) throws TorqueException
+    public List<PortletMediatype> getPortletMediatypes(Criteria criteria,Connection con) throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
             if (isNew())
             {
-               collPortletMediatypes = new ArrayList();
+               collPortletMediatypes = new ArrayList<PortletMediatype>();
             }
             else
             {
@@ -1083,14 +1079,14 @@ public abstract class BasePortletDbEntry extends BaseObject
      * api reasonable.  You can provide public methods for those you
      * actually need in PortletDbEntry.
      */
-    protected List getPortletMediatypesJoinPortletDbEntry(Criteria criteria)
+    protected List<PortletMediatype> getPortletMediatypesJoinPortletDbEntry(Criteria criteria)
         throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
             if (isNew())
             {
-               collPortletMediatypes = new ArrayList();
+               collPortletMediatypes = new ArrayList<PortletMediatype>();
             }
             else
             {
@@ -1103,6 +1099,7 @@ public abstract class BasePortletDbEntry extends BaseObject
             // the following code is to determine if a new query is
             // called for.  If the criteria is the same as the last
             // one, just return the collection.
+            @SuppressWarnings("unused")
             boolean newCriteria = true;
                             criteria.add(PortletMediatypePeer.ID, getId() );
                         if (!lastPortletMediatypesCriteria.equals(criteria))
@@ -1134,14 +1131,14 @@ public abstract class BasePortletDbEntry extends BaseObject
      * api reasonable.  You can provide public methods for those you
      * actually need in PortletDbEntry.
      */
-    protected List getPortletMediatypesJoinMediatype(Criteria criteria)
+    protected List<PortletMediatype> getPortletMediatypesJoinMediatype(Criteria criteria)
         throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
             if (isNew())
             {
-               collPortletMediatypes = new ArrayList();
+               collPortletMediatypes = new ArrayList<PortletMediatype>();
             }
             else
             {
@@ -1154,6 +1151,7 @@ public abstract class BasePortletDbEntry extends BaseObject
             // the following code is to determine if a new query is
             // called for.  If the criteria is the same as the last
             // one, just return the collection.
+            @SuppressWarnings("unused")
             boolean newCriteria = true;
                             criteria.add(PortletMediatypePeer.ID, getId() );
                         if (!lastPortletMediatypesCriteria.equals(criteria))
@@ -1169,16 +1167,16 @@ public abstract class BasePortletDbEntry extends BaseObject
 
 
           
-    private static List fieldNames = null;
+    private static List<String> fieldNames = null;
 
     /**
      * Generate a list of field names.
      */
-    public static synchronized List getFieldNames()
+    public static synchronized List<String> getFieldNames()
     {
         if (fieldNames == null)
         {
-            fieldNames = new ArrayList();
+            fieldNames = new ArrayList<String>();
               fieldNames.add("Id");
               fieldNames.add("Name");
               fieldNames.add("Hidden");
@@ -1558,7 +1556,7 @@ public abstract class BasePortletDbEntry extends BaseObject
                                                                                           
                                       
                 
-        List v = getPortletCategorys();
+        List<PortletCategory> v = getPortletCategorys();
         for (int i = 0; i < v.size(); i++)
         {
             PortletCategory obj = (PortletCategory) v.get(i);
@@ -1566,18 +1564,18 @@ public abstract class BasePortletDbEntry extends BaseObject
         }
                                                   
                 
-        v = getPortletParameters();
-        for (int i = 0; i < v.size(); i++)
+        List<PortletParameter> v2 = getPortletParameters();
+        for (int i = 0; i < v2.size(); i++)
         {
-            PortletParameter obj = (PortletParameter) v.get(i);
+            PortletParameter obj = (PortletParameter) v2.get(i);
             copyObj.addPortletParameter(obj.copy());
         }
                                                   
                 
-        v = getPortletMediatypes();
-        for (int i = 0; i < v.size(); i++)
+        List<PortletMediatype> v3 = getPortletMediatypes();
+        for (int i = 0; i < v3.size(); i++)
         {
-            PortletMediatype obj = (PortletMediatype) v.get(i);
+            PortletMediatype obj = (PortletMediatype) v3.get(i);
             copyObj.addPortletMediatype(obj.copy());
         }
                             return copyObj;

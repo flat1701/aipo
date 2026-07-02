@@ -55,6 +55,7 @@ public class PreviewPortlet extends AbstractPortlet
     /**
      * @param rundata The RunData object for the current request
      */
+    @SuppressWarnings({ "deprecation", "unused" })
     public ConcreteElement getContent(RunData rundata)
     {
 

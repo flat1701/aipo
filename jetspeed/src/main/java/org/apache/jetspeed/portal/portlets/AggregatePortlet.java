@@ -62,7 +62,7 @@ public class AggregatePortlet extends AbstractPortlet
         String path = (String)rundata.getUser().getTemp(key);
         if (path == null)
         {
-            path = this.getPortletConfig().getInitParameter("path");
+            path = this.getPortletConfig().getInitParameter("path").toString();
         }
 
         if (null == path)
@@ -71,6 +71,7 @@ public class AggregatePortlet extends AbstractPortlet
         }
         ProfileLocator locator = Profiler.createLocator();
         locator.createFromPath(path);
+        @SuppressWarnings("unused")
         String id = locator.getId();
 
         try

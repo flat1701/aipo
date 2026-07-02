@@ -43,6 +43,7 @@ public class ScheduleCalendarUserSelectJSONScreen extends
     UserFacilityLiteJSONScreen {
 
   /** logger */
+  @SuppressWarnings("unused")
   private static final JetspeedLogger logger = JetspeedLogFactoryService
     .getLogger(ScheduleCalendarUserSelectJSONScreen.class.getName());
 
@@ -61,7 +62,7 @@ public class ScheduleCalendarUserSelectJSONScreen extends
       List<UserFacilityLiteBean> memberList =
         new ArrayList<UserFacilityLiteBean>();
       String pickedMember =
-        portlet.getPortletConfig().getInitParameter("p6a-uids");
+        portlet.getPortletConfig().getInitParameter("p6a-uids").toString();
       if (pickedMember == null || "".equals(pickedMember)) {
         UserFacilityLiteBean login_user =
           UserFacilityUtils.getUserFacilityLiteBean(rundata);

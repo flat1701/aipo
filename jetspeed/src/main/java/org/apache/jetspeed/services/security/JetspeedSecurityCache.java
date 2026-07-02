@@ -20,6 +20,7 @@ package org.apache.jetspeed.services.security;
 import java.util.Iterator;
 
 import org.apache.jetspeed.om.security.Group;
+import org.apache.jetspeed.om.security.GroupRole;
 import org.apache.jetspeed.om.security.Permission;
 import org.apache.jetspeed.om.security.Role;
 import org.apache.turbine.services.TurbineServices;
@@ -81,7 +82,7 @@ public abstract class JetspeedSecurityCache
         return getService().getRole(username, roleName);
     }
 
-	public static Role getRole(String username, String roleName, String groupName)
+	public static GroupRole getRole(String username, String roleName, String groupName)
 	{
 		return getService().getRole(username, roleName, groupName);
 	}
@@ -121,7 +122,7 @@ public abstract class JetspeedSecurityCache
 		getService().removeRole(username, roleName, groupName);
 	}
 
-    public static Iterator getRoles(String username)
+    public static Iterator<GroupRole> getRoles(String username)
     {
         return getService().getRoles(username);
     }
@@ -161,7 +162,7 @@ public abstract class JetspeedSecurityCache
         getService().removePermission(roleName, permissionName);
     }
 
-    public static Iterator getPermissions(String roleName)
+    public static Iterator<Permission> getPermissions(String roleName)
     {
         return getService().getPermissions(roleName);
     }

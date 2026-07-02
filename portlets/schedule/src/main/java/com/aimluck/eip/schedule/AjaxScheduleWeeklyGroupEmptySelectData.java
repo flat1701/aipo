@@ -83,7 +83,7 @@ public class AjaxScheduleWeeklyGroupEmptySelectData extends
       ALEipUtils
         .getPortlet(rundata, context)
         .getPortletConfig()
-        .getInitParameter("p8h-cgrp");
+        .getInitParameter("p8h-cgrp").toString();
 
     // スーパークラスのメソッドを呼び出す。
     super.init(action, rundata, context);

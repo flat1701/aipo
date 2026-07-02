@@ -94,8 +94,8 @@ public class _EipTReport extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTReportFiles(com.aimluck.eip.cayenne.om.portlet.EipTReportFile obj) {
         removeToManyTarget("eipTReportFiles", obj, true);
     }
-    public List getEipTReportFiles() {
-        return (List)readProperty("eipTReportFiles");
+    public List<?> getEipTReportFiles() {
+        return (List<?>)readProperty("eipTReportFiles");
     }
     
     
@@ -105,8 +105,8 @@ public class _EipTReport extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTReportMap(com.aimluck.eip.cayenne.om.portlet.EipTReportMap obj) {
         removeToManyTarget("eipTReportMap", obj, true);
     }
-    public List getEipTReportMap() {
-        return (List)readProperty("eipTReportMap");
+    public List<?> getEipTReportMap() {
+        return (List<?>)readProperty("eipTReportMap");
     }
     
     
@@ -116,8 +116,8 @@ public class _EipTReport extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTReportMemberMap(com.aimluck.eip.cayenne.om.portlet.EipTReportMemberMap obj) {
         removeToManyTarget("eipTReportMemberMap", obj, true);
     }
-    public List getEipTReportMemberMap() {
-        return (List)readProperty("eipTReportMemberMap");
+    public List<?> getEipTReportMemberMap() {
+        return (List<?>)readProperty("eipTReportMemberMap");
     }
     
     

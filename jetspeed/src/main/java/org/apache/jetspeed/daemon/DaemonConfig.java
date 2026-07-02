@@ -27,7 +27,7 @@ values here.
 */
 public class DaemonConfig {
 
-    Hashtable params = new Hashtable();
+    Hashtable<?, ?> params = new Hashtable<Object, Object>();
     
  
     public String getParameter(String name) {

@@ -26,7 +26,7 @@ public interface DBRegistry {
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public List getXREGDataFromDb() throws TorqueException;
+    public List<?> getXREGDataFromDb() throws TorqueException;
     
     /**
      * Method to  data.

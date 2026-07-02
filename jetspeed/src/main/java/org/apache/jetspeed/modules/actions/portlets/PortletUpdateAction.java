@@ -124,10 +124,10 @@ public class PortletUpdateAction extends RegistryUpdateAction
                 }
                 else
                 {
-                    Collection parentCategories = iteratorToCollection(parentEntry.listCategories());
+                    Collection<?> parentCategories = iteratorToCollection(parentEntry.listCategories());
                     context.put("parent_categories", parentCategories);
                     
-                    Collection parentMediaTypes = iteratorToCollection(parentEntry.listMediaTypes());
+                    Collection<?> parentMediaTypes = iteratorToCollection(parentEntry.listMediaTypes());
                     context.put("parent_mediatypes", parentMediaTypes);
                 }
             }
@@ -174,7 +174,7 @@ public class PortletUpdateAction extends RegistryUpdateAction
                     //When we create a portlet entry initially, we need to copy
                     //the parameters from the parent to the child so that
                     //a user does not end up editing his parents parameters
-                    Iterator paramIter = portletEntry.getParameterNames();
+                    Iterator<?> paramIter = portletEntry.getParameterNames();
                     while(paramIter.hasNext())
                     {
                         String paramName = (String)paramIter.next();
@@ -226,6 +226,7 @@ public class PortletUpdateAction extends RegistryUpdateAction
             rundata.getParameters().getBoolean("is_cached_on_url", false);
         boolean isHidden =
             rundata.getParameters().getBoolean("is_hidden", false);
+        @SuppressWarnings("unused")
         boolean isAdmin = rundata.getParameters().getBoolean("is_admin", false);
 
         String newSecurityParent =
@@ -404,7 +405,9 @@ public class PortletUpdateAction extends RegistryUpdateAction
         super.resetForm(rundata);
         
         String parent = rundata.getParameters().getString("parent");
+        @SuppressWarnings("unused")
         String title = rundata.getParameters().getString("title");
+        @SuppressWarnings("unused")
         String description = rundata.getParameters().getString("description");
         String url = rundata.getParameters().getString("url");
         String type = rundata.getParameters().getString("portlet_type");

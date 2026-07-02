@@ -77,6 +77,7 @@ public class PortletUtils
      * @param profile
      * @return 
      */
+    @SuppressWarnings("deprecation")
     public static boolean canAccessProfile(RunData rundata, Profile profile)
     {
         boolean result = true;

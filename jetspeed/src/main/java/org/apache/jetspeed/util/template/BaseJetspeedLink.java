@@ -28,8 +28,6 @@ import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
 import org.apache.jetspeed.services.logging.JetspeedLogger;
 import org.apache.jetspeed.services.resources.JetspeedResources;
 import org.apache.jetspeed.services.rundata.JetspeedRunData;
-import org.apache.jetspeed.util.template.JetspeedLink;
-
 // Turbine
 import org.apache.turbine.util.RunData;
 import org.apache.turbine.util.DynamicURI;

@@ -43,7 +43,7 @@ public class PortletConfigState
                                             String attrDefaultValue)
     {
         PortletConfig pc = portlet.getPortletConfig();
-        return pc.getInitParameter(attrName, attrDefaultValue);
+        return pc.getInitParameter(attrName, attrDefaultValue).toString();
     }
 
     /**

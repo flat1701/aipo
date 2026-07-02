@@ -179,13 +179,13 @@ public class ScheduleOnedaySelectData extends AjaxScheduleMonthlySelectData {
       Integer.parseInt(ALEipUtils
         .getPortlet(rundata, context)
         .getPortletConfig()
-        .getInitParameter("p1a-rows"));
+        .getInitParameter("p1a-rows").toString());
     // 表示終了時間の設定
     endHour =
       Integer.parseInt(ALEipUtils
         .getPortlet(rundata, context)
         .getPortletConfig()
-        .getInitParameter("p1b-rows"));
+        .getInitParameter("p1b-rows").toString());
     // ToDo 表示設定
     viewToDo =
       !ALPortalApplicationService.isActive(ToDoUtils.TODO_PORTLET_NAME)
@@ -193,7 +193,7 @@ public class ScheduleOnedaySelectData extends AjaxScheduleMonthlySelectData {
         : Integer.parseInt(ALEipUtils
           .getPortlet(rundata, context)
           .getPortletConfig()
-          .getInitParameter("p5a-view"));
+          .getInitParameter("p5a-view").toString());
     tmpIndex = 0;
     count = 0;
     // 自ポートレットからのリクエストであれば、パラメータを展開しセッションに保存する。

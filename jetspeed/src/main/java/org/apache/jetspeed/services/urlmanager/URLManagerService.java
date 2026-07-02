@@ -24,7 +24,7 @@ import java.util.List;
  * informations</p>
  * <strong>It should be extended to also provide access to their contents</strong>
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: URLManagerService.java,v 1.6 2004/02/23 03:30:47 jford Exp $
  */
 public interface URLManagerService extends Service {
@@ -135,7 +135,7 @@ public interface URLManagerService extends Service {
      *
      * @return a List of URL strings known to this repository
      */
-    public List list();
+    public List<?> list();
         
     /**
      * List of the current known URLs in the repository which have 
@@ -145,7 +145,7 @@ public interface URLManagerService extends Service {
      * {@link URLManagerService#STATUS_ANY} to indicate any status
      * @return a List of URL strings known to this repository with this status
      */
-    public List list( int status );
+    public List<?> list( int status );
 
     /**
      * Return the proxy's port for a protocol.

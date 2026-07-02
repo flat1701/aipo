@@ -248,7 +248,7 @@ public class TurbineAuthentication  extends    TurbineBaseService
 
         anonymousUser = serviceConf.getString(CONFIG_ANONYMOUS_USER, anonymousUser);
         cachingEnable = serviceConf.getBoolean( CACHING_ENABLE, cachingEnable );
-        expirationPeriod = serviceConf.getInt( this.CONFIG_PASSWORD_EXPIRATION_PERIOD, 0 );
+        expirationPeriod = serviceConf.getInt( TurbineAuthentication.CONFIG_PASSWORD_EXPIRATION_PERIOD, 0 );
 
         this.runDataService =
             (JetspeedRunDataService)TurbineServices.getInstance()

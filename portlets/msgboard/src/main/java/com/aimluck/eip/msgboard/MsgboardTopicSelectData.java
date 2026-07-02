@@ -147,7 +147,7 @@ public class MsgboardTopicSelectData extends
       VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
       String sortStr = null;
       if (portlet != null) {
-        sortStr = portlet.getPortletConfig().getInitParameter("p2a-sort");
+        sortStr = portlet.getPortletConfig().getInitParameter("p2a-sort").toString();
       } else {
         sortStr = "update_date";
       }
@@ -195,7 +195,7 @@ public class MsgboardTopicSelectData extends
         } else {
           VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
           this.categoryId =
-            portlet.getPortletConfig().getInitParameter("p3a-category");
+            portlet.getPortletConfig().getInitParameter("p3a-category").toString();
         }
       }
       updateCategoryName();
@@ -526,7 +526,7 @@ public class MsgboardTopicSelectData extends
     VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
     String cotopicsort = null;
     if (portlet != null) {
-      cotopicsort = portlet.getPortletConfig().getInitParameter("p2b-sort");
+      cotopicsort = portlet.getPortletConfig().getInitParameter("p2b-sort").toString();
     } else {
       cotopicsort = "response_old";
     }

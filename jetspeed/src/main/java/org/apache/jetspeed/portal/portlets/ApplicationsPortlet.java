@@ -56,13 +56,14 @@ public class ApplicationsPortlet extends AbstractPortlet
     private static final JetspeedLogger logger = JetspeedLogFactoryService.getLogger(ApplicationsPortlet.class.getName());    
     
     /* SGP: here we cache Applications */
-    private Vector applications = new Vector();
+    private Vector<PortletEntry> applications = new Vector<PortletEntry>();
 
     /**
     */
     public void init() throws PortletException
     {
 
+        @SuppressWarnings("unused")
         PortletConfig config = this.getPortletConfig();
 
         this.setTitle( "Applications" );
@@ -70,7 +71,7 @@ public class ApplicationsPortlet extends AbstractPortlet
 
         logger.info( "Jetspeed: initializing the ApplicationsPortlet: BEGIN " );
 
-        Enumeration portlets = Registry.get( Registry.PORTLET ).getEntries();
+        Enumeration<?> portlets = Registry.get( Registry.PORTLET ).getEntries();
 
         while ( portlets.hasMoreElements() ) {
 
@@ -91,7 +92,7 @@ public class ApplicationsPortlet extends AbstractPortlet
     public ConcreteElement getContent( RunData data ) {
 
         Table table = new Table();
-        Enumeration portlets = applications.elements();
+        Enumeration<PortletEntry> portlets = applications.elements();
 
         while ( portlets.hasMoreElements() ) {
 

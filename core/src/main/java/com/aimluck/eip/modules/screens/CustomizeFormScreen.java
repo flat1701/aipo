@@ -202,7 +202,7 @@ public class CustomizeFormScreen extends ALVelocityScreen {
     int size = 30;
     try {
       size =
-        Integer.parseInt(portlet.getPortletConfig().getInitParameter("size"));
+        Integer.parseInt(portlet.getPortletConfig().getInitParameter("size").toString());
     } catch (Exception e) {
       logger.debug("CustomizeSetAction: Init param 'size' not parsed");
     }

@@ -35,7 +35,7 @@ import org.apache.jetspeed.om.registry.RegistryEntry;
 public class BaseRegistry implements LocalRegistry {
   protected static final boolean DEBUG = false;
 
-  protected Map entries = new TreeMap();
+  protected Map<String, RegistryEntry> entries = new TreeMap<String, RegistryEntry>();
 
   /** @see Registry#getEntryCount */
   public int getEntryCount() {
@@ -118,12 +118,12 @@ public class BaseRegistry implements LocalRegistry {
   /**
    * @see Registry#getEntries
    */
-  public Enumeration getEntries() {
-    Vector v = null;
+  public Enumeration<RegistryEntry> getEntries() {
+    Vector<RegistryEntry> v = null;
 
     synchronized (this) {
       // this is ne
-      v = new Vector(this.entries.values());
+      v = new Vector<RegistryEntry>(this.entries.values());
     }
 
     return v.elements();
@@ -132,7 +132,7 @@ public class BaseRegistry implements LocalRegistry {
   /**
    * @see Registry#listEntryNames
    */
-  public Iterator listEntryNames() {
+  public Iterator<String> listEntryNames() {
     return entries.keySet().iterator();
   }
 
@@ -141,8 +141,8 @@ public class BaseRegistry implements LocalRegistry {
    */
   public RegistryEntry[] toArray() {
 
-    Enumeration enu = getEntries();
-    Vector v = new Vector();
+    Enumeration<RegistryEntry> enu = getEntries();
+    Vector<RegistryEntry> v = new Vector<RegistryEntry>();
 
     while (enu.hasMoreElements()) {
       v.addElement(enu.nextElement());

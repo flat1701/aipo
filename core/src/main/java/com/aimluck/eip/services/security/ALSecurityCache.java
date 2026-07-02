@@ -27,6 +27,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.jetspeed.om.security.Group;
+import org.apache.jetspeed.om.security.GroupRole;
 import org.apache.jetspeed.om.security.Permission;
 import org.apache.jetspeed.om.security.Role;
 import org.apache.jetspeed.services.JetspeedSecurity;
@@ -235,7 +236,7 @@ public class ALSecurityCache extends TurbineBaseService implements
   }
 
   @Override
-  public Iterator<?> getRoles(String username) {
+  public Iterator<GroupRole> getRoles(String username) {
     Map<String, CachedAcl> acls = getAclsFromRequest();
 
     if (acls != null) {
@@ -304,7 +305,7 @@ public class ALSecurityCache extends TurbineBaseService implements
   }
 
   @Override
-  public Iterator<?> getPermissions(String roleName) {
+  public Iterator<Permission> getPermissions(String roleName) {
     Map<String, Map<String, Permission>> perms = getPermissionsFromRequest();
 
     if (perms != null) {
@@ -355,12 +356,10 @@ public class ALSecurityCache extends TurbineBaseService implements
 
     try {
       if (perms != null) {
-        @SuppressWarnings("unchecked")
         Iterator<Role> roles = JetspeedSecurity.getRoles();
         while (roles.hasNext()) {
           Role role = roles.next();
           Map<String, Permission> map = new HashMap<String, Permission>();
-          @SuppressWarnings("unchecked")
           Iterator<Permission> prms =
             JetspeedSecurity.getPermissions(role.getName());
           while (prms.hasNext()) {

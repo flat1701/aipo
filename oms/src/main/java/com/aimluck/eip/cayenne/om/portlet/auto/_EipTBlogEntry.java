@@ -85,8 +85,8 @@ public class _EipTBlogEntry extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTBlogComments(com.aimluck.eip.cayenne.om.portlet.EipTBlogComment obj) {
         removeToManyTarget("eipTBlogComments", obj, true);
     }
-    public List getEipTBlogComments() {
-        return (List)readProperty("eipTBlogComments");
+    public List<?> getEipTBlogComments() {
+        return (List<?>)readProperty("eipTBlogComments");
     }
     
     
@@ -96,8 +96,8 @@ public class _EipTBlogEntry extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTBlogFiles(com.aimluck.eip.cayenne.om.portlet.EipTBlogFile obj) {
         removeToManyTarget("eipTBlogFiles", obj, true);
     }
-    public List getEipTBlogFiles() {
-        return (List)readProperty("eipTBlogFiles");
+    public List<?> getEipTBlogFiles() {
+        return (List<?>)readProperty("eipTBlogFiles");
     }
     
     

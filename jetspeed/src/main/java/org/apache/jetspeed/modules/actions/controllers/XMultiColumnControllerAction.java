@@ -94,7 +94,8 @@ public class XMultiColumnControllerAction extends MultiColumnControllerAction {
           String[] moves = StringUtils.stringToArray(modelChangeList[0], ";");
           SessionState customizationState = ((JetspeedRunData) data)
               .getPageSessionState();
-          List[] columns = (List[]) customizationState
+          @SuppressWarnings("unchecked")
+          List<Object>[] columns = (List[]) customizationState
               .getAttribute("customize-columns");
 
           for (int i = 0; i < moves.length; i++) {

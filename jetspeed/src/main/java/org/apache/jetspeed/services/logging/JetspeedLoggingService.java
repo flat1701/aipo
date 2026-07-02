@@ -61,7 +61,7 @@ implements LoggingService
     /**
      * loggers repository
      */
-    private HashMap loggers;
+    private HashMap<String, Logger> loggers;
 
     /**
      * logger for methods without target
@@ -85,7 +85,7 @@ implements LoggingService
 
     public JetspeedLoggingService()
     {
-        loggers = new HashMap();
+        loggers = new HashMap<String, Logger>();
         defaultLogger = null;
     }
 
@@ -191,8 +191,8 @@ implements LoggingService
             return;
         }
 
-        for ( Iterator iter = loggers.entrySet().iterator(); iter.hasNext(); ) {
-                Map.Entry entry = (Map.Entry) iter.next();
+        for ( Iterator<Map.Entry<String, Logger>> iter = loggers.entrySet().iterator(); iter.hasNext(); ) {
+                Map.Entry<String, Logger> entry = iter.next();
                 ((Logger) entry.getValue()).shutdown();
         }
         

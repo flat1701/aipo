@@ -62,7 +62,7 @@ import org.apache.jetspeed.services.logging.JetspeedLogger;
  *     They may override the previously defined default variables
  *  </p>
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: VariableResourcesService.java,v 1.15 2004/02/23 03:29:53 jford Exp $
  */
 public class VariableResourcesService extends TurbineResourceService
@@ -79,12 +79,12 @@ public class VariableResourcesService extends TurbineResourceService
     public static final String END_TOKEN="}";
     
     /** The container for the generic resources. */
-    private Hashtable variables = null;
+    private Hashtable<String, String> variables = null;
 
     /** The container for the generic resources. */
-    private Hashtable strings = null;
-    private Hashtable vectors = null;
-    private Hashtable arrays = null;
+    private Hashtable<String, String> strings = null;
+    private Hashtable<String, Vector<String>> vectors = null;
+    private Hashtable<String, String[]> arrays = null;
 
 
     /**
@@ -110,12 +110,13 @@ public class VariableResourcesService extends TurbineResourceService
     public synchronized void init(ServletConfig config) throws InitializationException
     {        
         if (getInit()) return;
+        @SuppressWarnings("unused")
         String props = config.getInitParameter(TurbineServices.PROPERTIES_PATH_KEY);
 
-        variables = new Hashtable();
-        strings = new Hashtable();
-        vectors = new Hashtable();
-        arrays = new Hashtable();
+        variables = new Hashtable<String, String>();
+        strings = new Hashtable<String, String>();
+        vectors = new Hashtable<String, Vector<String>>();
+        arrays = new Hashtable<String, String[]>();
         initVariables(config);
 
         super.init(config);
@@ -163,7 +164,7 @@ public class VariableResourcesService extends TurbineResourceService
         // the previously defined variables. All param names are folded
         // to lower case
         
-        Enumeration en = config.getInitParameterNames();
+        Enumeration<?> en = config.getInitParameterNames();
         while( en.hasMoreElements() ) {
             String paramName = (String)en.nextElement();
             String paramValue = config.getInitParameter(paramName);
@@ -187,14 +188,14 @@ public class VariableResourcesService extends TurbineResourceService
         return path;
     }
     
-    protected void setVariables(Hashtable vars)
+    protected void setVariables(Hashtable<String, String> vars)
     {
         synchronized (this)
         {
             this.variables = vars;
-            this.strings = new Hashtable();
-            this.vectors = new Hashtable();
-            this.arrays = new Hashtable();
+            this.strings = new Hashtable<String, String>();
+            this.vectors = new Hashtable<String, Vector<String>>();
+            this.arrays = new Hashtable<String, String[]>();
         }
     }
     
@@ -292,15 +293,16 @@ public class VariableResourcesService extends TurbineResourceService
      * @param name The resource name.
      * @return The value of the resource as a vector.
      */
-    public Vector getVector(String name)
+    @SuppressWarnings("unchecked")
+    public Vector<String> getVector(String name)
     {
-        Vector std = (Vector)vectors.get(name);
+        Vector<String> std = (Vector<String>)vectors.get(name);
         
         if (std==null) {
             std = super.getVector(name);
             if (std != null) {
-                Vector newstd = new Vector();
-                Enumeration en = std.elements();
+                Vector<String> newstd = new Vector<String>();
+                Enumeration<String> en = std.elements();
                 while (en.hasMoreElements()) {
                     newstd.addElement(substituteString((String)en.nextElement()));
                 }
@@ -320,14 +322,16 @@ public class VariableResourcesService extends TurbineResourceService
      * @param def The default value of the resource.
      * @return The value of the resource as a vector.
      */
+    @SuppressWarnings("rawtypes")
+    @Override
     public Vector getVector(String name,
                                    Vector def)
     {
-        Vector std = getVector(name); 
+        Vector<String> std = getVector(name); 
         if ( std == null) {
             if (def != null) {
-                std = new Vector();
-                Enumeration en = def.elements();
+                std = new Vector<String>();
+                Enumeration<?> en = def.elements();
                 while (en.hasMoreElements()) {
                     std.addElement(substituteString((String)en.nextElement()));
                 }

@@ -140,7 +140,7 @@ implements ViewProcessor
             else
             {
                 // Build parameter list to be passed with the jsp
-                Iterator names = portlet.getPortletConfig().getInitParameterNames();
+                Iterator<?> names = portlet.getPortletConfig().getInitParameterNames();
                 while (names.hasNext()) 
                 {
                     String name = (String) names.next();

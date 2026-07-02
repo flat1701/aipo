@@ -83,7 +83,6 @@ public class ALBaseUser extends
 
   public static final String HAS_PHOTO_SMARTPHONE = "HAS_PHOTO_SMARTPHONE";
 
-  @SuppressWarnings("unused")
   private static final JetspeedLogger logger = JetspeedLogFactoryService
     .getLogger(ALBaseUser.class.getName());
 

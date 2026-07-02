@@ -63,7 +63,7 @@ public class JetspeedURLManagerService extends TurbineBaseService implements
   /**
    * Map used to store all URL Information.
    */
-  private Map urls = new HashMap();
+  private Map<String, URLInfo> urls = new HashMap<String, URLInfo>();
 
   /**
    * Path to the properties file used for persisting the data
@@ -73,7 +73,7 @@ public class JetspeedURLManagerService extends TurbineBaseService implements
   /**
    * Hashtable to store proxy configuration in
    */
-  private final Hashtable proxies = new Hashtable();
+  private final Hashtable<String, Object> proxies = new Hashtable<String, Object>();
 
   /**
    * Late init. Don't return control until early init says we're done.
@@ -112,7 +112,7 @@ public class JetspeedURLManagerService extends TurbineBaseService implements
       // JetspeedResource.properties.
       // Get a list of settings and store them in the hashtable
       String prefix = "services." + URLManagerService.SERVICE_NAME + ".proxy.";
-      Iterator resourceKeys = JetspeedResources.getKeys(prefix);
+      Iterator<?> resourceKeys = JetspeedResources.getKeys(prefix);
 
       String key, hashKey;
       Object hashValue = null;
@@ -314,9 +314,9 @@ public class JetspeedURLManagerService extends TurbineBaseService implements
    * 
    * @return a List of URL strings known to this repository
    */
-  public List list() {
+  public List<String> list() {
     synchronized (urls) {
-      return new Vector(urls.keySet());
+      return new Vector<String>(urls.keySet());
     }
   }
 
@@ -329,13 +329,13 @@ public class JetspeedURLManagerService extends TurbineBaseService implements
    *          {@link URLManagerService#STATUS_ANY} to indicate any status
    * @return a List of URL strings known to this repository with this status
    */
-  public List list(int status) {
-    Vector result = new Vector();
+  public List<?> list(int status) {
+    Vector<Object> result = new Vector<Object>();
 
     synchronized (urls) {
-      Iterator i = urls.entrySet().iterator();
+      Iterator<Map.Entry<String, URLInfo>> i = urls.entrySet().iterator();
       while (i.hasNext()) {
-        Map.Entry entry = (Map.Entry) i.next();
+        Map.Entry<String, URLInfo> entry = (Map.Entry<String, URLInfo>) i.next();
         URLInfo info = (URLInfo) entry.getValue();
         if ((info.getStatus() & status) != 0) {
           result.addElement(entry.getKey());
@@ -351,7 +351,7 @@ public class JetspeedURLManagerService extends TurbineBaseService implements
    */
   private synchronized void load() {
 
-    Map store = new HashMap();
+    Map<String, URLInfo> store = new HashMap<String, URLInfo>();
     // Configuration config = null;
 
     logger.info("Restoring the URLs from disk: " + path);
@@ -400,7 +400,7 @@ public class JetspeedURLManagerService extends TurbineBaseService implements
 
       pw = new PrintWriter(new BufferedWriter(new FileWriter(propfile)));
       synchronized (urls) {
-        Iterator i = urls.values().iterator();
+        Iterator<URLInfo> i = urls.values().iterator();
         int entryNum = 1;
         while (i.hasNext()) {
           URLInfo info = (URLInfo) i.next();

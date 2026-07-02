@@ -104,10 +104,10 @@ public class NoteAction extends ALBaseAction {
     listData.initField();
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p3a-strlen")));
+      context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "note");
   }
@@ -163,10 +163,10 @@ public class NoteAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
       rundata,
-      context).getPortletConfig().getInitParameter("p3a-strlen")));
+      context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "note-list");
   }

@@ -36,7 +36,7 @@ import org.apache.velocity.context.Context;
  * Should be associated with a controller implementing PanedPortletController
  * to work correctly
  * 
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:taylor@apache.org">David Sean Taylor</a>
  *
  * @version $Id: PanedControllerAction.java,v 1.13 2004/02/23 02:49:58 jford Exp $
@@ -54,6 +54,7 @@ public class PanedControllerAction extends RowColumnControllerAction
         PanedPortletController cont = (PanedPortletController)controller;
         
         PortletSet myPortlets = cont.getPortlets();
+        @SuppressWarnings("unused")
         PortletControllerConfig conf = cont.getConfig();
 
         Portlet portlet = null;
@@ -84,6 +85,7 @@ public class PanedControllerAction extends RowColumnControllerAction
         if (portlet != null)
         {
             context.put("pane", portlet);        
+            @SuppressWarnings("unused")
             String state = portlet.getAttribute("_menustate", "open", rundata);
             //System.out.println("State = [" + state +"]");
             // if(state == null || !state.equals("closed"))

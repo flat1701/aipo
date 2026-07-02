@@ -51,10 +51,10 @@ public class BaseJetspeedUser /* extends SecurityObject */implements
   private Date lastAccessDate = null;
 
   /** This is data that will survive a servlet engine restart. */
-  private Hashtable permStorage = null;
+  private Hashtable<?, ?> permStorage = null;
 
   /** This is data that will not survive a servlet engine restart. */
-  private Hashtable tempStorage = null;
+  private Hashtable<?, ?> tempStorage = null;
 
   protected String name = "";
 
@@ -71,8 +71,8 @@ public class BaseJetspeedUser /* extends SecurityObject */implements
    */
   public BaseJetspeedUser() {
     createDate = new Date();
-    tempStorage = new Hashtable(10);
-    permStorage = new Hashtable(10);
+    tempStorage = new Hashtable<Object, Object>(10);
+    permStorage = new Hashtable<Object, Object>(10);
     setHasLoggedIn(Boolean.FALSE);
     setDisabled("F");
     isNew = true;
@@ -216,9 +216,9 @@ public class BaseJetspeedUser /* extends SecurityObject */implements
    * 
    * @return A Hashtable.
    */
-  public Hashtable getPermStorage() {
+  public Hashtable<?, ?> getPermStorage() {
     if (this.permStorage == null) {
-      this.permStorage = new Hashtable();
+      this.permStorage = new Hashtable<Object, Object>();
     }
     return this.permStorage;
   }
@@ -437,7 +437,8 @@ public class BaseJetspeedUser /* extends SecurityObject */implements
    * @param stuff
    *            A Hashtable.
    */
-  public void setPermStorage(Hashtable stuff) {
+  @Override
+  public void setPermStorage(@SuppressWarnings("rawtypes") Hashtable stuff) {
     this.permStorage = stuff;
   }
 
@@ -447,9 +448,9 @@ public class BaseJetspeedUser /* extends SecurityObject */implements
    * 
    * @return A Hashtable.
    */
-  public Hashtable getTempStorage() {
+  public Hashtable<?, ?> getTempStorage() {
     if (this.tempStorage == null) {
-      this.tempStorage = new Hashtable();
+      this.tempStorage = new Hashtable<Object, Object>();
     }
     return this.tempStorage;
   }
@@ -461,7 +462,8 @@ public class BaseJetspeedUser /* extends SecurityObject */implements
    * @param storage
    *            A Hashtable.
    */
-  public void setTempStorage(Hashtable storage) {
+  @Override
+  public void setTempStorage(@SuppressWarnings("rawtypes") Hashtable storage) {
     this.tempStorage = storage;
   }
 
@@ -608,6 +610,7 @@ public class BaseJetspeedUser /* extends SecurityObject */implements
   public void valueUnbound(HttpSessionBindingEvent hsbe) {
 
     try {
+      @SuppressWarnings("unused")
       java.util.Date now = new java.util.Date();
       // System.out.println("*********** value unbound ********************: " +
       // now.toString());

@@ -35,7 +35,7 @@ public class SoapAccessBean implements java.io.Serializable
     
     // declare member variables
     private transient Call request;
-    private Vector parameters; 
+    private Vector<Parameter> parameters; 
         
     // declare methods
     /** Default constructor required to support Serialization. */
@@ -59,7 +59,7 @@ public class SoapAccessBean implements java.io.Serializable
         request.setMethodName(method);
         request.setEncodingStyleURI(Constants.NS_URI_SOAP_ENC);
         // create Vector to store service parameters
-        parameters = new java.util.Vector();
+        parameters = new java.util.Vector<Parameter>();
             
     }
     
@@ -73,7 +73,7 @@ public class SoapAccessBean implements java.io.Serializable
     * type: java.util.Vector - 
     * desc: stores service parameters
     */
-    public void setParameters(Vector parameters) {
+    public void setParameters(Vector<Parameter> parameters) {
         this.parameters = parameters;
         
     }
@@ -83,7 +83,7 @@ public class SoapAccessBean implements java.io.Serializable
     * @return java.util.Vector - 
     * desc: stores service parameters
     */
-    public java.util.Vector getParameters() {
+    public java.util.Vector<Parameter> getParameters() {
         return parameters;
         
     }
@@ -109,7 +109,7 @@ public class SoapAccessBean implements java.io.Serializable
     * type:java.lang.String - 
     * desc: the parameter encoding
     */
-    public void addParameter(String paramName, Class  paramClass, Object paramValue, String encoding) {
+    public void addParameter(String paramName, Class<?>  paramClass, Object paramValue, String encoding) {
         parameters.addElement(new Parameter(paramName, paramClass, paramValue, encoding));
         
     }

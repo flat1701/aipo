@@ -60,11 +60,11 @@ public interface Portlets extends IdentityElement
 
     public Reference removeReference(int index);
 
-    public Iterator getEntriesIterator();
+    public Iterator<Entry> getEntriesIterator();
   
-    public Iterator getPortletsIterator();
+    public Iterator<Portlets> getPortletsIterator();
 
-    public Iterator getReferenceIterator();
+    public Iterator<Reference> getReferenceIterator();
 
     public void addEntry(Entry entry)
         throws java.lang.IndexOutOfBoundsException;

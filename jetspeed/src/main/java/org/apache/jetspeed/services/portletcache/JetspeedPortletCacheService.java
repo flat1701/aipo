@@ -23,8 +23,6 @@ import org.apache.jetspeed.portal.portlets.AbstractPortlet;
 import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
 import org.apache.jetspeed.services.logging.JetspeedLogger;
 import org.apache.jetspeed.services.resources.JetspeedResources;
-import org.apache.jetspeed.services.portletcache.Cacheable;
-
 // Turbine
 import org.apache.turbine.services.TurbineBaseService;
 import org.apache.turbine.services.TurbineServices;
@@ -39,7 +37,7 @@ import org.apache.turbine.services.cache.ObjectExpiredException;
  * the Turbine GlobalCacheService</p>
  *
  * @author <a href="mailto:burton@apache.org">Kevin A. Burton</a>
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:paulsp@apache.org">Paul Spencer</a>
  * @version $Id: JetspeedPortletCacheService.java,v 1.10 2004/02/23 03:34:54 jford Exp $
  */
@@ -87,6 +85,7 @@ implements PortletCacheService
      *
      * @param item the object to store in the Cache
      */
+    @SuppressWarnings("deprecation")
     public void addCacheable( Cacheable item ) {
         
         String handle = item.getHandle();
@@ -107,7 +106,7 @@ implements PortletCacheService
                 RefreshableCachedObject rco = new RefreshableCachedObject( (Refreshable) item);
                 if (item instanceof AbstractPortlet) {
                     AbstractPortlet portlet = (AbstractPortlet)item;
-                    String tempString =  portlet.getPortletConfig().getInitParameter(JetspeedResources.TIME_TO_LIVE);
+                    String tempString =  portlet.getPortletConfig().getInitParameter(JetspeedResources.TIME_TO_LIVE).toString();
                     if (tempString != null) {
                         rco.setTTL(Integer.parseInt(tempString));
                         if (logger.isWarnEnabled())

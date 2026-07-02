@@ -59,7 +59,7 @@ public class UserListAction extends ALBaseAction {
     listData.initField();
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setStrLength(0);
     listData.doSelectList(this, rundata, context);
     setTemplate(rundata, "userlist.vm");
@@ -82,7 +82,7 @@ public class UserListAction extends ALBaseAction {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p1b-rows")));
+        .getInitParameter("p1b-rows").toString()));
       listData.setStrLength(0);
       listData.doViewList(this, rundata, context);
       setTemplate(rundata, "userlist-list.vm");

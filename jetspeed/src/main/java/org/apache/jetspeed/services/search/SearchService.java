@@ -44,7 +44,7 @@ public interface SearchService
      * @param c
      * @return 
      */
-    public boolean add(Collection c);
+    public boolean add(Collection<Object> c);
 
     /**
      * Remove index entry
@@ -60,7 +60,7 @@ public interface SearchService
      * @param c
      * @return 
      */
-    public boolean remove(Collection c);
+    public boolean remove(Collection<Object> c);
 
     /**
      * Update index entry
@@ -76,7 +76,7 @@ public interface SearchService
      * @param c
      * @return 
      */
-    public boolean update(Collection c);
+    public boolean update(Collection<Object> c);
 
     /**
      * Search the index

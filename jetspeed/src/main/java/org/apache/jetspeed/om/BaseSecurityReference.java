@@ -16,9 +16,6 @@
 
 package org.apache.jetspeed.om;
 
-// Jetspeed imports
-import org.apache.jetspeed.om.SecurityReference;
-
 /**
  * BaseSecurityReference
  *

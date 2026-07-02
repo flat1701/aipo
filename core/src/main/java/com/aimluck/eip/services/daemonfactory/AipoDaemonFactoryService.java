@@ -61,6 +61,7 @@ public class AipoDaemonFactoryService extends JetspeedDaemonFactoryService {
    * 
    * @param entry
    */
+  @SuppressWarnings("unused")
   private void start(DaemonEntry entry) {
     logger.info("DaemonFactory:  start(): starting daemon -> "
       + entry.getName());

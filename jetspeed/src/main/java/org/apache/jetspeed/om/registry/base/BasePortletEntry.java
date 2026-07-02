@@ -29,7 +29,7 @@ import org.apache.jetspeed.services.Registry;
  * Default bean like implementation of the PortletEntry interface
  * suitable for serialization with Castor
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: BasePortletEntry.java,v 1.5 2004/02/23 03:08:26 jford Exp $
  */
 public class BasePortletEntry extends BasePortletInfoEntry
@@ -40,7 +40,7 @@ public class BasePortletEntry extends BasePortletInfoEntry
 
     private ContentURL url = new BaseContentURL();
 
-    protected Vector categories = new Vector();
+    protected Vector<Category> categories = new Vector<Category>();
 
     private boolean application;
 
@@ -111,8 +111,8 @@ public class BasePortletEntry extends BasePortletInfoEntry
             }
         }
 
-        Iterator i = categories.iterator();
-        Iterator i2 = obj.getCategories().iterator();
+        Iterator<Category> i = categories.iterator();
+        Iterator<Category> i2 = obj.getCategories().iterator();
         while(i.hasNext())
         {
             BaseCategory c1 = (BaseCategory)i.next();
@@ -307,12 +307,12 @@ public class BasePortletEntry extends BasePortletInfoEntry
     }
 
     /** @return an enumeration of this entry parameter names */
-    public Iterator getParameterNames()
+    public Iterator<String> getParameterNames()
     {
         if (isRef)
         {
-            Hashtable hash = new Hashtable();
-            Iterator i = super.getParameterNames();
+            Hashtable<String, String> hash = new Hashtable<String, String>();
+            Iterator<String> i = super.getParameterNames();
             while(i.hasNext())
             {
                 hash.put(i.next(),"1");
@@ -354,13 +354,13 @@ public class BasePortletEntry extends BasePortletInfoEntry
     /** Returns a map of parameter values keyed on the parameter names
      *  @return the parameter values map
      */
-    public Map getParameterMap()
+    public Map<String, Object> getParameterMap()
     {
-        Hashtable params = (Hashtable)super.getParameterMap();
+      Map<String, Object> params = super.getParameterMap();
 
         if (isRef)
         {
-            Map map = getParentEntry().getParameterMap();
+            Map<String, Object> map = getParentEntry().getParameterMap();
             map.putAll(params);
             return map;
         }
@@ -373,22 +373,22 @@ public class BasePortletEntry extends BasePortletInfoEntry
      *
      * @return an iterator on the supported media type names
      */
-    public Iterator listMediaTypes()
+    public Iterator<String> listMediaTypes()
     {
         if (isRef)
         {
-            Map types = new HashMap();
+            Map<String, String> types = new HashMap<String, String>();
 
-            Iterator i = super.listMediaTypes();
+            Iterator<String> i = super.listMediaTypes();
             while(i.hasNext())
             {
                 types.put(i.next(),"1");
             }
 
-            i = getParentEntry().listMediaTypes();
-            while(i.hasNext())
+            Iterator<String> i2 = getParentEntry().listMediaTypes();
+            while(i2.hasNext())
             {
-                types.put(i.next(),"1");
+                types.put(i2.next(),"1");
             }
 
             return types.keySet().iterator();
@@ -432,12 +432,12 @@ public class BasePortletEntry extends BasePortletInfoEntry
     /*
      * Categories
      */
-    public Vector getCategories()
+    public Vector<Category> getCategories()
     {
         return this.categories;
     }
 
-    public void setCategories(Vector v)
+    public void setCategories(Vector<Category> v)
     {
         this.categories = v;
     }
@@ -447,7 +447,7 @@ public class BasePortletEntry extends BasePortletInfoEntry
      *
      * @return an iterator on the supported media type names
      */
-    public Iterator listCategories()
+    public Iterator<?> listCategories()
     {
         return new PortletIterator(this, "getCategories");
     }
@@ -472,7 +472,7 @@ public class BasePortletEntry extends BasePortletInfoEntry
      */
     public boolean hasCategory(String name, String group)
     {
-        Iterator it = listCategories();
+        Iterator<?> it = listCategories();
         while (it.hasNext())
         {
             Category cat = (Category)it.next();

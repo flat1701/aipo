@@ -330,7 +330,7 @@ public abstract class ALAbstractFolder implements ALFolder {
         ALEipUtils.setTemp(rundata, context, LIST_SORT_STR, ALEipUtils
           .getPortlet(rundata, context)
           .getPortletConfig()
-          .getInitParameter("p2a-sort"));
+          .getInitParameter("p2a-sort").toString());
       }
 
       init(rundata, context);

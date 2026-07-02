@@ -23,7 +23,6 @@ import org.apache.ecs.StringElement;
 import org.apache.jetspeed.portal.PortletConfig;
 import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
 import org.apache.jetspeed.services.logging.JetspeedLogger;
-import org.apache.jetspeed.portal.portlets.AbstractPortlet;
 import org.apache.jetspeed.util.servlet.EcsServletElement;
 
 import org.apache.turbine.util.RunData;
@@ -49,7 +48,8 @@ public class ServletInvokerPortlet extends AbstractPortlet
    */
   public ConcreteElement getContent(RunData rundata) {
 	// !!! Need to check this - is this the right rundata object ? !!!
-	PortletConfig pc = this.getPortletConfig();
+	@SuppressWarnings("unused")
+  PortletConfig pc = this.getPortletConfig();
 
 	String servletURL = null;
 	try {

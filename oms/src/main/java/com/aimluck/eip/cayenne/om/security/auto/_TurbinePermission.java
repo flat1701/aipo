@@ -37,8 +37,8 @@ public class _TurbinePermission extends org.apache.cayenne.CayenneDataObject {
     public void removeFromTurbineRolePermission(com.aimluck.eip.cayenne.om.security.TurbineRolePermission obj) {
         removeToManyTarget("turbineRolePermission", obj, true);
     }
-    public List getTurbineRolePermission() {
-        return (List)readProperty("turbineRolePermission");
+    public List<?> getTurbineRolePermission() {
+        return (List<?>)readProperty("turbineRolePermission");
     }
     
     

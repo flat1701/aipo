@@ -2,8 +2,6 @@
 
 package org.apache.jetspeed.om.security.turbine;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.torque.Torque;
@@ -12,7 +10,6 @@ import org.apache.torque.manager.AbstractBaseManager;
 import org.apache.torque.manager.CacheListener;
 import org.apache.torque.manager.MethodResultCache;
 import org.apache.torque.om.ObjectKey;
-import org.apache.torque.om.SimpleKey;
 import org.apache.torque.om.Persistent;
 import org.apache.torque.util.Criteria;
 
@@ -95,7 +92,7 @@ public abstract class BaseTurbineUserGroupRoleManager
      * @return a <code>List</code> value
      * @exception TorqueException if an error occurs
      */
-    public static List getInstances(List ids)
+    public static List<?> getInstances(List<?> ids)
         throws TorqueException
     {
         return getManager().getInstancesImpl(ids);
@@ -108,7 +105,7 @@ public abstract class BaseTurbineUserGroupRoleManager
      * @return a <code>List</code> value
      * @exception TorqueException if an error occurs
      */
-    public static List getInstances(List ids, boolean fromCache)
+    public static List<?> getInstances(List<?> ids, boolean fromCache)
         throws TorqueException
     {
         return getManager().getInstancesImpl(ids, fromCache);
@@ -203,7 +200,7 @@ public abstract class BaseTurbineUserGroupRoleManager
      * @return a <code>List</code> of TurbineUserGroupRoles
      * @exception TorqueException if an error occurs
      */
-    protected List getInstancesImpl(List ids)
+    protected List<?> getInstancesImpl(List<?> ids)
         throws TorqueException
     {
         return getOMs(ids);
@@ -218,7 +215,7 @@ public abstract class BaseTurbineUserGroupRoleManager
      * @return a <code>List</code> of TurbineUserGroupRoles
      * @exception TorqueException if an error occurs
      */
-    protected List getInstancesImpl(List ids, boolean fromCache)
+    protected List<?> getInstancesImpl(List<?> ids, boolean fromCache)
         throws TorqueException
     {
         return getOMs(ids, fromCache);
@@ -249,6 +246,8 @@ public abstract class BaseTurbineUserGroupRoleManager
      * @return a <code>List</code> value
      * @exception TorqueException if an error occurs
      */
+    @SuppressWarnings("rawtypes")
+    @Override
     protected List retrieveStoredOMs(List ids)
         throws TorqueException
     {

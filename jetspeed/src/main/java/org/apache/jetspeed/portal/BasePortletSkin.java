@@ -26,12 +26,12 @@ import org.apache.turbine.services.servlet.TurbineServlet;
  * This default implementation of PortletSkin stores every property
  * as a Map of text properties
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:paulsp@apache.org">Paul Spencer</a>
  * @author <a href="mailto:weaver@apache.org">Scott T. Weaver</a>
  * @version $Id: BasePortletSkin.java,v 1.7 2004/02/23 04:05:35 jford Exp $
  */
-public class BasePortletSkin extends java.util.HashMap implements PortletSkin
+public class BasePortletSkin extends java.util.HashMap<String, String> implements PortletSkin
 {
 
     public String name = null;

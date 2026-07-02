@@ -65,7 +65,7 @@ public class TurbineUserPeer
       * @param criteria the query criteria.
       * @return a List of JetspeedUsers
       */
-    public static List doSelectUsers( Criteria criteria ) throws TorqueException
+    public static List<JetspeedUser> doSelectUsers( Criteria criteria ) throws TorqueException
     {
         return populateUserObjects( doSelectVillageRecords(criteria) );
     }
@@ -75,10 +75,10 @@ public class TurbineUserPeer
      * The returned list will contain objects of the default type or
      * objects that inherit from the default.
      */
-    public static List populateUserObjects(List records)
+    public static List<JetspeedUser> populateUserObjects(List<?> records)
         throws TorqueException
     {
-        List results = new ArrayList(records.size());
+        List<JetspeedUser> results = new ArrayList<JetspeedUser>(records.size());
 
         // populate the object(s)
         for ( int i=0; i<records.size(); i++ )
@@ -98,7 +98,7 @@ public class TurbineUserPeer
      */
     public static JetspeedUser row2UserObject (Record row,
                                               int offset,
-                                              Class cls )
+                                              Class<?> cls )
         throws TorqueException
     {
         try
@@ -134,6 +134,7 @@ public class TurbineUserPeer
         // Set values are where columns are expected.  They are not
         // required to be in these positions, as we set the positions
         // immediately following.
+        @SuppressWarnings("unused")
         int idPosition = 1;
         int objectDataPosition = columnNames.length;
         for( int i=0; i<columnNames.length; i++ )
@@ -149,10 +150,11 @@ public class TurbineUserPeer
         // Hashtable is restored, then any explicit table columns
         // which should be included in the Hashtable are added.
         byte[] objectData = (byte[])row.getValue(objectDataPosition).asBytes();
-        Hashtable tempHash = (Hashtable)ObjectUtils.deserialize(objectData);
+        @SuppressWarnings("unchecked")
+        Hashtable<String, Object> tempHash = (Hashtable<String, Object>)ObjectUtils.deserialize(objectData);
         if (tempHash == null)
         {
-            tempHash = new Hashtable(10);
+            tempHash = new Hashtable<String, Object>(10);
         }
 
         for( int j=0; j<columnNames.length; j++ )
@@ -295,7 +297,7 @@ public class TurbineUserPeer
      */
     public static Criteria buildCriteria(JetspeedUser user)
     {
-        Hashtable permData = (Hashtable) user.getPermStorage().clone();
+        Hashtable<?, ?> permData = (Hashtable<?, ?>) user.getPermStorage().clone();
         Criteria criteria = new Criteria();
         if ( !user.isNew() )
         {

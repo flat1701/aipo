@@ -31,6 +31,7 @@ public class PopulateSampleIndices
 {
     static public final String SAMPLE_URLS = "./test/search-sample-urls.txt";
     
+    @SuppressWarnings("deprecation")
     public static void main(String args[])
     {
         try

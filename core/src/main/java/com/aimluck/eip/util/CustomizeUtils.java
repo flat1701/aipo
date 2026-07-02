@@ -100,7 +100,6 @@ public class CustomizeUtils {
   }
 
   // Create a list of all available portlets
-  @SuppressWarnings("unchecked")
   public static List<PortletEntry> buildPortletList(RunData data,
       String mediaType, List<PortletEntry> allPortlets) {
     List<PortletEntry> list = new ArrayList<PortletEntry>();
@@ -171,7 +170,6 @@ public class CustomizeUtils {
   }
 
   // Create a list of all available portlets and all applications
-  @SuppressWarnings("unchecked")
   public static List<PortletEntry> buildPortletListWithStatus(RunData data,
       String mediaType, List<PortletEntry> allPortlets, Status status) {
     List<PortletEntry> list = new ArrayList<PortletEntry>();
@@ -242,7 +240,6 @@ public class CustomizeUtils {
   }
 
   // Create a list of all portlets
-  @SuppressWarnings("unchecked")
   public static List<PortletEntry> buildAllPortletList(RunData data,
       String mediaType, List<PortletEntry> allPortlets) {
     List<PortletEntry> list = new ArrayList<PortletEntry>();

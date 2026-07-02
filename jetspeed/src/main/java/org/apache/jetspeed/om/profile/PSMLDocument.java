@@ -16,16 +16,13 @@
 
 package org.apache.jetspeed.om.profile;
 
-import org.apache.jetspeed.om.profile.Portlets;
-import org.apache.jetspeed.om.profile.Entry;
-
 import java.io.Serializable;
 /**
  * This interface represents a loaded PSML document in memory, providing
  * all facilities for finding and updating specific parts of the 
  * document.
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: PSMLDocument.java,v 1.8 2004/02/23 03:05:01 jford Exp $
  */
 public interface PSMLDocument extends Serializable, Cloneable

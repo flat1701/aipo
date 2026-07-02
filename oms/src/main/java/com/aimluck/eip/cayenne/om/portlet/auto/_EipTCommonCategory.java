@@ -73,8 +73,8 @@ public class _EipTCommonCategory extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTScheduleMaps(com.aimluck.eip.cayenne.om.portlet.EipTScheduleMap obj) {
         removeToManyTarget("eipTScheduleMaps", obj, true);
     }
-    public List getEipTScheduleMaps() {
-        return (List)readProperty("eipTScheduleMaps");
+    public List<?> getEipTScheduleMaps() {
+        return (List<?>)readProperty("eipTScheduleMaps");
     }
     
     

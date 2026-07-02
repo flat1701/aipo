@@ -46,8 +46,8 @@ public class _EipTAclPortletFeature extends org.apache.cayenne.CayenneDataObject
     public void removeFromEipTAclRole(com.aimluck.eip.cayenne.om.account.EipTAclRole obj) {
         removeToManyTarget("eipTAclRole", obj, true);
     }
-    public List getEipTAclRole() {
-        return (List)readProperty("eipTAclRole");
+    public List<?> getEipTAclRole() {
+        return (List<?>)readProperty("eipTAclRole");
     }
     
     

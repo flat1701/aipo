@@ -62,10 +62,10 @@ public class NoteListScreen extends NoteScreen {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1b-rows")));
+        context).getPortletConfig().getInitParameter("p1b-rows").toString()));
       listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p3a-strlen")));
+        context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
       listData.doViewList(this, rundata, context);
       String layout_template = "portlets/html/ja/ajax-note-list.vm";
       setTemplate(rundata, context, layout_template);

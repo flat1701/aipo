@@ -158,7 +158,7 @@ public class ALEipUtils {
    *          セッション変数の値
    */
   public static void setTemp(RunData rundata, Context context, String key,
-      String value) {
+      Object value) {
 
     JetspeedRunData jdata = (JetspeedRunData) rundata;
     VelocityPortlet portlet =
@@ -323,7 +323,6 @@ public class ALEipUtils {
         return null;
       }
 
-      @SuppressWarnings("unchecked")
       Iterator<Entry> iterator = portlets.getEntriesIterator();
       while (iterator.hasNext()) {
         Entry next = iterator.next();
@@ -383,7 +382,7 @@ public class ALEipUtils {
       if (portlets == null) {
         return hash;
       }
-      for (@SuppressWarnings("unchecked")
+      for (
       Iterator<Entry> it = portlets.getEntriesIterator(); it.hasNext();) {
         Entry next = it.next();
         if (!hash.containsKey(next.getParent())) {
@@ -2352,7 +2351,7 @@ public class ALEipUtils {
     VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
     PortletConfig config = portlet.getPortletConfig();
     if (value == null || "".equals(value)) {
-      value = config != null ? config.getInitParameter(key) : "";
+      value = config != null ? config.getInitParameter(key).toString() : "";
     } else {
       ALEipUtils.setPsmlParameters(rundata, context, key, value);
     }

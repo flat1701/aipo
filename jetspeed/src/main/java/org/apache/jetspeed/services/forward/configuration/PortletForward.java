@@ -32,7 +32,7 @@ public interface PortletForward
 
     public String getTarget();
 
-    public Map getQueryParams();
+    public Map<String, QueryParam> getQueryParams();
 }
 
 

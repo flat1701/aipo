@@ -35,7 +35,6 @@ import org.apache.turbine.services.TurbineServices;
 // Jetspeed classes
 import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
 import org.apache.jetspeed.services.logging.JetspeedLogger;
-import org.apache.jetspeed.services.rundata.JetspeedRunData;
 import org.apache.jetspeed.services.statemanager.StateManagerService;
 
 /**
@@ -59,7 +58,7 @@ public class JetspeedRunDataService
     private static final JetspeedLogger logger = JetspeedLogFactoryService.getLogger(JetspeedRunDataService.class.getName());
     
     /** The collection of active JetspeedRunData objects, keyed by Thread. */
-    private Map m_runDataStore = null;
+    private Map<Thread, JetspeedRunData> m_runDataStore = null;
 
     /*******************************************************************************
     * Service implementation
@@ -76,7 +75,7 @@ public class JetspeedRunDataService
         super.init();
 
         // allocate a thread-safe map
-        m_runDataStore = Collections.synchronizedMap(new HashMap());
+        m_runDataStore = Collections.synchronizedMap(new HashMap<Thread, JetspeedRunData>());
 
     }   // init
 

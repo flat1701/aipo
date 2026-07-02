@@ -259,7 +259,7 @@ public class AjaxScheduleWeeklyGroupSelectData extends
           : Integer.parseInt(ALEipUtils
             .getPortlet(rundata, context)
             .getPortletConfig()
-            .getInitParameter("p5a-view"));
+            .getInitParameter("p5a-view").toString());
     }
 
     userid = ALEipUtils.getUserId(rundata);

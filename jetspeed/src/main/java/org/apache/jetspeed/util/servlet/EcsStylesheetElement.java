@@ -113,7 +113,7 @@ public class EcsStylesheetElement extends ConcreteElement
     private InputSource content_;
 
     /** Parameters to be used by the stylesheet. */
-    private Map params_;
+    private Map<?, ?> params_;
 
     /** XSLT stylesheet to be used for rendering the content. */
     private InputSource stylesheet_;
@@ -128,7 +128,7 @@ public class EcsStylesheetElement extends ConcreteElement
      */
     public EcsStylesheetElement( InputSource content, 
                                  InputSource stylesheet,
-                                 Map params ) 
+                                 Map<?, ?> params ) 
     {
         content_ = content;
         stylesheet_ = stylesheet;

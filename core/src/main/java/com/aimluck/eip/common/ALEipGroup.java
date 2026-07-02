@@ -33,6 +33,7 @@ import com.aimluck.commons.field.ALStringField;
 public class ALEipGroup implements ALData, Serializable {
 
   /** FacilityGroup ID */
+  @SuppressWarnings("unused")
   private ALNumberField facility_group_id;
 
   /**

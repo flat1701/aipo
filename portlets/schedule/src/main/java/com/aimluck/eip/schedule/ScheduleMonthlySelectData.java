@@ -308,7 +308,7 @@ public class ScheduleMonthlySelectData extends AjaxScheduleMonthlySelectData {
         ALEipUtils.getTemp(rundata, context, TARGET_GROUP_NAME);
       if (groupFilter == null || groupFilter.equals("")) {
         VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
-        groupFilter = portlet.getPortletConfig().getInitParameter("p3a-group");
+        groupFilter = portlet.getPortletConfig().getInitParameter("p3a-group").toString();
         if (groupFilter != null) {
           ALEipUtils.setTemp(rundata, context, TARGET_GROUP_NAME, groupFilter);
         }
@@ -319,7 +319,7 @@ public class ScheduleMonthlySelectData extends AjaxScheduleMonthlySelectData {
       String userFilter = ALEipUtils.getTemp(rundata, context, TARGET_USER_ID);
       if (userFilter == null || userFilter.equals("")) {
         VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
-        userFilter = portlet.getPortletConfig().getInitParameter("p3a-user");
+        userFilter = portlet.getPortletConfig().getInitParameter("p3a-user").toString();
       }
 
       if (userFilter != null && (!userFilter.equals(""))) {
@@ -362,7 +362,7 @@ public class ScheduleMonthlySelectData extends AjaxScheduleMonthlySelectData {
         : Integer.parseInt(ALEipUtils
           .getPortlet(rundata, context)
           .getPortletConfig()
-          .getInitParameter("p5a-view"));
+          .getInitParameter("p5a-view").toString());
 
     // アクセスコントロール
     int loginUserId = ALEipUtils.getUserId(rundata);

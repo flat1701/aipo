@@ -1,11 +1,8 @@
 package org.apache.jetspeed.om.security.turbine;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,9 +12,6 @@ import org.apache.torque.Torque;
 import org.apache.torque.TorqueException;
 import org.apache.torque.map.MapBuilder;
 import org.apache.torque.map.TableMap;
-import org.apache.torque.om.DateKey;
-import org.apache.torque.om.NumberKey;
-import org.apache.torque.om.StringKey;
 import org.apache.torque.om.ObjectKey;
 import org.apache.torque.om.SimpleKey;
 import org.apache.torque.util.BasePeer;
@@ -95,7 +89,7 @@ public abstract class BaseTurbineGroupPeer
         "org.apache.jetspeed.om.security.turbine.TurbineGroup";
 
     /** A class that can be returned by this peer. */
-    protected static final Class CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
+    protected static final Class<?> CLASS_DEFAULT = initClass(CLASSNAME_DEFAULT);
 
     /**
      * Class object initialization method.
@@ -103,9 +97,9 @@ public abstract class BaseTurbineGroupPeer
      * @param className name of the class to initialize
      * @return the initialized class
      */
-    private static Class initClass(String className)
+    private static Class<?> initClass(String className)
     {
-        Class c = null;
+        Class<?> c = null;
         try
         {
             c = Class.forName(className);
@@ -137,13 +131,13 @@ public abstract class BaseTurbineGroupPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List resultSet2Objects(java.sql.ResultSet results)
+    public static List<TurbineGroup> resultSet2Objects(java.sql.ResultSet results)
             throws TorqueException
     {
         try
         {
             QueryDataSet qds = null;
-            List rows = null;
+            List<?> rows = null;
             try
             {
                 qds = new QueryDataSet(results);
@@ -242,7 +236,7 @@ public abstract class BaseTurbineGroupPeer
      */
     public static TurbineGroup row2Object(Record row,
                                              int offset,
-                                             Class cls)
+                                             Class<?> cls)
         throws TorqueException
     {
         try
@@ -298,7 +292,7 @@ public abstract class BaseTurbineGroupPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(Criteria criteria) throws TorqueException
+    public static List<TurbineGroup> doSelect(Criteria criteria) throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria));
     }
@@ -312,7 +306,7 @@ public abstract class BaseTurbineGroupPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(Criteria criteria, Connection con)
+    public static List<TurbineGroup> doSelect(Criteria criteria, Connection con)
         throws TorqueException
     {
         return populateObjects(doSelectVillageRecords(criteria, con));
@@ -328,7 +322,7 @@ public abstract class BaseTurbineGroupPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelectVillageRecords(Criteria criteria)
+    public static List<?> doSelectVillageRecords(Criteria criteria)
         throws TorqueException
     {
         return BaseTurbineGroupPeer
@@ -343,7 +337,7 @@ public abstract class BaseTurbineGroupPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelectVillageRecords(Criteria criteria, Connection con)
+    public static List<?> doSelectVillageRecords(Criteria criteria, Connection con)
         throws TorqueException
     {
         if (criteria.getSelectColumns().size() == 0)
@@ -378,10 +372,10 @@ public abstract class BaseTurbineGroupPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List populateObjects(List records)
+    public static List<TurbineGroup> populateObjects(List<?> records)
         throws TorqueException
     {
-        List results = new ArrayList(records.size());
+        List<TurbineGroup> results = new ArrayList<TurbineGroup>(records.size());
 
         // populate the object(s)
         for (int i = 0; i < records.size(); i++)
@@ -402,7 +396,7 @@ public abstract class BaseTurbineGroupPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static Class getOMClass()
+    public static Class<?> getOMClass()
         throws TorqueException
     {
         return CLASS_DEFAULT;
@@ -506,7 +500,7 @@ public abstract class BaseTurbineGroupPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List doSelect(TurbineGroup obj) throws TorqueException
+    public static List<TurbineGroup> doSelect(TurbineGroup obj) throws TorqueException
     {
         return doSelect(buildCriteria(obj));
     }
@@ -700,7 +694,7 @@ public abstract class BaseTurbineGroupPeer
         throws TorqueException, NoRowsException, TooManyRowsException
     {
         Criteria criteria = buildCriteria(pk);
-        List v = doSelect(criteria, con);
+        List<TurbineGroup> v = doSelect(criteria, con);
         if (v.size() == 0)
         {
             throw new NoRowsException("Failed to select a row.");
@@ -722,11 +716,11 @@ public abstract class BaseTurbineGroupPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List retrieveByPKs(List pks)
+    public static List<TurbineGroup> retrieveByPKs(List<?> pks)
         throws TorqueException
     {
         Connection db = null;
-        List retVal = null;
+        List<TurbineGroup> retVal = null;
         try
         {
            db = Torque.getConnection(DATABASE_NAME);
@@ -747,13 +741,13 @@ public abstract class BaseTurbineGroupPeer
      * @throws TorqueException Any exceptions caught during processing will be
      *         rethrown wrapped into a TorqueException.
      */
-    public static List retrieveByPKs( List pks, Connection dbcon )
+    public static List<TurbineGroup> retrieveByPKs( List<?> pks, Connection dbcon )
         throws TorqueException
     {
-        List objs = null;
+        List<TurbineGroup> objs = null;
         if (pks == null || pks.size() == 0)
         {
-            objs = new LinkedList();
+            objs = new LinkedList<TurbineGroup>();
         }
         else
         {

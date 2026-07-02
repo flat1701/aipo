@@ -85,7 +85,7 @@ public class ScheduleListScreen extends ScheduleScreen {
       }
 
       // 初期共有メンバー表示フラグを取得する
-      String showAll = portlet.getPortletConfig().getInitParameter("p7d-schk");
+      String showAll = portlet.getPortletConfig().getInitParameter("p7d-schk").toString();
       if (!("t".equals(showAll))) {
         showAll = "f";
       }
@@ -104,7 +104,7 @@ public class ScheduleListScreen extends ScheduleScreen {
         List<UserFacilityLiteBean> memberList =
           new ArrayList<UserFacilityLiteBean>();
         String selected_user =
-          portlet.getPortletConfig().getInitParameter("p6a-uids");
+          portlet.getPortletConfig().getInitParameter("p6a-uids").toString();
         if (selected_user == null || "".equals(selected_user)) {
           UserFacilityLiteBean login_user =
             UserFacilityUtils.getUserFacilityLiteBean(rundata);

@@ -85,11 +85,11 @@ public class GadgetsAction extends ALBaseAction {
   protected void buildCommonContext(VelocityPortlet portlet, Context context,
       RunData rundata, boolean isMaximized) {
 
-    String appId = portlet.getPortletConfig().getInitParameter("aid");
-    String url = portlet.getPortletConfig().getInitParameter("url");
+    String appId = portlet.getPortletConfig().getInitParameter("aid").toString();
+    String url = portlet.getPortletConfig().getInitParameter("url").toString();
     Long mid = null;
     try {
-      mid = Long.valueOf(portlet.getPortletConfig().getInitParameter("mid"));
+      mid = Long.valueOf(portlet.getPortletConfig().getInitParameter("mid").toString());
     } catch (Throwable ignore) {
       //
     }
@@ -128,13 +128,12 @@ public class GadgetsAction extends ALBaseAction {
     context.put("gadgetContext", gadgetContext);
     context.put("isActive", isActive);
 
-    @SuppressWarnings("unchecked")
     Iterator<String> names = portlet.getPortletConfig().getInitParameterNames();
     Map<String, Object> maps = new HashMap<String, Object>();
     while (names.hasNext()) {
       String next = names.next();
       if (next != null && next.startsWith("pref-")) {
-        String value = portlet.getPortletConfig().getInitParameter(next);
+        String value = portlet.getPortletConfig().getInitParameter(next).toString();
         String key = next.substring(5);
         Map<String, String> maps2 = new HashMap<String, String>();
         maps2.put("value", value);

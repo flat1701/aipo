@@ -41,6 +41,7 @@ public class SampleRewriter extends HTMLRewriter
     private boolean debug = false;
     private String basePortalURL;
     private String fullPortalURL;
+    @SuppressWarnings("unused")
     private String sampleURL;
 
     private String sessionID = "NONE";

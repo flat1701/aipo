@@ -62,6 +62,7 @@ public class Instantiator implements Runnable {
     private PortletEntry   entry = null;
     private int            id = 0;
 
+    @SuppressWarnings("unused")
     private boolean        forcePortet = false;
     
     /**

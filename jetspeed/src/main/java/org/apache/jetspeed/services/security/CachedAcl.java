@@ -34,7 +34,7 @@ import org.apache.jetspeed.om.security.Role;
  */
 public class CachedAcl
 {
-	protected HashMap groupRoles = new HashMap();
+	protected HashMap<String, GroupRole> groupRoles = new HashMap<String, GroupRole>();
 	protected String userName;
 
 	/**
@@ -91,7 +91,7 @@ public class CachedAcl
 	/**
 	 * @return
 	 */
-	public Iterator getRoles()
+	public Iterator<GroupRole> getRoles()
 	{
 		return groupRoles.values().iterator();
 	}
@@ -143,7 +143,7 @@ public class CachedAcl
 	/**
 	 * @param grouproles
 	 */
-	public void setRoles(Iterator grouproles)
+	public void setRoles(Iterator<?> grouproles)
 	{
 		while (grouproles.hasNext())
 		{

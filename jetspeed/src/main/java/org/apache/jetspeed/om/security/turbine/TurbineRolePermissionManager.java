@@ -2,9 +2,9 @@
 
 package org.apache.jetspeed.om.security.turbine;
 
-import org.apache.torque.Torque;
+import java.util.List;
+
 import org.apache.torque.TorqueException;
-import org.apache.torque.om.Persistent;
 
 /**
  * This class manages TurbineRolePermission objects.
@@ -28,5 +28,20 @@ public class TurbineRolePermissionManager
         throws TorqueException
     {
         super();
+    }
+
+    /**
+     * Gets a list of ModuleEntities based on id's.
+     *
+     * @param moduleIds a <code>NumberKey[]</code> value
+     * @return a <code>List</code> value
+     * @exception TorqueException if an error occurs
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @Override
+    protected List retrieveStoredOMs(List ids)
+        throws TorqueException
+    {
+        return TurbineUserPeer.retrieveByPKs(ids);
     }
 }

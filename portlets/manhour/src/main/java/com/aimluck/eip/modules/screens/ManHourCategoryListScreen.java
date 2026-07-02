@@ -52,10 +52,10 @@ public class ManHourCategoryListScreen extends ALVelocityScreen {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p2a-rows")));
+        context).getPortletConfig().getInitParameter("p2a-rows").toString()));
       listData.setStrLength(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p3a-strlen")));
+        context).getPortletConfig().getInitParameter("p3a-strlen").toString()));
       listData.doViewList(this, rundata, context);
 
       String layout_template = "portlets/html/ja/ajax-manhour-category-list.vm";

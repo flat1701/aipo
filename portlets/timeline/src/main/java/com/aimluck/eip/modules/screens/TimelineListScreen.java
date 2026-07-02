@@ -61,7 +61,7 @@ public class TimelineListScreen extends TimelineScreen {
       listData.initField();
       listData.setContentHeightMax(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p2a-rows", "0")));
+        context).getPortletConfig().getInitParameter("p2a-rows", "0").toString()));
       listData.setRowsNum(rows);
       listData.setScrollTop(scrollTop);
       listData.doViewList(this, rundata, context);

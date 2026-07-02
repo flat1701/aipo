@@ -122,7 +122,7 @@ public class MyLinkAction extends ALBaseAction {
           .append("a-")
           .append(TITLE)
           .append(Integer.toHexString(i));
-        title = portlet.getPortletConfig().getInitParameter(sb.toString());
+        title = portlet.getPortletConfig().getInitParameter(sb.toString()).toString();
         sb = new StringBuffer();
         sb
           .append("p")
@@ -130,7 +130,7 @@ public class MyLinkAction extends ALBaseAction {
           .append("b-")
           .append(LINK)
           .append(Integer.toHexString(i));
-        link = portlet.getPortletConfig().getInitParameter(sb.toString());
+        link = portlet.getPortletConfig().getInitParameter(sb.toString()).toString();
 
         if (title != null && (!title.equals(""))) {
           rd.setTitle(title);

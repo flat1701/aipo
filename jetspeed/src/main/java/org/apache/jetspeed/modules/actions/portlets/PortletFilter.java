@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 import org.apache.jetspeed.om.registry.PortletEntry;
+import org.apache.jetspeed.om.registry.RegistryEntry;
 import org.apache.jetspeed.om.registry.base.BaseCategory;
 import org.apache.jetspeed.services.Registry;
 import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
@@ -50,8 +51,8 @@ public abstract class PortletFilter
      * @param value The value of the filter
      * @return List of portlets that met the filter criteria
      */
-    public static List filterPortlets(
-        List portlets,
+    public static List<PortletEntry> filterPortlets(
+        List<?> portlets,
         String field,
         String value)
     {
@@ -69,14 +70,14 @@ public abstract class PortletFilter
      * @param values The list of values.  This should be in a 1:1 ratio with the fields.
      * @return List of portlets that met the filter criteria
      */
-    public static List filterPortlets(
-        List portlets,
+    public static List<PortletEntry> filterPortlets(
+        List<?> portlets,
         String[] fields,
         String[] values)
     {
-        List filteredPortlets = new ArrayList();
+        List<PortletEntry> filteredPortlets = new ArrayList<PortletEntry>();
 
-        Iterator portletIter = portlets.iterator();
+        Iterator<?> portletIter = portlets.iterator();
         while (portletIter.hasNext())
         {
             PortletEntry entry = (PortletEntry) portletIter.next();
@@ -173,15 +174,15 @@ public abstract class PortletFilter
      * @param List portlets portlets to scan for categories
      * @return List of categories
      */
-    public static List buildCategoryList(List portlets)
+    public static List<BaseCategory> buildCategoryList(List<?> portlets)
     {
-        TreeMap catMap = new TreeMap();
-        Iterator pItr = portlets.iterator();
+        TreeMap<String, BaseCategory> catMap = new TreeMap<String, BaseCategory>();
+        Iterator<?> pItr = portlets.iterator();
         while (pItr.hasNext())
         {
             PortletEntry entry = (PortletEntry) pItr.next();
 
-            Iterator cItr = entry.listCategories();
+            Iterator<?> cItr = entry.listCategories();
             while (cItr.hasNext())
             {
                 BaseCategory cat = (BaseCategory) cItr.next();
@@ -189,7 +190,7 @@ public abstract class PortletFilter
             }
         }
 
-        return new ArrayList(catMap.values());
+        return new ArrayList<BaseCategory>(catMap.values());
     }
 
     /**
@@ -197,11 +198,11 @@ public abstract class PortletFilter
      * 
      * @return List of portlets
      */
-    public static List getAllPortlets()
+    public static List<RegistryEntry> getAllPortlets()
     {
-        List regEntries = new ArrayList();
+        List<RegistryEntry> regEntries = new ArrayList<RegistryEntry>();
 
-        Iterator iter = Registry.get(Registry.PORTLET).listEntryNames();
+        Iterator<?> iter = Registry.get(Registry.PORTLET).listEntryNames();
         while (iter.hasNext())
         {
             String entryName = (String) iter.next();
@@ -217,11 +218,11 @@ public abstract class PortletFilter
      * @param portlets List of portlets to search for parents
      * @return List of portlets that are parents
      */
-    public static List buildParentList(List portlets)
+    public static List<PortletEntry> buildParentList(List<?> portlets)
     {
-        HashSet parentSet = new HashSet();
+        HashSet<PortletEntry> parentSet = new HashSet<PortletEntry>();
 
-        Iterator portletIter = portlets.iterator();
+        Iterator<?> portletIter = portlets.iterator();
         while (portletIter.hasNext())
         {
             PortletEntry regEntry = (PortletEntry) portletIter.next();
@@ -233,7 +234,7 @@ public abstract class PortletFilter
             }
         }
 
-        return new ArrayList(parentSet);
+        return new ArrayList<PortletEntry>(parentSet);
     }
 
 }

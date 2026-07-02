@@ -52,7 +52,7 @@ public class MsgboardCategoryListScreen extends ALVelocityScreen {
       listData.initField();
       listData.setRowsNum(Integer.parseInt(ALEipUtils.getPortlet(
         rundata,
-        context).getPortletConfig().getInitParameter("p1c-rows")));
+        context).getPortletConfig().getInitParameter("p1c-rows").toString()));
       listData.loadCategoryList(rundata);
       listData.doViewList(this, rundata, context);
 

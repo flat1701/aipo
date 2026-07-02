@@ -77,29 +77,29 @@ public class WebPagePortlet extends AbstractInstancePortlet
         {
             //FIXME: HTMLRewriter should take a Reader, and work
             rewriter = new HTMLRewriter(
-                    ! config.getInitParameter("dont_remove_script","no")
+                    ! config.getInitParameter("dont_remove_script","no").toString()
                         .equalsIgnoreCase("yes"),
-                    ! config.getInitParameter("dont_remove_style","no")
+                    ! config.getInitParameter("dont_remove_style","no").toString()
                         .equalsIgnoreCase("yes"),
-                    ! config.getInitParameter("dont_remove_noscript","no")
+                    ! config.getInitParameter("dont_remove_noscript","no").toString()
                         .equalsIgnoreCase("yes"),
-                    ! config.getInitParameter("dont_remove_meta","no")
+                    ! config.getInitParameter("dont_remove_meta","no").toString()
                         .equalsIgnoreCase("yes"),
-                    ! config.getInitParameter("dont_remove_applet","no")
+                    ! config.getInitParameter("dont_remove_applet","no").toString()
                         .equalsIgnoreCase("yes"),
-                    ! config.getInitParameter("dont_remove_object","no")
+                    ! config.getInitParameter("dont_remove_object","no").toString()
                         .equalsIgnoreCase("yes"),
-                    ! config.getInitParameter("dont_remove_head","no")
+                    ! config.getInitParameter("dont_remove_head","no").toString()
                         .equalsIgnoreCase("yes"),
-                    ! config.getInitParameter("dont_remove_onsomething","no")
+                    ! config.getInitParameter("dont_remove_onsomething","no").toString()
                         .equalsIgnoreCase("yes"),
-                    config.getInitParameter("open_in_popup","no")
+                    config.getInitParameter("open_in_popup","no").toString()
                         .equalsIgnoreCase("yes")
                         );
 
             // fetch username and password for HTTP Basic Autentication
-            username = config.getInitParameter("username");
-            password = config.getInitParameter("password");
+            username = config.getInitParameter("username").toString();
+            password = config.getInitParameter("password").toString();
             
             contentStale = true;
             initDone = true;

@@ -42,6 +42,7 @@ import org.apache.turbine.util.GenerateUniqueId;
  */
 public class UpdateAccount extends Action
 {
+    @SuppressWarnings("deprecation")
     public void doPerform( RunData rundata ) throws Exception
     {
         JetspeedRunData data = (JetspeedRunData)rundata;
@@ -65,7 +66,7 @@ public class UpdateAccount extends Action
 
         // Save user input in case there is an error and 
         // we have to go back to the EditAccount screen
-        Hashtable screenData = new Hashtable();
+        Hashtable<String, String> screenData = new Hashtable<String, String>();
         screenData.put( "username",  username );
         screenData.put( "firstname", firstname );
         screenData.put( "lastname",  lastname );
@@ -280,7 +281,7 @@ public class UpdateAccount extends Action
         //default version does nothing
     }
 
-    private void backToEditAccount( RunData rundata, Hashtable screenData )
+    private void backToEditAccount( RunData rundata, Hashtable<String, String> screenData )
     {   
         rundata.getRequest().setAttribute( "ScreenDataEditAccount",
                                            screenData );

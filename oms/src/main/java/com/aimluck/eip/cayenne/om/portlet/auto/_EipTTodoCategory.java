@@ -74,8 +74,8 @@ public class _EipTTodoCategory extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTTodoArray(com.aimluck.eip.cayenne.om.portlet.EipTTodo obj) {
         removeToManyTarget("eipTTodoArray", obj, true);
     }
-    public List getEipTTodoArray() {
-        return (List)readProperty("eipTTodoArray");
+    public List<?> getEipTTodoArray() {
+        return (List<?>)readProperty("eipTTodoArray");
     }
     
     

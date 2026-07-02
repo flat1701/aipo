@@ -38,7 +38,7 @@ public class DatabaseRegistryWatcher extends Thread
     /**
     The files monitored by this watcher
     */
-    private Hashtable files = new Hashtable();
+    private Hashtable<String, String> files = new Hashtable<String, String>();
 
     /**
     the refresh rate, in milliseconds, to use for monitoring this file
@@ -74,7 +74,7 @@ public class DatabaseRegistryWatcher extends Thread
         {
             if (subscriber != null)
             {
-                Enumeration en = files.keys();
+                Enumeration<String> en = files.keys();
                 while (en.hasMoreElements())
                 {
                     try
@@ -90,7 +90,7 @@ public class DatabaseRegistryWatcher extends Thread
             this.subscriber = registry;
             if (subscriber != null)
             {
-                Enumeration en = files.keys();
+                Enumeration<String> en = files.keys();
                 while (en.hasMoreElements())
                 {
                     try
@@ -126,13 +126,13 @@ public class DatabaseRegistryWatcher extends Thread
         *
         * @param f the file  to monitor
      */
-    public void changeBase(Vector f)
+    public void changeBase(Vector<?> f)
     {
         synchronized (this)
         {
             if (this.subscriber != null)
             {
-                Enumeration en = files.keys();
+                Enumeration<String> en = files.keys();
                 while (en.hasMoreElements())
                 {
                     try
@@ -154,9 +154,9 @@ public class DatabaseRegistryWatcher extends Thread
         *
         * @param f the file or directory to monitor
         */
-    private void findFiles(Vector s)
+    private void findFiles(Vector<?> s)
     {
-        Enumeration en = s.elements();
+        Enumeration<?> en = s.elements();
         while (en.hasMoreElements())
         {
             String f = (String) en.nextElement();
@@ -181,12 +181,12 @@ public class DatabaseRegistryWatcher extends Thread
                 boolean needRefresh = false;
                 synchronized (this)
                 {
-                    Map fragments = subscriber.getFragmentMap();
+                    Map<?, ?> fragments = subscriber.getFragmentMap();
                     if (Log.getLogger().isDebugEnabled())
                     {
                         Log.debug("RegistryWatcher: Saving dirty fragments.");
                     }
-                    Iterator i = fragments.keySet().iterator();
+                    Iterator<?> i = fragments.keySet().iterator();
                     while (i.hasNext())
                     {
                         try
@@ -201,7 +201,7 @@ public class DatabaseRegistryWatcher extends Thread
                             if (fragment.isDirty())
                             {
                                 //and update the stored timestamp
-                                Enumeration en = files.keys();
+                                Enumeration<String> en = files.keys();
                                 while (en.hasMoreElements())
                                 {
                                     String f = (String) en.nextElement();
@@ -229,12 +229,13 @@ public class DatabaseRegistryWatcher extends Thread
                         Log.debug(
                             "RegistryWatcher: Checking for updated files.");
                     }
-                    Enumeration en = files.keys();
+                    Enumeration<String> en = files.keys();
                     while (en.hasMoreElements())
                     {
                         try
                         {
                             String f = (String) en.nextElement();
+                            @SuppressWarnings("unused")
                             String modified = (String) files.get(f);
                             subscriber.loadFragment(f);
                             RegistryFragment frag =

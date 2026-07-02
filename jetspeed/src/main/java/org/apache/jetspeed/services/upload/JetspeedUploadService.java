@@ -104,6 +104,7 @@ public class JetspeedUploadService
             boolean nextPart = multi.skipPreamble();
             while(nextPart)
             {
+                @SuppressWarnings("rawtypes")
                 Map headers = parseHeaders(multi.readHeaders());
                 String fieldName = getFieldName(headers);
                 if (fieldName != null)

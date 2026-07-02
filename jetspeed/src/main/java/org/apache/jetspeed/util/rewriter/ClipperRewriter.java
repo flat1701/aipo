@@ -209,7 +209,8 @@ public class ClipperRewriter extends HTMLRewriter
 	private boolean controlCoupled(String start, String stop)
 	{
 		StringTokenizer startTok = new StringTokenizer(start);
-		boolean foundCoupled = false;
+		@SuppressWarnings("unused")
+    boolean foundCoupled = false;
 		String token;
 
 		if (stop == null)
@@ -235,7 +236,7 @@ public class ClipperRewriter extends HTMLRewriter
 
 		if (attrs != null)
 		{
-			Enumeration en = attrs.getAttributeNames();
+			Enumeration<?> en = attrs.getAttributeNames();
 
 			while (en.hasMoreElements())
 			{

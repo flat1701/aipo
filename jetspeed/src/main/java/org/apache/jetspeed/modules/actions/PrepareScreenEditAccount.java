@@ -61,7 +61,7 @@ public class PrepareScreenEditAccount extends Action
             if ( email == null )
                 email = "";
 
-            Hashtable screenData = new Hashtable();
+            Hashtable<String, String> screenData = new Hashtable<String, String>();
             screenData.put( "username",  username );
             screenData.put( "firstname", firstname );
             screenData.put( "lastname",  lastname );

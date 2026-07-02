@@ -56,7 +56,7 @@ public class CheckBoxGroup extends ParameterPresentationStyle
     /**
      * Returns presentation control
      */
-    public String getContent(RunData data, String name, String value, Map parms)
+    public String getContent(RunData data, String name, String value, Map<String, Object> parms)
     {
 
         ElementContainer result = new ElementContainer();
@@ -69,7 +69,7 @@ public class CheckBoxGroup extends ParameterPresentationStyle
         }
 
         StringTokenizer st = new StringTokenizer(items, ",");
-        Vector v = new Vector();
+        Vector<String> v = new Vector<String>();
         while ( st.hasMoreTokens() )
         {
             String token = st.nextToken().trim();
@@ -81,7 +81,7 @@ public class CheckBoxGroup extends ParameterPresentationStyle
 
         Table t = new Table();
 
-        for ( Enumeration e = v.elements(); e.hasMoreElements(); )
+        for ( Enumeration<String> e = v.elements(); e.hasMoreElements(); )
         {
             String item = ((String)e.nextElement()).trim();
             Input cb = new Input(Input.CHECKBOX, prefix + item, item);
@@ -115,13 +115,13 @@ public class CheckBoxGroup extends ParameterPresentationStyle
      * @param v
      * @return string
      */
-    private String getJavascript(String name, Vector v, String prefix)
+    private String getJavascript(String name, Vector<String> v, String prefix)
     {
 
         StringBuffer result = new StringBuffer();
         result.append(name).append(".value = ");
 
-        for ( Enumeration e = v.elements(); e.hasMoreElements(); )
+        for ( Enumeration<String> e = v.elements(); e.hasMoreElements(); )
         {
             String item = prefix + (String)e.nextElement();
             result.append("((");
@@ -141,10 +141,12 @@ public class CheckBoxGroup extends ParameterPresentationStyle
     /**
      *  Test method
      */
+    @SuppressWarnings("unchecked")
     public static void main(String args[])
     {
 
         CheckBoxGroup cbg = new CheckBoxGroup();    
+        @SuppressWarnings("rawtypes")
         java.util.Hashtable parms = new java.util.Hashtable();
         parms.put(ITEMS, "Tomaszewski,Gorgon,Zmuda,Szymanowski,Musial,Kasperczak,Deyna,Cmikiewicz,Lato,Szarmach,Gadocha");
         System.out.println(cbg.getContent(null, "test", "Deyna,,,,Gorgon,Lato,Szarmach,", parms));

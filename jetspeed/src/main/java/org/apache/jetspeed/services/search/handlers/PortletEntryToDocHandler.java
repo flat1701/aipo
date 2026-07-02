@@ -53,6 +53,7 @@ public class PortletEntryToDocHandler extends RegistryEntryToDocHandler
      * @param o
      * @return 
      */
+    @SuppressWarnings("deprecation")
     public ParsedObject parseObject(Object o)
     {
         ParsedObject result = super.parseObject(o);
@@ -65,7 +66,7 @@ public class PortletEntryToDocHandler extends RegistryEntryToDocHandler
 
         PortletEntry portletEntry = (PortletEntry) o;
         
-        HashMap fields = new HashMap();
+        HashMap<String, String> fields = new HashMap<String, String>();
         fields.put(PARENT, portletEntry.getParent());
         fields.put(TYPE, portletEntry.getType());
         
@@ -77,7 +78,7 @@ public class PortletEntryToDocHandler extends RegistryEntryToDocHandler
         content.append(" ");
         content.append(portletEntry.getDescription());
         content.append(" ");
-        Iterator it = portletEntry.listCategories();
+        Iterator<?> it = portletEntry.listCategories();
         while (it.hasNext())
         {
             Category cat = (Category) it.next();

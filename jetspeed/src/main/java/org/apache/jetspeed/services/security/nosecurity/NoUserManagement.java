@@ -90,8 +90,8 @@ public class NoUserManagement extends TurbineBaseService implements
    * @exception InsufficientPrivilegeException
    *                when the requestor is denied due to insufficient privilege
    */
-  public Iterator getUsers() throws JetspeedSecurityException {
-    return new Vector().iterator();
+  public Iterator<JetspeedUser> getUsers() throws JetspeedSecurityException {
+    return new Vector<JetspeedUser>().iterator();
   }
 
   /**
@@ -107,8 +107,8 @@ public class NoUserManagement extends TurbineBaseService implements
    * @exception InsufficientPrivilegeException
    *                when the requestor is denied due to insufficient privilege
    */
-  public Iterator getUsers(String filter) throws JetspeedSecurityException {
-    return new Vector().iterator();
+  public Iterator<JetspeedUser> getUsers(String filter) throws JetspeedSecurityException {
+    return new Vector<JetspeedUser>().iterator();
   }
 
   /**

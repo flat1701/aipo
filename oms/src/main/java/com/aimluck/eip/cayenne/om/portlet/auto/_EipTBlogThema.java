@@ -73,8 +73,8 @@ public class _EipTBlogThema extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTBlogEntrys(com.aimluck.eip.cayenne.om.portlet.EipTBlogEntry obj) {
         removeToManyTarget("eipTBlogEntrys", obj, true);
     }
-    public List getEipTBlogEntrys() {
-        return (List)readProperty("eipTBlogEntrys");
+    public List<?> getEipTBlogEntrys() {
+        return (List<?>)readProperty("eipTBlogEntrys");
     }
     
     

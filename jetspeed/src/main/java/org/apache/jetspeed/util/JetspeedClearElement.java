@@ -16,8 +16,6 @@
  
 package org.apache.jetspeed.util;
 
-import org.apache.jetspeed.util.JetspeedNullFilter;
-
 import org.apache.ecs.StringElement;
 
 /**

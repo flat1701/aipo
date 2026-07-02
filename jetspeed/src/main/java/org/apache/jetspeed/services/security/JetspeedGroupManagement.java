@@ -58,7 +58,7 @@ public abstract class JetspeedGroupManagement
      * @exception GroupException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public static Iterator getGroups(String username)
+    public static Iterator<Group> getGroups(String username)
         throws JetspeedSecurityException
     {
         return getService().getGroups(username);
@@ -74,7 +74,7 @@ public abstract class JetspeedGroupManagement
      * @exception GroupException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public static Iterator getGroups()
+    public static Iterator<Group> getGroups()
         throws JetspeedSecurityException
     {
         return getService().getGroups();

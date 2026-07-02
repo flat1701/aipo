@@ -71,7 +71,7 @@ public abstract class Search
      * @param c
      * @return 
      */
-    public static boolean remove(Collection c)
+    public static boolean remove(Collection<?> c)
     {
         return getService().remove(c);
     }
@@ -91,7 +91,7 @@ public abstract class Search
      * @param c
      * @return 
      */
-    public static boolean add(Collection c)
+    public static boolean add(Collection<?> c)
     {
         return getService().add(c);
     }
@@ -109,7 +109,7 @@ public abstract class Search
      * @param c
      * @return
      */
-    public static boolean update(Collection c)
+    public static boolean update(Collection<?> c)
     {
         return getService().update(c);
     }

@@ -37,7 +37,7 @@ public class ServiceHelper
      * @return
      * @throws CPSInitializationException
      */
-    static public Class loadModelClass(Service service, String configurationName)
+    static public Class<?> loadModelClass(Service service, String configurationName)
     throws InitializationException
     {
         String className = service.getConfiguration().getString(configurationName, null);
@@ -65,7 +65,7 @@ public class ServiceHelper
      * @return the newly created object
      * @throws ContentManagementException
      */    
-    public static Object createObject(Class classe)
+    public static Object createObject(Class<?> classe)
     {
         Object object = null;
         try

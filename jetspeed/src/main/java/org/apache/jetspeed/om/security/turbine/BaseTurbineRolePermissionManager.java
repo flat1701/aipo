@@ -95,7 +95,7 @@ public abstract class BaseTurbineRolePermissionManager
      * @return a <code>List</code> value
      * @exception TorqueException if an error occurs
      */
-    public static List getInstances(List ids)
+    public static List<?> getInstances(List<?> ids)
         throws TorqueException
     {
         return getManager().getInstancesImpl(ids);
@@ -108,7 +108,7 @@ public abstract class BaseTurbineRolePermissionManager
      * @return a <code>List</code> value
      * @exception TorqueException if an error occurs
      */
-    public static List getInstances(List ids, boolean fromCache)
+    public static List<?> getInstances(List<?> ids, boolean fromCache)
         throws TorqueException
     {
         return getManager().getInstancesImpl(ids, fromCache);
@@ -203,7 +203,7 @@ public abstract class BaseTurbineRolePermissionManager
      * @return a <code>List</code> of TurbineRolePermissions
      * @exception TorqueException if an error occurs
      */
-    protected List getInstancesImpl(List ids)
+    protected List<?> getInstancesImpl(List<?> ids)
         throws TorqueException
     {
         return getOMs(ids);
@@ -218,7 +218,7 @@ public abstract class BaseTurbineRolePermissionManager
      * @return a <code>List</code> of TurbineRolePermissions
      * @exception TorqueException if an error occurs
      */
-    protected List getInstancesImpl(List ids, boolean fromCache)
+    protected List<?> getInstancesImpl(List<?> ids, boolean fromCache)
         throws TorqueException
     {
         return getOMs(ids, fromCache);
@@ -249,7 +249,7 @@ public abstract class BaseTurbineRolePermissionManager
      * @return a <code>List</code> value
      * @exception TorqueException if an error occurs
      */
-    protected List retrieveStoredOMs(List ids)
+    protected List<?> retrieveStoredOMs(List<?> ids)
         throws TorqueException
     {
         return TurbineRolePermissionPeer.retrieveByPKs(ids);

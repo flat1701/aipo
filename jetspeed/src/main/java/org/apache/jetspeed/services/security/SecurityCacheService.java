@@ -19,6 +19,7 @@ package org.apache.jetspeed.services.security;
 import java.util.Iterator;
 
 import org.apache.jetspeed.om.security.Group;
+import org.apache.jetspeed.om.security.GroupRole;
 import org.apache.jetspeed.om.security.Permission;
 import org.apache.jetspeed.om.security.Role;
 import org.apache.turbine.services.Service;
@@ -82,7 +83,7 @@ public interface SecurityCacheService extends Service
     
 	public void removeRole(String username, String roleName, String groupName);
 
-    public Iterator getRoles(String username);
+    public Iterator<GroupRole> getRoles(String username);
 
     public CachedAcl getAcl(String username);
 
@@ -94,7 +95,7 @@ public interface SecurityCacheService extends Service
 
     public void removePermission(String roleName, String permissionName);
 
-    public Iterator getPermissions(String roleName);
+    public Iterator<Permission> getPermissions(String roleName);
 
     public void removeAllRoles(String rolename);
 

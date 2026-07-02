@@ -34,7 +34,7 @@ public class JetspeedGroupFactory
     private static final String CONFIG_GROUP_CLASSNAME = "group.class";
 
     private static String groupClassName = null;
-    private static Class groupClass = null;
+    private static Class<?> groupClass = null;
     
     /**
      * Factory method to create JetspeedGroup instances.  

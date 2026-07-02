@@ -23,7 +23,7 @@ import java.util.Map;
  * The PortletInfoEntry defines all the common description properties
  * for all the portlet related entries.
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: PortletInfoEntry.java,v 1.4 2004/02/23 03:11:39 jford Exp $
  */
 public interface PortletInfoEntry extends RegistryEntry
@@ -41,12 +41,12 @@ public interface PortletInfoEntry extends RegistryEntry
     public void setClassname( String classname );
 
     /** @return an enumeration of this entry parameter names */
-    public Iterator getParameterNames();
+    public Iterator<String> getParameterNames();
 
     /** Returns a map of parameter values keyed on the parameter names
      *  @return the parameter values map
      */
-    public Map getParameterMap();
+    public Map<String, Parameter> getParameterMap();
 
     /** Search for a named parameter and return the associated
      *  parameter object. The search is case sensitive.
@@ -60,7 +60,7 @@ public interface PortletInfoEntry extends RegistryEntry
      *  @param name the new parameter name
      *  @param value the new parameter value
      */
-    public void addParameter( String name, String value );
+    public void addParameter( String name, Object value );
 
     /** Adds a new parameter for this entry
      *  @param parameter the new parameter to add
@@ -79,7 +79,7 @@ public interface PortletInfoEntry extends RegistryEntry
      *
      * @return an iterator on the supported media type names
      */
-    public Iterator listMediaTypes();
+    public Iterator<String> listMediaTypes();
 
     /**
      * Test if a given media type is supported by this entry.
@@ -104,12 +104,12 @@ public interface PortletInfoEntry extends RegistryEntry
     public void removeMediaType(String name);
 
     /** @return an enumeration of this entry tool names */
-    public Iterator getToolNames();
+    public Iterator<String> getToolNames();
 
     /** Returns a map of tool descriptors keyed on the tool names
      *  @return the tool descriptor map
      */
-    public Map getToolMap();
+    public Map<String, ToolDescriptor> getToolMap();
 
     /** Search for a named tool and return the associated
      *  ToolDescriptor. The search is case sensitive.

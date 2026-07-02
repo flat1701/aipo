@@ -37,13 +37,13 @@ public class BaseSecurityAccess implements SecurityAccess, java.io.Serializable
     private String action;
 
     /** Holds value of property allows. */
-    private Vector allows = new Vector();
+    private Vector<SecurityAllow> allows = new Vector<SecurityAllow>();
 
     /** Holds value of property ownerAllows. */
-    private Vector ownerAllows = new Vector();
+    private Vector<SecurityAllow> ownerAllows = new Vector<SecurityAllow>();
 
     /** Holds the combination of allows and ownerAllows. */
-    private transient Vector allAllows = new Vector();
+    private transient Vector<SecurityAllow> allAllows = new Vector<SecurityAllow>();
 
     /** Creates new BaseSecurityAccess */
     public BaseSecurityAccess()
@@ -78,8 +78,8 @@ public class BaseSecurityAccess implements SecurityAccess, java.io.Serializable
             }
         }
 
-        Iterator i = allows.iterator();
-        Iterator i2 = obj.getAllows().iterator();
+        Iterator<?> i = allows.iterator();
+        Iterator<?> i2 = obj.getAllows().iterator();
         while (i.hasNext())
         {
             SecurityAllow c1 = (SecurityAllow) i.next();
@@ -154,11 +154,11 @@ public class BaseSecurityAccess implements SecurityAccess, java.io.Serializable
     /** Getter for property allows.
      * @return Value of property allows.
      */
-    public Vector getAllows()
+    public Vector<SecurityAllow> getAllows()
     {
         if (allows == null)
         {
-            allows = new Vector();
+            allows = new Vector<SecurityAllow>();
         }
         return allows;
     }
@@ -166,7 +166,7 @@ public class BaseSecurityAccess implements SecurityAccess, java.io.Serializable
     /** Setter for property allows.
      * @param allows New value of property allows.
      */
-    public void setAllows(Vector allows)
+    public void setAllows(Vector<SecurityAllow> allows)
     {
         this.allows = allows;
         if (this.allAllows != null)
@@ -178,11 +178,11 @@ public class BaseSecurityAccess implements SecurityAccess, java.io.Serializable
     /** Getter for property ownerAllows.
      * @return Value of property ownerAllows.
      */
-    public Vector getOwnerAllows()
+    public Vector<SecurityAllow> getOwnerAllows()
     {
         if (ownerAllows == null)
         {
-            ownerAllows = new Vector();
+            ownerAllows = new Vector<SecurityAllow>();
         }
         return this.ownerAllows;
     }
@@ -190,7 +190,7 @@ public class BaseSecurityAccess implements SecurityAccess, java.io.Serializable
     /** Setter for property ownerAllows.
      * @param ownerAllows New value of property ownerAllows.
      */
-    public void setOwnerAllows(Vector ownerAllows)
+    public void setOwnerAllows(Vector<SecurityAllow> ownerAllows)
     {
         this.ownerAllows = ownerAllows;
         if (this.allAllows != null)
@@ -206,12 +206,12 @@ public class BaseSecurityAccess implements SecurityAccess, java.io.Serializable
      *
      * @return vector containing all allows
      */
-    public Vector getAllAllows()
+    public Vector<SecurityAllow> getAllAllows()
     {
         int elementCount = 0;
         if (this.allAllows == null)
         {
-            allAllows = new Vector();
+            allAllows = new Vector<SecurityAllow>();
         }
 
         if (allAllows.isEmpty() == true)

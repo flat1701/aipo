@@ -63,6 +63,7 @@ public class PortletCustomizeFormJSONScreen extends ALJSONScreen {
   private static final JetspeedLogger logger = JetspeedLogFactoryService
     .getLogger(PortletCustomizeFormJSONScreen.class.getName());
 
+  @SuppressWarnings("deprecation")
   @Override
   protected String getJSONString(RunData rundata, Context context)
       throws Exception {

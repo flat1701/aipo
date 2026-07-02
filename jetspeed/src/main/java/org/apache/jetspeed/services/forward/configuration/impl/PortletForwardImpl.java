@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 import org.apache.jetspeed.services.forward.configuration.PortletForward;
+import org.apache.jetspeed.services.forward.configuration.QueryParam;
 
 /**
  * Portlet Forward implementation
@@ -32,7 +33,7 @@ public class PortletForwardImpl implements PortletForward, java.io.Serializable
     private String portlet;
     private String forward;
     private String target;
-    private Map queryParams = new HashMap();
+    private Map<String, QueryParam> queryParams = new HashMap<String, QueryParam>();
 
 
     public String getPortlet()
@@ -65,12 +66,12 @@ public class PortletForwardImpl implements PortletForward, java.io.Serializable
         this.target = target;
     }
 
-    public Map getQueryParams()
+    public Map<String, QueryParam> getQueryParams()
     {
         return this.queryParams;
     }
 
-    public void setQueryParams(Map queryParams)
+    public void setQueryParams(Map<String, QueryParam> queryParams)
     {
         this.queryParams = queryParams;
     }

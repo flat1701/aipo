@@ -28,8 +28,8 @@ public class _EipMFacilityGroup extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipMFacilityGroup(com.aimluck.eip.cayenne.om.portlet.EipMFacilityGroupMap obj) {
         removeToManyTarget("eipMFacilityGroup", obj, true);
     }
-    public List getEipMFacilityGroup() {
-        return (List)readProperty("eipMFacilityGroup");
+    public List<?> getEipMFacilityGroup() {
+        return (List<?>)readProperty("eipMFacilityGroup");
     }
     
     

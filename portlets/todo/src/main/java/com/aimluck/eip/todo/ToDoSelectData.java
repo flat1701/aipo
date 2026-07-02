@@ -183,7 +183,7 @@ public class ToDoSelectData extends
         } else {
           VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
           this.categoryId =
-            portlet.getPortletConfig().getInitParameter("p3a-category");
+            portlet.getPortletConfig().getInitParameter("p3a-category").toString();
         }
       }
     } catch (Exception ex) {

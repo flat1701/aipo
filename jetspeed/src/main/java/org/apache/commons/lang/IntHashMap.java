@@ -105,6 +105,7 @@ class IntHashMap {
      */
     private static class Entry {
         int hash;
+        @SuppressWarnings("unused")
         int key;
         Object value;
         Entry next;

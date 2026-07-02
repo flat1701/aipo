@@ -93,6 +93,7 @@ public class PortletInfoPortlet extends AbstractPortlet
 
     /**
     */
+    @SuppressWarnings("deprecation")
     public ConcreteElement getContent( RunData rundata ) {
 
         String portletName = ((JetspeedRunData)rundata).getPortlet();
@@ -165,13 +166,13 @@ public class PortletInfoPortlet extends AbstractPortlet
         }
         JetspeedLinkFactory.putInstance(jsLink);
 
-        StringBuffer external = new StringBuffer( getPortletConfig().getInitParameter( THIRDPARTY_PORTLETRENDERER_URL_KEY ) );
+        StringBuffer external = new StringBuffer( getPortletConfig().getInitParameter( THIRDPARTY_PORTLETRENDERER_URL_KEY ).toString() );
 
         //this is the parameters of what so specify to the 3rd party provider
         external.append("&title=" + URLEncoder.encode( portlet.getTitle() ) );
         external.append("&url=" + URLEncoder.encode(internal));
 
-        String message = getPortletConfig().getInitParameter( THIRDPARTY_PORTLETRENDERER_CAPTION_KEY );
+        String message = getPortletConfig().getInitParameter( THIRDPARTY_PORTLETRENDERER_CAPTION_KEY ).toString();
 
         t.addElement( new TR()
             .addElement( new TD()
@@ -199,7 +200,7 @@ public class PortletInfoPortlet extends AbstractPortlet
             
         //BEGIN PROPERTIES SECTION
                                 
-        Iterator names= portlet.getPortletConfig().getInitParameterNames();
+        Iterator<?> names= portlet.getPortletConfig().getInitParameterNames();
 
         if ( names.hasNext() ) {
             //OK... add the Properties from the Portet to this info set...

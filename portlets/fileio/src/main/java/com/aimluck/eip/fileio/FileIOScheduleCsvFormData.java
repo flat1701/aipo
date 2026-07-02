@@ -99,6 +99,7 @@ public class FileIOScheduleCsvFormData extends ALAbstractFormData {
   /** 終了日時 */
   private ALDateTimeField end_date_time;
 
+  @SuppressWarnings("unused")
   private boolean is_auto_time;
 
   @Override

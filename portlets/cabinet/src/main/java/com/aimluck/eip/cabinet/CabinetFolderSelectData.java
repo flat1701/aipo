@@ -142,7 +142,7 @@ public class CabinetFolderSelectData extends
           ALEipUtils
             .getPortlet(rundata, context)
             .getPortletConfig()
-            .getInitParameter("p3a-folder");
+            .getInitParameter("p3a-folder").toString();
         fid = Integer.parseInt(id);
       }
     } else {

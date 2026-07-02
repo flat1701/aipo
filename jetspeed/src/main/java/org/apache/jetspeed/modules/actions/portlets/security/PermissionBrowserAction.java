@@ -93,7 +93,7 @@ public class PermissionBrowserAction extends VelocityPortletAction
     {
         try
         {
-            Iterator permissions = JetspeedSecurity.getPermissions();
+            Iterator<?> permissions = JetspeedSecurity.getPermissions();
             context.put(SecurityConstants.CONTEXT_PERMISSIONS, permissions);
         }
         catch (JetspeedSecurityException e)

@@ -109,8 +109,8 @@ public class _EipMPost extends org.apache.cayenne.CayenneDataObject {
     public void removeFromTurbineGroup(com.aimluck.eip.cayenne.om.security.TurbineGroup obj) {
         removeToManyTarget("turbineGroup", obj, true);
     }
-    public List getTurbineGroup() {
-        return (List)readProperty("turbineGroup");
+    public List<?> getTurbineGroup() {
+        return (List<?>)readProperty("turbineGroup");
     }
     
     

@@ -98,7 +98,7 @@ public class ScheduleScreenPrint extends ALVelocityScreen {
       // Velocity テンプレートを読み込む
       String template = "";
       String _template =
-        portlet.getPortletConfig().getInitParameter("pba-template");
+        portlet.getPortletConfig().getInitParameter("pba-template").toString();
       boolean done = false;
 
       // アクセスコントロール
@@ -109,7 +109,7 @@ public class ScheduleScreenPrint extends ALVelocityScreen {
         ALEipUtils
           .getPortlet(rundata, context)
           .getPortletConfig()
-          .getInitParameter("p6a-tab");
+          .getInitParameter("p6a-tab").toString();
       if ("0".equals(tab_flg_oneday) && ("T".equals(has_acl_self))) {
         tab_count++;
         template = "schedule-oneday";
@@ -121,7 +121,7 @@ public class ScheduleScreenPrint extends ALVelocityScreen {
         ALEipUtils
           .getPortlet(rundata, context)
           .getPortletConfig()
-          .getInitParameter("p7a-tab");
+          .getInitParameter("p7a-tab").toString();
       if ("0".equals(tab_flg_weekly) && ("T".equals(has_acl_self))) {
         tab_count++;
         if (("".equals(template)) || (!done)) {
@@ -135,7 +135,7 @@ public class ScheduleScreenPrint extends ALVelocityScreen {
         ALEipUtils
           .getPortlet(rundata, context)
           .getPortletConfig()
-          .getInitParameter("p8a-tab");
+          .getInitParameter("p8a-tab").toString();
       if ("0".equals(tab_flg_monthly) && ("T".equals(has_acl_self))) {
         tab_count++;
         if (("".equals(template)) || (!done)) {
@@ -150,7 +150,7 @@ public class ScheduleScreenPrint extends ALVelocityScreen {
         ALEipUtils
           .getPortlet(rundata, context)
           .getPortletConfig()
-          .getInitParameter("p9a-tab");
+          .getInitParameter("p9a-tab").toString();
       if ("0".equals(tab_flg_oneday_group) && ("T".equals(has_acl_other))) {
         tab_count++;
         if (("".equals(template)) || (!done)) {
@@ -164,7 +164,7 @@ public class ScheduleScreenPrint extends ALVelocityScreen {
         ALEipUtils
           .getPortlet(rundata, context)
           .getPortletConfig()
-          .getInitParameter("paa-tab");
+          .getInitParameter("paa-tab").toString();
       if ("0".equals(tab_flg_weekly_group) && ("T".equals(has_acl_other))) {
         tab_count++;
         if (("".equals(template)) || (!done)) {
@@ -179,7 +179,7 @@ public class ScheduleScreenPrint extends ALVelocityScreen {
         ALEipUtils
           .getPortlet(rundata, context)
           .getPortletConfig()
-          .getInitParameter("pba-tab");
+          .getInitParameter("pba-tab").toString();
       if ("0".equals(tab_flg_list) && ("T".equals(has_acl_other))) {
         tab_count++;
         if (("".equals(template)) || (!done)) {

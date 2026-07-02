@@ -31,6 +31,7 @@ import com.aimluck.eip.orm.Database;
  */
 public class ALMailService {
 
+  @SuppressWarnings("unused")
   private static final JetspeedLogger logger = JetspeedLogFactoryService
     .getLogger(ALMailService.class.getName());
 

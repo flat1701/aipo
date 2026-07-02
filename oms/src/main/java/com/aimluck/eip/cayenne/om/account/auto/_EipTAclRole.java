@@ -83,8 +83,8 @@ public class _EipTAclRole extends org.apache.cayenne.CayenneDataObject {
     public void removeFromEipTAclUserRoleMaps(com.aimluck.eip.cayenne.om.account.EipTAclUserRoleMap obj) {
         removeToManyTarget("eipTAclUserRoleMaps", obj, true);
     }
-    public List getEipTAclUserRoleMaps() {
-        return (List)readProperty("eipTAclUserRoleMaps");
+    public List<?> getEipTAclUserRoleMaps() {
+        return (List<?>)readProperty("eipTAclUserRoleMaps");
     }
     
     

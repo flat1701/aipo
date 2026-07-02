@@ -46,7 +46,7 @@ public interface PermissionManagement extends Service
      * @exception PermissionException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege 
      */
-    Iterator getPermissions(String rolename)
+    Iterator<Permission> getPermissions(String rolename)
         throws JetspeedSecurityException;
 
     /**
@@ -59,7 +59,7 @@ public interface PermissionManagement extends Service
      * @exception PermissionException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege 
      */
-    Iterator getPermissions()
+    Iterator<?> getPermissions()
         throws JetspeedSecurityException;
 
     /**

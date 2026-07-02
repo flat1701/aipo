@@ -75,12 +75,12 @@ public class JetspeedWebPageService
 
     // cache of sites cached and managed by the Proxy.
     // objects are of type org.apache.jetspeed.services.httpProxy.Site
-    private HashMap sites = new HashMap();
+    private HashMap<?, ?> sites = new HashMap<Object, Object>();
 
     // active sessions that the Proxy is working with
     // the objects are of type org.apache.jetspeed.services.httpProxy.SessionMap
     // this cache is updated on servlet unbound events
-    private HashMap sessions = new HashMap();
+    private HashMap<String, SessionMap> sessions = new HashMap<String, SessionMap>();
 
     // has this service been initialized yet
     private boolean init = false;
@@ -547,11 +547,11 @@ public class JetspeedWebPageService
             //
             // first logout of all Network Element Sessions
             //
-            Iterator it = sessions.values().iterator();
+            Iterator<SessionMap> it = sessions.values().iterator();
             while (it.hasNext())
             {
                 SessionMap map = (SessionMap)it.next();
-                Iterator itElements = map.values().iterator();
+                Iterator<?> itElements = map.values().iterator();
                 while (itElements.hasNext())
                 {
                     SiteSession has = (SiteSession)itElements.next();
@@ -578,7 +578,7 @@ public class JetspeedWebPageService
      *
      * @return the collection of sessions.
      */
-    public Collection getSessions()
+    public Collection<SessionMap> getSessions()
     {
         return sessions.values();
     }
@@ -599,7 +599,7 @@ public class JetspeedWebPageService
      *
      * @return the collection of sites.
      */
-    public Collection getSites()
+    public Collection<?> getSites()
     {
         return sites.values();
     }

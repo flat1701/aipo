@@ -118,6 +118,7 @@ public class RSSPortlet extends FileWatchPortlet
             String description = null;
 
             //this a hack until DOM2 namespace support becomes better in Xerces.
+            @SuppressWarnings("unused")
             Node root = document.getFirstChild();
             //now find the channel node.
             Node channel = null;
@@ -150,7 +151,7 @@ public class RSSPortlet extends FileWatchPortlet
 
             //now that we have the DOM we should be able to do a transform here.
 
-            String stylesheet = this.getPortletConfig().getInitParameter( "stylesheet" );
+            String stylesheet = this.getPortletConfig().getInitParameter( "stylesheet" ).toString();
 
             if ( stylesheet == null ) {
                 throw new PortletException( "The 'stylesheet' parameter was not defined." );
@@ -310,7 +311,7 @@ public class RSSPortlet extends FileWatchPortlet
     private Item[] getItems( NodeList items ) {
 
 
-        Vector v = new Vector();
+        Vector<Item> v = new Vector<Item>();
 
         for ( int i = 0; i < items.getLength(); ++i ) {
 

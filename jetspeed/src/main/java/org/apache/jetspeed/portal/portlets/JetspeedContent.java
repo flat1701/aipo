@@ -71,6 +71,7 @@ public class JetspeedContent extends FileWatchPortlet
     /**
     Return the last time the provider's URL has been changed.
     */
+    @SuppressWarnings("unused")
     private long lastModified;
     
     
@@ -81,7 +82,7 @@ public class JetspeedContent extends FileWatchPortlet
 
         PortletConfig config = this.getPortletConfig();
         
-        provider = config.getInitParameter( PROVIDER_NAME_KEY );
+        provider = config.getInitParameter( PROVIDER_NAME_KEY ).toString();
         
         if ( provider == null ) {
             throw new PortletException( "You need to specify " + PROVIDER_NAME_KEY );

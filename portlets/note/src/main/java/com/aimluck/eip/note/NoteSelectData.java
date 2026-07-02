@@ -684,7 +684,6 @@ public class NoteSelectData extends ALAbstractSelectData<EipTNoteMap, EipTNote> 
 
   private String getDestUserNamesLimit(EipTNote note) throws ALDBErrorException {
     StringBuffer destUserNames = new StringBuffer();
-    @SuppressWarnings("unchecked")
     List<EipTNoteMap> mapList = note.getEipTNoteMaps();
     if (mapList == null || mapList.size() == 0) {
       logger.error("[NoteSelectData] DatabaseException");

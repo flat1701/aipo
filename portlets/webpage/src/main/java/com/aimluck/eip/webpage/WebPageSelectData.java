@@ -123,13 +123,13 @@ public class WebPageSelectData extends
     try {
       WebPageResultData rd = new WebPageResultData();
       rd.initField();
-      String url = portlet.getPortletConfig().getInitParameter("p1a-url");
+      String url = portlet.getPortletConfig().getInitParameter("p1a-url").toString();
       int NormalHeight =
         Integer.parseInt(portlet.getPortletConfig().getInitParameter(
-          "p1b-normalheight"));
+          "p1b-normalheight").toString());
       int MaximizedHeight =
         Integer.parseInt(portlet.getPortletConfig().getInitParameter(
-          "p1c-maximizedheight"));
+          "p1c-maximizedheight").toString());
 
       if (url == null || url.toString().equals("")) {
         rd.setWebPageFlag(false);

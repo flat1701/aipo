@@ -40,7 +40,7 @@ import org.apache.turbine.util.security.AccessControlList;
  * <note>Several of these properties may be put in the base RunData
  * interface in future releases of Turbine</note>
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:sgala@apache.org">Santiago Gala</a>
  * @author <a href="mailto:paulsp@apache.org">Paul Spencer</a>
  * @version $Id: DefaultJetspeedRunData.java,v 1.20 2004/02/23 03:36:10 jford Exp $
@@ -89,7 +89,7 @@ public class DefaultJetspeedRunData extends DefaultTurbineRunData
     {
         // customization state info is in the page's session state
         SessionState customizationState = getPageSessionState();
-        Stack stack = (Stack)customizationState.getAttribute("customize-stack");
+        Stack<?> stack = (Stack<?>)customizationState.getAttribute("customize-stack");
 
         Portlet p = null;
 
@@ -121,10 +121,11 @@ public class DefaultJetspeedRunData extends DefaultTurbineRunData
     {
         // customization state info is in the page's session state
         SessionState customizationState = getPageSessionState();
-        Stack stack = (Stack)customizationState.getAttribute("customize-stack");
+        @SuppressWarnings("unchecked")
+        Stack<Portlet> stack = (Stack<Portlet>)customizationState.getAttribute("customize-stack");
         if (stack == null)
         {
-            stack = new Stack();
+            stack = new Stack<Portlet>();
             customizationState.setAttribute("customize-stack", stack);
         }
 

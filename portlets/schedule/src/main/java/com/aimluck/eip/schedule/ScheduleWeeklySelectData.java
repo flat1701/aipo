@@ -248,7 +248,7 @@ public class ScheduleWeeklySelectData extends AjaxScheduleMonthlySelectData {
           : Integer.parseInt(ALEipUtils
             .getPortlet(rundata, context)
             .getPortletConfig()
-            .getInitParameter("p5a-view"));
+            .getInitParameter("p5a-view").toString());
     }
 
     // スーパークラスのメソッドを呼び出す。

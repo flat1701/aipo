@@ -53,11 +53,11 @@ public class BaseProfile extends BaseProfileLocator implements Profile {
    * @see Object#clone
    * @return an instance copy of this object
    */
-  public Object clone() throws java.lang.CloneNotSupportedException {
-    Object cloned = super.clone();
+  public BaseProfile clone() throws java.lang.CloneNotSupportedException {
+    BaseProfile cloned = (BaseProfile) super.clone();
 
     // clone the document
-    ((BaseProfile) cloned).document = ((this.document == null) ? null
+    cloned.document = ((this.document == null) ? null
         : (PSMLDocument) this.document.clone());
 
     return cloned;

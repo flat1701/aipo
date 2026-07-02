@@ -77,7 +77,7 @@ public class JetspeedContentAdmin extends AbstractPortlet
 
     public static final String POST_ARTICLE = "Post Article";
 
-    private Hashtable content = new Hashtable();
+    private Hashtable<String, ContentMarkup> content = new Hashtable<String, ContentMarkup>();
     
     /**
     Get the content for this JCP Admin
@@ -137,7 +137,7 @@ public class JetspeedContentAdmin extends AbstractPortlet
 
 
             //BEGIN reorg of the item list so that the new entry begins at the top
-            Vector v = new Vector();
+            Vector<Item> v = new Vector<Item>();
             
             Item[] items = content.getChannel().getItem();
             
@@ -183,7 +183,7 @@ public class JetspeedContentAdmin extends AbstractPortlet
         
         root.addElement( new P().addElement( "Select a content provider: " ) );
 
-        Vector v = JetspeedResources.getVector( JetspeedResources.CONTENT_PROVIDER_LIST_KEY );
+        Vector<?> v = JetspeedResources.getVector( JetspeedResources.CONTENT_PROVIDER_LIST_KEY );
         
         for ( int i = 0; i < v.size(); ++i ) {
             
@@ -228,6 +228,7 @@ public class JetspeedContentAdmin extends AbstractPortlet
         ParameterParser params = rundata.getParameters();
         
         //get the default values if they were specified as params
+        @SuppressWarnings("unused")
         String topic = params.getString( "topic", "" );
         String title = params.getString( "title", "" );
         String link  = params.getString( "link", "" );
@@ -331,6 +332,7 @@ public class JetspeedContentAdmin extends AbstractPortlet
     */
     private String getBookmarklet( String provider, RunData rundata ) {
         
+        @SuppressWarnings("unused")
         ParameterParser params = rundata.getParameters();
         
         StringBuffer buff = new StringBuffer();

@@ -168,10 +168,10 @@ public class SkinUpdateAction extends RegistryUpdateAction
         {
             super.clearUserData(rundata);
 
-            Map tempStorage = rundata.getUser().getTempStorage();
+            Map<?, ?> tempStorage = rundata.getUser().getTempStorage();
             if (tempStorage != null)
             {
-                Iterator keyIter = tempStorage.keySet().iterator();
+                Iterator<?> keyIter = tempStorage.keySet().iterator();
                 while (keyIter.hasNext())
                 {
                     Object keyObj = keyIter.next();

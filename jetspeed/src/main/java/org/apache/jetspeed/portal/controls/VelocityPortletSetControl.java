@@ -50,7 +50,7 @@ import java.util.Enumeration;
  * A Velocity based portlet control designed for handling a PortletSet
  * child
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  *
  * @version $Id: VelocityPortletSetControl.java,v 1.15 2004/02/23 03:25:35 jford Exp $
  */
@@ -86,9 +86,9 @@ public class VelocityPortletSetControl extends VelocityPortletControl
      * @param portlet the base portlet to explore for children
      * @
      */
-    private Collection getTabs(PortletSet portlets, RunData rundata, Context context)
+    private Collection<PortletTab> getTabs(PortletSet portlets, RunData rundata, Context context)
     {       
-        TreeSet tabs = new TreeSet(new PortletTabComparator());
+        TreeSet<PortletTab> tabs = new TreeSet<PortletTab>(new PortletTabComparator());
         PanedPortletController controller = null;
 
         // if portlet is a PortletSet, try to retrieve the Controller
@@ -98,8 +98,9 @@ public class VelocityPortletSetControl extends VelocityPortletControl
             controller = (PanedPortletController) portlets.getController();
         }
 
+        @SuppressWarnings("unused")
         int count = 0;
-        for (Enumeration en = portlets.getPortlets(); en.hasMoreElements(); count++)
+        for (Enumeration<?> en = portlets.getPortlets(); en.hasMoreElements(); count++)
         {
             Portlet p = (Portlet) en.nextElement();
             PortalResource portalResource = new PortalResource(p);
@@ -179,7 +180,7 @@ public class VelocityPortletSetControl extends VelocityPortletControl
         private String title = null;
         private boolean selected = false;
         private String link = null;
-        private List actions = null;
+        private List<?> actions = null;
         private int position = -1;
         
         public String getTitle()
@@ -212,12 +213,12 @@ public class VelocityPortletSetControl extends VelocityPortletControl
             this.link = link;
         }
         
-        public List getActions()
+        public List<?> getActions()
         {
-            return (this.actions == null) ? new Vector() : this.actions;
+            return (this.actions == null) ? new Vector<Object>() : this.actions;
         }
         
-        public void setActions(List actions)
+        public void setActions(List<?> actions)
         {
             this.actions = actions;
         }
@@ -237,7 +238,7 @@ public class VelocityPortletSetControl extends VelocityPortletControl
      * Used to correctly order tabs based on the position value
      * that is found each PortletTab's parent Portlet's PortletConfig object.
      */
-    public class PortletTabComparator implements  Comparator
+    public class PortletTabComparator implements  Comparator<Object>
     {
 
         /**

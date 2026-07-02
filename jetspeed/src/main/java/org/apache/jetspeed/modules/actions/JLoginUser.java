@@ -73,6 +73,7 @@ public class JLoginUser extends ActionEvent
     * called when the password reminder button is pressed.
     * sends a user their password
     **/
+    @SuppressWarnings("deprecation")
     public void doReminder( RunData rundata ) throws Exception
     {
         JetspeedRunData data = (JetspeedRunData)rundata;
@@ -156,6 +157,7 @@ public class JLoginUser extends ActionEvent
     }
 
 
+    @SuppressWarnings("deprecation")
     public void doPerform( RunData rundata ) throws Exception
     {
         JetspeedRunData data = (JetspeedRunData)rundata;
@@ -370,6 +372,7 @@ public class JLoginUser extends ActionEvent
 
     }
 
+    @SuppressWarnings("deprecation")
     private boolean disableCheck(JetspeedRunData data)
     {
         boolean disabled = false;

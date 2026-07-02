@@ -1,8 +1,6 @@
 package org.apache.jetspeed.om.security.turbine.map;
 
 import java.util.Date;
-import java.math.BigDecimal;
-
 import org.apache.torque.Torque;
 import org.apache.torque.TorqueException;
 import org.apache.torque.map.MapBuilder;

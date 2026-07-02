@@ -1,23 +1,17 @@
 package org.apache.jetspeed.om.dbregistry;
 
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.torque.TorqueException;
 import org.apache.torque.om.BaseObject;
-import org.apache.torque.om.ComboKey;
-import org.apache.torque.om.DateKey;
 import org.apache.torque.om.NumberKey;
 import org.apache.torque.om.ObjectKey;
 import org.apache.torque.om.SimpleKey;
-import org.apache.torque.om.StringKey;
-import org.apache.torque.om.Persistent;
 import org.apache.torque.util.Criteria;
 import org.apache.torque.util.Transaction;
 
@@ -286,7 +280,7 @@ public abstract class BaseMediatype extends BaseObject
     /**
      * Collection to store aggregation of collPortletMediatypes
      */
-    protected List collPortletMediatypes;
+    protected List<PortletMediatype> collPortletMediatypes;
 
     /**
      * Temporary storage of collPortletMediatypes to save a possible db hit in
@@ -297,7 +291,7 @@ public abstract class BaseMediatype extends BaseObject
     {
         if (collPortletMediatypes == null)
         {
-            collPortletMediatypes = new ArrayList();
+            collPortletMediatypes = new ArrayList<PortletMediatype>();
         }
     }
 
@@ -324,7 +318,7 @@ public abstract class BaseMediatype extends BaseObject
      * the collection. Otherwise returns the results of
      * getPortletMediatypes(new Criteria())
      */
-    public List getPortletMediatypes() throws TorqueException
+    public List<PortletMediatype> getPortletMediatypes() throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
@@ -342,13 +336,13 @@ public abstract class BaseMediatype extends BaseObject
      * an empty collection or the current collection, the criteria
      * is ignored on a new object.
      */
-    public List getPortletMediatypes(Criteria criteria) throws TorqueException
+    public List<PortletMediatype> getPortletMediatypes(Criteria criteria) throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
             if (isNew())
             {
-               collPortletMediatypes = new ArrayList();
+               collPortletMediatypes = new ArrayList<PortletMediatype>();
             }
             else
             {
@@ -384,7 +378,7 @@ public abstract class BaseMediatype extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getPortletMediatypes(Connection con) throws TorqueException
+    public List<PortletMediatype> getPortletMediatypes(Connection con) throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
@@ -405,13 +399,13 @@ public abstract class BaseMediatype extends BaseObject
      * referenced objects can also be obtained using a Connection
      * that is taken as input
      */
-    public List getPortletMediatypes(Criteria criteria,Connection con) throws TorqueException
+    public List<PortletMediatype> getPortletMediatypes(Criteria criteria,Connection con) throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
             if (isNew())
             {
-               collPortletMediatypes = new ArrayList();
+               collPortletMediatypes = new ArrayList<PortletMediatype>();
             }
             else
             {
@@ -461,14 +455,14 @@ public abstract class BaseMediatype extends BaseObject
      * api reasonable.  You can provide public methods for those you
      * actually need in Mediatype.
      */
-    protected List getPortletMediatypesJoinPortletDbEntry(Criteria criteria)
+    protected List<PortletMediatype> getPortletMediatypesJoinPortletDbEntry(Criteria criteria)
         throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
             if (isNew())
             {
-               collPortletMediatypes = new ArrayList();
+               collPortletMediatypes = new ArrayList<PortletMediatype>();
             }
             else
             {
@@ -481,6 +475,7 @@ public abstract class BaseMediatype extends BaseObject
             // the following code is to determine if a new query is
             // called for.  If the criteria is the same as the last
             // one, just return the collection.
+            @SuppressWarnings("unused")
             boolean newCriteria = true;
                             criteria.add(PortletMediatypePeer.MEDIA_ID, getId() );
                         if (!lastPortletMediatypesCriteria.equals(criteria))
@@ -512,14 +507,14 @@ public abstract class BaseMediatype extends BaseObject
      * api reasonable.  You can provide public methods for those you
      * actually need in Mediatype.
      */
-    protected List getPortletMediatypesJoinMediatype(Criteria criteria)
+    protected List<PortletMediatype> getPortletMediatypesJoinMediatype(Criteria criteria)
         throws TorqueException
     {
         if (collPortletMediatypes == null)
         {
             if (isNew())
             {
-               collPortletMediatypes = new ArrayList();
+               collPortletMediatypes = new ArrayList<PortletMediatype>();
             }
             else
             {
@@ -532,6 +527,7 @@ public abstract class BaseMediatype extends BaseObject
             // the following code is to determine if a new query is
             // called for.  If the criteria is the same as the last
             // one, just return the collection.
+            @SuppressWarnings("unused")
             boolean newCriteria = true;
                             criteria.add(PortletMediatypePeer.MEDIA_ID, getId() );
                         if (!lastPortletMediatypesCriteria.equals(criteria))
@@ -547,16 +543,16 @@ public abstract class BaseMediatype extends BaseObject
 
 
           
-    private static List fieldNames = null;
+    private static List<String> fieldNames = null;
 
     /**
      * Generate a list of field names.
      */
-    public static synchronized List getFieldNames()
+    public static synchronized List<String> getFieldNames()
     {
         if (fieldNames == null)
         {
-            fieldNames = new ArrayList();
+            fieldNames = new ArrayList<String>();
               fieldNames.add("Id");
               fieldNames.add("Name");
               fieldNames.add("Hidden");
@@ -836,7 +832,7 @@ public abstract class BaseMediatype extends BaseObject
                                                       
                                       
                 
-        List v = getPortletMediatypes();
+        List<PortletMediatype> v = getPortletMediatypes();
         for (int i = 0; i < v.size(); i++)
         {
             PortletMediatype obj = (PortletMediatype) v.get(i);

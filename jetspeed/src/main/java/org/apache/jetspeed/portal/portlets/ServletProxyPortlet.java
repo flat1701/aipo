@@ -17,7 +17,6 @@ package org.apache.jetspeed.portal.portlets;
 
 import org.apache.ecs.ConcreteElement;
 import org.apache.ecs.StringElement;
-import org.apache.jetspeed.portal.portlets.AbstractPortlet;
 import org.apache.turbine.util.RunData;
 
 import java.io.BufferedInputStream;
@@ -114,17 +113,17 @@ public class ServletProxyPortlet extends AbstractPortlet
 	 */
     protected String processURL(RunData rundata)
     {
-        String servletURL = getPortletConfig().getInitParameter(URL_PARAMETER_NAME);
+        String servletURL = getPortletConfig().getInitParameter(URL_PARAMETER_NAME).toString();
 		if( servletURL == null) // short-circuit
 		{
 			return null;
 		}
-		String protocol = getPortletConfig().getInitParameter(PROTOCOL_PARAMETER_NAME);
+		String protocol = getPortletConfig().getInitParameter(PROTOCOL_PARAMETER_NAME).toString();
 		if(protocol == null)
 		{
 			protocol = DEFAULT_PROTOCOL;
 		}
-		String token = getPortletConfig().getInitParameter(SESSION_TOKEN_PARAMETER_NAME);
+		String token = getPortletConfig().getInitParameter(SESSION_TOKEN_PARAMETER_NAME).toString();
 		if(token == null)
 		{
 			token = DEFAULT_SESSION_TOKEN;

@@ -27,7 +27,7 @@ import java.io.Serializable;
  * @version $Id: BrowserIterator.java,v 1.7 2004/02/23 03:26:43 jford Exp $
  *
 */
-public interface BrowserIterator extends Iterator, Comparator, Serializable
+public interface BrowserIterator extends Iterator<Object>, Comparator<Object>, Serializable
 {
 
     /**
@@ -57,7 +57,7 @@ public interface BrowserIterator extends Iterator, Comparator, Serializable
      * This method returns the result set vector.
      *
      */
-    public List getResultSet();
+    public List<?> getResultSet();
 
     /**
      * This method returns the number of rows in the result set.
@@ -69,14 +69,14 @@ public interface BrowserIterator extends Iterator, Comparator, Serializable
      * This method returns the List containg the column labels of the result set.
      *
      */
-    public List getResultSetTitleList();
+    public List<?> getResultSetTitleList();
 
     /**
      * This method returns the List containg the Types of the columns the result set.
      *
      *@see java.sql.Types
      */
-    public List getResultSetTypesList();
+    public List<?> getResultSetTypesList();
 
     /**
      * This method sorts the result set according to the value of the column as

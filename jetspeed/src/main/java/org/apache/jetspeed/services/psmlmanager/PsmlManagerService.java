@@ -30,7 +30,7 @@ import org.apache.jetspeed.om.security.Group;
 /**
  * This service is responsible for loading and saving PSML documents.
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: PsmlManagerService.java,v 1.12 2004/02/23 03:32:51 jford Exp $
  */
 public interface PsmlManagerService extends Service
@@ -62,7 +62,7 @@ public interface PsmlManagerService extends Service
      *
      * @param locator The ordered list of profile locators.
      */
-    public PSMLDocument getDocument( List locators );
+    public PSMLDocument getDocument( List<?> locators );
 
     /** Store the PSML document on disk, using its locator
      * 
@@ -126,7 +126,7 @@ public interface PsmlManagerService extends Service
      *
      * @return A collection of profiles that match the criteria specified in the locator.
      */
-    public Iterator query( QueryLocator locator );
+    public Iterator<?> query( QueryLocator locator );
 
     /** Export profiles from this service into another service
      *

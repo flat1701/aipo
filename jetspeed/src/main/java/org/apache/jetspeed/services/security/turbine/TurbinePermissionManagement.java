@@ -88,7 +88,7 @@ public class TurbinePermissionManagement extends TurbineBaseService
     private boolean cascadeDelete;
     private final static String CACHING_ENABLE = "caching.enable";
     private boolean cachingEnable = true;
-    private Vector systemPermissions = null;
+    private Vector<?> systemPermissions = null;
 
     ///////////////////////////////////////////////////////////////////////////
     // Permission Management Interfaces
@@ -105,7 +105,7 @@ public class TurbinePermissionManagement extends TurbineBaseService
      * @exception PermissionException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator getPermissions(String rolename)
+    public Iterator<Permission> getPermissions(String rolename)
         throws JetspeedSecurityException
     {
         Role role = null;
@@ -113,7 +113,7 @@ public class TurbinePermissionManagement extends TurbineBaseService
         {
             if (cachingEnable)
             {
-                Iterator iterator = JetspeedSecurityCache.getPermissions(rolename);
+                Iterator<Permission> iterator = JetspeedSecurityCache.getPermissions(rolename);
                 if (iterator != null)
                 {
                     return iterator;
@@ -128,18 +128,18 @@ public class TurbinePermissionManagement extends TurbineBaseService
         }
         Criteria criteria = new Criteria();
         criteria.add(TurbineRolePermissionPeer.ROLE_ID, role.getId());
-        List rels;
-        HashMap perms;
+        List<?> rels;
+        HashMap<String, Permission> perms;
 
         try
         {
             rels = TurbineRolePermissionPeer.doSelect(criteria);
             if (rels.size() > 0)
             {
-                perms = new HashMap(rels.size());
+                perms = new HashMap<String, Permission>(rels.size());
             }
             else
-                perms = new HashMap();
+                perms = new HashMap<String, Permission>();
 
             for (int ix = 0; ix < rels.size(); ix++)
             {
@@ -166,11 +166,11 @@ public class TurbinePermissionManagement extends TurbineBaseService
      * @exception PermissionException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator getPermissions()
+    public Iterator<?> getPermissions()
         throws JetspeedSecurityException
     {
         Criteria criteria = new Criteria();
-        List permissions;
+        List<?> permissions;
         try
         {
             permissions = TurbinePermissionPeer.doSelect(criteria);
@@ -416,7 +416,7 @@ public class TurbinePermissionManagement extends TurbineBaseService
     public boolean hasPermission(String roleName, String permissionName)
         throws JetspeedSecurityException
     {
-        List permissions;
+        List<?> permissions;
 
         try
         {
@@ -458,7 +458,7 @@ public class TurbinePermissionManagement extends TurbineBaseService
     public Permission getPermission(String permissionName)
         throws JetspeedSecurityException
     {
-        List permissions;
+        List<?> permissions;
 
         try
         {
@@ -516,7 +516,7 @@ public class TurbinePermissionManagement extends TurbineBaseService
     {
         Criteria criteria = new Criteria();
         criteria.add(TurbinePermissionPeer.PERMISSION_NAME, permissionName);
-        List permissions;
+        List<?> permissions;
         try
         {
             permissions = TurbinePermissionPeer.doSelect(criteria);
@@ -563,7 +563,7 @@ public class TurbinePermissionManagement extends TurbineBaseService
 
         cascadeDelete = serviceConf.getBoolean( CASCADE_DELETE, DEFAULT_CASCADE_DELETE );
         cachingEnable = serviceConf.getBoolean( CACHING_ENABLE, cachingEnable );
-        systemPermissions = serviceConf.getVector( CONFIG_SYSTEM_PERMISSIONS, new Vector() );
+        systemPermissions = serviceConf.getVector( CONFIG_SYSTEM_PERMISSIONS, new Vector<Object>() );
         setInit(true);
      }
 

@@ -557,6 +557,7 @@ public abstract class RegistryUpdateAction extends SecureVelocityPortletAction
                         String title =
                             rundata.getParameters().getString(
                                 parameterName + ".title");
+                        @SuppressWarnings("unused")
                         String securityRole =
                             rundata.getParameters().getString(
                                 parameterName + ".security_role");
@@ -1186,9 +1187,9 @@ public abstract class RegistryUpdateAction extends SecureVelocityPortletAction
      * @param iter An iterator
      * @return the collection
      */
-    protected Collection iteratorToCollection(Iterator iter)
+    protected <T> Collection<T> iteratorToCollection(Iterator<T> iter)
     {
-        Collection collection = new ArrayList();
+        Collection<T> collection = new ArrayList<T>();
         while (iter.hasNext())
         {
             collection.add(iter.next());

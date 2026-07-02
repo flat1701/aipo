@@ -74,8 +74,8 @@ public class _EipTWorkflowCategory extends org.apache.cayenne.CayenneDataObject 
     public void removeFromEipTWorkflowRequest(com.aimluck.eip.cayenne.om.portlet.EipTWorkflowRequest obj) {
         removeToManyTarget("eipTWorkflowRequest", obj, true);
     }
-    public List getEipTWorkflowRequest() {
-        return (List)readProperty("eipTWorkflowRequest");
+    public List<?> getEipTWorkflowRequest() {
+        return (List<?>)readProperty("eipTWorkflowRequest");
     }
     
     

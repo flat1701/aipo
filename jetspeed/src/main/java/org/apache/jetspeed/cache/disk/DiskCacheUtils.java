@@ -71,7 +71,8 @@ public class DiskCacheUtils {
     /**
     Stores the protocols which sould be recognized as local
     */
-    private static Vector localprotocols = JetspeedResources.getVector("diskcache.localprotocols");
+    @SuppressWarnings("unchecked")
+    private static Vector<String> localprotocols = JetspeedResources.getVector("diskcache.localprotocols");
 
     /**
      * Static initialization of the logger for this class
@@ -197,7 +198,7 @@ public class DiskCacheUtils {
             
             /* SH Testing local protocols also */
             if (localprotocols!=null) {
-                Enumeration en = localprotocols.elements();
+                Enumeration<String> en = localprotocols.elements();
                 while(en.hasMoreElements()) {
                     String protocol = (String)en.nextElement()+":";
                     if ( url.indexOf(protocol) != -1 ) 
@@ -279,6 +280,7 @@ public class DiskCacheUtils {
        Given a url and an disk cache instance, determine what the correct URL for this
        cache entry for the remote URL would be.
      */
+    @SuppressWarnings("deprecation")
     public static String getFileURL( DiskCache instance,
                                      String url ) {
 

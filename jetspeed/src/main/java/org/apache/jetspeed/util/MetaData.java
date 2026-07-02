@@ -27,7 +27,7 @@ import java.io.Serializable;
 /**
 A class for storing MetaData about an object.
 
-@author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+@author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
 @version $Id: MetaData.java,v 1.11 2004/02/23 03:23:42 jford Exp $
 */
 public class MetaData implements Serializable
@@ -45,7 +45,7 @@ public class MetaData implements Serializable
     /**
     Hashtable to store all the properties
     */
-    private Hashtable data = new Hashtable();
+    private Hashtable<Object, Object> data = new Hashtable<Object, Object>();
 
     /**
     Sets a title in the default locale
@@ -246,7 +246,7 @@ public class MetaData implements Serializable
     /**
     Retrieves a property by name for a given locale
     */
-    private Map getProperties() 
+    private Map<Object, Object> getProperties() 
     {
         return data;
     }
@@ -258,9 +258,9 @@ public class MetaData implements Serializable
     */
     public void merge(MetaData meta)
     {
-        Map map = meta.getProperties();
-        Hashtable params = (Hashtable) map;
-        Enumeration en = params.keys();
+        Map<Object, Object> map = meta.getProperties();
+        Hashtable<Object, Object> params = (Hashtable<Object, Object>) map;
+        Enumeration<Object> en = params.keys();
 
         while (en.hasMoreElements())
         {

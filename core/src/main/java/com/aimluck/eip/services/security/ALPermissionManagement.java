@@ -79,12 +79,12 @@ public class ALPermissionManagement extends TurbineBaseService implements
   /**
    *
    */
-  public Iterator<?> getPermissions(String rolename)
+  public Iterator<Permission> getPermissions(String rolename)
       throws JetspeedSecurityException {
     Role role = null;
     try {
       if (cachingEnable) {
-        Iterator<?> iterator = JetspeedSecurityCache.getPermissions(rolename);
+        Iterator<Permission> iterator = JetspeedSecurityCache.getPermissions(rolename);
         if (iterator != null) {
           return iterator;
         }

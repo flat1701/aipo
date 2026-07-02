@@ -140,13 +140,13 @@ public class AutoProfile
     // last modified: 10/31/01
     // Andreas Kempf, Siemens ICM S CP PE, Munich
     // ---------------------------------------------------------------------
-    public static List getPortletList (RunData rundata)
+    public static List<Entry> getPortletList (RunData rundata)
     {
       Profile profile = ((JetspeedRunData)rundata).getCustomizedProfile();
       Portlets allPortlets = profile.getDocument().getPortletsById(((PortletSet)((JetspeedRunData)rundata).getCustomized()).getID());
 
       
-      List installed = new ArrayList ();
+      List<Entry> installed = new ArrayList<Entry> ();
       Entry iPortlet;
 
 

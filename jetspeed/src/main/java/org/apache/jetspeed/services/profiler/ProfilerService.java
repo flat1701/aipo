@@ -155,7 +155,7 @@ public interface ProfilerService extends Service
      * @param locator The profile locator criteria.
      * @return The list of profiles matching the locator criteria.
      */
-    public Iterator query( QueryLocator locator );
+    public Iterator<?> query( QueryLocator locator );
 
     /**
      * Returns status of role profile merging feature

@@ -160,7 +160,6 @@ public class ALDefaultSocialApplicationHanlder extends
     if (gadgetSpec != null && request.isDetail()) {
       List<ALOAuthConsumer> consumers = new ArrayList<ALOAuthConsumer>();
       List<ALOAuthService> services = gadgetSpec.getOAuthServices();
-      @SuppressWarnings("unchecked")
       List<OAuthConsumer> consumerModels = app.getOauthConsumer();
       for (ALOAuthService service : services) {
         ALOAuthConsumer consumer = new ALOAuthConsumer();
@@ -203,7 +202,6 @@ public class ALDefaultSocialApplicationHanlder extends
       if (app == null) {
         return;
       }
-      @SuppressWarnings("unchecked")
       List<OAuthConsumer> oauthConsumers = app.getOauthConsumer();
       boolean has = false;
       if (oauthConsumers != null) {

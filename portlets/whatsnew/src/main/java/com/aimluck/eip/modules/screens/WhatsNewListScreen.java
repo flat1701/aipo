@@ -60,10 +60,10 @@ public class WhatsNewListScreen extends WhatsNewScreen {
       listData.initField();
       listData.setViewSpan(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p1a-span")));
+        .getInitParameter("p1a-span").toString()));
       listData.setViewNum(Integer.parseInt(portlet
         .getPortletConfig()
-        .getInitParameter("p2a-rows")));
+        .getInitParameter("p2a-rows").toString()));
       listData.doViewList(this, rundata, context);
 
       String layout_template = "portlets/html/ja/ajax-whatsnew-list.vm";

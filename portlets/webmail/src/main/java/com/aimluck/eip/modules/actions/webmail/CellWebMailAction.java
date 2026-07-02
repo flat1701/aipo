@@ -238,7 +238,7 @@ public class CellWebMailAction extends WebMailAction {
       Integer.parseInt(ALEipUtils
         .getPortlet(rundata, context)
         .getPortletConfig()
-        .getInitParameter("p1b-rows"));
+        .getInitParameter("p1b-rows").toString());
 
     CellWebMailAccountSelectData listData = new CellWebMailAccountSelectData();
     listData.initField();
@@ -266,7 +266,7 @@ public class CellWebMailAction extends WebMailAction {
     VelocityPortlet portlet = ALEipUtils.getPortlet(rundata, context);
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.setStrLength(0);
 
     listData.doViewList(this, rundata, context);

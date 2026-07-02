@@ -80,8 +80,8 @@ public class WebPagePortlet2 extends AbstractInstancePortlet
             rewriter = new HTMLRewriter();
 
             // fetch username and password for HTTP Basic Autentication
-            username = config.getInitParameter("username");
-            password = config.getInitParameter("password");
+            username = config.getInitParameter("username").toString();
+            password = config.getInitParameter("password").toString();
             
             contentStale = true;
             initDone = true;

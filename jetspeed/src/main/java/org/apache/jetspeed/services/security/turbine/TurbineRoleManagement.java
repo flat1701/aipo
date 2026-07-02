@@ -93,7 +93,7 @@ public class TurbineRoleManagement extends TurbineBaseService
      * @exception RoleException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator getRoles(String username)
+    public Iterator<GroupRole> getRoles(String username)
         throws JetspeedSecurityException
     {
         JetspeedUser user = null;
@@ -101,7 +101,8 @@ public class TurbineRoleManagement extends TurbineBaseService
         {
             if (cachingEnable)
             {
-                Iterator result = JetspeedSecurityCache.getRoles(username);
+                @SuppressWarnings("unchecked")
+                Iterator<GroupRole> result = JetspeedSecurityCache.getRoles(username);
                 if (null != result)
                 {
                     return result;
@@ -115,19 +116,19 @@ public class TurbineRoleManagement extends TurbineBaseService
         }
         Criteria criteria = new Criteria();
         criteria.add(TurbineUserGroupRolePeer.USER_ID, user.getUserId());
-        List rels;
-        HashMap roles;
+        List<?> rels;
+        HashMap<?, GroupRole> roles;
 
         try
         {
             rels = TurbineUserGroupRolePeer.doSelect(criteria);
             if (rels.size() > 0)
             {
-                roles = new HashMap(rels.size());
+                roles = new HashMap<Object, GroupRole>(rels.size());
             }
             else
             {
-				roles = new HashMap();
+				roles = new HashMap<Object, GroupRole>();
             }
 
             for (int ix = 0; ix < rels.size(); ix++)
@@ -158,11 +159,11 @@ public class TurbineRoleManagement extends TurbineBaseService
      * @exception RoleException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator getRoles()
+    public Iterator<?> getRoles()
         throws JetspeedSecurityException
     {
         Criteria criteria = new Criteria();
-        List roles;
+        List<?> roles;
         try
         {
             roles = TurbineRolePeer.doSelect(criteria);
@@ -465,7 +466,7 @@ public class TurbineRoleManagement extends TurbineBaseService
     public boolean hasRole(String username, String rolename, String groupname)
         throws JetspeedSecurityException
     {
-        List roles;
+        List<?> roles;
 
         try
         {
@@ -511,7 +512,7 @@ public class TurbineRoleManagement extends TurbineBaseService
     public Role getRole(String rolename)
         throws JetspeedSecurityException
     {
-        List roles;
+        List<?> roles;
         try
         {
             Criteria criteria = new Criteria();
@@ -567,7 +568,7 @@ public class TurbineRoleManagement extends TurbineBaseService
     {
         Criteria criteria = new Criteria();
         criteria.add(TurbineRolePeer.ROLE_NAME, roleName);
-        List roles;
+        List<?> roles;
         try
         {
             roles = TurbineRolePeer.doSelect(criteria);

@@ -88,7 +88,7 @@ public class TurbineUserManagement extends TurbineBaseService implements
 
   String passwordsAlgorithm = "SHA";
 
-  Vector systemUsers = null;
+  Vector<?> systemUsers = null;
 
   private final static String CONFIG_NEWUSER_ROLES = "newuser.roles";
 
@@ -137,7 +137,7 @@ public class TurbineUserManagement extends TurbineBaseService implements
       throw new UserException("Invalid Principal Type in getUser: "
           + principal.getClass().getName());
     }
-    List users;
+    List<?> users;
     try {
       users = TurbineUserPeer.doSelectUsers(criteria);
     } catch (Exception e) {
@@ -173,9 +173,9 @@ public class TurbineUserManagement extends TurbineBaseService implements
    * @exception InsufficientPrivilegeException
    *              when the requestor is denied due to insufficient privilege
    */
-  public Iterator getUsers() throws JetspeedSecurityException {
+  public Iterator<JetspeedUser> getUsers() throws JetspeedSecurityException {
     Criteria criteria = new Criteria();
-    List users;
+    List<JetspeedUser> users;
     try {
       users = TurbineUserPeer.doSelectUsers(criteria);
     } catch (Exception e) {
@@ -198,11 +198,11 @@ public class TurbineUserManagement extends TurbineBaseService implements
    * @exception InsufficientPrivilegeException
    *              when the requestor is denied due to insufficient privilege
    */
-  public Iterator getUsers(String filter) throws JetspeedSecurityException {
+  public Iterator<JetspeedUser> getUsers(String filter) throws JetspeedSecurityException {
     // TODO: implement this with a SQL string
 
     Criteria criteria = new Criteria();
-    List users;
+    List<JetspeedUser> users;
     try {
       users = TurbineUserPeer.doSelectUsers(criteria);
     } catch (Exception e) {
@@ -507,7 +507,7 @@ public class TurbineUserManagement extends TurbineBaseService implements
         securePasswords);
     passwordsAlgorithm = serviceConf.getString(
         CONFIG_SECURE_PASSWORDS_ALGORITHM, passwordsAlgorithm);
-    systemUsers = serviceConf.getVector(CONFIG_SYSTEM_USERS, new Vector());
+    systemUsers = serviceConf.getVector(CONFIG_SYSTEM_USERS, new Vector<Object>());
 
     try {
       roles = serviceConf.getStringArray(CONFIG_NEWUSER_ROLES);
@@ -552,7 +552,7 @@ public class TurbineUserManagement extends TurbineBaseService implements
     String id = user.getUserId();
     Criteria criteria = new Criteria();
     criteria.add(TurbineUserPeer.LOGIN_NAME, user.getUserName());
-    List users;
+    List<?> users;
     try {
       users = TurbineUserPeer.doSelect(criteria);
     } catch (Exception e) {

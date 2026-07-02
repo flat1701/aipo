@@ -86,15 +86,16 @@ public class LineCounter
     {
   //      System.out.println("Processing file: " + file.getPath());
         FileReader reader = new FileReader( file );
-        BufferedReader br = new BufferedReader( reader );
         String s;
         int mycount = 0;
-
-        while ((s = br.readLine()) != null)
-        {
-            if (s.length() > 0)
-                mycount++;
+        try (BufferedReader br = new BufferedReader( reader );) {
+          while ((s = br.readLine()) != null)
+          {
+              if (s.length() > 0)
+                  mycount++;
+          }
         }
+
         return mycount;
     }
 }

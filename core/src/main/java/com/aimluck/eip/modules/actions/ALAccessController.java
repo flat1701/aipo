@@ -38,6 +38,7 @@ public class ALAccessController extends JetspeedAccessController {
   /**
    * Static initialization of the logger for this class
    */
+  @SuppressWarnings("unused")
   private static final JetspeedLogger logger = JetspeedLogFactoryService
     .getLogger(ALAccessController.class.getName());
 

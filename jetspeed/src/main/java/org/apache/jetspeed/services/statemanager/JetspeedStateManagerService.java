@@ -25,8 +25,6 @@ import java.util.Iterator;
 import java.util.Vector;
 import java.util.Set;
 
-import org.apache.jetspeed.services.statemanager.BaseStateManagerService;
-
 /**
 * <p>JetspeedStateManagerService is an implementation of the BaseStateManagerService
 * which manages the states stored in a local Map (synchronized HashMap).</p>
@@ -45,7 +43,7 @@ public class JetspeedStateManagerService
 {
     /** Store each set of state parameters by state key
         (each is a HashMap keyed by parameter name) */
-    private Map m_states = null;
+    private Map<String, Map<String, Object>> m_states = null;
 
     /**
     * Initialize the states storage.
@@ -53,7 +51,7 @@ public class JetspeedStateManagerService
     protected void initStates()
     {
         // create our states map synchronized
-        m_states = Collections.synchronizedMap(new HashMap());
+        m_states = Collections.synchronizedMap(new HashMap<String, Map<String, Object>>());
 
     }   // initStates
 
@@ -72,9 +70,9 @@ public class JetspeedStateManagerService
     * @param key The state key.
     * @return The Map which is the set of attributes for a state.
     */
-    protected Map getState( String key )
+    protected Map<String, Object> getState( String key )
     {
-        return (Map) m_states.get(key);
+        return (Map<String, Object>) m_states.get(key);
 
     }   // getState
 
@@ -83,7 +81,7 @@ public class JetspeedStateManagerService
     * @param key The state key.
     * @param state The Map which is the set of attributes for the state.
     */
-    protected void addState( String key, Map state )
+    protected void addState( String key, Map<String, Object> state )
     {
         m_states.put(key, state);
 
@@ -107,13 +105,13 @@ public class JetspeedStateManagerService
     protected String[] getStateKeys( String start )
     {
         // collect for return
-        Vector rv = new Vector();
+        Vector<String> rv = new Vector<String>();
 
         // get the entire set of keys to iterate over
-        Set allStateKeys = m_states.keySet();
+        Set<String> allStateKeys = m_states.keySet();
         synchronized (m_states)
         {
-            Iterator i = allStateKeys.iterator();
+            Iterator<String> i = allStateKeys.iterator();
             while (i.hasNext())
             {
                 String key = (String) i.next();

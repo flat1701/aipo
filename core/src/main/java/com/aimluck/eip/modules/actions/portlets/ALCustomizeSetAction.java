@@ -397,7 +397,7 @@ public class ALCustomizeSetAction extends VelocityPortletAction {
     int size = 30;
     try {
       size =
-        Integer.parseInt(portlet.getPortletConfig().getInitParameter("size"));
+        Integer.parseInt(portlet.getPortletConfig().getInitParameter("size").toString());
     } catch (Exception e) {
       logger.debug("CustomizeSetAction: Init param 'size' not parsed");
     }
@@ -884,7 +884,7 @@ public class ALCustomizeSetAction extends VelocityPortletAction {
           }
           c.setName(controller);
 
-          String linkedControl = pc.getConfig().getInitParameter("control");
+          String linkedControl = pc.getConfig().getInitParameter("control").toString();
 
           if (linkedControl != null) {
             Control ctl = new PsmlControl();
@@ -1015,7 +1015,6 @@ public class ALCustomizeSetAction extends VelocityPortletAction {
   }
 
   // Create a list of all available portlets
-  @SuppressWarnings("unchecked")
   public static List<PortletEntry> buildPortletList(RunData data,
       PortletSet set, String mediaType, List<PortletEntry> allPortlets) {
     List<PortletEntry> list = new ArrayList<PortletEntry>();
@@ -1365,7 +1364,7 @@ public class ALCustomizeSetAction extends VelocityPortletAction {
     PortletController controller = portletSet.getController();
     List<?>[] columns = null;
     // retrieve the number of columns
-    String cols = controller.getConfig().getInitParameter("cols");
+    String cols = controller.getConfig().getInitParameter("cols").toString();
     int colNum = 0;
     try {
       colNum = Integer.parseInt(cols);

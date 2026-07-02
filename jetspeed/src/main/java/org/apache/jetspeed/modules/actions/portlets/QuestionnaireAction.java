@@ -70,8 +70,8 @@ public class QuestionnaireAction extends JspPortletAction
     protected void buildNormalContext(Portlet portlet, RunData rundata)
     {
         PortletEntry entry = (PortletEntry) Registry.getEntry(Registry.PORTLET, portlet.getName());
-        Iterator i = entry.getParameterNames();
-        Hashtable qa = new Hashtable();
+        Iterator<?> i = entry.getParameterNames();
+        Hashtable<String, String> qa = new Hashtable<String, String>();
 
         while (i.hasNext())
         {
@@ -80,7 +80,7 @@ public class QuestionnaireAction extends JspPortletAction
             if (param.isHidden() == false)
             {
                 String title = param.getTitle();
-                String value = portlet.getPortletConfig().getInitParameter(name);
+                String value = portlet.getPortletConfig().getInitParameter(name).toString();
                 qa.put(title, value);
             }
         }
@@ -119,7 +119,7 @@ public class QuestionnaireAction extends JspPortletAction
     {
         StringBuffer emailBody = new StringBuffer();
         PortletEntry entry = (PortletEntry) Registry.getEntry(Registry.PORTLET, portlet.getName());
-        Iterator i = entry.getParameterNames();
+        Iterator<?> i = entry.getParameterNames();
 
         while (i.hasNext())
         {
@@ -128,7 +128,7 @@ public class QuestionnaireAction extends JspPortletAction
             if (param.isHidden() == false)
             {
                 String title = param.getTitle();
-                String value = portlet.getPortletConfig().getInitParameter(name);
+                String value = portlet.getPortletConfig().getInitParameter(name).toString();
                 value = value == null || value.length() == 0 ? "NOT PROVIDED" : value;
                 emailBody.append(title);
                 emailBody.append(" ===> ");
@@ -204,7 +204,7 @@ public class QuestionnaireAction extends JspPortletAction
             // Display confirmation
             rundata.getRequest().setAttribute("email", emailBody.toString());
             String confirmTemplate = portlet.getPortletConfig().getInitParameter("confirm.template", 
-                                                                                 "JetspeedQuestionnaireConfirmation.jsp");
+                                                                                 "JetspeedQuestionnaireConfirmation.jsp").toString();
            // this.setTemplate(rundata, portlet, confirmTemplate);
             setTemplate(rundata, confirmTemplate, true);
 

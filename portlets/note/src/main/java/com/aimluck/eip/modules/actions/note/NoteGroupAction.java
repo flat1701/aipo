@@ -53,7 +53,7 @@ public class NoteGroupAction extends NoteAction {
     // 最大表示件数（通常時）
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "notegroup");
   }

@@ -52,6 +52,7 @@ public class GadgetsPopupScreen extends ALVelocityScreen {
    * @param context
    * @throws Exception
    */
+  @SuppressWarnings("unused")
   @Override
   protected void doOutput(RunData rundata, Context context) throws Exception {
     context.put("l10n", ALLocalizationUtils.createLocalization(rundata));
@@ -84,13 +85,12 @@ public class GadgetsPopupScreen extends ALVelocityScreen {
       Portlet portlet =
         ALEipUtils.getPortlet(rundata, String.valueOf(moduleId));
       if (portlet != null) {
-        @SuppressWarnings("unchecked")
         Iterator<String> names =
           portlet.getPortletConfig().getInitParameterNames();
         while (names.hasNext()) {
           String next = names.next();
           if (next != null && next.startsWith("pref-")) {
-            String value = portlet.getPortletConfig().getInitParameter(next);
+            String value = portlet.getPortletConfig().getInitParameter(next).toString();
             String key = next.substring(5);
             Map<String, String> maps2 = new HashMap<String, String>();
             maps2.put("value", value);

@@ -22,8 +22,8 @@ public class _TurbineUserGroupRole extends org.apache.cayenne.CayenneDataObject 
     public void removeFromEipTScheduleMap(com.aimluck.eip.cayenne.om.portlet.EipTScheduleMap obj) {
         removeToManyTarget("eipTScheduleMap", obj, true);
     }
-    public List getEipTScheduleMap() {
-        return (List)readProperty("eipTScheduleMap");
+    public List<?> getEipTScheduleMap() {
+        return (List<?>)readProperty("eipTScheduleMap");
     }
     
     

@@ -40,7 +40,7 @@ public abstract class PersistenceManager
      * @param profile Retrieve instances from this profile.
      * @return List The list of all instances in current profile.
      */
-    public static List getInstances(Profile profile) throws PortletException
+    public static List<?> getInstances(Profile profile) throws PortletException
     {
         return getService().getInstances(profile);
     }
@@ -51,7 +51,7 @@ public abstract class PersistenceManager
      * @param data Request rundata.
      * @return List The list of all instances in current profile.
      */
-    public static List getInstances(RunData data) throws PortletException
+    public static List<?> getInstances(RunData data) throws PortletException
     {
         return getService().getInstances(data);
     }

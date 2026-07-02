@@ -66,7 +66,7 @@ public class PopupCalendar extends ParameterPresentationStyle
     /**
      * Method returning HTML markup for a date list box
      */
-    public String getContent(RunData data, String name, String value, Map parms)
+    public String getContent(RunData data, String name, String value, Map<String, Object> parms)
     {
 
         ElementContainer container = new ElementContainer();

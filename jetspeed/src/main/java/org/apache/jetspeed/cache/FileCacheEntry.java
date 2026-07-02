@@ -34,6 +34,7 @@ public class FileCacheEntry
     protected long lastAccessed;
     protected Date lastModified;
 
+    @SuppressWarnings("unused")
     private FileCacheEntry()
     {
     }

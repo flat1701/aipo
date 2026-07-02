@@ -35,6 +35,7 @@ import com.aimluck.eip.util.ALEipUtils;
 public class TutorialForbidScreen extends ALVelocityScreen {
 
   /** logger */
+  @SuppressWarnings("unused")
   private static final JetspeedLogger logger = JetspeedLogFactoryService
     .getLogger(TutorialForbidScreen.class.getName());
 

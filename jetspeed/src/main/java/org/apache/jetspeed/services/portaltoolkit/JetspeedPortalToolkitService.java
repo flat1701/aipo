@@ -75,7 +75,7 @@ import javax.servlet.ServletConfig;
 /**
  * Simple implementation of the PortalFactoryService.
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:taylor@apache.org">David Sean Taylor</a>
  * @author <a href="mailto:morciuch@apache.org">Mark Orciuch</a> 
  *
@@ -150,7 +150,7 @@ public class JetspeedPortalToolkitService
             entry = (PortletControlEntry) Registry.getEntry(Registry.PORTLET_CONTROL, name);
         }
 
-        Map params = null;
+        Map<String, org.apache.jetspeed.om.registry.Parameter> params = null;
 
         try
         {
@@ -159,7 +159,7 @@ public class JetspeedPortalToolkitService
                 if (name != null)
                 {
                     pc = (PortletControl) Class.forName(name).newInstance();
-                    params = new Hashtable();
+                    params = new Hashtable<String, org.apache.jetspeed.om.registry.Parameter>();
                 }
             }
             else
@@ -256,7 +256,7 @@ public class JetspeedPortalToolkitService
             entry = (PortletControllerEntry) Registry.getEntry(Registry.PORTLET_CONTROLLER, name);
         }
 
-        Map params = null;
+        Map<String, String> params = null;
 
         try
         {
@@ -265,7 +265,7 @@ public class JetspeedPortalToolkitService
                 if (name != null)
                 {
                     pc = (PortletController) Class.forName(name).newInstance();
-                    params = new Hashtable();
+                    params = new Hashtable<String, String>();
                 }
             }
             else
@@ -399,6 +399,7 @@ public class JetspeedPortalToolkitService
      */
     public PortletSet getSet(Portlets portlets)
     {
+        @SuppressWarnings("unused")
         VariableInteger lastID = new VariableInteger(0);
         return getSet(portlets, new VariableInteger(0));
     }
@@ -439,13 +440,13 @@ public class JetspeedPortalToolkitService
         //        Portlets[] subsets = portlets.getPortlets();
         //        for (int i=0; i < subsets.length; i++ )
 
-        for (Iterator it = portlets.getPortletsIterator(); it.hasNext();)
+        for (Iterator<?> it = portlets.getPortletsIterator(); it.hasNext();)
         {
             Portlets subset = (Portlets) it.next();
             // Set this subset's parent Portlets collection.          
             subset.setParentPortlets(portlets);
 
-            Map constraints = getParameters(subset.getLayout());
+            Map<String, String> constraints = getParameters(subset.getLayout());
             int position = getPosition(subset.getLayout());
             set.addPortlet(
                 getSet(subset, theCount),
@@ -457,7 +458,7 @@ public class JetspeedPortalToolkitService
         //        Entry[] entries = portlets.getEntry();
         //        for( int i = 0; i < entries.length; ++i )
 
-        for (Iterator eit = portlets.getEntriesIterator(); eit.hasNext();)
+        for (Iterator<?> eit = portlets.getEntriesIterator(); eit.hasNext();)
         {
             try
             {
@@ -472,7 +473,7 @@ public class JetspeedPortalToolkitService
 
                     if (p != null)
                     {
-                        Map constraints = getParameters(psmlEntry.getLayout());
+                        Map<String, String> constraints = getParameters(psmlEntry.getLayout());
                         int position = getPosition(psmlEntry.getLayout());
 
                         PortletControl control = getControl(psmlEntry.getControl(), entry);
@@ -569,9 +570,9 @@ public class JetspeedPortalToolkitService
      * @return a Map containing the parameters names/values, an empty Dictionary
      *        is returned if there are no parameters
      */
-    protected static Map getParameters(Portlets portlets)
+    protected static Map<String, String> getParameters(Portlets portlets)
     {
-        Hashtable hash = new Hashtable();
+        Hashtable<String, String> hash = new Hashtable<String, String>();
 
         if (portlets != null)
         {
@@ -592,9 +593,9 @@ public class JetspeedPortalToolkitService
      * @param control the PSML object to explore
      * @return a Map of the existing control parameters or an empty map
      */
-    protected static Map getParameters(Control control)
+    protected static Map<String, String> getParameters(Control control)
     {
-        Hashtable hash = new Hashtable();
+        Hashtable<String, String> hash = new Hashtable<String, String>();
 
         if (control != null)
         {
@@ -614,9 +615,9 @@ public class JetspeedPortalToolkitService
      * @param controller the PSML object to explore
      * @return a Map of the existing controller parameters or an empty map
      */
-    protected static Map getParameters(Controller controller)
+    protected static Map<String, String> getParameters(Controller controller)
     {
-        Hashtable hash = new Hashtable();
+        Hashtable<String, String> hash = new Hashtable<String, String>();
 
         if (controller != null)
         {
@@ -637,9 +638,9 @@ public class JetspeedPortalToolkitService
      * @return a Map containing the names/values, an empty map
      *  is returned if there are no properties
      */
-    protected static Map getParameters(Layout layout)
+    protected static Map<String, String> getParameters(Layout layout)
     {
-        Hashtable hash = new Hashtable();
+        Hashtable<String, String> hash = new Hashtable<String, String>();
 
         if (layout != null)
         {
@@ -661,9 +662,9 @@ public class JetspeedPortalToolkitService
      * @return a Map containing the names/values, an empty map
      *  is returned if there are no properties
      */
-    protected static Map getParameters(Skin skin)
+    protected static Map<String, String> getParameters(Skin skin)
     {
-        Hashtable hash = new Hashtable();
+        Hashtable<String, String> hash = new Hashtable<String, String>();
 
         if (skin != null)
         {
@@ -766,6 +767,7 @@ public class JetspeedPortalToolkitService
     {
         ProfileLocator locator = Profiler.createLocator();
         locator.createFromPath(locatorPath);
+        @SuppressWarnings("unused")
         String id = locator.getId();
 
         try

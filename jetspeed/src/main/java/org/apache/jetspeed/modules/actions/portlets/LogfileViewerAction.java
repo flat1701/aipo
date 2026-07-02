@@ -61,7 +61,7 @@ public class LogfileViewerAction extends GenericMVCAction
      */    
      private static final Logger logger = LogManager.getLogger(LogfileViewerAction.class.getName());
 
-     private static HashMap appenders = null;
+     private static HashMap<String, Appender> appenders = null;
 
     /** Creates a new instance of LogFileViewerAction */
     public LogfileViewerAction() 
@@ -79,15 +79,16 @@ public class LogfileViewerAction extends GenericMVCAction
     {
         String tempName;
         LoggerRepository repos = logger.getLoggerRepository();
-        Enumeration loggerEnum = repos.getCurrentLoggers();
-        HashMap files = new HashMap();
-        HashMap fileNames = new HashMap();
-        appenders = new HashMap();
+        Enumeration<?> loggerEnum = repos.getCurrentLoggers();
+        HashMap<String, String> files = new HashMap<String, String>();
+        @SuppressWarnings("unused")
+        HashMap<?, ?> fileNames = new HashMap<Object, Object>();
+        appenders = new HashMap<String, Appender>();
         
         while ( loggerEnum.hasMoreElements() )
         {
             Logger appLogger = (Logger) loggerEnum.nextElement();
-            Enumeration appenderEnum = appLogger.getAllAppenders();
+            Enumeration<?> appenderEnum = appLogger.getAllAppenders();
             String name;
 
             while ( appenderEnum.hasMoreElements() )

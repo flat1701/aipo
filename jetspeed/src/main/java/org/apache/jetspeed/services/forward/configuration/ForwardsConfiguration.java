@@ -27,9 +27,9 @@ import java.util.Collection;
 public interface ForwardsConfiguration
 {
 
-    public Collection getForwards();
+    public Collection<?> getForwards();
 
-    public Collection getPortletForwards();
+    public Collection<?> getPortletForwards();
 
 }
 

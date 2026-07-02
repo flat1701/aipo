@@ -113,10 +113,10 @@ public class SecurityUpdateAction extends RegistryUpdateAction
                 }
             }
 
-            Iterator permissionIter = JetspeedSecurity.getPermissions();
-            Iterator userIter = JetspeedSecurity.getUsers();
-            Iterator roleIter = JetspeedSecurity.getRoles();
-            Iterator groupIter = JetspeedSecurity.getGroups();
+            Iterator<?> permissionIter = JetspeedSecurity.getPermissions();
+            Iterator<?> userIter = JetspeedSecurity.getUsers();
+            Iterator<?> roleIter = JetspeedSecurity.getRoles();
+            Iterator<?> groupIter = JetspeedSecurity.getGroups();
 
             context.put("permissions", iteratorToCollection(permissionIter));
             context.put("users", iteratorToCollection(userIter));
@@ -128,7 +128,7 @@ public class SecurityUpdateAction extends RegistryUpdateAction
 
         if (mode != null && (mode.equals(SecurityConstants.PARAM_MODE_INSERT)))
         {
-            Iterator permissionIter = JetspeedSecurity.getPermissions();
+            Iterator<?> permissionIter = JetspeedSecurity.getPermissions();
             context.put("permissions", permissionIter);
         }
     }
@@ -163,7 +163,7 @@ public class SecurityUpdateAction extends RegistryUpdateAction
 
                     addAllow(rundata, securityAccess);
 
-                    Vector accesses = securityEntry.getAccesses();
+                    Vector<BaseSecurityAccess> accesses = securityEntry.getAccesses();
                     accesses.add(securityAccess);
                     securityEntry.setAccesses(accesses);
 
@@ -277,7 +277,7 @@ public class SecurityUpdateAction extends RegistryUpdateAction
 
                 if (accessIndexes != null && accessIndexes.length > 0)
                 {
-                    ArrayList deleteList = new ArrayList();
+                    ArrayList<BaseSecurityAccess> deleteList = new ArrayList<BaseSecurityAccess>();
 
                     for (int i = 0; i < accessIndexes.length; i++)
                     {
@@ -298,8 +298,8 @@ public class SecurityUpdateAction extends RegistryUpdateAction
                     }
 
 
-                    Vector accesses = securityEntry.getAccesses();
-                    Iterator deleteIter = deleteList.iterator();
+                    Vector<BaseSecurityAccess> accesses = securityEntry.getAccesses();
+                    Iterator<BaseSecurityAccess> deleteIter = deleteList.iterator();
                     while (deleteIter.hasNext())
                     {
                         SecurityAccess sa = (SecurityAccess) deleteIter.next();

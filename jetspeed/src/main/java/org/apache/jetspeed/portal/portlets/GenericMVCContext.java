@@ -56,14 +56,14 @@ import org.apache.velocity.context.Context;
 public class GenericMVCContext implements Context
 {
 
-    private HashMap data;
-    private HashSet additionalContexts;
+    private HashMap<Object, Object> data;
+    private HashSet<Context> additionalContexts;
 
     /** Creates a new instance of GenericMVCContext */
     public GenericMVCContext()
     {
-        data = new HashMap();
-        additionalContexts = new HashSet();
+        data = new HashMap<Object, Object>();
+        additionalContexts = new HashSet<Context>();
 
     }
 
@@ -74,7 +74,7 @@ public class GenericMVCContext implements Context
      * Done to facilitate the context chanining.
      * @author <a href="mailto:sweaver@rippe.com">Scott Weaver</a>
      */
-    public GenericMVCContext(Collection contexts)
+    public GenericMVCContext(Collection<Context> contexts)
     {
         this();
         additionalContexts.addAll(contexts);
@@ -99,7 +99,7 @@ public class GenericMVCContext implements Context
         boolean found = data.containsKey(key);
         if (!found)
         {
-            Iterator itr = additionalContexts.iterator();
+            Iterator<Context> itr = additionalContexts.iterator();
             while (itr.hasNext() && !found)
             {
                 found = ((Context) itr.next()).containsKey(key);
@@ -116,7 +116,7 @@ public class GenericMVCContext implements Context
         // Proceed to search chained contexts
         if (value == null)
         {
-            Iterator itr = additionalContexts.iterator();
+            Iterator<Context> itr = additionalContexts.iterator();
             while (itr.hasNext() && value == null)
             {
                 value = ((Context) itr.next()).get(key);
@@ -128,9 +128,9 @@ public class GenericMVCContext implements Context
 
     public Object[] getKeys()
     {
-        Set keySet = data.keySet();
+        Set<Object> keySet = data.keySet();
 
-        Iterator itr = additionalContexts.iterator();
+        Iterator<Context> itr = additionalContexts.iterator();
 
         while (itr.hasNext())
         {
@@ -156,7 +156,7 @@ public class GenericMVCContext implements Context
         Object obj = data.remove(key);
         if (obj == null)
         {
-            Iterator itr = additionalContexts.iterator();
+            Iterator<Context> itr = additionalContexts.iterator();
             while (itr.hasNext() && obj == null)
             {
                 obj = ((Context) itr.next()).remove(key);
@@ -184,7 +184,7 @@ public class GenericMVCContext implements Context
      * @return a Collection all the chained contexts
      * @author <a href="mailto:sweaver@rippe.com">Scott Weaver</a>-
      */
-    public Collection getChainedContexts()
+    public Collection<Context> getChainedContexts()
     {
         return additionalContexts;
     }

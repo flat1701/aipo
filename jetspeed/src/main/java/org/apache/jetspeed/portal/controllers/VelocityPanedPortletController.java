@@ -36,7 +36,7 @@ import org.apache.jetspeed.services.resources.JetspeedResources;
  * to manage paned content (ie, where a only a subset of all portlets
  * is visible at any given time)
  * 
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:taylor@apache.org">David Sean Taylor</a>
  *
  * @version $Id: VelocityPanedPortletController.java,v 1.13 2004/02/23 03:25:06 jford Exp $
@@ -213,6 +213,7 @@ public class VelocityPanedPortletController extends VelocityPortletController
         if (pane == null)
         {
             // the parameter is undefined, search for sticky value in session
+            @SuppressWarnings("unused")
             String id = getPortlets().getID(); 
             pane = retrievePaneIDFromSession(rundata);
         }
@@ -315,7 +316,7 @@ public class VelocityPanedPortletController extends VelocityPortletController
             if (pane == null)
             {
                 // use default
-                pane = getConfig().getInitParameter( "defaultpane", "0" );
+                pane = getConfig().getInitParameter( "defaultpane", "0" ).toString();
             }
         }
         

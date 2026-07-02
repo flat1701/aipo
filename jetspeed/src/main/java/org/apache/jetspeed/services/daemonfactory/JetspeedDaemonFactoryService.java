@@ -62,9 +62,9 @@ public class JetspeedDaemonFactoryService extends TurbineBaseService implements
   /**
    * Stores mappings of DaemonEntry -> DaemonThreads
    */
-  protected Hashtable daemons = new Hashtable();
+  protected Hashtable<DaemonEntry, Daemon> daemons = new Hashtable<DaemonEntry, Daemon>();
 
-  protected Hashtable threads = new Hashtable();
+  protected Hashtable<DaemonEntry, DaemonThread> threads = new Hashtable<DaemonEntry, DaemonThread>();
 
   private DaemonEntry[] entries = null;
 
@@ -98,7 +98,7 @@ public class JetspeedDaemonFactoryService extends TurbineBaseService implements
     this.context = new DaemonContext();
 
     // init daemons from config file
-    Vector raw = JetspeedResources.getVector(JetspeedResources.DAEMON_ENTRY);
+    Vector<?> raw = JetspeedResources.getVector(JetspeedResources.DAEMON_ENTRY);
     this.entries = new DaemonEntry[raw.size()];
 
     for (int i = 0; i < raw.size(); ++i) {
@@ -172,8 +172,8 @@ public class JetspeedDaemonFactoryService extends TurbineBaseService implements
     logger.info("DaemonFactory:  stop(): stop all daemons");
     try {
       super.shutdown();
-      Collection threadsValues = threads.values();
-      Iterator threadsiter = threadsValues.iterator();
+      Collection<DaemonThread> threadsValues = threads.values();
+      Iterator<DaemonThread> threadsiter = threadsValues.iterator();
       while (threadsiter.hasNext()) {
         Object obj = threadsiter.next();
         // ((DaemonThread) obj).stopThread();
@@ -182,8 +182,8 @@ public class JetspeedDaemonFactoryService extends TurbineBaseService implements
       }
       threads.clear();
       daemons.clear();
-      Collection daemonsValues = daemons.values();
-      Iterator daemonsIter = daemonsValues.iterator();
+      Collection<Daemon> daemonsValues = daemons.values();
+      Iterator<Daemon> daemonsIter = daemonsValues.iterator();
       while (daemonsIter.hasNext()) {
         Object obj = daemonsIter.next();
         Daemon daemon = (Daemon) this.daemons.get(obj.getClass());

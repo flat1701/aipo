@@ -32,8 +32,6 @@ import org.apache.turbine.services.InitializationException;
 // Commons classes
 import org.apache.commons.configuration.Configuration;
 
-import org.apache.jetspeed.services.resources.JetspeedResources;
-
 /**
  * <p>This service subclasses <code>TurbineResourceService</code> and
  * provides functionality for overriding properties in default resource
@@ -322,10 +320,10 @@ extends TurbineResourceService
                 Properties props = new Properties();
                 props.load(is);
 
-                Iterator it = props.entrySet().iterator();
+                Iterator<?> it = props.entrySet().iterator();
                 while (it.hasNext())
                 {
-                    Entry entry = (Entry)it.next();
+                    Entry<?, ?> entry = (Entry<?, ?>)it.next();
                     //if (entry.getValue() != null && ((String)entry.getValue()).length() > 0)
                     this.setProperty((String)entry.getKey(), (String)entry.getValue());
                     System.out.println("setting key/value: " + entry.getKey() + ":" + entry.getValue());                        

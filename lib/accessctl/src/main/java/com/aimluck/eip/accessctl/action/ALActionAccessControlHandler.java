@@ -46,7 +46,6 @@ public class ALActionAccessControlHandler extends ALAccessControlHandler {
   private static final JetspeedLogger logger = JetspeedLogFactoryService
     .getLogger(ALActionAccessControlHandler.class.getName());
 
-  @SuppressWarnings("unchecked")
   @Override
   public boolean hasAuthority(int userId, String featureName, int aclType) {
 

@@ -114,6 +114,7 @@ public class ReportFormData extends ALAbstractFormData {
   private String folderName = null;
 
   /** 親 報告書 ID */
+  @SuppressWarnings("unused")
   private ALNumberField parent_id;
 
   private String orgId;

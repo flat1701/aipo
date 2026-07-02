@@ -104,6 +104,7 @@ public class PortletWrapper implements Portlet
     
     /**
     */
+    @SuppressWarnings("deprecation")
     public ConcreteElement getContent(RunData rundata)
     {
  
@@ -324,7 +325,7 @@ public class PortletWrapper implements Portlet
         if (wrappedPortlet.getPortletConfig() != null) 
         {
             // Parameter can exist in PSML or <portlet-entry>
-            return Boolean.valueOf(wrappedPortlet.getPortletConfig().getInitParameter("_showtitlebar", "true")).booleanValue();
+            return Boolean.valueOf(wrappedPortlet.getPortletConfig().getInitParameter("_showtitlebar", "true").toString()).booleanValue();
         }
         return getAttribute("_showtitlebar", "true", rundata).equals("true");
     }

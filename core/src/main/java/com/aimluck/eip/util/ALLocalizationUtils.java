@@ -13,6 +13,7 @@ import com.aimluck.eip.common.ALEipManager;
 public class ALLocalizationUtils {
 
   /** logger */
+  @SuppressWarnings("unused")
   private static final JetspeedLogger logger = JetspeedLogFactoryService
     .getLogger(ALLocalizationUtils.class.getName());
 

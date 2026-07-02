@@ -237,6 +237,7 @@ public class PsmlUpdateAction extends SecureVelocityPortletAction
                             context.put("profile", profile);
                         }
 
+                        @SuppressWarnings("unused")
                         String categoryName = Profiler.PARAM_GROUP;
                         String categoryValue = tmpLocator.getGroupName();
                         if (categoryValue == null)
@@ -391,6 +392,7 @@ public class PsmlUpdateAction extends SecureVelocityPortletAction
     public void doInsert(RunData rundata, Context context)
         throws Exception
     {
+        @SuppressWarnings("unused")
         Profile profile = null;
         ProfileLocator locator = null;
         String categoryName = null;
@@ -603,7 +605,9 @@ public class PsmlUpdateAction extends SecureVelocityPortletAction
     public void doExport(RunData rundata, Context context)
         throws Exception
     {
+        @SuppressWarnings("unused")
         Profile profile = null;
+        @SuppressWarnings("unused")
         ProfileLocator locator = null;
         String copyTo = null;
         String copyFrom = null;
@@ -683,7 +687,7 @@ public class PsmlUpdateAction extends SecureVelocityPortletAction
             //
             // retrieve the profiles to export
             //
-            Iterator i = Profiler.query(new QueryLocator(QueryLocator.QUERY_ALL));
+            Iterator<?> i = Profiler.query(new QueryLocator(QueryLocator.QUERY_ALL));
             while (i.hasNext())
             {
                 Profile profile = (Profile) i.next();
@@ -890,6 +894,7 @@ public class PsmlUpdateAction extends SecureVelocityPortletAction
     public void doImport(RunData rundata, Context context)
         throws Exception
     {
+        @SuppressWarnings("unused")
         Profile profile = null;
         ProfileLocator locator = null;
         String categoryName = null;
@@ -1066,13 +1071,13 @@ public class PsmlUpdateAction extends SecureVelocityPortletAction
             //
             // Collect all .psml files from the root specified
             //
-            Vector files = new Vector();
+            Vector<File> files = new Vector<File>();
             this.collectPsml(files, copyFrom);
 
             //
             // Process each file
             //
-            for (Iterator it = files.iterator(); it.hasNext(); )
+            for (Iterator<File> it = files.iterator(); it.hasNext(); )
             {
                 // If error occurs processing one entry, continue on with the others
                 String path = null;
@@ -1145,7 +1150,7 @@ public class PsmlUpdateAction extends SecureVelocityPortletAction
      * @param v      Vector to put the file into
      * @param root   Root directory for import
      */
-    private void collectPsml(Vector v, String root)
+    private void collectPsml(Vector<File> v, String root)
     {
 
         File dir = new File(root);
@@ -1189,7 +1194,7 @@ public class PsmlUpdateAction extends SecureVelocityPortletAction
         StringTokenizer tok = new StringTokenizer(path, File.separator);
 
         // Load path elements into a vector for random access
-        Vector tokens = new Vector();
+        Vector<String> tokens = new Vector<String>();
         while (tok.hasMoreTokens())
         {
             tokens.add(tok.nextToken());

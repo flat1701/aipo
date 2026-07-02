@@ -53,17 +53,17 @@ public class PortletBrowseAction extends RegistryBrowseAction
     {
         super.buildNormalContext(portlet, context, rundata);
 
-        List portlets =
-            (List) PortletSessionState.getAttribute(portlet, rundata, RESULTS);
+        List<?> portlets =
+            (List<?>) PortletSessionState.getAttribute(portlet, rundata, RESULTS);
 
-        List categories = PortletFilter.buildCategoryList(portlets);
+        List<?> categories = PortletFilter.buildCategoryList(portlets);
         context.put("categories", categories);
 
         MediaTypeRegistry mediaTypeReg =
             (MediaTypeRegistry) Registry.get(Registry.MEDIA_TYPE);
 
-        ArrayList collection = new ArrayList();
-        Iterator iter = mediaTypeReg.listEntryNames();
+        ArrayList<String> collection = new ArrayList<String>();
+        Iterator<String> iter = mediaTypeReg.listEntryNames();
         while (iter.hasNext())
         {
             collection.add(iter.next());
@@ -79,8 +79,10 @@ public class PortletBrowseAction extends RegistryBrowseAction
      * 
      * @see org.apache.jetspeed.modules.actions.portlets.RegistryBrowseAction#filter(java.util.List, java.lang.String[], java.lang.String[])
      */
-    protected List filter(List entries, String[] fields, String[] values)
+    @SuppressWarnings("unchecked")
+    @Override
+    protected <T> List<T> filter(List<T> entries, String[] fields, String[] values)
     {
-        return PortletFilter.filterPortlets(entries, fields, values);
+        return (List<T>) PortletFilter.filterPortlets(entries, fields, values);
     }
 }

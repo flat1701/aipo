@@ -95,7 +95,6 @@ public class MsgboardTopicFileRawScreen extends FileuploadRawScreen {
     if ("T".equals(msgboardcategory.getPublicFlag())) {
       return true;
     } else {
-      @SuppressWarnings("unchecked")
       List<EipTMsgboardCategoryMap> categoryMap =
         msgboardcategory.getEipTMsgboardCategoryMaps();
       for (EipTMsgboardCategoryMap map : categoryMap) {

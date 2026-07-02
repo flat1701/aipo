@@ -48,7 +48,7 @@ public interface BrowserQuery
      * @param row The row being inspected for filtration.
      * @return True to filter the row, false to keep it.
      */
-    public boolean filter(List row, RunData rundata);
+    public boolean filter(List<?> row, RunData rundata);
 
     /*
      * Set a list of JDBC query parameters.
@@ -56,9 +56,9 @@ public interface BrowserQuery
      * Should be called from derived classes.
      *
      */
-    public void setSQLParameters(List parameters);
+    public void setSQLParameters(List<String> parameters);
 
-    public List getSQLParameters();
+    public List<String> getSQLParameters();
 
 
 }

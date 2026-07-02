@@ -26,7 +26,7 @@ import java.util.Enumeration;
  * <P>This service is a facade for all registry related operations</P>
  *
  * @see org.apache.jetspeed.om.registry.Registry
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: RegistryService.java,v 1.4 2004/02/23 03:31:50 jford Exp $
  */
 public interface RegistryService extends Service
@@ -92,6 +92,6 @@ public interface RegistryService extends Service
      *
      * @return an Enumeration of registry names.
      */
-    public Enumeration getNames();
+    public Enumeration<?> getNames();
 
 }

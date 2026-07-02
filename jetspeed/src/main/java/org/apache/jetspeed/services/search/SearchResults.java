@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class SearchResults
 {
-    private List results = null;
+    private List<ParsedObject> results = null;
 
     /**
      */
@@ -52,7 +52,7 @@ public class SearchResults
      */
     private void init(int initialCapacity)
     {
-        results = new ArrayList(initialCapacity);
+        results = new ArrayList<ParsedObject>(initialCapacity);
     }
 
     /**
@@ -99,7 +99,7 @@ public class SearchResults
      * 
      * @return 
      */
-    public List getResults()
+    public List<ParsedObject> getResults()
     {
         return this.results;
     }

@@ -23,7 +23,7 @@ import java.util.List;
  * <p>This is a static wrapper around the URLManagerService for easing 
  * access to its functionalities</p>
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @version $Id: URLManager.java,v 1.7 2004/02/23 03:30:47 jford Exp $
  */
 public class URLManager {
@@ -143,7 +143,7 @@ public class URLManager {
     /** 
      * @see URLManagerService#list
      */
-    public static List list() {
+    public static List<?> list() {
         URLManagerService ums = (URLManagerService)TurbineServices
             .getInstance()
             .getService( URLManagerService.SERVICE_NAME );
@@ -154,7 +154,7 @@ public class URLManager {
     /** 
      * @see URLManagerService#list
      */
-    public static List list( int status ) {
+    public static List<?> list( int status ) {
         URLManagerService ums = (URLManagerService)TurbineServices
             .getInstance()
             .getService( URLManagerService.SERVICE_NAME );

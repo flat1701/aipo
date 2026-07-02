@@ -73,7 +73,7 @@ public class ServletContextPortlet extends AbstractPortlet
                 .addElement( new TH( "Attribute" ) )
                 .addElement( new TH( "String Value" ) ) );
 
-            Enumeration names = context.getAttributeNames();
+            Enumeration<?> names = context.getAttributeNames();
 
             while ( names.hasMoreElements() ) {
                 String name = (String) names.nextElement();
@@ -87,7 +87,7 @@ public class ServletContextPortlet extends AbstractPortlet
                 .addElement( new TH( "String Value" ) ) );
 
 
-            Enumeration ipnames = context.getInitParameterNames();
+            Enumeration<?> ipnames = context.getInitParameterNames();
             while ( ipnames.hasMoreElements() ) {
                 String ipname = (String) ipnames.nextElement();
                 table.addElement( new TR()

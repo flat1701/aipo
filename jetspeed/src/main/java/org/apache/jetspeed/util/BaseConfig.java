@@ -26,11 +26,11 @@ Defines a standard object configuration
 A Config provides the parameters passed in the current request as well
 as init parameters.
 
-@author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+@author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
 @version $Id: BaseConfig.java,v 1.3 2004/02/23 03:23:42 jford Exp $
 */
 
-public class BaseConfig extends Hashtable implements Config
+public class BaseConfig extends Hashtable<String, Object> implements Config
 {
 
     private String name = null;
@@ -54,7 +54,8 @@ public class BaseConfig extends Hashtable implements Config
     /**
     Used to define a Portlet's parameters.
     */
-    public void setInitParameters( Map init_params )
+    @Override
+    public void setInitParameters( Map<String, Object> init_params )
     {
         clear();
         putAll( init_params );
@@ -63,9 +64,10 @@ public class BaseConfig extends Hashtable implements Config
     /**
     Used to override Portlet's parameters.
     */
-    public void addInitParameters( Map init_params )
+    @Override
+    public void addInitParameters( Map<String, Object> init_params )
     {
-        Iterator keys = init_params.keySet().iterator();
+        Iterator<?> keys = init_params.keySet().iterator();
         
         while (keys.hasNext() )
         {
@@ -82,7 +84,7 @@ public class BaseConfig extends Hashtable implements Config
     /**
     Retrieves the PortletController parameters
     */
-    public Map getInitParameters()
+    public Map<String, Object> getInitParameters()
     {
         return this;
     }
@@ -110,7 +112,8 @@ public class BaseConfig extends Hashtable implements Config
     /**
     Returns a parameter (or null) that was given the controller.
     */
-    public String getInitParameter(String name)
+    @Override
+    public Object getInitParameter(String name)
     {
         return getInitParameter( name, null );
     }
@@ -118,13 +121,14 @@ public class BaseConfig extends Hashtable implements Config
     /**
     Returns a parameter (or defaultValue) that was given the controller.
     */
-    public String getInitParameter(String name, String defaultValue)
+    @Override
+    public Object getInitParameter(String name, Object defaultValue)
     {
-        String value = null;
+      Object value = null;
 
         try
         {
-            value=(String)get(name);
+            value = get(name);
             if (value==null) value=defaultValue;
         }
         catch (RuntimeException e)
@@ -138,7 +142,7 @@ public class BaseConfig extends Hashtable implements Config
     /**
     Returns the parameter names of this Config.
     */
-    public Iterator getInitParameterNames()
+    public Iterator<String> getInitParameterNames()
     {
         return keySet().iterator();
     }

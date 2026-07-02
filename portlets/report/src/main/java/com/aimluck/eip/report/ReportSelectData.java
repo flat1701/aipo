@@ -463,7 +463,7 @@ public class ReportSelectData extends
       ALEipUtils
         .getPortlet(rundata, context)
         .getPortletConfig()
-        .getInitParameter("p2b-sort");
+        .getInitParameter("p2b-sort").toString();
 
     try {
       parentReport =

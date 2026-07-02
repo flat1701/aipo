@@ -123,11 +123,11 @@ public class JetspeedPortalPersistenceService
     /**
      * @see PortalPersistenceService#getInstances(Portlet, Profile)
      */
-    public List getInstances( Profile profile) throws PortletException
+    public List<PortletInstance> getInstances( Profile profile) throws PortletException
     {
         PSMLDocument doc = profile.getDocument();
         Portlets portlets =  doc.getPortlets();
-        ArrayList pList = new ArrayList();
+        ArrayList<PortletInstance> pList = new ArrayList<PortletInstance>();
        
        buildAllEntries(portlets, pList, profile);
         
@@ -137,19 +137,19 @@ public class JetspeedPortalPersistenceService
     /**
      * @see PortalPersistenceService#getInstances(Portlet, RunData)
      */
-    public List getInstances( RunData data) throws PortletException
+    public List<PortletInstance> getInstances( RunData data) throws PortletException
     {
         JetspeedRunData jData = (JetspeedRunData) data;
         return getInstances(jData.getProfile());
     }
     
-    protected void buildAllEntries(Portlets portlets, ArrayList entries, Profile profile) throws PortletException
+    protected void buildAllEntries(Portlets portlets, ArrayList<PortletInstance> entries, Profile profile) throws PortletException
     {
         // First let's add all the Entries in the current level
-        Iterator eItr = portlets.getEntriesIterator();
+        Iterator<Entry> eItr = portlets.getEntriesIterator();
         while(eItr.hasNext())
         {
-            Object obj =  eItr.next();
+          Entry obj =  eItr.next();
             Entry entry = (Entry)obj;
             Portlet portlet = PortletFactory.getPortlet(entry);
             entries.add(new JetspeedPortletInstance(portlet, profile));
@@ -158,7 +158,7 @@ public class JetspeedPortalPersistenceService
         //Now if there are child levels, drill down recursively
         if(portlets.getPortletsCount() > 0)
         {
-            Iterator pItr = portlets.getPortletsIterator();
+            Iterator<?> pItr = portlets.getPortletsIterator();
             while(pItr.hasNext())
             {
                 Portlets childPortlets = (Portlets)pItr.next();

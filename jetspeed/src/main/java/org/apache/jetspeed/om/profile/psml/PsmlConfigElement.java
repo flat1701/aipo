@@ -25,7 +25,7 @@ import org.apache.jetspeed.om.profile.*;
  * Base simple bean-like implementation of the ConfigElement interface
  * suitable for Castor XML serialization.
  * 
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:taylor@apache.org">David Sean Taylor</a>
  * @version $Id: PsmlConfigElement.java,v 1.6 2004/02/23 03:02:54 jford Exp $
  */
@@ -34,7 +34,7 @@ public /*abstract*/ class PsmlConfigElement implements ConfigElement, java.io.Se
 
     private String name = null;
     
-    private Vector parameters = new Vector();
+    private Vector<Parameter> parameters = new Vector<Parameter>();
 
 
     public PsmlConfigElement()
@@ -53,7 +53,7 @@ public /*abstract*/ class PsmlConfigElement implements ConfigElement, java.io.Se
     }
 
     /** @return the parameters */
-    public Vector getParameters()
+    public Vector<Parameter> getParameters()
     {
         return this.parameters;
     }
@@ -61,7 +61,7 @@ public /*abstract*/ class PsmlConfigElement implements ConfigElement, java.io.Se
     /** Sets the parameters for this element
      * @param parameters 
      */
-    public void setParameters(Vector parameters)
+    public void setParameters(Vector<Parameter> parameters)
     {
         this.parameters = parameters;
     }
@@ -94,7 +94,7 @@ public /*abstract*/ class PsmlConfigElement implements ConfigElement, java.io.Se
         return null;
    }
 
-    public Iterator getParameterIterator()
+    public Iterator<Parameter> getParameterIterator()
     {
         return parameters.iterator();
     }
@@ -164,8 +164,8 @@ public /*abstract*/ class PsmlConfigElement implements ConfigElement, java.io.Se
         // clone the vector's Parameter contents
         if (this.parameters != null)
         {
-            ((PsmlConfigElement)cloned).parameters = new Vector(this.parameters.size());
-            Iterator it = this.parameters.iterator();
+            ((PsmlConfigElement)cloned).parameters = new Vector<Parameter>(this.parameters.size());
+            Iterator<Parameter> it = this.parameters.iterator();
             while (it.hasNext())
             {
                 ((PsmlConfigElement)cloned).parameters.add((Parameter) ((Parameter)it.next()).clone());

@@ -62,6 +62,7 @@ public class SendNewUserNotificationEmail extends Action
      */    
     private static final JetspeedLogger logger = JetspeedLogFactoryService.getLogger(SendNewUserNotificationEmail.class.getName());    
     
+    @SuppressWarnings("deprecation")
     public void doPerform( RunData data ) throws Exception
     {
         JetspeedUser user = JetspeedSecurity.getUser(data.getParameters().getString("username", ""));        

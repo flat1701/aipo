@@ -11,15 +11,8 @@ package org.apache.jetspeed.xml.api.jcm;
  //- Imported classes and packages -/
 //---------------------------------/
 
-import java.io.Reader;
-import java.io.Serializable;
-import java.io.Writer;
-import java.util.Enumeration;
 import java.util.Vector;
 import org.exolab.castor.xml.*;
-import org.exolab.castor.xml.MarshalException;
-import org.exolab.castor.xml.ValidationException;
-import org.xml.sax.DocumentHandler;
 
 /**
  * 
@@ -32,7 +25,7 @@ public class Topics implements java.io.Serializable {
      //- Class/Member Variables -/
     //--------------------------/
 
-    private java.util.Vector _entryList;
+    private java.util.Vector<Entry> _entryList;
 
 
       //----------------/
@@ -41,7 +34,7 @@ public class Topics implements java.io.Serializable {
 
     public Topics() {
         super();
-        _entryList = new Vector();
+        _entryList = new Vector<>();
     } //-- org.apache.jetspeed.xml.api.jcm.Topics()
 
 
@@ -61,6 +54,7 @@ public class Topics implements java.io.Serializable {
 
     /**
     **/
+    @SuppressWarnings("rawtypes")
     public java.util.Enumeration enumerateEntry()
     {
         return _entryList.elements();
@@ -128,6 +122,7 @@ public class Topics implements java.io.Serializable {
      * 
      * @param handler
     **/
+    @SuppressWarnings("deprecation")
     public void marshal(org.xml.sax.DocumentHandler handler)
         throws org.exolab.castor.xml.MarshalException, org.exolab.castor.xml.ValidationException
     {

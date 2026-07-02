@@ -55,6 +55,7 @@ public class ReportAction extends ALBaseAction {
   private List<String> errmsgListOnReportDetail;
 
   /** logger */
+  @SuppressWarnings("unused")
   private static final JetspeedLogger logger = JetspeedLogFactoryService
     .getLogger(ReportAction.class.getName());
 
@@ -78,7 +79,7 @@ public class ReportAction extends ALBaseAction {
     listData.initField();
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     if (listData.doViewList(this, rundata, context)) {
       setTemplate(rundata, "report");
     }
@@ -107,7 +108,7 @@ public class ReportAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "report-list");
   }
@@ -171,7 +172,7 @@ public class ReportAction extends ALBaseAction {
     listData.setRowsNum(Integer.parseInt(ALEipUtils
       .getPortlet(rundata, context)
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "report-list");
   }

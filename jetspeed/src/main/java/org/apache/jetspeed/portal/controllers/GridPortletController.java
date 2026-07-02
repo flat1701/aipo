@@ -65,7 +65,7 @@ determined by the layout information in each portlet</li>
 layout information. If this information is not found, put the Portlet in the
 first cell of the table</p>
 
-@author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+@author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
 @version $Id: GridPortletController.java,v 1.17 2004/02/23 03:25:06 jford Exp $
 */
 public class GridPortletController extends AbstractPortletController 
@@ -79,14 +79,14 @@ public class GridPortletController extends AbstractPortletController
     
     private int columns = 0;
     private int rows = 0;
-    private Vector rowHeights = null;
-    private Vector colWidths = null;
+    private Vector<String> rowHeights = null;
+    private Vector<String> colWidths = null;
     
     /**
     */
     public GridPortletController() {
-        rowHeights = new Vector();
-        colWidths = new Vector();
+        rowHeights = new Vector<String>();
+        colWidths = new Vector<String>();
     }
 
     /**
@@ -95,7 +95,7 @@ public class GridPortletController extends AbstractPortletController
 
         if ( portlet instanceof PortletSet ) {
 
-            Enumeration more = ((PortletSet)portlet).getPortlets();
+            Enumeration<?> more = ((PortletSet)portlet).getPortlets();
 
             while ( more.hasMoreElements() ) {
                 calculateControllerLayout( (Portlet) more.nextElement() );
@@ -136,7 +136,7 @@ public class GridPortletController extends AbstractPortletController
         PortletConfig pc = portlets.getPortletConfig();
 
         // first get the number of columns and rows to display
-        Enumeration en = portlets.getPortlets();
+        Enumeration<?> en = portlets.getPortlets();
       
         //see if any or the Portlets you want to add have a larger column or
         //row number than that defined in PSML
@@ -222,10 +222,10 @@ public class GridPortletController extends AbstractPortletController
         PortletControllerConfig conf = getConfig();
         
         if (conf!=null) {
-            setColumn(Integer.parseInt(conf.getInitParameter("column","0")));
-            setRow(Integer.parseInt(conf.getInitParameter("row","0")));
-            setColumnsWidth(parseList(conf.getInitParameter("columnWidths")));
-            setRowsHeight(parseList(conf.getInitParameter("rowHeights")));
+            setColumn(Integer.parseInt(conf.getInitParameter("column","0").toString()));
+            setRow(Integer.parseInt(conf.getInitParameter("row","0").toString()));
+            setColumnsWidth(parseList(conf.getInitParameter("columnWidths").toString()));
+            setRowsHeight(parseList(conf.getInitParameter("rowHeights").toString()));
         }
             
     }
@@ -260,13 +260,13 @@ public class GridPortletController extends AbstractPortletController
     
     /**
     */
-    public void setColumnsWidth(Vector widths) {
+    public void setColumnsWidth(Vector<String> widths) {
         this.colWidths = widths;
     }
     
     /**
     */
-    public Enumeration getColumnsWidth() {
+    public Enumeration<String> getColumnsWidth() {
         return colWidths.elements();
     }
     
@@ -279,13 +279,13 @@ public class GridPortletController extends AbstractPortletController
     
     /**
     */
-    public void setRowsHeight(Vector heights) {
+    public void setRowsHeight(Vector<String> heights) {
         this.rowHeights = heights;
     }
     
     /**
     */
-    public Enumeration getRowsHeight() {
+    public Enumeration<String> getRowsHeight() {
         return rowHeights.elements();
     }
     
@@ -298,8 +298,8 @@ public class GridPortletController extends AbstractPortletController
     
     /**
     */
-    private Vector parseList(String list) {
-        Vector v = new Vector();
+    private Vector<String> parseList(String list) {
+        Vector<String> v = new Vector<String>();
         if (list!=null) {
             StringTokenizer st = new StringTokenizer(list,",");
             while (st.hasMoreTokens())

@@ -41,26 +41,26 @@ public interface SecurityAccess {
     /** Getter for property allows.
      * @return Value of property allows.
      */
-    public Vector getAllows();
+    public Vector<SecurityAllow> getAllows();
     
     /** Setter for property allows.
      * @param allows New value of property allows.
      */
-    public void setAllows(Vector allows);
+    public void setAllows(Vector<SecurityAllow> allows);
     
     /** Getter for property allAllows.
      * @return Value of property allAllows.
      */
-    public Vector getAllAllows();
+    public Vector<SecurityAllow> getAllAllows();
     
     /** Getter for property ownerAllows.
      * @return Value of property ownerAllows.
      */
-    public Vector getOwnerAllows();
+    public Vector<SecurityAllow> getOwnerAllows();
     
     /** Setter for property ownerAllows.
      * @param ownerAllows New value of property ownerAllows.
      */
-    public void setOwnerAllows(Vector ownerAllows);
+    public void setOwnerAllows(Vector<SecurityAllow> ownerAllows);
     
 }

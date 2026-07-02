@@ -16,8 +16,6 @@
 
 package org.apache.jetspeed.modules.actions.portlets;
 
-// Jetspeed Stuff
-import org.apache.jetspeed.modules.actions.portlets.CustomizeSetAction;
 import org.apache.jetspeed.portal.Portlet;
 import org.apache.jetspeed.portal.PortletConfig;
 import org.apache.jetspeed.portal.PortletException;
@@ -61,7 +59,7 @@ import java.util.Iterator;
  * <p>Don't call it from the URL, the Portlet and the Action are automatically
  * associated through the registry PortletName
  *
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  */
 public class CustomizeAction extends VelocityPortletAction
 {
@@ -111,8 +109,8 @@ public class CustomizeAction extends VelocityPortletAction
         // retrieve the portlet parameters
         PortletEntry entry = (PortletEntry)Registry.getEntry(Registry.PORTLET,p.getName());
         // save the entry in the session
-        Vector params = new Vector();
-        Iterator i = entry.getParameterNames();
+        Vector<Parameter> params = new Vector<Parameter>();
+        Iterator<?> i = entry.getParameterNames();
 
         //System.out.println("==========================================");
         while(i.hasNext())
@@ -139,7 +137,7 @@ public class CustomizeAction extends VelocityPortletAction
                     }
                     else if (p.getPortletConfig().getInitParameter(name) != null)
                     {
-                        clone.setValue(p.getPortletConfig().getInitParameter(name));
+                        clone.setValue(p.getPortletConfig().getInitParameter(name).toString());
                         //System.out.println("Adding value from init [" + name + "] = [" + clone.getValue() + "]");
                     }
                     else
@@ -253,7 +251,7 @@ public class CustomizeAction extends VelocityPortletAction
         // we should first retrieve the portlet to customize and its parameters
         // definition
         Portlet p = ((JetspeedRunData)rundata).getCustomized();
-        Vector params = (Vector) customizationState.getAttribute("customize-parameters");
+        Vector<?> params = (Vector<?>) customizationState.getAttribute("customize-parameters");
         String newSecurityParent = rundata.getParameters().getString("_security_ref");
         String newSkinName = (String) rundata.getParameters().getString("_skin");
         String newTitle = (String) rundata.getParameters().getString("current_title");
@@ -404,7 +402,7 @@ public class CustomizeAction extends VelocityPortletAction
             PortletInstance instance = PersistenceManager.getInstance(p, rundata);
             PortletEntry regEntry = (PortletEntry) Registry.getEntry(Registry.PORTLET, p.getName());
 
-            Iterator i = params.iterator();
+            Iterator<?> i = params.iterator();
 
             //System.out.println("==========================================");
             while(i.hasNext())
@@ -459,6 +457,7 @@ public class CustomizeAction extends VelocityPortletAction
             {
                 try
                 {
+                    @SuppressWarnings("unused")
                     JetspeedRunData jdata = (JetspeedRunData) rundata;
                     profile.store();
                     //FIXME: this hack is due to the corrupted lifecycle of the portlet in the

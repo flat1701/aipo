@@ -62,6 +62,7 @@ public class WebMailAction extends ALBaseAction {
       .getPortlet(rundata, context)
       .getPortletConfig()
       .getInitParameter("p3a-accounts")
+      .toString()
       .trim());
 
     WebMailSelectData listData = new WebMailSelectData();
@@ -69,7 +70,7 @@ public class WebMailAction extends ALBaseAction {
     listData.loadMailAccountList(rundata, context);
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1a-rows")));
+      .getInitParameter("p1a-rows").toString()));
     listData.setStrLength(0);
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "webmail");
@@ -116,7 +117,7 @@ public class WebMailAction extends ALBaseAction {
     listData.loadMailAccountList(rundata, context);
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1b-rows")));
+      .getInitParameter("p1b-rows").toString()));
     listData.setStrLength(0);
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "webmail-list");
@@ -156,7 +157,7 @@ public class WebMailAction extends ALBaseAction {
     listData.initField();
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1c-rows")));
+      .getInitParameter("p1c-rows").toString()));
     listData.setStrLength(0);
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "webmail-account-list");
@@ -183,7 +184,7 @@ public class WebMailAction extends ALBaseAction {
     listData.loadMailAccountList(rundata, context);
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1d-rows")));
+      .getInitParameter("p1d-rows").toString()));
     listData.setStrLength(0);
     listData.doViewList(this, rundata, context);
     setTemplate(rundata, "webmail-filter-list");
@@ -207,7 +208,7 @@ public class WebMailAction extends ALBaseAction {
     listData.initField();
     listData.setRowsNum(Integer.parseInt(portlet
       .getPortletConfig()
-      .getInitParameter("p1d-rows")));
+      .getInitParameter("p1d-rows").toString()));
     listData.loadMailAccountList(rundata, context);
     listData.setStrLength(0);
     listData.doViewList(this, rundata, context);

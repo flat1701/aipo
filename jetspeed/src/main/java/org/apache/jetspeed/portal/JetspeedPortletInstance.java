@@ -30,7 +30,6 @@ import org.apache.jetspeed.om.profile.PSMLDocument;
 import org.apache.jetspeed.om.profile.Parameter;
 import org.apache.jetspeed.om.profile.Profile;
 import org.apache.jetspeed.om.profile.psml.PsmlParameter;
-import org.apache.jetspeed.portal.Portlet;
 import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
 import org.apache.jetspeed.services.logging.JetspeedLogger;
 import org.apache.jetspeed.services.rundata.JetspeedRunData;
@@ -200,7 +199,7 @@ public class JetspeedPortletInstance implements PortletInstance
         Entry entry = getEntry();
 
         // I am assuming that we only allow one parameter per name
-        Iterator params = entry.getParameterIterator();
+        Iterator<?> params = entry.getParameterIterator();
         int index = -1;
         int count = 0;
         while (params.hasNext())
@@ -238,7 +237,7 @@ public class JetspeedPortletInstance implements PortletInstance
     /**
      * @see PortletInstance#getAttributes()
      */
-    public Iterator getAttributes()
+    public Iterator<?> getAttributes()
     {
         Entry entry = getEntry();
 
@@ -248,10 +247,10 @@ public class JetspeedPortletInstance implements PortletInstance
     /**
      * @see PortletInstance#getAttributeNames()
      */
-    public Iterator getAttributeNames()
+    public Iterator<String> getAttributeNames()
     {
-        Iterator itr = getAttributes();
-        ArrayList list = new ArrayList();
+        Iterator<?> itr = getAttributes();
+        ArrayList<String> list = new ArrayList<String>();
         while(itr.hasNext());
         {
             Parameter param = (Parameter) itr.next();

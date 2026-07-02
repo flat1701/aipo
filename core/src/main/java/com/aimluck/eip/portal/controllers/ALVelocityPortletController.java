@@ -93,7 +93,7 @@ public class ALVelocityPortletController extends AbstractPortletController {
     // allow subclass to insert specific objects in the context
     buildContext(rundata, context);
 
-    String actionName = getConfig().getInitParameter("action");
+    String actionName = getConfig().getInitParameter("action").toString();
 
     if (actionName != null) {
       // store the context so that the action can retrieve it

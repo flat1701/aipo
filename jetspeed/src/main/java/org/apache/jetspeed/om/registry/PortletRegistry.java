@@ -33,7 +33,7 @@ public interface PortletRegistry extends Registry
      *
      * @return Iterator The result as an iterator.
      */
-    public Iterator listByCategory();
+    public Iterator<?> listByCategory();
 
     /*
      * Find portlets in this registry, looking up by category in the default category group.
@@ -41,7 +41,7 @@ public interface PortletRegistry extends Registry
      * @param category The category and optional subcategories.
      * @return Iterator The result as an iterator.
      */
-    public Iterator findPortletsByCategory(String category);
+    public Iterator<?> findPortletsByCategory(String category);
 
     /*
      * Find portlets in this registry, looking up by category and category group.
@@ -50,7 +50,7 @@ public interface PortletRegistry extends Registry
      * @param category The category and optional subcategories.
      * @return Iterator The result as an iterator.
      */
-    public Iterator findPortletsByGroupCategory(String group, String category);
+    public Iterator<?> findPortletsByGroupCategory(String group, String category);
 
     /*
      * Returns the category key for a given Portlet Registry entry's category object.

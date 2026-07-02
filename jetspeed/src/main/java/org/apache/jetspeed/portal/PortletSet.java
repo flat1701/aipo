@@ -25,7 +25,7 @@ import java.util.Enumeration;
  * runtime context for a set of portlets.
  * A portlet can get its current set by calling via its PortletConfig
  * 
- * @author <a href="mailto:raphael@apache.org">Raphaël Luta</a>
+ * @author <a href="mailto:raphael@apache.org">Raphaï¿½l Luta</a>
  * @author <a href="mailto:burton@apache.org">Kevin A. Burton</a>
  * @version $Id: PortletSet.java,v 1.26 2004/02/23 04:05:35 jford Exp $
  */
@@ -69,7 +69,7 @@ public interface PortletSet extends Portlet
     /**
      * Returns the portlet set as an Enumeration
      */
-    public Enumeration getPortlets();
+    public Enumeration<Portlet> getPortlets();
 
     /**
      * Add a portlet to this set.It updates its config to modify the current set
@@ -96,7 +96,7 @@ public interface PortletSet extends Portlet
      * Portlet within a Set. These constraints may be used by the PortletController
      * to render the layout of any given PortletSet correctly.
      */
-    public interface Constraints extends Map
+    public interface Constraints extends Map<String, Object>
     {   
         /** Get the column the portlet should be displayed in
          *

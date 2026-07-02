@@ -83,6 +83,7 @@ public class JetspeedDiskCacheEntry implements DiskCacheEntry {
 
     private File    file        = null;
     private String  url         = null;
+    @SuppressWarnings("unused")
     private String  sourceURL   = null;
 
     /**

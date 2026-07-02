@@ -173,7 +173,7 @@ public abstract class AbstractPortletController implements PortletController
 
         if (entry!=null)
         {
-            Iterator i = entry.listMediaTypes();
+            Iterator<?> i = entry.listMediaTypes();
 
             while(i.hasNext())
             {
@@ -245,7 +245,8 @@ public abstract class AbstractPortletController implements PortletController
      * @param original the source for this constraint object
      * @return a new Constraints object appropriate for this controller
      */
-    public PortletSet.Constraints getConstraints( Map original )
+    @Override
+    public PortletSet.Constraints getConstraints( Map<? extends String, ? extends Object> original )
     {
         PortletSet.Constraints constraints = new BasePortletSetConstraints();
         if (original != null) constraints.putAll(original);

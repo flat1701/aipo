@@ -71,6 +71,7 @@ public class CreateNewUserAndConfirm extends Action
      */    
     private static final JetspeedLogger logger = JetspeedLogFactoryService.getLogger(CreateNewUserAndConfirm.class.getName());    
     
+    @SuppressWarnings("deprecation")
     public void doPerform( RunData data ) throws Exception
     {
         try
@@ -244,6 +245,7 @@ public class CreateNewUserAndConfirm extends Action
      */
     private void bypassConfirmMail(RunData data, String username, String password)
     {
+        @SuppressWarnings("unused")
         JetspeedUser usr = null;
         try
         {

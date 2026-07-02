@@ -35,7 +35,7 @@ import org.apache.log4j.Logger;
  * @version $Id: SessionMap.java,v 1.3 2004/02/23 03:46:26 jford Exp $ 
  */
 
-public class SessionMap extends HashMap implements HttpSessionBindingListener
+public class SessionMap extends HashMap<Object, Object> implements HttpSessionBindingListener
 {    
 
     // the name of the user for this session
@@ -170,7 +170,7 @@ public class SessionMap extends HashMap implements HttpSessionBindingListener
         log.info("~~~ SessionMap UNBOUND as " + event.getName() + " from " + event.getSession().getId() );
 
         // Now logout of all sessions
-        Iterator it = values().iterator();
+        Iterator<?> it = values().iterator();
         while (it.hasNext())
         {
             SiteSession hps = (SiteSession)it.next();

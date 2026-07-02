@@ -72,43 +72,43 @@ public class AjaxScheduleAction extends ALBaseAction {
       context.put("theme", ALOrgUtilsService.getTheme());
 
       // 表示形式（トップページ）を取得する．
-      String top_form = portlet.getPortletConfig().getInitParameter("p19-rows");
+      String top_form = portlet.getPortletConfig().getInitParameter("p19-rows").toString();
       context.put("top_form", top_form);
 
       // 表示開始時間を取得する．
       String time_start =
-        portlet.getPortletConfig().getInitParameter("p1a-rows");
+        portlet.getPortletConfig().getInitParameter("p1a-rows").toString();
       context.put("time_start", time_start);
 
       // 表示終了時間を取得する．
-      String time_end = portlet.getPortletConfig().getInitParameter("p1b-rows");
+      String time_end = portlet.getPortletConfig().getInitParameter("p1b-rows").toString();
       context.put("time_end", time_end);
 
       // 表示時間間隔を取得する．
       String time_interval =
-        portlet.getPortletConfig().getInitParameter("p1c-rows");
+        portlet.getPortletConfig().getInitParameter("p1c-rows").toString();
       context.put("time_interval", time_interval);
 
       // 表示日数を取得する.
       String weekly_days =
-        portlet.getPortletConfig().getInitParameter("p2a-days");
+        portlet.getPortletConfig().getInitParameter("p2a-days").toString();
       context.put("weekly_days", weekly_days);
 
       // 初期選択グループを取得する.
       String weekly_group =
-        portlet.getPortletConfig().getInitParameter("p3a-group");
+        portlet.getPortletConfig().getInitParameter("p3a-group").toString();
       context.put("weekly_group", weekly_group);
 
       // 初期選択ユーザー／設備を取得する
       String init_user =
-        portlet.getPortletConfig().getInitParameter("p3a-user");
+        portlet.getPortletConfig().getInitParameter("p3a-user").toString();
       context.put("init_user", init_user);
 
       // 初期選択メンバーリストを取得する
       List<UserFacilityLiteBean> memberList =
         new ArrayList<UserFacilityLiteBean>();
       String selected_user =
-        portlet.getPortletConfig().getInitParameter("p6a-uids");
+        portlet.getPortletConfig().getInitParameter("p6a-uids").toString();
       if (selected_user == null || "".equals(selected_user)) {
         UserFacilityLiteBean login_user =
           UserFacilityUtils.getUserFacilityLiteBean(rundata);
@@ -128,7 +128,7 @@ public class AjaxScheduleAction extends ALBaseAction {
       context.put("member_list", memberList);
 
       // 初期共有メンバー表示フラグを取得する
-      String showAll = portlet.getPortletConfig().getInitParameter("p7d-schk");
+      String showAll = portlet.getPortletConfig().getInitParameter("p7d-schk").toString();
       if (!("t".equals(showAll))) {
         showAll = "f";
       }
@@ -148,7 +148,7 @@ public class AjaxScheduleAction extends ALBaseAction {
        */
 
       // Velocity テンプレートを読み込む
-      String template = portlet.getPortletConfig().getInitParameter("template");
+      String template = portlet.getPortletConfig().getInitParameter("template").toString();
       if (template.equals("ajax-schedule-oneday")) {
         tab = "oneday";
       } else if (template.equals("ajax-schedule-oneday-group")) {
