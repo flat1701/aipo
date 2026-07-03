@@ -37,7 +37,7 @@ public class TurbineRolePermissionManager
      * @return a <code>List</code> value
      * @exception TorqueException if an error occurs
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings("rawtypes")
     @Override
     protected List retrieveStoredOMs(List ids)
         throws TorqueException

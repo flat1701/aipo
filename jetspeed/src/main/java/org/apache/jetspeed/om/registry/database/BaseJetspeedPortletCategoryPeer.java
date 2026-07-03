@@ -351,7 +351,7 @@ public class BaseJetspeedPortletCategoryPeer extends BasePeer
     public static Criteria buildCriteria(BasePortletEntry obj)
     {
         Criteria criteria = new Criteria(DATABASE_NAME);
-        //TODO match  the values here
+        //TODO: match  the values here
         return criteria;
     }
     /**

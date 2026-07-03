@@ -84,7 +84,7 @@ public class BaseCapabilityMap implements CapabilityMap
         while (en.hasMoreElements())
         {
             //types.add(en.nextElement());
-          //TODO find how to add
+          //TODO: find how to add
         }
 
         //then retrieve a list of supported mime-types, ordered by

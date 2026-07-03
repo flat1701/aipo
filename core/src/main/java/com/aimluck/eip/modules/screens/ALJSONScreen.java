@@ -78,7 +78,7 @@ public abstract class ALJSONScreen extends RawScreen implements ALAction {
   protected void doOutput(RunData rundata) throws Exception {
     ServletOutputStream out = null;
 
-    // Todo: ログイン確認処理
+    // TODO: ログイン確認処理
     VelocityContext context = new VelocityContext();
 
     if (rundata.getParameters().containsKey("mode")) {

@@ -166,7 +166,7 @@ public class ALGroupManagement extends TurbineBaseService implements
     }
     //return groups.iterator();
     List<Group> result = new ArrayList<Group>();
-    //TODO convert groups to result
+    //TODO: convert groups to result
     return result.iterator();
 
   }

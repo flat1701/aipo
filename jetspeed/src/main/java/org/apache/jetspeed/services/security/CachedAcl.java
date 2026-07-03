@@ -61,9 +61,7 @@ public class CachedAcl
 	 */
 	public void addRole(Role role, Group group)
 	{
-		GroupRole gr = new BaseJetspeedGroupRole();
-		gr.setRole(role);
-		gr.setGroup(group);
+		GroupRole gr = new BaseJetspeedGroupRole(group, role);
 		String key = getGroupRoleKey(group.getName(), role.getName());
 		groupRoles.put(key, gr);
 	}
@@ -143,7 +141,7 @@ public class CachedAcl
 	/**
 	 * @param grouproles
 	 */
-	public void setRoles(Iterator<?> grouproles)
+	public void setRoles(Iterator<GroupRole> grouproles)
 	{
 		while (grouproles.hasNext())
 		{

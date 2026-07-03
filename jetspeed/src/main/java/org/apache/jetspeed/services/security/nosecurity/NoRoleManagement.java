@@ -66,7 +66,7 @@ public class NoRoleManagement
         //r.setNew(false);
         r.setName(JetspeedSecurity.JETSPEED_ROLE_USER);
         r.setId(JetspeedSecurity.JETSPEED_ROLE_USER);
-        //v.add(r); TODO convert BaseJetspeedRole to GroupRole
+        //v.add(r); TODO: convert BaseJetspeedRole to GroupRole
         return v.iterator();
     }
 

@@ -51,5 +51,20 @@ public interface GroupRole
      * @param group the Role.
      */
     public void setRole(Role role);
+    
+    /**
+     * @param groupName
+     * @param roleName
+     * @return
+     */
+    public default String getGroupRoleKey()
+    {
+        StringBuffer key = new StringBuffer();
+        key.append(getGroup().getName());
+        key.append(getRole().getName());
+        
+        return key.toString();
+    }
+
 
 }

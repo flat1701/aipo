@@ -102,7 +102,6 @@ public class TurbineRoleManagement extends TurbineBaseService
         {
             if (cachingEnable)
             {
-                @SuppressWarnings("unchecked")
                 Iterator<GroupRole> result = JetspeedSecurityCache.getRoles(username);
                 if (null != result)
                 {
@@ -137,9 +136,7 @@ public class TurbineRoleManagement extends TurbineBaseService
 				TurbineUserGroupRole rel = (TurbineUserGroupRole) rels.get(ix);
 				Role role = rel.getTurbineRole();
 				Group group = rel.getTurbineGroup();
-				GroupRole groupRole = new BaseJetspeedGroupRole();
-				groupRole.setGroup(group);
-				groupRole.setRole(role);
+				GroupRole groupRole = new BaseJetspeedGroupRole(group, role);
 				roles.put(group.getName() + role.getName(), groupRole);
             }
         }
@@ -174,7 +171,7 @@ public class TurbineRoleManagement extends TurbineBaseService
             throw new RoleException("Failed to retrieve roles ", e);
         }
         //return roles.iterator();
-        //TODO convert TurbineRole to Role
+        //TODO: convert TurbineRole to Role
         return (new ArrayList<Role>()).iterator();
     }
 

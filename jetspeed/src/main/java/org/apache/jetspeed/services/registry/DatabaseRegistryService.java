@@ -513,7 +513,7 @@ public class DatabaseRegistryService extends TurbineBaseService implements
       if ((verbose > 1) && logger.isDebugEnabled()) {
         logger.debug("DatabaseRegistryService: removing entry " + entryName);
       }
-      // TODO may be I will do it later
+      // TODO: may be I will do it later
       // it should delete only portlets which is coming from database
 
       // registry.removeLocalEntry(entryName);
@@ -594,7 +594,7 @@ public class DatabaseRegistryService extends TurbineBaseService implements
   public void saveFragment(String file) {
 
     /**
-     * TODO I will implement this should go to database
+     * TODO: I will implement this should go to database
      */
 
   }
