@@ -172,6 +172,7 @@ public class TurbineRoleManagement extends TurbineBaseService
         }
         //return roles.iterator();
         //TODO: convert TurbineRole to Role
+        
         return (new ArrayList<Role>()).iterator();
     }
 

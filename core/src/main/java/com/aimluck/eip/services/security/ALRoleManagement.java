@@ -120,8 +120,8 @@ public class ALRoleManagement extends TurbineBaseService implements
 
       for (int ix = 0; ix < rels.size(); ix++) {
         TurbineUserGroupRole rel = rels.get(ix);
-        Role role = rel.getTurbineRole();
-        Group group = rel.getTurbineGroup();
+        TurbineRole role = rel.getTurbineRole();
+        TurbineGroup group = rel.getTurbineGroup();
         GroupRole groupRole = new BaseJetspeedGroupRole(group, role);
         roles.put(groupRole.getGroupRoleKey(), groupRole);
       }
@@ -137,21 +137,13 @@ public class ALRoleManagement extends TurbineBaseService implements
   @Override
   public Iterator<Role> getRoles() throws JetspeedSecurityException {
     List<TurbineRole> roles;
-    List<Role> result = new ArrayList<>();
     try {
       roles = Database.query(TurbineRole.class).fetchList();
-      for (TurbineRole trole: roles) {
-        BaseJetspeedRole brole = new BaseJetspeedRole();
-        brole.setId(trole.getId());
-        brole.setName(trole.getName());
-        result.add(brole);
-        //TODO: この変換でよいか確認する
-      }
     } catch (Exception e) {
       throw new RoleException("Failed to retrieve roles ", e);
     }
     //return roles.iterator();
-    return result.iterator();
+    return (new ArrayList<Role>(roles)).iterator();
   }
 
   /**
