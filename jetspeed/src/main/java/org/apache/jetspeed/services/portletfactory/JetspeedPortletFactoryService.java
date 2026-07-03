@@ -354,12 +354,12 @@ public class JetspeedPortletFactoryService extends TurbineBaseService
      */
     protected PortletConfig getPortletConfig( PortletEntry portletEntry, String id)
     {
-        Map<String, org.apache.jetspeed.om.registry.Parameter> map = new HashMap<String, org.apache.jetspeed.om.registry.Parameter>();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.putAll(portletEntry.getParameterMap());
         
         PortletConfig pc = new BasePortletConfig();
         pc.setName( portletEntry.getName() );
-        addParentInitParameters(portletEntry, map);        
+        //addParentInitParameters(portletEntry, map); TODO find how to add        
         pc.setInitParameters( map );
         pc.setMetainfo( getMetaData( portletEntry ) );
         pc.setURL( portletEntry.getURL() );
@@ -521,7 +521,7 @@ public class JetspeedPortletFactoryService extends TurbineBaseService
         PortletEntry parent = getParentEntry(entry);
         if (parent != null)
         {
-            Map<String, org.apache.jetspeed.om.registry.Parameter> parentMap = parent.getParameterMap();
+            Map<String, Object> parentMap = parent.getParameterMap();
             Iterator<String> names = parent.getParameterNames();
 
             while (names.hasNext())
@@ -529,7 +529,8 @@ public class JetspeedPortletFactoryService extends TurbineBaseService
                 String key = (String) names.next();
                 if (!hash.containsKey(key))
                 {
-                    hash.put(key, parentMap.get(key));                    
+                    //hash.put(key, parentMap.get(key));
+                  //TODO find what to do
                 }
             }
             

@@ -204,7 +204,7 @@ public class ForwardDemoAction extends VelocityPortletAction
 
     public void doDynamic(RunData rundata, Context context)
     {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("dynamic", "33");
         ForwardService fs = (ForwardService)ServiceUtil.getServiceByName(ForwardService.SERVICE_NAME);
         fs.forwardDynamic(rundata, "ApacheGroupNews", map);
@@ -212,7 +212,7 @@ public class ForwardDemoAction extends VelocityPortletAction
 
     public void doDynamic2(RunData rundata, Context context)
     {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("dynamic", "44");
         map.put("msgok", "no");
         map.put("msg", "3");

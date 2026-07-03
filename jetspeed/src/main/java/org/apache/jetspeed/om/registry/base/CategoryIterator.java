@@ -37,9 +37,9 @@ import org.apache.jetspeed.om.registry.*;
  */
 public class CategoryIterator implements Iterator<PortletEntry>
 {
-    protected SortedMap<String, Object> map = null;
+    protected SortedMap<String, HashMap<String, PortletEntry>> map = null;
     protected String key;
-    protected Iterator<Map.Entry<String, Object>> mapIterator = null;
+    protected Iterator<Map.Entry<String, HashMap<String, PortletEntry>>> mapIterator = null;
     protected Iterator<Map.Entry<String, PortletEntry>> bucketIterator = null;
     protected boolean iteratingMaps = true;
     protected HashMap<String, PortletEntry> bucket = null;
@@ -58,7 +58,7 @@ public class CategoryIterator implements Iterator<PortletEntry>
         return group;
     }
 
-    public CategoryIterator(SortedMap<String, Object> map, String key)
+    public CategoryIterator(SortedMap<String, HashMap<String, PortletEntry>> map, String key)
     {
         this.map = map;
         this.key = key;
@@ -96,10 +96,9 @@ public class CategoryIterator implements Iterator<PortletEntry>
         return false; //reached end of maps
     }
 
-    @SuppressWarnings("unchecked")
     protected boolean filter()
     {
-        Map.Entry<String, Object> entry = mapIterator.next();
+        Map.Entry<String, HashMap<String, PortletEntry>> entry = mapIterator.next();
         String entryKey = (String)entry.getKey();
         int pos = entryKey.indexOf('.');
         this.category = "";

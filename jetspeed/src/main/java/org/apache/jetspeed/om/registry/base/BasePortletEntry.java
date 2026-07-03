@@ -360,7 +360,8 @@ public class BasePortletEntry extends BasePortletInfoEntry
 
         if (isRef)
         {
-            Map<String, Object> map = getParentEntry().getParameterMap();
+            Map<String, Object> map = new HashMap<>();
+            map.putAll(getParentEntry().getParameterMap());
             map.putAll(params);
             return map;
         }

@@ -26,7 +26,7 @@ import org.apache.jetspeed.om.security.Role;
 
 import org.apache.jetspeed.services.JetspeedSecurity;
 import org.apache.jetspeed.om.security.BaseJetspeedRole;
-
+import org.apache.jetspeed.om.security.GroupRole;
 // Jetspeed Security Exceptions
 import org.apache.jetspeed.services.security.JetspeedSecurityException;
 
@@ -57,16 +57,16 @@ public class NoRoleManagement
      * @exception RoleException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator<BaseJetspeedRole> getRoles(String username)
+    public Iterator<GroupRole> getRoles(String username)
         throws JetspeedSecurityException
     {
         // give everyone the "user" role
-        Vector<BaseJetspeedRole> v = new Vector<BaseJetspeedRole>(1);
+        Vector<GroupRole> v = new Vector<GroupRole>(1);
         BaseJetspeedRole r = new BaseJetspeedRole();
         //r.setNew(false);
         r.setName(JetspeedSecurity.JETSPEED_ROLE_USER);
         r.setId(JetspeedSecurity.JETSPEED_ROLE_USER);
-        v.add(r);
+        //v.add(r); TODO convert BaseJetspeedRole to GroupRole
         return v.iterator();
     }
 
@@ -80,10 +80,10 @@ public class NoRoleManagement
      * @exception RoleException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator<?> getRoles()
+    public Iterator<Role> getRoles()
         throws JetspeedSecurityException
     {
-        return new Vector<Object>().iterator();
+        return new Vector<Role>().iterator();
     }
 
     /**

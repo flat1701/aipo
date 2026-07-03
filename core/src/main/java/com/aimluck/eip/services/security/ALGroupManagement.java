@@ -19,6 +19,7 @@
 
 package com.aimluck.eip.services.security;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -155,7 +156,7 @@ public class ALGroupManagement extends TurbineBaseService implements
    *
    */
   @Override
-  public Iterator<TurbineGroup> getGroups() throws JetspeedSecurityException {
+  public Iterator<Group> getGroups() throws JetspeedSecurityException {
     List<TurbineGroup> groups;
     try {
       SelectQuery<TurbineGroup> query = Database.query(TurbineGroup.class);
@@ -163,7 +164,10 @@ public class ALGroupManagement extends TurbineBaseService implements
     } catch (Exception e) {
       throw new GroupException("Failed to retrieve groups ", e);
     }
-    return groups.iterator();
+    //return groups.iterator();
+    List<Group> result = new ArrayList<Group>();
+    //TODO convert groups to result
+    return result.iterator();
 
   }
 

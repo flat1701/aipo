@@ -82,7 +82,7 @@ public abstract class JetspeedSecurityCache
         return getService().getRole(username, roleName);
     }
 
-	public static GroupRole getRole(String username, String roleName, String groupName)
+	public static Role getRole(String username, String roleName, String groupName)
 	{
 		return getService().getRole(username, roleName, groupName);
 	}

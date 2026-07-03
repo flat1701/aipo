@@ -17,6 +17,7 @@
 package org.apache.jetspeed.services.security.turbine;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -137,11 +138,11 @@ public class TurbineGroupManagement extends TurbineBaseService
      * @exception GroupException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator<?> getGroups()
+    public Iterator<Group> getGroups()
         throws JetspeedSecurityException
     {
         Criteria criteria = new Criteria();
-        List<?> groups;
+        List<TurbineGroup> groups;
         try
         {
             groups = TurbineGroupPeer.doSelect(criteria);
@@ -150,7 +151,9 @@ public class TurbineGroupManagement extends TurbineBaseService
         {
             throw new GroupException("Failed to retrieve groups ", e);
         }
-        return groups.iterator();
+        //return groups.iterator();
+        // TODO convert TurbineGroup to Group
+        return (new ArrayList<Group>()).iterator();
     }
 
     /**

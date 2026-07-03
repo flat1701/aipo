@@ -46,7 +46,7 @@ public interface PortletInfoEntry extends RegistryEntry
     /** Returns a map of parameter values keyed on the parameter names
      *  @return the parameter values map
      */
-    public Map<String, Parameter> getParameterMap();
+    public Map<String, Object> getParameterMap();
 
     /** Search for a named parameter and return the associated
      *  parameter object. The search is case sensitive.

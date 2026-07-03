@@ -67,7 +67,7 @@ import org.apache.turbine.services.resources.ResourceService;
 import org.apache.turbine.services.rundata.RunDataService;
 
 import java.util.Iterator;
-
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 import javax.servlet.ServletConfig;
@@ -150,7 +150,7 @@ public class JetspeedPortalToolkitService
             entry = (PortletControlEntry) Registry.getEntry(Registry.PORTLET_CONTROL, name);
         }
 
-        Map<String, org.apache.jetspeed.om.registry.Parameter> params = null;
+        Map<String, Object> params = new HashMap<>();
 
         try
         {
@@ -159,13 +159,13 @@ public class JetspeedPortalToolkitService
                 if (name != null)
                 {
                     pc = (PortletControl) Class.forName(name).newInstance();
-                    params = new Hashtable<String, org.apache.jetspeed.om.registry.Parameter>();
+                    params = new Hashtable<String, Object>();
                 }
             }
             else
             {
                 pc = (PortletControl) Class.forName(entry.getClassname()).newInstance();
-                params = entry.getParameterMap();
+                params.putAll(entry.getParameterMap());
             }
         }
         catch (Exception e)
@@ -256,7 +256,7 @@ public class JetspeedPortalToolkitService
             entry = (PortletControllerEntry) Registry.getEntry(Registry.PORTLET_CONTROLLER, name);
         }
 
-        Map<String, String> params = null;
+        Map<String, Object> params = new HashMap<>();
 
         try
         {
@@ -265,13 +265,13 @@ public class JetspeedPortalToolkitService
                 if (name != null)
                 {
                     pc = (PortletController) Class.forName(name).newInstance();
-                    params = new Hashtable<String, String>();
+                    params = new Hashtable<String, Object>();
                 }
             }
             else
             {
                 pc = (PortletController) Class.forName(entry.getClassname()).newInstance();
-                params = entry.getParameterMap();
+                params.putAll(entry.getParameterMap());
             }
         }
         catch (Exception e)
@@ -570,9 +570,9 @@ public class JetspeedPortalToolkitService
      * @return a Map containing the parameters names/values, an empty Dictionary
      *        is returned if there are no parameters
      */
-    protected static Map<String, String> getParameters(Portlets portlets)
+    protected static Map<String, Object> getParameters(Portlets portlets)
     {
-        Hashtable<String, String> hash = new Hashtable<String, String>();
+        Hashtable<String, Object> hash = new Hashtable<String, Object>();
 
         if (portlets != null)
         {

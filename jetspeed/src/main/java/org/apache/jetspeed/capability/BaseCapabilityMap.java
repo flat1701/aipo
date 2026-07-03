@@ -77,13 +77,14 @@ public class BaseCapabilityMap implements CapabilityMap
     public Iterator<String> listMediaTypes()
     {
         Vector<String> results = new Vector<String>();
-        Vector<MediaTypeEntry> types = new Vector<MediaTypeEntry>();
+        Vector<? extends org.apache.jetspeed.om.registry.RegistryEntry> types = new Vector<>();
 
         // first copy the current media type list, ordered by global preference
-        Enumeration<MediaTypeEntry> en = ((MediaTypeRegistry)Registry.get(Registry.MEDIA_TYPE)).getEntries();
+        Enumeration<? extends org.apache.jetspeed.om.registry.RegistryEntry> en = Registry.get(Registry.MEDIA_TYPE).getEntries();
         while (en.hasMoreElements())
         {
-            types.add(en.nextElement());
+            //types.add(en.nextElement());
+          //TODO find how to add
         }
 
         //then retrieve a list of supported mime-types, ordered by
@@ -95,7 +96,7 @@ public class BaseCapabilityMap implements CapabilityMap
         while(mimes.hasNext())
         {
             String mime = ((MimeType)mimes.next()).getContentType();
-            Iterator<MediaTypeEntry> i = types.iterator();
+            Iterator<? extends org.apache.jetspeed.om.registry.RegistryEntry> i = types.iterator();
 
             while(i.hasNext())
             {

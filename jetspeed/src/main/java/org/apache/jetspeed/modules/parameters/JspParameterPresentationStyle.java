@@ -69,7 +69,7 @@ public class JspParameterPresentationStyle extends ParameterPresentationStyle
      * @param parms - additional style parameters
      * @return string
      */
-    public String getContent(RunData data, String name, String value, Map<String, String> parms)
+    public String getContent(RunData data, String name, String value, Map<String, Object> parms)
     {
         String result = null;
 

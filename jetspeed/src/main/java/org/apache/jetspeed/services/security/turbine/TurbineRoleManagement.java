@@ -17,6 +17,7 @@
 package org.apache.jetspeed.services.security.turbine;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -116,19 +117,19 @@ public class TurbineRoleManagement extends TurbineBaseService
         }
         Criteria criteria = new Criteria();
         criteria.add(TurbineUserGroupRolePeer.USER_ID, user.getUserId());
-        List<?> rels;
-        HashMap<?, GroupRole> roles;
+        List<TurbineUserGroupRole> rels;
+        HashMap<String, GroupRole> roles;
 
         try
         {
             rels = TurbineUserGroupRolePeer.doSelect(criteria);
             if (rels.size() > 0)
             {
-                roles = new HashMap<Object, GroupRole>(rels.size());
+                roles = new HashMap<String, GroupRole>(rels.size());
             }
             else
             {
-				roles = new HashMap<Object, GroupRole>();
+				roles = new HashMap<String, GroupRole>();
             }
 
             for (int ix = 0; ix < rels.size(); ix++)
@@ -159,7 +160,7 @@ public class TurbineRoleManagement extends TurbineBaseService
      * @exception RoleException when the security provider has a general failure.
      * @exception InsufficientPrivilegeException when the requestor is denied due to insufficient privilege
      */
-    public Iterator<?> getRoles()
+    public Iterator<Role> getRoles()
         throws JetspeedSecurityException
     {
         Criteria criteria = new Criteria();
@@ -172,7 +173,9 @@ public class TurbineRoleManagement extends TurbineBaseService
         {
             throw new RoleException("Failed to retrieve roles ", e);
         }
-        return roles.iterator();
+        //return roles.iterator();
+        //TODO convert TurbineRole to Role
+        return (new ArrayList<Role>()).iterator();
     }
 
     /**

@@ -249,7 +249,9 @@ public abstract class BaseTurbineRolePermissionManager
      * @return a <code>List</code> value
      * @exception TorqueException if an error occurs
      */
-    protected List<?> retrieveStoredOMs(List<?> ids)
+    @SuppressWarnings("rawtypes")
+    @Override
+    protected List retrieveStoredOMs(List ids)
         throws TorqueException
     {
         return TurbineRolePermissionPeer.retrieveByPKs(ids);

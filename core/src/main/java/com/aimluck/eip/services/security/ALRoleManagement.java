@@ -135,14 +135,16 @@ public class ALRoleManagement extends TurbineBaseService implements
    *
    */
   @Override
-  public Iterator<TurbineRole> getRoles() throws JetspeedSecurityException {
+  public Iterator<Role> getRoles() throws JetspeedSecurityException {
     List<TurbineRole> roles;
     try {
       roles = Database.query(TurbineRole.class).fetchList();
     } catch (Exception e) {
       throw new RoleException("Failed to retrieve roles ", e);
     }
-    return roles.iterator();
+    //return roles.iterator();
+    //TODO convert TurbineRole to Role
+    return null;
   }
 
   /**
