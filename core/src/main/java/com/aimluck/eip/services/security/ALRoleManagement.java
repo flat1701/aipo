@@ -19,6 +19,7 @@
 
 package com.aimluck.eip.services.security;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -30,6 +31,7 @@ import org.apache.cayenne.exp.ExpressionFactory;
 import org.apache.jetspeed.om.profile.Profile;
 import org.apache.jetspeed.om.profile.ProfileException;
 import org.apache.jetspeed.om.security.BaseJetspeedGroupRole;
+import org.apache.jetspeed.om.security.BaseJetspeedRole;
 import org.apache.jetspeed.om.security.Group;
 import org.apache.jetspeed.om.security.GroupRole;
 import org.apache.jetspeed.om.security.JetspeedUser;
@@ -135,14 +137,21 @@ public class ALRoleManagement extends TurbineBaseService implements
   @Override
   public Iterator<Role> getRoles() throws JetspeedSecurityException {
     List<TurbineRole> roles;
+    List<Role> result = new ArrayList<>();
     try {
       roles = Database.query(TurbineRole.class).fetchList();
+      for (TurbineRole trole: roles) {
+        BaseJetspeedRole brole = new BaseJetspeedRole();
+        brole.setId(trole.getId());
+        brole.setName(trole.getName());
+        result.add(brole);
+        //TODO: この変換でよいか確認する
+      }
     } catch (Exception e) {
       throw new RoleException("Failed to retrieve roles ", e);
     }
     //return roles.iterator();
-    //TODO: convert TurbineRole to Role
-    return null;
+    return result.iterator();
   }
 
   /**
