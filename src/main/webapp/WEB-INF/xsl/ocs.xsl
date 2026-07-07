@@ -1,3 +1,4 @@
+<?xml version="1.0"?> 
 <!--
 
     Aipo is a groupware program developed by TOWN, Inc.
@@ -18,7 +19,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<?xml version="1.0"?> 
 <xsl:stylesheet xmlns:xsl = "http://www.w3.org/1999/XSL/Transform"
                 xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                 xmlns:ocs = "http://alchemy.openjava.org/ocs/ocs-syntax#"
