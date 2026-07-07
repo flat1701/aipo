@@ -185,8 +185,7 @@ public class JetspeedDaemonFactoryService extends TurbineBaseService implements
       Collection<Daemon> daemonsValues = daemons.values();
       Iterator<Daemon> daemonsIter = daemonsValues.iterator();
       while (daemonsIter.hasNext()) {
-        Object obj = daemonsIter.next();
-        Daemon daemon = (Daemon) this.daemons.get(obj.getClass());
+        Daemon daemon = daemonsIter.next();
         daemon.wait();
 
       }

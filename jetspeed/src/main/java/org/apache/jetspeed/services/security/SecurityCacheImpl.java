@@ -196,7 +196,7 @@ public class SecurityCacheImpl  extends TurbineBaseService
 
     public Permission getPermission(String roleName, String permissionName)
     {        
-        Map<?, ?> map = (Map<?, ?>)perms.get(roleName);
+        Map<String, Permission> map = (Map<String, Permission>)perms.get(roleName);
         if (null != map)
         {
             return (Permission)map.get(permissionName);
@@ -215,7 +215,7 @@ public class SecurityCacheImpl  extends TurbineBaseService
 
     public boolean hasPermission(String roleName, String permissionName)
     {
-        Map<?, ?> map = (Map<?, ?>)perms.get(roleName);
+        Map<String, Permission> map = perms.get(roleName);
         if (null != map)
         {
             return map.containsKey(permissionName);
@@ -225,7 +225,7 @@ public class SecurityCacheImpl  extends TurbineBaseService
 
     public void removePermission(String roleName, String permissionName)
     {
-        Map<?, ?> map = (Map<?, ?>)perms.get(roleName);
+        Map<String, Permission> map = perms.get(roleName);
         if (null != map)
         {
             map.remove(permissionName);

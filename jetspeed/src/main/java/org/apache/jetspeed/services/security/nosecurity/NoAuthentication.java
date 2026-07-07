@@ -62,9 +62,6 @@ public class NoAuthentication
     public JetspeedUser login(String username, String password)
         throws LoginException
     {
-        // we let anyone in!
-        if (false) throw new FailedLoginException("Invalid user id or password");
-
         // create a user object with this username for Jetspeed use
         FakeJetspeedUser user = new FakeJetspeedUser(username, true);
 

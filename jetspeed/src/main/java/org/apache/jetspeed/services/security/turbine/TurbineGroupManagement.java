@@ -152,8 +152,8 @@ public class TurbineGroupManagement extends TurbineBaseService
             throw new GroupException("Failed to retrieve groups ", e);
         }
         //return groups.iterator();
-        // TODO: convert TurbineGroup to Group
-        return (new ArrayList<Group>()).iterator();
+        
+        return (new ArrayList<Group>(groups)).iterator();
     }
 
     /**

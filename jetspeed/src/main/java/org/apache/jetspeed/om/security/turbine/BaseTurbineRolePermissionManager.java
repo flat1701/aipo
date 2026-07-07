@@ -2,8 +2,6 @@
 
 package org.apache.jetspeed.om.security.turbine;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.torque.Torque;
@@ -12,7 +10,6 @@ import org.apache.torque.manager.AbstractBaseManager;
 import org.apache.torque.manager.CacheListener;
 import org.apache.torque.manager.MethodResultCache;
 import org.apache.torque.om.ObjectKey;
-import org.apache.torque.om.SimpleKey;
 import org.apache.torque.om.Persistent;
 import org.apache.torque.util.Criteria;
 

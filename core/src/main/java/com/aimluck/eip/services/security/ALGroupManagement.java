@@ -165,8 +165,7 @@ public class ALGroupManagement extends TurbineBaseService implements
       throw new GroupException("Failed to retrieve groups ", e);
     }
     //return groups.iterator();
-    List<Group> result = new ArrayList<Group>();
-    //TODO: convert groups to result
+    List<Group> result = new ArrayList<Group>(groups);
     return result.iterator();
 
   }

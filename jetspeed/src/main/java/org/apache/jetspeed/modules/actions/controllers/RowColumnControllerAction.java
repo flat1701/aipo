@@ -142,33 +142,26 @@ public class RowColumnControllerAction extends VelocityControllerAction
                 layout.setPosition(i);
                 p.setLayout(layout);
             }
-            if (layout!=null)
+            try
             {
-                try
+                int pos = (int)layout.getPosition();
+                if (logger.isDebugEnabled())
                 {
-                    int pos = (int)layout.getPosition();
-                    if (logger.isDebugEnabled())
-                    {
-                        logger.debug("RowColumnControllerAction: layout has position: " + pos);
-                    }
-                    if (pos >= 0 && pos < plist.size())
-                    {
-                        plist.set(pos,p);
-                    }
-                    else
-                    {
-                        work.add(p);
-                    }
+                    logger.debug("RowColumnControllerAction: layout has position: " + pos);
                 }
-                catch (Exception e)
+                if (pos >= 0 && pos < plist.size())
                 {
-                    logger.error("Layout error", e);
-                    layout.setPosition(-1);
+                    plist.set(pos,p);
+                }
+                else
+                {
                     work.add(p);
                 }
             }
-            else
+            catch (Exception e)
             {
+                logger.error("Layout error", e);
+                layout.setPosition(-1);
                 work.add(p);
             }
         }

@@ -31,7 +31,6 @@ import org.apache.cayenne.exp.ExpressionFactory;
 import org.apache.jetspeed.om.profile.Profile;
 import org.apache.jetspeed.om.profile.ProfileException;
 import org.apache.jetspeed.om.security.BaseJetspeedGroupRole;
-import org.apache.jetspeed.om.security.BaseJetspeedRole;
 import org.apache.jetspeed.om.security.Group;
 import org.apache.jetspeed.om.security.GroupRole;
 import org.apache.jetspeed.om.security.JetspeedUser;
@@ -143,7 +142,12 @@ public class ALRoleManagement extends TurbineBaseService implements
       throw new RoleException("Failed to retrieve roles ", e);
     }
     //return roles.iterator();
-    return (new ArrayList<Role>(roles)).iterator();
+    List<Role> roleList = new ArrayList<Role>();
+    //roleList.addAll(roles);
+    for (TurbineRole tr : roles) {
+      roleList.add(tr);
+    }
+    return roleList.iterator();
   }
 
   /**

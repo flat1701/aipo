@@ -16,7 +16,6 @@
 
 package org.apache.jetspeed.util.template;
 
-import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;

@@ -161,7 +161,7 @@ public class TurbineRoleManagement extends TurbineBaseService
         throws JetspeedSecurityException
     {
         Criteria criteria = new Criteria();
-        List<?> roles;
+        List<TurbineRole> roles;
         try
         {
             roles = TurbineRolePeer.doSelect(criteria);
@@ -171,9 +171,7 @@ public class TurbineRoleManagement extends TurbineBaseService
             throw new RoleException("Failed to retrieve roles ", e);
         }
         //return roles.iterator();
-        //TODO: convert TurbineRole to Role
-        
-        return (new ArrayList<Role>()).iterator();
+        return (new ArrayList<Role>(roles)).iterator();
     }
 
     /**

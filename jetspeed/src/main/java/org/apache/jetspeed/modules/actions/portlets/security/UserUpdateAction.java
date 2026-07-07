@@ -171,9 +171,6 @@ public class UserUpdateAction extends SecureVelocityPortletAction
                 duri.addPathInfo(SecurityConstants.PANE_NAME, SecurityConstants.PANEID_USER_UPDATE);
                 duri.addPathInfo(SecurityConstants.PARAM_MSGID, SecurityConstants.MID_INVALID_ENTITY_NAME);
                 rundata.setRedirectURI(duri.toString());
-                // save values that user just entered so they don't have to re-enter
-                if (user != null)
-                   rundata.getUser().setTemp(TEMP_USER, user);
                 return;
             }
 

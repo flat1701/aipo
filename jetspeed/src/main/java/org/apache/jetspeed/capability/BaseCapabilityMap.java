@@ -20,7 +20,6 @@ package org.apache.jetspeed.capability;
 import org.apache.jetspeed.util.MimeType;
 import org.apache.jetspeed.om.registry.ClientEntry;
 import org.apache.jetspeed.om.registry.MediaTypeEntry;
-import org.apache.jetspeed.om.registry.MediaTypeRegistry;
 import org.apache.jetspeed.services.Registry;
 
 //standard Java stuff

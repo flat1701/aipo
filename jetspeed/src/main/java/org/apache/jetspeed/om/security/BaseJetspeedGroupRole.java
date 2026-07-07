@@ -67,6 +67,9 @@ public class BaseJetspeedGroupRole implements GroupRole
         this.role = role;
     }
     
+    public BaseJetspeedGroupRole() {
+    }
+
     public BaseJetspeedGroupRole(Group group, Role role) {
       setGroup(group);
       setRole(role);

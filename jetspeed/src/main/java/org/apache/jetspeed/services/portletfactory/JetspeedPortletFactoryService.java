@@ -515,7 +515,7 @@ public class JetspeedPortletFactoryService extends TurbineBaseService
      * the <code>entry</code>'s parent into the entry
      * @author <a href="mailto:weaver@apache.org">Scott T. Weaver</a>
      */
-    protected void addParentInitParameters(PortletEntry entry, Map<String, org.apache.jetspeed.om.registry.Parameter> hash)
+    protected void addParentInitParameters(PortletEntry entry, Map<String, Object> hash)
     {
         // Now map any parameters from the parent that the child does not have
         PortletEntry parent = getParentEntry(entry);
@@ -529,8 +529,8 @@ public class JetspeedPortletFactoryService extends TurbineBaseService
                 String key = (String) names.next();
                 if (!hash.containsKey(key))
                 {
-                    //hash.put(key, parentMap.get(key));
-                  //TODO: find what to do
+                    hash.put(key, parentMap.get(key));
+                    //TODO: find what to do
                 }
             }
             

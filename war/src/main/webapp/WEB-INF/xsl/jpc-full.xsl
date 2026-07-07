@@ -1,3 +1,4 @@
+<?xml version="1.0"?> 
 <!--
 
     Aipo is a groupware program developed by Aimluck,Inc.
@@ -19,7 +20,6 @@
 
 -->
 
-<?xml version="1.0"?> 
 <xsl:stylesheet version="1.0"
                 xmlns:jcm="http://jakarta.apache.org/jetspeed/xml/jetspeed-portal-content"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">

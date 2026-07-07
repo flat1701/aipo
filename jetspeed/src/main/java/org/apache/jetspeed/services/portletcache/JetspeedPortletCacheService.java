@@ -99,7 +99,7 @@ implements PortletCacheService
             Long expirationMillis = item.getExpirationMillis();
             if (expirationMillis != null) {
                 if (System.currentTimeMillis() < expirationMillis.longValue()) {
-                    cachedObject.setExpires(expirationMillis.longValue() - cachedObject.getCreated());
+                    //cachedObject.setExpires(expirationMillis.longValue() - cachedObject.getCreated()); TODO: 必ずnullなのを直す
                 }
             }
             if (item instanceof Refreshable) {

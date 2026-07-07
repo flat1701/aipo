@@ -222,22 +222,14 @@ public class PsmlBrowseAction extends VelocityPortletAction
         }
         
 
-        if (windowIterator != null)
+        context.put("psml", windowIterator);
+        if (start > 0)
         {
-            context.put("psml", windowIterator);
-            if (start > 0)
-            {
-                context.put("prev", String.valueOf(prev + 1));
-            }
-            if (next <= windowIterator.getResultSetSize())
-            {
-                context.put("next", String.valueOf(next - 1));
-            }
-
+            context.put("prev", String.valueOf(prev + 1));
         }
-        else
+        if (next <= windowIterator.getResultSetSize())
         {
-            logger.error("No Psml entries Found");
+            context.put("next", String.valueOf(next - 1));
         }
 
     }

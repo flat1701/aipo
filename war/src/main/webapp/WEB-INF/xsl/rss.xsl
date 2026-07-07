@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="iso-8859-1"?> 
 <!--
 
     Aipo is a groupware program developed by Aimluck,Inc.
@@ -19,7 +20,6 @@
 
 -->
 
-<?xml version="1.0" encoding="iso-8859-1"?> 
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"

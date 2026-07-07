@@ -218,14 +218,7 @@ implements LoggingService
         if (logger == null)
         {
             logger = new BaseLogger(JetspeedLogFactoryService.getLogger(logName));
-            if (logger == null)
-            {
-                return defaultLogger;
-            }
-            else
-            {
-                loggers.put(logName, logger);
-            }
+            loggers.put(logName, logger);
         }
         return logger;
     }

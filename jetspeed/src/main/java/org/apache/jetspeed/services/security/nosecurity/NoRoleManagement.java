@@ -25,6 +25,8 @@ import org.apache.jetspeed.services.security.RoleManagement;
 import org.apache.jetspeed.om.security.Role;
 
 import org.apache.jetspeed.services.JetspeedSecurity;
+import org.apache.jetspeed.om.security.BaseJetspeedGroup;
+import org.apache.jetspeed.om.security.BaseJetspeedGroupRole;
 import org.apache.jetspeed.om.security.BaseJetspeedRole;
 import org.apache.jetspeed.om.security.GroupRole;
 // Jetspeed Security Exceptions
@@ -60,14 +62,15 @@ public class NoRoleManagement
     public Iterator<GroupRole> getRoles(String username)
         throws JetspeedSecurityException
     {
-        // give everyone the "user" role
-        Vector<GroupRole> v = new Vector<GroupRole>(1);
-        BaseJetspeedRole r = new BaseJetspeedRole();
-        //r.setNew(false);
-        r.setName(JetspeedSecurity.JETSPEED_ROLE_USER);
-        r.setId(JetspeedSecurity.JETSPEED_ROLE_USER);
-        //v.add(r); TODO: convert BaseJetspeedRole to GroupRole
-        return v.iterator();
+      // give everyone the "user" role
+      Vector<GroupRole> v = new Vector<>(1);
+      BaseJetspeedRole r = new BaseJetspeedRole();
+      //r.setNew(false);
+      r.setName(JetspeedSecurity.JETSPEED_ROLE_USER);
+      r.setId(JetspeedSecurity.JETSPEED_ROLE_USER);
+      BaseJetspeedGroup g = new BaseJetspeedGroup();
+      v.add(new BaseJetspeedGroupRole(g, r));
+      return v.iterator();
     }
 
     /**
