@@ -121,8 +121,10 @@ public class ALRoleManagement extends TurbineBaseService implements
         TurbineUserGroupRole rel = rels.get(ix);
         TurbineRole role = rel.getTurbineRole();
         TurbineGroup group = rel.getTurbineGroup();
-        GroupRole groupRole = new BaseJetspeedGroupRole(group, role);
-        roles.put(groupRole.getGroupRoleKey(), groupRole);
+        GroupRole groupRole = new BaseJetspeedGroupRole();
+        groupRole.setGroup(group);
+        groupRole.setRole(role);
+        roles.put(group.getName() + role.getName(), groupRole);
       }
     } catch (Exception e) {
       throw new RoleException("Failed to retrieve roles ", e);
