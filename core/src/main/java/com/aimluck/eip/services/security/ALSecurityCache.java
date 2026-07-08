@@ -235,6 +235,7 @@ public class ALSecurityCache extends TurbineBaseService implements
     return null;
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public Iterator<GroupRole> getRoles(String username) {
     Map<String, CachedAcl> acls = getAclsFromRequest();
@@ -356,10 +357,12 @@ public class ALSecurityCache extends TurbineBaseService implements
 
     try {
       if (perms != null) {
+        @SuppressWarnings("unchecked")
         Iterator<Role> roles = JetspeedSecurity.getRoles();
         while (roles.hasNext()) {
           Role role = roles.next();
           Map<String, Permission> map = new HashMap<String, Permission>();
+          @SuppressWarnings("unchecked")
           Iterator<Permission> prms =
             JetspeedSecurity.getPermissions(role.getName());
           while (prms.hasNext()) {

@@ -323,6 +323,7 @@ public class ALEipUtils {
         return null;
       }
 
+      @SuppressWarnings("unchecked")
       Iterator<Entry> iterator = portlets.getEntriesIterator();
       while (iterator.hasNext()) {
         Entry next = iterator.next();
@@ -383,6 +384,7 @@ public class ALEipUtils {
         return hash;
       }
       for (
+      @SuppressWarnings("unchecked")
       Iterator<Entry> it = portlets.getEntriesIterator(); it.hasNext();) {
         Entry next = it.next();
         if (!hash.containsKey(next.getParent())) {

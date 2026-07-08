@@ -175,6 +175,7 @@ public class ALMigrateFilter implements javax.servlet.Filter {
           for (JetspeedUserProfile prof : list) {
             Portlets portlets =
               DBUtils.bytesToPortlets(prof.getProfile(), mapping);
+            @SuppressWarnings("unchecked")
             Iterator<Portlets> iterator = portlets.getPortletsIterator();
             while (iterator.hasNext()) {
               Portlets childPortlets = iterator.next();

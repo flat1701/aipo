@@ -1015,6 +1015,7 @@ public class ALCustomizeSetAction extends VelocityPortletAction {
   }
 
   // Create a list of all available portlets
+  @SuppressWarnings("unchecked")
   public static List<PortletEntry> buildPortletList(RunData data,
       PortletSet set, String mediaType, List<PortletEntry> allPortlets) {
     List<PortletEntry> list = new ArrayList<PortletEntry>();

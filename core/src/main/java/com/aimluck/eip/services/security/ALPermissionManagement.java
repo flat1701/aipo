@@ -84,6 +84,7 @@ public class ALPermissionManagement extends TurbineBaseService implements
     Role role = null;
     try {
       if (cachingEnable) {
+        @SuppressWarnings("unchecked")
         Iterator<Permission> iterator = JetspeedSecurityCache.getPermissions(rolename);
         if (iterator != null) {
           return iterator;

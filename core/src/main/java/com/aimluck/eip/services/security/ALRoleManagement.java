@@ -90,6 +90,7 @@ public class ALRoleManagement extends TurbineBaseService implements
     JetspeedUser user = null;
     try {
       if (cachingEnable) {
+        @SuppressWarnings("unchecked")
         Iterator<GroupRole> result = JetspeedSecurityCache.getRoles(username);
         if (null != result) {
           return result;
