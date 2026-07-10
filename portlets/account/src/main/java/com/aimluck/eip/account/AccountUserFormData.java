@@ -805,7 +805,7 @@ public class AccountUserFormData extends ALAbstractFormData {
         user.setUpdatedUserId(ALEipUtils.getUserId(rundata));
         user.setConfirmed(JetspeedResources.CONFIRM_VALUE);
         // user.setDisabled(disabled.getValue());
-        user.setDisabled("F");
+        user.setDisabled(false);//user.setDisabled("F");
         user.setPassword(password.getValue());
         user.setPasswordChanged(new Date());
         user.setInTelephone(in_telephone.getValue());
@@ -953,7 +953,7 @@ public class AccountUserFormData extends ALAbstractFormData {
         if (user == null) {
           return false;
         }
-        String oldDisabled = user.getDisabled();
+        boolean oldDisabled = user.getDisabled();
         rundata.getParameters().setProperties(user);
         user.setLastAccessDate();
 
@@ -972,11 +972,11 @@ public class AccountUserFormData extends ALAbstractFormData {
           TurbineUser tuser = list.get(0);
           user.setPassword(tuser.getPasswordValue());
         }
-        String strDisabled = user.getDisabled();
+        boolean strDisabled = user.getDisabled();
         // String strDisabled = disabled.getValue();
         user.setDisabled(strDisabled);
-        if (!"T".equals(strDisabled)
-          && "T".equals(oldDisabled)
+        if (!strDisabled
+          && oldDisabled
           && JetspeedSecurity.isDisableAccountCheckEnabled()) {
           JetspeedSecurity.resetDisableAccountCheck(user.getUserName());
         }

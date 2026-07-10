@@ -41,9 +41,7 @@ import org.apache.cayenne.access.DataDomain;
 import org.apache.cayenne.access.DataNode;
 import org.apache.cayenne.access.Transaction;
 import org.apache.cayenne.conf.Configuration;
-import org.apache.cayenne.conf.CustomDBCPDataSourceFactory;
 import org.apache.cayenne.conf.DBCPDataSourceFactory;
-import org.apache.cayenne.conf.DataSourceFactoryDelegate;
 import org.apache.cayenne.dba.AutoAdapter;
 import org.apache.cayenne.exp.Expression;
 import org.apache.cayenne.map.DbAttribute;
@@ -54,6 +52,8 @@ import org.apache.jetspeed.services.logging.JetspeedLogFactoryService;
 import org.apache.jetspeed.services.logging.JetspeedLogger;
 import org.apache.jetspeed.services.resources.JetspeedResources;
 
+import com.aimluck.commons.dbcp.CustomDBCPDataSourceFactory;
+import com.aimluck.commons.dbcp.DataSourceFactoryDelegate;
 import com.aimluck.eip.orm.access.CustomTransaction;
 import com.aimluck.eip.orm.query.SQLTemplate;
 import com.aimluck.eip.orm.query.SelectQuery;

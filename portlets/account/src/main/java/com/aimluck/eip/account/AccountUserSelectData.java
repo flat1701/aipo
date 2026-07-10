@@ -335,7 +335,7 @@ public class AccountUserSelectData extends
       rd.setCellularMail(record.getCellularMail());
       rd.setPostNameList(ALEipUtils.getPostNameList(id.intValue()));
       rd.setPositionName(ALEipUtils.getPositionName(record.getPositionId()));
-      rd.setDisabled(record.getDisabled());
+      rd.setDisabled(record.getDisabled() ? "T" : "F");//rd.setDisabled(record.getDisabled());
       rd.setIsAdmin(ALEipUtils.isAdmin(Integer.valueOf(record.getUserId())));
       rd.setHasPhoto(record.hasPhoto());
       rd.setPhotoModified(record.getPhotoModified().getTime());

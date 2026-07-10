@@ -131,7 +131,7 @@ public class ALUserManagement extends TurbineBaseService implements
       baseuser.setCreated(tuser.getCreated());
       baseuser.setLastLogin(tuser.getLastLogin());
       // baseuser.setDisabled("T".equals(tuser.getDisabled()));
-      baseuser.setDisabled(tuser.getDisabled());
+      baseuser.setDisabled(tuser.getDisabled().equals("T"));
       // baseuser.setObjectdata(null);
       baseuser.setPasswordChanged(tuser.getPasswordChanged());
       baseuser.setCompanyId((tuser.getCompanyId() != null) ? tuser
@@ -209,7 +209,6 @@ public class ALUserManagement extends TurbineBaseService implements
   /**
    *
    */
-  @Override
   public JetspeedUser getUser(RunData rundata, Principal principal)
       throws JetspeedSecurityException {
     return getUser(principal);
@@ -449,7 +448,7 @@ public class ALUserManagement extends TurbineBaseService implements
         Profile profile = Profiler.createProfile();
         profile.setUser(user);
         profile.setMediaType("html");
-        profile.setOrgName(orgId);
+        //profile.setOrgName(orgId);
         Profiler.createProfile(getRunData(), profile);
 
         if (hasAdminCredential) {

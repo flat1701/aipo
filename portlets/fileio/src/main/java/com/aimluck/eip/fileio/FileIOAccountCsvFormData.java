@@ -567,7 +567,7 @@ public class FileIOAccountCsvFormData extends ALAbstractFormData {
       user.setCreatedUserId(ALEipUtils.getUserId(rundata));
       user.setUpdatedUserId(ALEipUtils.getUserId(rundata));
       user.setConfirmed(JetspeedResources.CONFIRM_VALUE);
-      user.setDisabled("F");
+      user.setDisabled(false);//user.setDisabled("F");
       // user.setPassword(password.getValue());
       user.setPasswordChanged(now);
       user.setInTelephone(in_telephone.getValue());

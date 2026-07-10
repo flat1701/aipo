@@ -148,7 +148,7 @@ public class ALSessionValidator extends JetspeedSessionValidator {
             String password = decoded.substring(pos + 1);
 
             JetspeedUser juser = JetspeedSecurity.login(username, password);
-            if (juser != null && "F".equals(juser.getDisabled())) {
+            if (juser != null && !juser.getDisabled()) {
               JetspeedSecurity.saveUser(juser);
             } else {
               requireAuth(hres);
@@ -211,7 +211,7 @@ public class ALSessionValidator extends JetspeedSessionValidator {
 
           try {
             loginuser = JetspeedSecurity.login(username, password);
-            if (loginuser != null && "F".equals(loginuser.getDisabled())) {
+            if (loginuser != null && !loginuser.getDisabled()) {
               JetspeedSecurity.saveUser(loginuser);
             } else {
               data.setUser(JetspeedSecurity.getAnonymousUser());

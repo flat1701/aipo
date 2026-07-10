@@ -7,11 +7,10 @@
   <parent>
     <artifactId>aipo</artifactId>
     <groupId>com.aimluck.eip</groupId>
-    <version>7.0.2</version>
+    <version>8.1.1</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.aimluck.eip</groupId>
   <artifactId>aipo-oms</artifactId>
   <version>${aipo.version}</version>
 
@@ -50,16 +49,18 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.jetspeed</groupId>
-      <artifactId>aipo-jetspeed</artifactId>
-      <version>${aipo.version}</version>
-    </dependency>
-    <dependency>
       <groupId>org.apache.cayenne</groupId>
       <artifactId>cayenne</artifactId>
       <version>2.0.4</version>
       <type>jar</type>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>apache</groupId>
+    	<artifactId>jetspeed</artifactId>
+    	<version>1.5</version>
+    	<scope>system</scope>
+    	<systemPath>C:/Users/hira.ATLAS/Documents/GitHub/aipo/jetspeed-1.5.jar</systemPath>
     </dependency>
   </dependencies>
 

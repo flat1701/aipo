@@ -186,7 +186,7 @@ public class ALGroupManagement extends TurbineBaseService implements
       Profile profile = Profiler.createProfile();
       profile.setGroup(group);
       profile.setMediaType("html");
-      profile.setOrgName(orgId);
+      //profile.setOrgName(orgId);
       Profiler.createProfile(rundata, profile);
     } catch (ProfileException e) {
       try {

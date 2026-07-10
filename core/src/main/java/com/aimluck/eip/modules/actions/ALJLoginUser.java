@@ -280,7 +280,7 @@ public class ALJLoginUser extends ActionEvent {
       data.setUser(juser);
       return;
     }
-    if ("T".equals(user.getDisabled())) {
+    if (user.getDisabled()) {
       // 理由等 ：ブラウザの戻るボタンを押した場合に，
       // ログイン無効ユーザに対してログイン画面を表示していた．
       // 対処方法：ログイン無効のユーザーを匿名ユーザーとして取り扱い処理する．
@@ -292,7 +292,7 @@ public class ALJLoginUser extends ActionEvent {
       data.getUser().setHasLoggedIn(Boolean.FALSE);
 
       return;
-    } else if ("N".equals(user.getDisabled())) {
+    } else if (!user.getDisabled()) {
       // 理由等 ：ブラウザの戻るボタンを押した場合に，
       // ログイン無効ユーザに対してログイン画面を表示していた．
       // 対処方法：ログイン無効のユーザーを匿名ユーザーとして取り扱い処理する．

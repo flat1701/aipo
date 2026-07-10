@@ -5,13 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>portlets</artifactId>
+    <artifactId>aipo</artifactId>
     <groupId>com.aimluck.eip</groupId>
-    <version>7.0.2</version>
-    <relativePath>../pom.xml</relativePath>
+    <version>8.1.1</version>
+    <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.aimluck.eip</groupId>
   <artifactId>aipo-portlet-todo</artifactId>
   <version>${aipo.version}</version>
   <packaging>jar</packaging>
@@ -50,11 +49,6 @@
         <groupId>net.sf.alchim</groupId>
         <artifactId>yuicompressor-maven-plugin</artifactId>
         <executions>
-          <execution>
-            <goals>
-              <goal>compress</goal>
-            </goals>
-          </execution>
         </executions>
         <configuration>
           <sourceDirectory>./src/main/webapp/javascript</sourceDirectory>
@@ -74,6 +68,16 @@
   </build>
 
   <dependencies>
+  	<dependency>
+  		<groupId>com.aimluck.eip</groupId>
+  		<artifactId>aipo-oms</artifactId>
+  		<version>${aipo.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.aimluck.eip</groupId>
+  		<artifactId>aipo-core</artifactId>
+  		<version>${aipo.version}</version>
+  	</dependency>
     <dependency>
       <groupId>com.aimluck.eip</groupId>
       <artifactId>aipo-portlet-timeline</artifactId>

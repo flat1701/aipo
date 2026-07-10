@@ -4,12 +4,11 @@
 
   <parent>
     <artifactId>aipo</artifactId>
-    <groupId>com.aimluck.eip</groupId>
-    <version>7.0.2</version>
+    <version>8.1.1</version>
     <relativePath>../pom.xml</relativePath>
+    <groupId>com.aimluck.eip</groupId>
   </parent>
 
-  <groupId>org.apache.jetspeed</groupId>
   <artifactId>aipo-jetspeed</artifactId>
   <version>${aipo.version}</version>
   <packaging>jar</packaging>

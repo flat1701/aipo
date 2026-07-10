@@ -5,13 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>portlets</artifactId>
+    <artifactId>aipo</artifactId>
     <groupId>com.aimluck.eip</groupId>
-    <version>7.0.2</version>
-    <relativePath>../pom.xml</relativePath>
+    <version>8.1.1</version>
+    <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.aimluck.eip</groupId>
   <artifactId>aipo-portlet-workflow</artifactId>
   <version>${aipo.version}</version>
   <packaging>jar</packaging>
@@ -75,6 +74,23 @@
 
   <dependencies>
     <dependency>
+      <groupId>fulcrum</groupId>
+      <artifactId>fulcrum</artifactId>
+      <version>3.0-b2-dev</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.aimluck.eip</groupId>
+      <artifactId>aipo-oms</artifactId>
+      <version>${aipo.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aimluck.eip</groupId>
+      <artifactId>aipo-core</artifactId>
+      <version>${aipo.version}</version>
+    </dependency>
+    <dependency>
       <groupId>com.aimluck.eip</groupId>
       <artifactId>aipo-portlet-whatsnew</artifactId>
       <version>${aipo.version}</version>
@@ -88,6 +104,37 @@
       <groupId>com.aimluck.eip</groupId>
       <artifactId>aipo-portlet-timeline</artifactId>
       <version>${aipo.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aimluck.eip</groupId>
+      <artifactId>aipo-lib-user</artifactId>
+      <version>${aipo.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aimluck.eip</groupId>
+      <artifactId>aipo-lib-mail</artifactId>
+      <version>${aipo.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cayenne</groupId>
+      <artifactId>cayenne</artifactId>
+      <version>2.0.4</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>apache</groupId>
+    	<artifactId>jetspeed</artifactId>
+    	<version>1.5</version>
+    	<scope>system</scope>
+    	<systemPath>C:/Users/hira.ATLAS/Documents/GitHub/aipo/jetspeed-1.5.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>turbine</groupId>
+      <artifactId>turbine</artifactId>
+      <version>2.2-al1</version>
+      <type>jar</type>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
 

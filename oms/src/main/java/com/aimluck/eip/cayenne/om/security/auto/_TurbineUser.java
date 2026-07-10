@@ -166,6 +166,10 @@ public class _TurbineUser extends org.apache.cayenne.CayenneDataObject {
     writeProperty("disabled", disabled);
   }
 
+  public void setDisabled(boolean disabled) {
+    writeProperty("disabled", disabled);
+  }
+
   public String getDisabled() {
     return (String) readProperty("disabled");
   }

@@ -5,13 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>lib</artifactId>
+    <artifactId>aipo</artifactId>
     <groupId>com.aimluck.eip</groupId>
-    <version>7.0.2</version>
-    <relativePath>../pom.xml</relativePath>
+    <version>8.1.1</version>
+    <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.aimluck.eip</groupId>
   <artifactId>aipo-lib-facility</artifactId>
   <version>${aipo.version}</version>
   <packaging>jar</packaging>
@@ -44,5 +43,17 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.aimluck.eip</groupId>
+  		<artifactId>aipo-oms</artifactId>
+  		<version>${aipo.version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.aimluck.eip</groupId>
+  		<artifactId>aipo-core</artifactId>
+  		<version>${aipo.version}</version>
+  	</dependency>
+  </dependencies>
 
 </project>
